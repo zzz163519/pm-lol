@@ -298,7 +298,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-06 — Polymarket Gamma/Data/CLOB public 实测
 
-**状态：** [~] market discovery/orderbook REST 已验证；Market WebSocket 待干净网络复测
+**状态：** [~] HTML slug discovery + Gamma slug detail + CLOB REST 已验证；generic search / network path / Market WebSocket 仍需处理
 
 **目标：** 验证 Polymarket public 行情是否足够支持 LOL Game Winner 市场发现、orderbook 记录和 WebSocket 订阅。
 
@@ -313,10 +313,10 @@ candidate_primary_for_production = risky_until_live_validation
 
 **执行步骤：**
 
-- [ ] 调用 Gamma/Data API 搜索 LOL / League of Legends / LCK / LPL / LEC 市场。
-- [ ] 识别 Game Winner 与 Series 市场的标题差异。
-- [ ] 选 1 个 Game Winner 市场，保存 market metadata。
-- [ ] 调用 CLOB public orderbook endpoint，保存 orderbook 样例。
+- [x] 调用 Gamma/Data API 搜索 LOL / League of Legends / LCK / LPL / LEC 市场，并记录 generic keyword search 不可靠。
+- [x] 识别 Game Winner 与 Series 市场的标题差异。
+- [x] 选 1 个 Game Winner 市场，保存 market metadata。
+- [x] 调用 CLOB public orderbook endpoint，保存 orderbook 样例。
 - [ ] 测试 Market WebSocket 订阅，保存至少 1 条消息样例。
 - [ ] 记录接口延迟、限流、错误码、字段不一致情况。
 
@@ -329,7 +329,8 @@ candidate_primary_for_production = risky_until_live_validation
 
 **完成证据：**
 
-- 输出一个完整链路样例：`marketSlug -> conditionId -> tokenId -> orderbook -> bestBid/bestAsk -> WS update`
+- 输出 REST 链路样例：`marketSlug -> conditionId -> tokenId -> orderbook -> bestBid/bestAsk`
+- WebSocket 完成证据仍待补充：`tokenId -> WS subscription -> orderbook/trade update`
 - 明确 Phase 1 是否可以基于 public endpoint 建 QuoteRecorder。
 
 **当前完成证据：**
@@ -337,6 +338,14 @@ candidate_primary_for_production = risky_until_live_validation
 - 已用 `lol-ktc-sgw-2026-06-15-game2` 跑通 `eventSlug -> Gamma event -> Game 2 Winner market -> conditionId -> clobTokenIds -> CLOB orderbook -> bestBid/bestAsk`。
 - Game 2 Winner 样例：KT token `bestBid=0.791`、`bestAsk=0.801`；SGW token `bestBid=0.199`、`bestAsk=0.209`。
 - Game 1 Winner 可读但盘口单边：KT token `bestBid=0.999`、`bestAsk=null`；SGW token `bestBid=null`、`bestAsk=0.001`。
+- 2026-07-03 复测确认 Polymarket 服务本身可达；`SSL_ERROR_SYSCALL` / browser `ERR_CONNECTION_CLOSED` 更像当前 WSL 代理、直连或 TLS 协商路径不稳定，不是 Polymarket LOL 页面整体不可用。
+- 当前代理通常为 `HTTP_PROXY/HTTPS_PROXY=http://192.168.240.1:7897`；默认 curl 成功过，`curl --http1.1` 也失败过，直连失败，不能把 `--http1.1` 当作稳定万能 workaround。
+- Gamma basic endpoint 可用，但 generic keyword search 不可靠：`league of legends`、`lol`、`t1` 可返回 `HTTP 200` 但结果为 Kraken IPO、Macron、UK election 等无关市场；`msi` 多次 TLS 失败。
+- 推荐 market discovery fallback：`Polymarket LOL page HTML -> event slug -> Gamma /events/slug/{slug} -> Game [1-5] Winner filter -> CLOB /book`。
+- 页面 HTML 暴露 4 个 LOL event slug：`lol-ly-fur-2026-07-03`、`lol-blg-t1-2026-07-04`、`lol-tsw-tes-2026-07-04`、`lol-hle1-g2-2026-07-05`。
+- Gamma slug detail 已确认当前样例存在 `Game N Winner`：LYON vs FURIA、BLG vs T1、Team Secret Whales vs Top Esports、Hanwha Life Esports vs G2 均有 Game 1/2/3/4 Winner。
+- 未发现 `Game 5 Winner`；当前样例中 Game 5 只看到 dragon / inhibitor / kill 等 props，不纳入 Phase 1 `Game N Winner` 主范围。
+- CLOB `/book` 已验证 `lol-blg-t1-2026-07-04-game1`：conditionId `0x52671a734b1872bab38ddaf5113a4716fb81b5bfb9e794475fadbea0fbacf0cf`；Bilibili token `bids=30`、`asks=31`、`bestBid=0.47`、`bestAsk=0.48`。
 - Phase 1 可先基于 public REST polling 建 `QuoteRecorder v1`；Market WebSocket 不阻塞骨架，但需要在干净网络路径复测。
 
 ---
@@ -503,7 +512,7 @@ Phase 1 go/no-go:
 ## 4. Phase 0 完成条件
 
 ```text
-[~] Polymarket public 行情实测可用：market discovery + tokenId + orderbook REST 已验证；WS pending_network_retest
+[~] Polymarket public 行情实测可用：HTML slug discovery + Gamma slug detail + Game Winner tokenId + CLOB orderbook REST 已验证；generic search 不可靠、网络路径不稳定、WS pending_network_retest
 [ ] 至少一个 LOL 实时源实测可用：历史样本覆盖 final picks + derived clock + gold + objectives；live sourceLatencySec 未实测
 [~] 赛程/映射源实测可用：LoLEsports schedule/event/gameNumber/team side 历史样本已验证；真实同场 Polymarket mapping 待验证
 [x] SourceScore 完成：候选源有证据打分，live latency 风险仍 pending

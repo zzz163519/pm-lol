@@ -14,6 +14,7 @@ Phase 0 source scoring uses a 100-point scale:
 | Source | officialness | latency | fieldCoverage | reliability | leagueCoverage | costFit | Total | Phase 0 Role |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 | LoLEsports frontend API | 8/20 | 12/20 | 21/25 | 8/15 | 8/10 | 10/10 | 67 | Current primary spike source |
+| Polymarket public market data | 10/20 | 10/20 | 18/25 | 8/15 | 6/10 | 10/10 | 62 | Market/orderbook source for conditional data foundation |
 | PandaScore | 12/20 | 14/20 | 20/25 | 12/15 | 8/10 | 4/10 | 70 | Commercial backup candidate |
 | GRID | 20/20 | 18/20 | 24/25 | 14/15 | 9/10 | 2/10 | 87 | Best-quality future upgrade |
 | Oracle's Elixir | 10/20 | 0/20 | 14/25 | 13/15 | 8/10 | 10/10 | 55 | Historical data only |
@@ -29,6 +30,24 @@ Phase 0 source scoring uses a 100-point scale:
 - `costFit` 10/10: It is currently free to read and fits the early spike budget.
 
 Decision: Use as the Phase 1 spike primary only after live latency validation; keep production risk marked pending.
+
+## Polymarket Public Market Data
+
+- `officialness` 10/20: Polymarket public web, Gamma, and CLOB endpoints are first-party public surfaces, but the current use depends on undocumented discovery behavior and public endpoint stability.
+- `latency` 10/20: CLOB `/book` can be polled without authentication, but Market WebSocket remains `pending_network_retest`, so push latency is not validated.
+- `fieldCoverage` 18/25: Current retest confirms `Game N Winner` discovery through page HTML event slugs plus Gamma slug detail, and CLOB books expose token-level bids/asks; this covers Phase 1 market metadata and quote polling, but not all live push behavior.
+- `reliability` 8/15: Gamma slug detail and CLOB `/book` are viable, but generic Gamma keyword search is unreliable and the current WSL/proxy/direct network path intermittently fails TLS with `SSL_ERROR_SYSCALL`.
+- `leagueCoverage` 6/10: Current MSI LoL events were discoverable, but coverage should be validated across LCK, LPL, LEC, MSI, and Worlds as markets appear.
+- `costFit` 10/10: Public read-only endpoints require no wallet, no API key, and no paid account for the current spike.
+
+Decision: Use as the conditional Phase 1 market/orderbook source with REST polling and a conservative discovery path:
+
+```text
+Polymarket LOL page HTML -> event slug -> Gamma /events/slug/{slug} -> Game [1-5] Winner filter -> CLOB /book
+```
+
+Do not treat it as production-safe until WebSocket is retested from a clean
+network path and collector retry/error-classification behavior is validated.
 
 ## PandaScore
 
@@ -77,6 +96,7 @@ Decision: Do not recommend for Phase 1 primary or backup until it proves live fi
 ## Selected Sources
 
 - Primary spike source: LoLEsports frontend API.
+- Market/orderbook source: Polymarket public market data via HTML slug discovery, Gamma slug detail, and CLOB REST polling.
 - Backup candidate: PandaScore, if paid live access is acceptable.
 - Future upgrade: GRID, if official access and cost fit the project.
 - Historical-only source: Oracle's Elixir.

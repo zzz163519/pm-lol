@@ -50,12 +50,39 @@ Current evidence:
 
 - Local samples parse market metadata, condition ID, token IDs, outcomes, volume, and orderbook depth.
 - Replay writes one market and four quote snapshots from local Polymarket samples.
+- 2026-07-03 retest confirms current LOL `Game N Winner` discovery is viable by
+  fetching the Polymarket LOL page HTML for event slugs, calling Gamma
+  `/events/slug/{slug}`, filtering `Game [1-5] Winner`, and reading CLOB
+  `/book` for token-level bids/asks.
+- Current event slugs observed from the page: `lol-ly-fur-2026-07-03`,
+  `lol-blg-t1-2026-07-04`, `lol-tsw-tes-2026-07-04`, and
+  `lol-hle1-g2-2026-07-05`.
+- Gamma slug detail confirmed Game 1/2/3/4 Winner markets for current MSI
+  examples. No `Game 5 Winner` market was observed in those samples; only some
+  Game 5 props were visible.
+- CLOB `/book` was validated for `lol-blg-t1-2026-07-04-game1`, conditionId
+  `0x52671a734b1872bab38ddaf5113a4716fb81b5bfb9e794475fadbea0fbacf0cf`,
+  with the Bilibili Gaming token showing `bids=30`, `asks=31`,
+  `bestBid=0.47`, and `bestAsk=0.48`.
 
 Risk:
 
 - Market WebSocket remains `pending_network_retest`; previous notes indicate it
   needs a clean retest. REST polling is acceptable as the QuoteRecorder v1
   baseline unless WS is later validated.
+- Gamma generic keyword search is not reliable for LoL discovery; searches for
+  `league of legends`, `lol`, and `t1` can return unrelated markets such as
+  Kraken IPO, Macron, and UK election markets.
+- The current WSL/proxy/direct network path is unstable for Polymarket domains.
+  `SSL_ERROR_SYSCALL` and browser `ERR_CONNECTION_CLOSED` are interpreted as
+  network/TLS negotiation instability, not proof that Polymarket LOL markets are
+  unavailable. `curl --http1.1` is not a universal workaround because it also
+  failed in the 2026-07-03 retest.
+
+Decision update on 2026-07-03: Polymarket LOL Game Winner source is viable for
+conditional data-foundation work via HTML slug discovery, Gamma slug detail, and
+CLOB REST polling, with retry/backoff and explicit error classification. It is
+not production-safe until WebSocket and network-path stability are retested.
 
 ## Live Latency Risk
 
@@ -104,6 +131,8 @@ Boundary:
 | LoLEsports live latency unknown | `pending_risk` | Could make live signals stale | Measure source latency during an active match. |
 | LoLEsports frontend API stability | `pending_risk` | Header/key/schema changes could break ingestion | Add monitoring and fallback source before production. |
 | Polymarket Market WebSocket unverified | `pending_network_retest` | QuoteRecorder may need REST polling fallback | Retest WS subscription on active Game Winner market. |
+| Polymarket generic search unreliable | `known_gap` | Market discovery may miss or mis-rank LoL markets | Use page HTML slug discovery plus Gamma slug detail, not generic search alone. |
+| Polymarket network path unstable | `pending_network_retest` | Collectors may see intermittent TLS failures | Add retry/backoff and classify SSL/proxy/direct failures during source spike. |
 | Bans unavailable in current LoLEsports samples | `known_gap` | Draft features may be incomplete | Search alternate frontend endpoint or accept picks-only Phase 1. |
 | Market-to-match resolver depends on aliases | `known_gap` | Low confidence mappings are skipped | Expand team alias table after more sample markets. |
 | Real cross-event mapping unproven | `pending_risk` | Markets cannot be trusted without high-confidence match/game/team mapping | Capture a true same-match Polymarket and LoLEsports sample with `mappingConfidence >= 0.90`. |
