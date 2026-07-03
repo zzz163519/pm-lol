@@ -3,7 +3,7 @@
 > 版本：v0.2
 > 日期：2026-06-15
 > 基于：架构框架 v0.2 + v0.3 P0 问题清单
-> 当前阶段：Phase 0 — Source Feasibility Spike
+> 当前阶段：Conditional Phase 1 Data Foundation with Phase 0 gates pending
 
 ---
 
@@ -19,6 +19,11 @@
 - 人工/半人工录入只作为 debug / fallback，不作为生产主线。
 - 每个阶段必须有可保存、可复盘的产出物；没有证据不算完成。
 - 任一硬门失败时，停止进入下一阶段，先重审项目假设。
+
+当前代码库已存在一套 Phase 1 Data Foundation 的本地验证骨架，包括
+schema、collectors、resolver、SQLite storage 和 replay smoke test。这些代码只作为
+Phase 0/conditional Phase 1 的数据源验证工具，不代表 Phase 0 硬门已经全部通过，
+也不代表可以进入 Phase 2 strategy / signal / execution。
 
 ---
 
@@ -67,7 +72,18 @@
 
 ### 进入条件
 
-Phase 0 全部硬门通过。
+完整进入 Phase 1 仍要求 Phase 0 全部硬门通过。当前只允许
+`conditional Phase 1 Data Foundation` 范围内的本地数据底座验证：
+market/orderbook REST polling、LoLEsports historical parser、schema/storage、
+resolver hard gate 和 replay pipeline。
+
+继续推进前仍必须关闭以下 Phase 0 gates：
+
+- LoLEsports live source latency 实测。
+- 真实同场 `Polymarket market -> LoLEsports match/game/team side` 映射样例，且
+  `mappingConfidence >= 0.90`。
+- Polymarket Market WebSocket clean network retest，或正式记录 REST polling 为
+  v1 baseline。
 
 ### 里程碑
 
@@ -190,12 +206,14 @@ Phase 3 主线验证通过，或 Phase 4 中某个非主线策略验证通过；
 ## 7. 当前状态
 
 ```text
-Phase 0: [ ] Source Feasibility Spike — 当前阶段
-Phase 1: [ ] Data Foundation — 未启动
-Phase 2: [ ] Strategy Skeleton — 未启动
+Phase 0: [~] Source Feasibility Spike — 部分通过，live latency / real mapping / WS retest pending
+Phase 1: [~] Data Foundation — 本地验证骨架已存在，仅 conditional，不能视为 full go
+Phase 2: [ ] Strategy Skeleton — 冻结
 Phase 3: [ ] Paper Trading Loop — 未启动
 Phase 4: [ ] Unlock Non-Mainline Strategies — 冻结
 Phase 5: [ ] Execution Layer — 冻结
 ```
 
-下一步：执行 `tasks.md` 中的 `F0-00` 与 `F0-06`，优先验证 LoLEsports Frontend API 的 live 延迟与 Polymarket public API 的 Game Winner 行情闭环。
+下一步：按 `tasks.md` 中的当前 P0 blocker 推进：
+LoLEsports live latency validation、真实同场 mapping validation、Polymarket
+Market WebSocket retest，并保持 Phase 2+ 冻结。

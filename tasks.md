@@ -2,8 +2,8 @@
 
 > 版本：v0.2
 > 日期：2026-06-15
-> 当前阶段：Phase 0 — Source Feasibility Spike
-> 阶段目标：验证自动数据输入闭环是否成立，不写策略，不建模型，不接私钥。
+> 当前阶段：Conditional Phase 1 Data Foundation with Phase 0 gates pending
+> 阶段目标：验证自动数据输入闭环是否成立；只允许数据底座验证，不写策略，不建模型，不接私钥。
 
 ---
 
@@ -13,7 +13,8 @@
 - 没有 API key 的任务优先执行，先快速验证公开源。
 - API 验证只做读取，不做下单，不接钱包。
 - 若某源不可用，记录失败原因，不在代码中绕过约束。
-- Phase 0 完成前不启动 Phase 1 代码骨架。
+- Phase 0 完整通过前不扩张 Phase 1 范围。当前已存在的数据底座骨架只作为
+  collector/parser/storage/resolver/replay 验证工具，不代表进入策略层。
 
 ---
 
@@ -27,10 +28,10 @@
 4. `F0-02` GRID 商务/技术确认：质量最高，但可能成本和门槛最高。
 5. `F0-03` Abios trial 验证：备选商业源。
 6. `F0-04` Cito free/starter 验证：低成本备选源，当前可信度低。
-7. `F0-07` 数据 schema 草案。
-8. `F0-08` SourceScore 打分。
-9. `F0-10` Phase 1 主输入源组合决策。
-10. `F0-09` 项目骨架初始化：仅在 Phase 0 硬门通过后执行。
+7. `F0-07` 数据 schema 草案：已完成。
+8. `F0-08` SourceScore 打分：已完成。
+9. `F0-09` 项目骨架初始化：已初始化，必须保持数据底座边界。
+10. `F0-10` Phase 1 主输入源组合决策：conditional go，仅限 Data Foundation。
 
 ---
 
@@ -109,7 +110,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-01 — PandaScore live LoL frame 验证
 
-**状态：** [x] REST market/orderbook 已验证；[ ] Market WebSocket 当前网络握手超时，待复测
+**状态：** [ ] 商业备选源未验证；仅作为 LoLEsports live validation 失败后的备选路径
 
 **目标：** 确认 PandaScore 是否能作为 Phase 1 的低成本主实时源候选。
 
@@ -251,7 +252,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-05 — LoLEsports schedule/event 映射复核
 
-**状态：** [ ]
+**状态：** [~] LoLEsports event/game/team 结构已从历史样本验证；真实同场 Polymarket 映射待验证
 
 **目标：** 在 F0-00 基础上，专门复核 LoLEsports schedule/event 数据是否足够支撑 Polymarket MarketResolver / MatchMapper / TeamAliasResolver / GameNumberResolver。
 
@@ -281,11 +282,23 @@ candidate_primary_for_production = risky_until_live_validation
 - 输出一个映射样例：`polymarketTitle -> league -> matchId -> gameNumber -> teamA/teamB`
 - 明确 `mappingConfidence` 估算依据。
 
+**当前完成证据：**
+
+- T1 vs GEN 历史 event details 可提供 `matchId -> gameId -> gameNumber -> blue/red side`。
+- 当前 replay 中 Polymarket 样例为 KT vs Saigon Warriors，与 LoLEsports 样例不是同一场；
+  低置信度 skip 是正确行为，不是映射成功证据。
+
+**仍需验证：**
+
+- [ ] 找到真实同一场 Polymarket Game N Winner 市场与 LoLEsports event。
+- [ ] 记录 `polymarketTitle -> marketSlug -> conditionId -> matchId -> gameNumber -> team side`。
+- [ ] `mappingConfidence >= 0.90` 才能视为通过。
+
 ---
 
 ### F0-06 — Polymarket Gamma/Data/CLOB public 实测
 
-**状态：** [ ]
+**状态：** [~] market discovery/orderbook REST 已验证；Market WebSocket 待干净网络复测
 
 **目标：** 验证 Polymarket public 行情是否足够支持 LOL Game Winner 市场发现、orderbook 记录和 WebSocket 订阅。
 
@@ -332,7 +345,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-07 — Phase 1 数据 schema 草案
 
-**状态：** [ ]
+**状态：** [x] 已完成；`docs/schema-phase1.md` 已存在
 
 **目标：** 定义 Phase 1 必需表结构，保证行情、比赛、BP、局中状态、映射结果可统一落库。
 
@@ -359,14 +372,16 @@ candidate_primary_for_production = risky_until_live_validation
 
 **完成证据：**
 
-- 每个 Phase 1 connector 的输出都能落到表中。
-- 每个 signal 所需输入都能从表中取到。
+- `markets`、`resolved_markets`、`quotes`、`matches`、`games`、
+  `game_state_snapshots`、`draft_snapshots` 字段草案已记录。
+- 本地 SQLite storage 已能初始化这些表并支持 replay smoke test。
+- 该 schema 只用于数据底座，不允许据此启动 Phase 2 signal / strategy。
 
 ---
 
 ### F0-08 — SourceScore 打分体系
 
-**状态：** [ ]
+**状态：** [x] 已完成；`docs/source-score.md` 已存在，live latency 分数仍带 pending risk
 
 **目标：** 用统一标准选择 Phase 1 主实时源和备选源，避免凭直觉选型。
 
@@ -400,17 +415,16 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-09 — 项目骨架初始化
 
-**状态：** [ ]
+**状态：** [x] 已初始化；只允许作为 Data Foundation 验证骨架使用
 
-**目标：** 在 Phase 0 硬门通过后，创建最小 Python 项目骨架。
+**目标：** 维护最小 Python 项目骨架，使 source parser、collector、resolver、storage
+和 replay smoke test 能验证 Phase 0/conditional Phase 1 数据底座假设。
 
-**前置条件：**
+**边界说明：**
 
-- F0-06 完成。
-- F0-05 完成。
-- 至少一个实时 LOL 数据源验证可用。
-- F0-07 schema 草案完成。
-- F0-08 SourceScore 完成。
+- 该骨架已在 Phase 0 gate 全部关闭前初始化，视为数据源验证工具。
+- 不得在该骨架中新增 strategy、signal、fair probability、broker、wallet、
+  private key 或真实下单逻辑。
 
 **计划目录：**
 
@@ -418,10 +432,9 @@ candidate_primary_for_production = risky_until_live_validation
 src/pm_lol/
   collectors/
   resolvers/
-  storage/
-  strategy/
-  trading/
-  orchestration/
+  sources/
+  storage.py
+  replay_pipeline.py
 tests/
 docs/
 ```
@@ -442,12 +455,13 @@ docs/
 
 - 能运行基础测试命令。
 - 包结构与 Phase 1 模块边界一致。
+- 当前代码未发现 strategy / signal / broker / execution / wallet 实现。
 
 ---
 
 ### F0-10 — Phase 1 主输入源组合决策
 
-**状态：** [ ]
+**状态：** [~] conditional go 已记录；不是 full Phase 0 pass
 
 **目标：** 基于实测结果确定 Phase 1 的主力数据源组合。
 
@@ -479,28 +493,39 @@ Phase 1 go/no-go:
 
 **完成证据：**
 
-- 明确 `go`：进入 Phase 1。
-- 或明确 `no-go`：停止系统建设，记录失败假设。
+- 明确 `conditional go`：只允许继续 Data Foundation 验证工具。
+- 明确 remaining gates：live latency、real cross-event mapping、Polymarket WS retest。
+- 明确 no-go triggers：自动 live source 不可用、Polymarket 行情不可稳定获取、
+  真实映射无法达到 `mappingConfidence >= 0.90`。
 
 ---
 
 ## 4. Phase 0 完成条件
 
 ```text
-[ ] Polymarket public 行情实测可用：market discovery + tokenId + orderbook + WS
-[ ] 至少一个 LOL 实时源实测可用：final picks + derived game clock + gold + objectives
-[ ] 赛程/映射源实测可用：schedule + event details + gameNumber + team alias
-[ ] SourceScore 完成：候选源有证据打分
-[ ] Phase 1 主输入源组合确定：主源、备源、映射源
-[ ] Phase 1 schema 草案完成：核心 connector 输出都能落库
-[ ] go/no-go 决策写入 `docs/decision-log.md`
+[~] Polymarket public 行情实测可用：market discovery + tokenId + orderbook REST 已验证；WS pending_network_retest
+[ ] 至少一个 LOL 实时源实测可用：历史样本覆盖 final picks + derived clock + gold + objectives；live sourceLatencySec 未实测
+[~] 赛程/映射源实测可用：LoLEsports schedule/event/gameNumber/team side 历史样本已验证；真实同场 Polymarket mapping 待验证
+[x] SourceScore 完成：候选源有证据打分，live latency 风险仍 pending
+[~] Phase 1 主输入源组合确定：conditional go，仅限 Data Foundation；生产主源未确认
+[x] Phase 1 schema 草案完成：核心 connector 输出可落库
+[x] go/no-go 决策写入 `docs/decision-log.md`：conditional go with gates
 ```
+
+当前 P0 blockers：
+
+- [ ] LoLEsports live latency validation：记录 `observedAt`、`sourceTimestamp`、
+  `sourceLatencySec`、poll interval、缺帧/错误和 pause/remake 行为。
+- [ ] Real cross-event mapping validation：同一场 Polymarket Game N Winner 与
+  LoLEsports event/game/team side，`mappingConfidence >= 0.90`。
+- [ ] Polymarket Market WebSocket retest：成功则保存订阅消息；失败则正式记录
+  REST polling 为 QuoteRecorder v1 baseline。
 
 ---
 
 ## 5. 后续阶段占位
 
-Phase 1 之后的任务只保留阶段入口，不在 Phase 0 完成前展开实现细节。
+Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 2+ 全部冻结。
 
 - [ ] **F1** Data Foundation：QuoteRecorder、MarketResolver、LiveGameStateConnector、DraftStateConnector、SQLite schema。
 - [ ] **F2** Strategy Skeleton：Elo、DraftFeature、FairProbability、EdgeCapacity、ExitPlan、SignalEngine。
