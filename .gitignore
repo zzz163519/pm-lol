@@ -1,0 +1,38 @@
+# Runtime / agent state
+.ccb/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+
+# Local databases / generated runtime artifacts
+*.db
+*.sqlite
+*.sqlite3
+*.log
+*.tmp
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/

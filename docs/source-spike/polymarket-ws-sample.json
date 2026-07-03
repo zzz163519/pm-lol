@@ -1,0 +1,36 @@
+{
+  "testedAt": "2026-06-15T07:24:00Z",
+  "uri": "wss://ws-subscriptions-clob.polymarket.com/ws/market",
+  "subscription": {
+    "assets_ids": [
+      "100172814846746500028191734405612966589475835807067790171955690167538278072521",
+      "45237782937761666957430863754762402074289825813292595850496859818516586364597"
+    ],
+    "type": "market"
+  },
+  "status": "handshake_timeout_in_current_network",
+  "messageCount": 0,
+  "attempts": [
+    {
+      "client": "python websockets 16.0",
+      "proxy": "environment proxy",
+      "result": "TimeoutError: timed out during opening handshake"
+    },
+    {
+      "client": "python websockets 16.0",
+      "proxy": "disabled",
+      "result": "TimeoutError: timed out during opening handshake"
+    },
+    {
+      "client": "npx wscat",
+      "proxy": "environment proxy",
+      "result": "no message before 20s timeout"
+    },
+    {
+      "client": "curl HTTP upgrade probe",
+      "proxy": "environment proxy",
+      "result": "CONNECT tunnel established, TLS handshake stalled before WebSocket upgrade"
+    }
+  ],
+  "interpretation": "REST endpoints are readable from this environment, but the Market WebSocket host does not complete TLS/WebSocket opening handshake in the current network path. Treat WebSocket as not validated yet, not as unsupported by Polymarket."
+}

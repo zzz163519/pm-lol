@@ -1,0 +1,29 @@
+{
+  "event": {
+    "id": "590479",
+    "ticker": "lol-ktc-sgw-2026-06-15",
+    "slug": "lol-ktc-sgw-2026-06-15",
+    "title": "LoL: KT Rolster Challengers vs Saigon Warriors (BO3) - Asia Masters Last Chance Qualifier",
+    "startDate": "2026-06-13T11:49:00.777204Z",
+    "endDate": "2026-06-15T12:00:00Z",
+    "active": true,
+    "closed": false,
+    "volume": 256777.52128299995,
+    "liquidity": 308884.95236
+  },
+  "selectedMarket": {
+    "id": "2530922",
+    "slug": "lol-ktc-sgw-2026-06-15-game2",
+    "question": "LoL: KT Rolster Challengers vs Saigon Warriors - Game 2 Winner",
+    "conditionId": "0x56243f448198c358a8f70d69f44091949ba1b260ae832793aab1c54ad8e00553",
+    "active": true,
+    "closed": false,
+    "volume": "74955.37260799993",
+    "liquidity": "13334.0372",
+    "outcomes": "[\"KT Rolster Challengers\", \"Saigon Warriors\"]",
+    "clobTokenIds": "[\"100172814846746500028191734405612966589475835807067790171955690167538278072521\", \"45237782937761666957430863754762402074289825813292595850496859818516586364597\"]",
+    "groupItemTitle": "Game 2 Winner",
+    "marketType": null,
+    "questionID": "0xe7383df93a60f3c3a1722ced97b44703617bea6d7464779c094b284ea43aadcc"
+  }
+}
