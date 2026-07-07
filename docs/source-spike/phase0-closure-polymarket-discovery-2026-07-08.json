@@ -1,0 +1,935 @@
+{
+  "events": [
+    {
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "54865409545970127818483222224309761077922946344974606824700577010363479992269",
+          "39577055225479084916752164627874450289163320947168445560952025705247541157415"
+        ],
+        "closed": false,
+        "conditionId": "0x487187034dadebc71441bd70c34351eb189c12a05c99220eb43be41b919e9261",
+        "eventSlug": "lol-blg-hle1-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-blg-hle1-2026-07-09",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Hanwha Life Esports"
+        ],
+        "question": "LoL: Bilibili Gaming vs Hanwha Life Esports (BO5) - Mid-Season Invitational Playoffs"
+      },
+      "startTime": "2026-07-09T08:00:00Z",
+      "teams": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "title": "LoL: Bilibili Gaming vs Hanwha Life Esports (BO5) - Mid-Season Invitational Playoffs"
+    },
+    {
+      "eventSlug": "lol-agal-dk-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "5304637618631659031478056816717300185938842043322386358682708915753188815877",
+          "83568380812209090320126052283226875147905968079124732996013139930437707331222"
+        ],
+        "closed": false,
+        "conditionId": "0x11074f07b008456da88e44f83800d4edf5a85cb5bada6c7c48d59f9b3f05b93c",
+        "eventSlug": "lol-agal-dk-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-agal-dk-2026-07-15",
+        "outcomes": [
+          "AG.AL",
+          "Dplus KIA"
+        ],
+        "question": "LoL: AG.AL vs Dplus KIA (BO1) - Esports World Cup Group A"
+      },
+      "startTime": "2026-07-15T11:20:00Z",
+      "teams": [
+        "AG.AL",
+        "Dplus KIA"
+      ],
+      "title": "LoL: AG.AL vs Dplus KIA (BO1) - Esports World Cup Group A"
+    },
+    {
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "38177142711883240643763953452942479646113729925114420729474549821504213059443",
+          "33275688672219959103125370166116350732205425299647744895777059513890001558598"
+        ],
+        "closed": true,
+        "conditionId": "0x5a225548a5cf5c61ea03c8f1a04648ed9ee10a0614918073df73ed6d3388581c",
+        "eventSlug": "lol-blg-ly-2026-07-05",
+        "gameNumber": null,
+        "marketSlug": "lol-blg-ly-2026-07-05",
+        "outcomes": [
+          "Bilibili Gaming",
+          "LYON"
+        ],
+        "question": "LoL: Bilibili Gaming vs LYON (BO5) - Mid-Season Invitational Playoffs"
+      },
+      "startTime": "2026-07-06T03:00:00Z",
+      "teams": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "title": "LoL: Bilibili Gaming vs LYON (BO5) - Mid-Season Invitational Playoffs"
+    },
+    {
+      "eventSlug": "lol-blg-mkoi-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "81491299804535610121225812224530397412626649724875240161718993949106149870328",
+          "25372789947615362687494652885625875811349393818532923489681520547430242192129"
+        ],
+        "closed": false,
+        "conditionId": "0x53de075821a6f02eebe4f415f8bc49257cc5bb57404c0471e447676b30d66363",
+        "eventSlug": "lol-blg-mkoi-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-blg-mkoi-2026-07-15",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Movistar KOI"
+        ],
+        "question": "LoL: Bilibili Gaming vs Movistar KOI (BO1) - Esports World Cup Group C"
+      },
+      "startTime": "2026-07-15T10:10:00Z",
+      "teams": [
+        "Bilibili Gaming",
+        "Movistar KOI"
+      ],
+      "title": "LoL: Bilibili Gaming vs Movistar KOI (BO1) - Esports World Cup Group C"
+    },
+    {
+      "eventSlug": "lol-es1-ewi-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "15998368568140480132444916562903392005286439348478668200202242633975997500886",
+          "44809898065879770829607605027523101358909279431657076803806113201786498861813"
+        ],
+        "closed": false,
+        "conditionId": "0x5cd7166ca024a6a39b8393c107baa205725703183355ca5ea357d37b4975f976",
+        "eventSlug": "lol-es1-ewi-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-es1-ewi-2026-07-09",
+        "outcomes": [
+          "Eintracht Spandau",
+          "E WIE EINFACH E-SPORTS"
+        ],
+        "question": "LoL: Eintracht Spandau vs E WIE EINFACH E-SPORTS (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-09T15:00:00Z",
+      "teams": [
+        "Eintracht Spandau",
+        "E WIE EINFACH E-SPORTS"
+      ],
+      "title": "LoL: Eintracht Spandau vs E WIE EINFACH E-SPORTS (BO1) - Prime League 1st Division Regular Season"
+    },
+    {
+      "eventSlug": "lol-es1-use1-2026-07-07",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "64490725625287385639153999828694817804840819530776384044203704511084760819726",
+          "4661124046408999245973008922308959115830138547684736779494393186547600616433"
+        ],
+        "closed": false,
+        "conditionId": "0xe96034c03dbf35358cce8b31457661e30dfa6aaaaecc53fff6eef8eff0dd171e",
+        "eventSlug": "lol-es1-use1-2026-07-07",
+        "gameNumber": null,
+        "marketSlug": "lol-es1-use1-2026-07-07",
+        "outcomes": [
+          "Eintracht Spandau",
+          "Unicorns Of Love Sexy Edition"
+        ],
+        "question": "LoL: Eintracht Spandau vs Unicorns Of Love Sexy Edition (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-07T16:10:00Z",
+      "teams": [
+        "Eintracht Spandau",
+        "Unicorns Of Love Sexy Edition"
+      ],
+      "title": "LoL: Eintracht Spandau vs Unicorns Of Love Sexy Edition (BO1) - Prime League 1st Division Regular Season"
+    },
+    {
+      "eventSlug": "lol-g2-fur-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "71123274765516653409477813460233013209755522387787533757538387065591407959563",
+          "24083435797272145482598931629266279411541937542792344267450270912122562490257"
+        ],
+        "closed": false,
+        "conditionId": "0xfd96581537ba0bb28a38d09779d9944fb76c05801fda4deeb399f380ea5f7acb",
+        "eventSlug": "lol-g2-fur-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-g2-fur-2026-07-15",
+        "outcomes": [
+          "G2 Esports",
+          "FURIA Esports"
+        ],
+        "question": "LoL: G2 Esports vs FURIA Esports (BO1) - Esports World Cup Group A"
+      },
+      "startTime": "2026-07-15T11:20:00Z",
+      "teams": [
+        "G2 Esports",
+        "FURIA Esports"
+      ],
+      "title": "LoL: G2 Esports vs FURIA Esports (BO1) - Esports World Cup Group A"
+    },
+    {
+      "eventSlug": "lol-g2-t1-2026-07-08",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "26829544556005620877600161455213875245587596054462031408260423398044932014639",
+          "77182240731271426840458461483661918228246646763805233273034766024334059552030"
+        ],
+        "closed": false,
+        "conditionId": "0x114792a4173044b81a8235bcdf6b8483c5e4c5efbebd98f687f9863340b300ce",
+        "eventSlug": "lol-g2-t1-2026-07-08",
+        "gameNumber": null,
+        "marketSlug": "lol-g2-t1-2026-07-08",
+        "outcomes": [
+          "G2 Esports",
+          "T1"
+        ],
+        "question": "LoL: G2 Esports vs T1 (BO5) - Mid-Season Invitational Playoffs"
+      },
+      "startTime": "2026-07-08T08:00:00Z",
+      "teams": [
+        "G2 Esports",
+        "T1"
+      ],
+      "title": "LoL: G2 Esports vs T1 (BO5) - Mid-Season Invitational Playoffs"
+    }
+  ],
+  "gameWinnerMarkets": [
+    {
+      "active": true,
+      "clobTokenIds": [
+        "34899681629975596680823272511407820643214154601485383259115476523364469117569",
+        "92155896711226508531656306422645708487529460510087463062559535463800385306518"
+      ],
+      "closed": false,
+      "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 1,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "79431908131356508084433457755458324207648598535865918981254999649478291541970",
+        "9976606108943452206320557993220219533385445389795366122925156864356407411888"
+      ],
+      "closed": false,
+      "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 2,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "47096309526106901328179490804440810907402896830853720942402789297373024143648",
+        "20414976475690894265425364948116786155162480053919701442335217459387124913382"
+      ],
+      "closed": false,
+      "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 3,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "79117020931286590387471436100030452388806937594869517787410410991055065589292",
+        "101429852666331840961925724184147591600258708327014402624351890633755470116046"
+      ],
+      "closed": false,
+      "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 4,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "5002714671247093436099392396939712777228297496010125902196982570959505353253",
+        "108247539562720632314732011526013280280400671796217869742352801497482916456605"
+      ],
+      "closed": true,
+      "conditionId": "0x9bf22299c580ffe62b20c7511995b66e0131aa69aa716a120d0f567b34bdccb7",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 1,
+      "marketSlug": "lol-blg-ly-2026-07-05-game1",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "7637026368732196921824599509816355494318100511074467507503025282536605565210",
+        "77885964302446834117476493554239777778548327052473355196312942816710622961664"
+      ],
+      "closed": true,
+      "conditionId": "0x9c81dfa75ed5c58a648edb84668061ca205293e3d83cf54375ab4b01c6293692",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 2,
+      "marketSlug": "lol-blg-ly-2026-07-05-game2",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "109626706301825910078079946375902941065865884567250950659804681976197896311826",
+        "22396416150391112604316534450005865531176311352826607046849224722907563638943"
+      ],
+      "closed": true,
+      "conditionId": "0xddde23953e6ca61a081b31f13ce221c1167c3d0adc49457d0345c546df51d708",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 3,
+      "marketSlug": "lol-blg-ly-2026-07-05-game3",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "85511699303473638406296767036888390729743015563083683929058296466152195509624",
+        "5244108474748859819473283220397541756299066420606575599865324272472201456757"
+      ],
+      "closed": true,
+      "conditionId": "0x7958bfd85a25960fade6c401b5b0b03fc12f59b68876646a7e5a351e8c9a6090",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 4,
+      "marketSlug": "lol-blg-ly-2026-07-05-game4",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 4 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "110491506577429319215901458281219269727103931491196553235644165260842358890906",
+        "27887302258343564348577216670687693334180770245262188319873202927710984373441"
+      ],
+      "closed": false,
+      "conditionId": "0xa922cbbb4da7a885fc8cc5393d412bf6c4ea2f9572fdf6b0fdbb936bc64785b5",
+      "eventSlug": "lol-g2-t1-2026-07-08",
+      "gameNumber": 1,
+      "marketSlug": "lol-g2-t1-2026-07-08-game1",
+      "outcomes": [
+        "G2 Esports",
+        "T1"
+      ],
+      "question": "LoL: G2 Esports vs T1 - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "81010537690765338503673895778010499939742847237660977209689311711260300421774",
+        "64072045393646346307848936320042920618456950736788119228752361900062504142486"
+      ],
+      "closed": false,
+      "conditionId": "0xf09078c468c3836113967a8484658a4e59da7158ffdb94317825c1a7acea650a",
+      "eventSlug": "lol-g2-t1-2026-07-08",
+      "gameNumber": 2,
+      "marketSlug": "lol-g2-t1-2026-07-08-game2",
+      "outcomes": [
+        "G2 Esports",
+        "T1"
+      ],
+      "question": "LoL: G2 Esports vs T1 - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "69018701533661691194397401738053188148133741644340746626392645756876297697315",
+        "78772974609468063088765948606072301352529204913146059487591603096611573182516"
+      ],
+      "closed": false,
+      "conditionId": "0x56c714fd50419a8269155137c51831045dfefab878a96d380bdc7e5547082a8f",
+      "eventSlug": "lol-g2-t1-2026-07-08",
+      "gameNumber": 3,
+      "marketSlug": "lol-g2-t1-2026-07-08-game3",
+      "outcomes": [
+        "G2 Esports",
+        "T1"
+      ],
+      "question": "LoL: G2 Esports vs T1 - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "5727272654081695879671633443851088030941262284133110819958047939985714065533",
+        "53601028630244442133555194600163044419725493329229416514429353923514189379095"
+      ],
+      "closed": false,
+      "conditionId": "0x9ccdbb03592ab891710a37b6c451fdaee9ee6be936ae253454fc1461dc879365",
+      "eventSlug": "lol-g2-t1-2026-07-08",
+      "gameNumber": 4,
+      "marketSlug": "lol-g2-t1-2026-07-08-game4",
+      "outcomes": [
+        "G2 Esports",
+        "T1"
+      ],
+      "question": "LoL: G2 Esports vs T1 - Game 4 Winner"
+    }
+  ],
+  "mappingCandidate": {
+    "lolesports": {
+      "matchId": "115570934355614575",
+      "metadata": {
+        "eventId": "115570934355614575",
+        "games": [
+          {
+            "id": "115570934355614576",
+            "number": 1,
+            "state": "unstarted",
+            "teams": [
+              {
+                "id": "100205573496804586",
+                "side": "blue"
+              },
+              {
+                "id": "99566404853854212",
+                "side": "red"
+              }
+            ]
+          },
+          {
+            "id": "115570934355614577",
+            "number": 2,
+            "state": "unstarted",
+            "teams": [
+              {
+                "id": "99566404853854212",
+                "side": "blue"
+              },
+              {
+                "id": "100205573496804586",
+                "side": "red"
+              }
+            ]
+          },
+          {
+            "id": "115570934355614578",
+            "number": 3,
+            "state": "unstarted",
+            "teams": [
+              {
+                "id": "100205573496804586",
+                "side": "blue"
+              },
+              {
+                "id": "99566404853854212",
+                "side": "red"
+              }
+            ]
+          },
+          {
+            "id": "115570934355614579",
+            "number": 4,
+            "state": "unstarted",
+            "teams": [
+              {
+                "id": "99566404853854212",
+                "side": "blue"
+              },
+              {
+                "id": "100205573496804586",
+                "side": "red"
+              }
+            ]
+          },
+          {
+            "id": "115570934355614580",
+            "number": 5,
+            "state": "unstarted",
+            "teams": [
+              {
+                "id": "100205573496804586",
+                "side": "blue"
+              },
+              {
+                "id": "99566404853854212",
+                "side": "red"
+              }
+            ]
+          }
+        ],
+        "league": "MSI",
+        "leagueSlug": "msi",
+        "matchId": "115570934355614575",
+        "startTime": "2026-07-09T08:00:00Z",
+        "state": "unstarted",
+        "teams": [
+          {
+            "code": "HLE",
+            "id": "100205573496804586",
+            "name": "Hanwha Life Esports"
+          },
+          {
+            "code": "BLG",
+            "id": "99566404853854212",
+            "name": "BILIBILI GAMING"
+          }
+        ]
+      },
+      "ok": true,
+      "scheduleLookup": {
+        "error": null,
+        "errorClass": null,
+        "ok": true
+      }
+    },
+    "lolesportsMatchId": "115570934355614575",
+    "mappingConfidence": 1.0,
+    "notes": [
+      "Pre-match static mapping smoke only.",
+      "LoLEsports live latency is not validated by this output.",
+      "Token-to-side samples are gated at mappingConfidence >= 0.90."
+    ],
+    "pendingLiveValidation": true,
+    "polymarketEventSlug": "lol-blg-hle1-2026-07-09",
+    "polymarketGameWinnerMarkets": [
+      {
+        "active": true,
+        "clobTokenIds": [
+          "34899681629975596680823272511407820643214154601485383259115476523364469117569",
+          "92155896711226508531656306422645708487529460510087463062559535463800385306518"
+        ],
+        "closed": false,
+        "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+        "eventSlug": "lol-blg-hle1-2026-07-09",
+        "gameNumber": 1,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Hanwha Life Esports"
+        ],
+        "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner"
+      },
+      {
+        "active": true,
+        "clobTokenIds": [
+          "79431908131356508084433457755458324207648598535865918981254999649478291541970",
+          "9976606108943452206320557993220219533385445389795366122925156864356407411888"
+        ],
+        "closed": false,
+        "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+        "eventSlug": "lol-blg-hle1-2026-07-09",
+        "gameNumber": 2,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Hanwha Life Esports"
+        ],
+        "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner"
+      },
+      {
+        "active": true,
+        "clobTokenIds": [
+          "47096309526106901328179490804440810907402896830853720942402789297373024143648",
+          "20414976475690894265425364948116786155162480053919701442335217459387124913382"
+        ],
+        "closed": false,
+        "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+        "eventSlug": "lol-blg-hle1-2026-07-09",
+        "gameNumber": 3,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Hanwha Life Esports"
+        ],
+        "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner"
+      },
+      {
+        "active": true,
+        "clobTokenIds": [
+          "79117020931286590387471436100030452388806937594869517787410410991055065589292",
+          "101429852666331840961925724184147591600258708327014402624351890633755470116046"
+        ],
+        "closed": false,
+        "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+        "eventSlug": "lol-blg-hle1-2026-07-09",
+        "gameNumber": 4,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Hanwha Life Esports"
+        ],
+        "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner"
+      }
+    ],
+    "polymarketStartTime": "2026-07-09T08:00:00Z",
+    "polymarketTeams": [
+      "Bilibili Gaming",
+      "Hanwha Life Esports"
+    ],
+    "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports (BO5) - Mid-Season Invitational Playoffs",
+    "sampleMappings": [
+      {
+        "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+        "gameNumber": 1,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614576",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+        "outcome": "Bilibili Gaming",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "BLG",
+        "teamId": "99566404853854212",
+        "teamName": "BILIBILI GAMING",
+        "teamSide": "red",
+        "tokenId": "34899681629975596680823272511407820643214154601485383259115476523364469117569"
+      },
+      {
+        "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+        "gameNumber": 1,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614576",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+        "outcome": "Hanwha Life Esports",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "HLE",
+        "teamId": "100205573496804586",
+        "teamName": "Hanwha Life Esports",
+        "teamSide": "blue",
+        "tokenId": "92155896711226508531656306422645708487529460510087463062559535463800385306518"
+      },
+      {
+        "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+        "gameNumber": 2,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614577",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+        "outcome": "Bilibili Gaming",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "BLG",
+        "teamId": "99566404853854212",
+        "teamName": "BILIBILI GAMING",
+        "teamSide": "blue",
+        "tokenId": "79431908131356508084433457755458324207648598535865918981254999649478291541970"
+      },
+      {
+        "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+        "gameNumber": 2,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614577",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+        "outcome": "Hanwha Life Esports",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "HLE",
+        "teamId": "100205573496804586",
+        "teamName": "Hanwha Life Esports",
+        "teamSide": "red",
+        "tokenId": "9976606108943452206320557993220219533385445389795366122925156864356407411888"
+      },
+      {
+        "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+        "gameNumber": 3,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614578",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+        "outcome": "Bilibili Gaming",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "BLG",
+        "teamId": "99566404853854212",
+        "teamName": "BILIBILI GAMING",
+        "teamSide": "red",
+        "tokenId": "47096309526106901328179490804440810907402896830853720942402789297373024143648"
+      },
+      {
+        "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+        "gameNumber": 3,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614578",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+        "outcome": "Hanwha Life Esports",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "HLE",
+        "teamId": "100205573496804586",
+        "teamName": "Hanwha Life Esports",
+        "teamSide": "blue",
+        "tokenId": "20414976475690894265425364948116786155162480053919701442335217459387124913382"
+      },
+      {
+        "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+        "gameNumber": 4,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614579",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+        "outcome": "Bilibili Gaming",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "BLG",
+        "teamId": "99566404853854212",
+        "teamName": "BILIBILI GAMING",
+        "teamSide": "blue",
+        "tokenId": "79117020931286590387471436100030452388806937594869517787410410991055065589292"
+      },
+      {
+        "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+        "gameNumber": 4,
+        "lolesportsEventId": "115570934355614575",
+        "lolesportsGameId": "115570934355614579",
+        "lolesportsMatchId": "115570934355614575",
+        "mappingConfidence": 1.0,
+        "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+        "outcome": "Hanwha Life Esports",
+        "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner",
+        "skipReason": null,
+        "status": "mapped",
+        "teamCode": "HLE",
+        "teamId": "100205573496804586",
+        "teamName": "Hanwha Life Esports",
+        "teamSide": "red",
+        "tokenId": "101429852666331840961925724184147591600258708327014402624351890633755470116046"
+      }
+    ],
+    "startTimeAligned": true,
+    "teamAliasMapping": {
+      "Bilibili Gaming": [
+        "Bilibili Gaming",
+        "BLG"
+      ],
+      "T1": [
+        "T1"
+      ]
+    },
+    "viable": true
+  },
+  "networkDiagnostics": {
+    "errorClasses": [],
+    "proxyEnv": {
+      "ALL_PROXY": false,
+      "HTTPS_PROXY": true,
+      "HTTP_PROXY": true,
+      "all_proxy": false,
+      "http_proxy": true,
+      "https_proxy": true
+    },
+    "requests": [
+      {
+        "attempts": 1,
+        "bytes": 1460592,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://polymarket.com/esports/league-of-legends"
+      },
+      {
+        "attempts": 1,
+        "bytes": 214915,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-blg-hle1-2026-07-09"
+      },
+      {
+        "attempts": 1,
+        "bytes": 35863,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-agal-dk-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 261035,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-blg-ly-2026-07-05"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36421,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-blg-mkoi-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36547,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-es1-ewi-2026-07-09"
+      },
+      {
+        "attempts": 1,
+        "bytes": 37435,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-es1-use1-2026-07-07"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36222,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-g2-fur-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 219091,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-g2-t1-2026-07-08"
+      },
+      {
+        "attempts": 1,
+        "bytes": 1641,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://clob.polymarket.com/book?token_id=34899681629975596680823272511407820643214154601485383259115476523364469117569"
+      },
+      {
+        "attempts": 1,
+        "bytes": 1462,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id=115570934355614575"
+      },
+      {
+        "attempts": 1,
+        "bytes": 49600,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US"
+      }
+    ],
+    "totalRequests": 12,
+    "totalRetries": 0
+  },
+  "observedAt": "2026-07-07T18:49:00.238353Z",
+  "orderbookSamples": [
+    {
+      "askCount": 22,
+      "bestAsk": 0.44,
+      "bestBid": 0.41,
+      "bidCount": 20,
+      "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+      "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+      "outcome": "Bilibili Gaming",
+      "sourceTimestamp": "1783450142732",
+      "tokenId": "34899681629975596680823272511407820643214154601485383259115476523364469117569"
+    }
+  ],
+  "warnings": [
+    "Gamma generic keyword search is unreliable for LoL discovery.",
+    "Game 5 Winner was not observed in the current documented samples.",
+    "Polymarket Market WebSocket remains pending_network_retest.",
+    "This is read-only source proof, not strategy, signal, execution, or live-latency validation."
+  ]
+}

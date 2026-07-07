@@ -1,0 +1,350 @@
+{
+  "lolesports": {
+    "matchId": "115570934355614527",
+    "metadata": {
+      "eventId": "115570934355614527",
+      "games": [
+        {
+          "id": "115570934355614528",
+          "number": 1,
+          "state": "completed",
+          "teams": [
+            {
+              "id": "98767991853197861",
+              "side": "blue"
+            },
+            {
+              "id": "99566404853854212",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614529",
+          "number": 2,
+          "state": "completed",
+          "teams": [
+            {
+              "id": "99566404853854212",
+              "side": "blue"
+            },
+            {
+              "id": "98767991853197861",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614530",
+          "number": 3,
+          "state": "completed",
+          "teams": [
+            {
+              "id": "98767991853197861",
+              "side": "blue"
+            },
+            {
+              "id": "99566404853854212",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614531",
+          "number": 4,
+          "state": "completed",
+          "teams": [
+            {
+              "id": "99566404853854212",
+              "side": "blue"
+            },
+            {
+              "id": "98767991853197861",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614532",
+          "number": 5,
+          "state": "completed",
+          "teams": [
+            {
+              "id": "98767991853197861",
+              "side": "blue"
+            },
+            {
+              "id": "99566404853854212",
+              "side": "red"
+            }
+          ]
+        }
+      ],
+      "league": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "115570934355614527",
+      "startTime": "2026-07-04T08:00:00Z",
+      "state": "completed",
+      "teams": [
+        {
+          "code": "T1",
+          "id": "98767991853197861",
+          "name": "T1"
+        },
+        {
+          "code": "BLG",
+          "id": "99566404853854212",
+          "name": "BILIBILI GAMING"
+        }
+      ]
+    },
+    "ok": true,
+    "scheduleLookup": {
+      "error": null,
+      "errorClass": null,
+      "ok": true
+    }
+  },
+  "lolesportsMatchId": "115570934355614527",
+  "mappingConfidence": 0.75,
+  "notes": [
+    "Pre-match static mapping smoke only.",
+    "LoLEsports live latency is not validated by this output.",
+    "Token-to-side samples are gated at mappingConfidence >= 0.90."
+  ],
+  "pendingLiveValidation": true,
+  "polymarketEventSlug": "lol-blg-t1-2026-07-04",
+  "polymarketGameWinnerMarkets": [
+    {
+      "active": true,
+      "clobTokenIds": [
+        "54346906519017004815826838861276314699310042763673409676887565361940723790357",
+        "80610833884813301020603329107861729554436766570394247888281033135395406870833"
+      ],
+      "closed": true,
+      "conditionId": "0x52671a734b1872bab38ddaf5113a4716fb81b5bfb9e794475fadbea0fbacf0cf",
+      "eventSlug": "lol-blg-t1-2026-07-04",
+      "gameNumber": 1,
+      "marketSlug": "lol-blg-t1-2026-07-04-game1",
+      "outcomes": [
+        "Bilibili Gaming",
+        "T1"
+      ],
+      "question": "LoL: Bilibili Gaming vs T1 - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "86406490027370319311016332817320707300355053881446554883433310740083426137156",
+        "38613248116538259887617448971570143897255923254128001518622193133245484108989"
+      ],
+      "closed": true,
+      "conditionId": "0x1ae9e1339d97efb51b00266b2c459edf968d75823622049577aeee352456c2b8",
+      "eventSlug": "lol-blg-t1-2026-07-04",
+      "gameNumber": 2,
+      "marketSlug": "lol-blg-t1-2026-07-04-game2",
+      "outcomes": [
+        "Bilibili Gaming",
+        "T1"
+      ],
+      "question": "LoL: Bilibili Gaming vs T1 - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "48488347609930669044893063124808749874962960947811418885162303731017984698072",
+        "90754796478240868136112856786015572794905339178032092958653096482980193503244"
+      ],
+      "closed": true,
+      "conditionId": "0x853a3d3741f8ddc26158d799ec3775c2046532deb120de9ec9badffffc068a3b",
+      "eventSlug": "lol-blg-t1-2026-07-04",
+      "gameNumber": 3,
+      "marketSlug": "lol-blg-t1-2026-07-04-game3",
+      "outcomes": [
+        "Bilibili Gaming",
+        "T1"
+      ],
+      "question": "LoL: Bilibili Gaming vs T1 - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "110034907401146993015710881929292261747959007907247136292638619202343622708359",
+        "62118793795056836965145587082511368241031502260216426478755488690154166611187"
+      ],
+      "closed": true,
+      "conditionId": "0x2c646e317f75b9f90cbab2c38f1312549366f56a367496bc76ce5f5186059b5c",
+      "eventSlug": "lol-blg-t1-2026-07-04",
+      "gameNumber": 4,
+      "marketSlug": "lol-blg-t1-2026-07-04-game4",
+      "outcomes": [
+        "Bilibili Gaming",
+        "T1"
+      ],
+      "question": "LoL: Bilibili Gaming vs T1 - Game 4 Winner"
+    }
+  ],
+  "polymarketStartTime": "2026-07-04T06:15:00Z",
+  "polymarketTeams": [
+    "Bilibili Gaming",
+    "T1"
+  ],
+  "polymarketTitle": "LoL: Bilibili Gaming vs T1 (BO5) - Mid-Season Invitational Playoffs",
+  "sampleMappings": [
+    {
+      "conditionId": "0x52671a734b1872bab38ddaf5113a4716fb81b5bfb9e794475fadbea0fbacf0cf",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614528",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game1",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 1 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "red",
+      "tokenId": "54346906519017004815826838861276314699310042763673409676887565361940723790357"
+    },
+    {
+      "conditionId": "0x52671a734b1872bab38ddaf5113a4716fb81b5bfb9e794475fadbea0fbacf0cf",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614528",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game1",
+      "outcome": "T1",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 1 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "T1",
+      "teamId": "98767991853197861",
+      "teamName": "T1",
+      "teamSide": "blue",
+      "tokenId": "80610833884813301020603329107861729554436766570394247888281033135395406870833"
+    },
+    {
+      "conditionId": "0x1ae9e1339d97efb51b00266b2c459edf968d75823622049577aeee352456c2b8",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614529",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game2",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 2 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "blue",
+      "tokenId": "86406490027370319311016332817320707300355053881446554883433310740083426137156"
+    },
+    {
+      "conditionId": "0x1ae9e1339d97efb51b00266b2c459edf968d75823622049577aeee352456c2b8",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614529",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game2",
+      "outcome": "T1",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 2 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "T1",
+      "teamId": "98767991853197861",
+      "teamName": "T1",
+      "teamSide": "red",
+      "tokenId": "38613248116538259887617448971570143897255923254128001518622193133245484108989"
+    },
+    {
+      "conditionId": "0x853a3d3741f8ddc26158d799ec3775c2046532deb120de9ec9badffffc068a3b",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614530",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game3",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 3 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "red",
+      "tokenId": "48488347609930669044893063124808749874962960947811418885162303731017984698072"
+    },
+    {
+      "conditionId": "0x853a3d3741f8ddc26158d799ec3775c2046532deb120de9ec9badffffc068a3b",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614530",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game3",
+      "outcome": "T1",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 3 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "T1",
+      "teamId": "98767991853197861",
+      "teamName": "T1",
+      "teamSide": "blue",
+      "tokenId": "90754796478240868136112856786015572794905339178032092958653096482980193503244"
+    },
+    {
+      "conditionId": "0x2c646e317f75b9f90cbab2c38f1312549366f56a367496bc76ce5f5186059b5c",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614531",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game4",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 4 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "blue",
+      "tokenId": "110034907401146993015710881929292261747959007907247136292638619202343622708359"
+    },
+    {
+      "conditionId": "0x2c646e317f75b9f90cbab2c38f1312549366f56a367496bc76ce5f5186059b5c",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614527",
+      "lolesportsGameId": "115570934355614531",
+      "lolesportsMatchId": "115570934355614527",
+      "mappingConfidence": 0.75,
+      "marketSlug": "lol-blg-t1-2026-07-04-game4",
+      "outcome": "T1",
+      "polymarketTitle": "LoL: Bilibili Gaming vs T1 - Game 4 Winner",
+      "skipReason": "mapping_confidence_below_0.90",
+      "status": "skipped",
+      "teamCode": "T1",
+      "teamId": "98767991853197861",
+      "teamName": "T1",
+      "teamSide": "red",
+      "tokenId": "62118793795056836965145587082511368241031502260216426478755488690154166611187"
+    }
+  ],
+  "startTimeAligned": false,
+  "teamAliasMapping": {
+    "Bilibili Gaming": [
+      "Bilibili Gaming",
+      "BLG"
+    ],
+    "T1": [
+      "T1"
+    ]
+  },
+  "viable": false
+}

@@ -1,0 +1,37 @@
+Observed at: 2026-07-07T19:20:05Z
+Local date: 2026-07-08 Asia/Shanghai
+Purpose: unauthenticated Cito LoL endpoint probe for Phase 0 source spike.
+Secret handling: no API key was present in the local environment and no key was sent.
+
+GET https://api.citoapi.com/api/v1/lol/live
+
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json; charset=utf-8
+RateLimit-Policy: 1000;w=60
+RateLimit-Limit: 1000
+RateLimit-Remaining: 999
+RateLimit-Reset: 60
+
+{"success":false,"error":{"code":"MISSING_API_KEY","message":"API key is required. Include your key in the x-api-key header.","docs":"https://citoapi.com/docs/authentication","ai_agent_context":"https://citoapi.com/llms.txt"}}
+
+GET https://api.citoapi.com/api/v1/lol/schedule/upcoming
+
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json; charset=utf-8
+RateLimit-Policy: 1000;w=60
+RateLimit-Limit: 1000
+RateLimit-Remaining: 998
+RateLimit-Reset: 60
+
+{"success":false,"error":{"code":"MISSING_API_KEY","message":"API key is required. Include your key in the x-api-key header.","docs":"https://citoapi.com/docs/authentication","ai_agent_context":"https://citoapi.com/llms.txt"}}
+
+GET https://api.citoapi.com/api/v1/lol/live/115570934355614576/visual-state
+
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json; charset=utf-8
+RateLimit-Policy: 1000;w=60
+RateLimit-Limit: 1000
+RateLimit-Remaining: 997
+RateLimit-Reset: 60
+
+{"success":false,"error":{"code":"MISSING_API_KEY","message":"API key is required. Include your key in the x-api-key header.","docs":"https://citoapi.com/docs/authentication","ai_agent_context":"https://citoapi.com/llms.txt"}}

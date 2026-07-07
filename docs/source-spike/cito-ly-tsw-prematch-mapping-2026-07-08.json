@@ -1,0 +1,350 @@
+{
+  "lolesports": {
+    "matchId": "115570934355614587",
+    "metadata": {
+      "eventId": "115570934355614587",
+      "games": [
+        {
+          "id": "115570934355614588",
+          "number": 1,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "113661839307879869",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614589",
+          "number": 2,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "113661839307879869",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614590",
+          "number": 3,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "113661839307879869",
+              "side": "blue"
+            },
+            {
+              "id": "99566405941863385",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614591",
+          "number": 4,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "113661839307879869",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614592",
+          "number": 5,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "113661839307879869",
+              "side": "blue"
+            },
+            {
+              "id": "99566405941863385",
+              "side": "red"
+            }
+          ]
+        }
+      ],
+      "league": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "115570934355614587",
+      "startTime": "2026-07-08T03:00:00Z",
+      "state": "unstarted",
+      "teams": [
+        {
+          "code": "LYON",
+          "id": "99566405941863385",
+          "name": "LYON"
+        },
+        {
+          "code": "TSW",
+          "id": "113661839307879869",
+          "name": "Team Secret Whales"
+        }
+      ]
+    },
+    "ok": true,
+    "scheduleLookup": {
+      "error": null,
+      "errorClass": null,
+      "ok": true
+    }
+  },
+  "lolesportsMatchId": "115570934355614587",
+  "mappingConfidence": 1.0,
+  "notes": [
+    "Pre-match static mapping smoke only.",
+    "LoLEsports live latency is not validated by this output.",
+    "Token-to-side samples are gated at mappingConfidence >= 0.90."
+  ],
+  "pendingLiveValidation": true,
+  "polymarketEventSlug": "lol-ly-tsw-2026-07-08",
+  "polymarketGameWinnerMarkets": [
+    {
+      "active": true,
+      "clobTokenIds": [
+        "75021383113657128951254988248873375148926627720724382363852035551289124917774",
+        "107032957359112030630031326897257998180139727332897728097264952539904550888528"
+      ],
+      "closed": false,
+      "conditionId": "0x43342576493c04880787092fd1f8531506e13e4a2015583eaa497c0a1de56f90",
+      "eventSlug": "lol-ly-tsw-2026-07-08",
+      "gameNumber": 1,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game1",
+      "outcomes": [
+        "LYON",
+        "Team Secret Whales"
+      ],
+      "question": "LoL: LYON vs Team Secret Whales - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "100457005292152153372253202061468738617711922867164825681469038114409110255689",
+        "25106904841758773473490359607223285312752109742817439651788740246841101764476"
+      ],
+      "closed": false,
+      "conditionId": "0xa0ac50e4c2323bf54696e9d8abc5759286d27344ea486399cf5dd7faf008eef2",
+      "eventSlug": "lol-ly-tsw-2026-07-08",
+      "gameNumber": 2,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game2",
+      "outcomes": [
+        "LYON",
+        "Team Secret Whales"
+      ],
+      "question": "LoL: LYON vs Team Secret Whales - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "66171536785918578280775373036270012786811501523436276266562434604899847892095",
+        "103425355381571913778276222308228019103265572105000862332077174235374709802479"
+      ],
+      "closed": false,
+      "conditionId": "0x9b1a303bd944c6b8e848d0d389dd08cf03854528e91198a859eaa1d840daca10",
+      "eventSlug": "lol-ly-tsw-2026-07-08",
+      "gameNumber": 3,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game3",
+      "outcomes": [
+        "LYON",
+        "Team Secret Whales"
+      ],
+      "question": "LoL: LYON vs Team Secret Whales - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "79734409571123525917355129558644331777876893075066483767051748409658604211330",
+        "81478069136259415055860728528078787449475179746547912579914575007030529167223"
+      ],
+      "closed": false,
+      "conditionId": "0xebba19f3f0ae952db0da98314746336fa69d378934cd07570ea4047aba85b704",
+      "eventSlug": "lol-ly-tsw-2026-07-08",
+      "gameNumber": 4,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game4",
+      "outcomes": [
+        "LYON",
+        "Team Secret Whales"
+      ],
+      "question": "LoL: LYON vs Team Secret Whales - Game 4 Winner"
+    }
+  ],
+  "polymarketStartTime": "2026-07-08T03:00:00Z",
+  "polymarketTeams": [
+    "LYON",
+    "Team Secret Whales"
+  ],
+  "polymarketTitle": "LoL: LYON vs Team Secret Whales (BO5) - Mid-Season Invitational Playoffs",
+  "sampleMappings": [
+    {
+      "conditionId": "0x43342576493c04880787092fd1f8531506e13e4a2015583eaa497c0a1de56f90",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614588",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game1",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "blue",
+      "tokenId": "75021383113657128951254988248873375148926627720724382363852035551289124917774"
+    },
+    {
+      "conditionId": "0x43342576493c04880787092fd1f8531506e13e4a2015583eaa497c0a1de56f90",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614588",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game1",
+      "outcome": "Team Secret Whales",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "TSW",
+      "teamId": "113661839307879869",
+      "teamName": "Team Secret Whales",
+      "teamSide": "red",
+      "tokenId": "107032957359112030630031326897257998180139727332897728097264952539904550888528"
+    },
+    {
+      "conditionId": "0xa0ac50e4c2323bf54696e9d8abc5759286d27344ea486399cf5dd7faf008eef2",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614589",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game2",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "blue",
+      "tokenId": "100457005292152153372253202061468738617711922867164825681469038114409110255689"
+    },
+    {
+      "conditionId": "0xa0ac50e4c2323bf54696e9d8abc5759286d27344ea486399cf5dd7faf008eef2",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614589",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game2",
+      "outcome": "Team Secret Whales",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "TSW",
+      "teamId": "113661839307879869",
+      "teamName": "Team Secret Whales",
+      "teamSide": "red",
+      "tokenId": "25106904841758773473490359607223285312752109742817439651788740246841101764476"
+    },
+    {
+      "conditionId": "0x9b1a303bd944c6b8e848d0d389dd08cf03854528e91198a859eaa1d840daca10",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614590",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game3",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "red",
+      "tokenId": "66171536785918578280775373036270012786811501523436276266562434604899847892095"
+    },
+    {
+      "conditionId": "0x9b1a303bd944c6b8e848d0d389dd08cf03854528e91198a859eaa1d840daca10",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614590",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game3",
+      "outcome": "Team Secret Whales",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "TSW",
+      "teamId": "113661839307879869",
+      "teamName": "Team Secret Whales",
+      "teamSide": "blue",
+      "tokenId": "103425355381571913778276222308228019103265572105000862332077174235374709802479"
+    },
+    {
+      "conditionId": "0xebba19f3f0ae952db0da98314746336fa69d378934cd07570ea4047aba85b704",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614591",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game4",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "blue",
+      "tokenId": "79734409571123525917355129558644331777876893075066483767051748409658604211330"
+    },
+    {
+      "conditionId": "0xebba19f3f0ae952db0da98314746336fa69d378934cd07570ea4047aba85b704",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614587",
+      "lolesportsGameId": "115570934355614591",
+      "lolesportsMatchId": "115570934355614587",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-ly-tsw-2026-07-08-game4",
+      "outcome": "Team Secret Whales",
+      "polymarketTitle": "LoL: LYON vs Team Secret Whales - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "TSW",
+      "teamId": "113661839307879869",
+      "teamName": "Team Secret Whales",
+      "teamSide": "red",
+      "tokenId": "81478069136259415055860728528078787449475179746547912579914575007030529167223"
+    }
+  ],
+  "startTimeAligned": true,
+  "teamAliasMapping": {
+    "LYON": [
+      "LYON"
+    ],
+    "Team Secret Whales": [
+      "Team Secret Whales",
+      "TSW"
+    ]
+  },
+  "viable": true
+}

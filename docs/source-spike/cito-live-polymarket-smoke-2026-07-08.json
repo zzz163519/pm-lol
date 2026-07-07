@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "apiKeyLength": 0,
+    "apiKeyPresent": false,
+    "headerName": "x-api-key",
+    "source": null
+  },
+  "boundaryFindings": [
+    "no_cito_request_sent_without_api_key",
+    "read_only_smoke",
+    "no_wallet",
+    "no_private_key",
+    "no_trade_execution"
+  ],
+  "observedAt": "2026-07-07T22:04:39.645103Z",
+  "overallStatus": "blocked_missing_cito_api_key",
+  "rawSamplePaths": {
+    "report": "docs/source-spike/cito-live-polymarket-smoke-2026-07-08.json"
+  },
+  "script": "scripts/cito_live_polymarket_smoke.py"
+}

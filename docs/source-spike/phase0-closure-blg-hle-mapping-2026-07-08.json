@@ -1,0 +1,350 @@
+{
+  "lolesports": {
+    "matchId": "115570934355614575",
+    "metadata": {
+      "eventId": "115570934355614575",
+      "games": [
+        {
+          "id": "115570934355614576",
+          "number": 1,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "100205573496804586",
+              "side": "blue"
+            },
+            {
+              "id": "99566404853854212",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614577",
+          "number": 2,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566404853854212",
+              "side": "blue"
+            },
+            {
+              "id": "100205573496804586",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614578",
+          "number": 3,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "100205573496804586",
+              "side": "blue"
+            },
+            {
+              "id": "99566404853854212",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614579",
+          "number": 4,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566404853854212",
+              "side": "blue"
+            },
+            {
+              "id": "100205573496804586",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614580",
+          "number": 5,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "100205573496804586",
+              "side": "blue"
+            },
+            {
+              "id": "99566404853854212",
+              "side": "red"
+            }
+          ]
+        }
+      ],
+      "league": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "115570934355614575",
+      "startTime": "2026-07-09T08:00:00Z",
+      "state": "unstarted",
+      "teams": [
+        {
+          "code": "HLE",
+          "id": "100205573496804586",
+          "name": "Hanwha Life Esports"
+        },
+        {
+          "code": "BLG",
+          "id": "99566404853854212",
+          "name": "BILIBILI GAMING"
+        }
+      ]
+    },
+    "ok": true,
+    "scheduleLookup": {
+      "error": null,
+      "errorClass": null,
+      "ok": true
+    }
+  },
+  "lolesportsMatchId": "115570934355614575",
+  "mappingConfidence": 1.0,
+  "notes": [
+    "Pre-match static mapping smoke only.",
+    "LoLEsports live latency is not validated by this output.",
+    "Token-to-side samples are gated at mappingConfidence >= 0.90."
+  ],
+  "pendingLiveValidation": true,
+  "polymarketEventSlug": "lol-blg-hle1-2026-07-09",
+  "polymarketGameWinnerMarkets": [
+    {
+      "active": true,
+      "clobTokenIds": [
+        "34899681629975596680823272511407820643214154601485383259115476523364469117569",
+        "92155896711226508531656306422645708487529460510087463062559535463800385306518"
+      ],
+      "closed": false,
+      "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 1,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "79431908131356508084433457755458324207648598535865918981254999649478291541970",
+        "9976606108943452206320557993220219533385445389795366122925156864356407411888"
+      ],
+      "closed": false,
+      "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 2,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "47096309526106901328179490804440810907402896830853720942402789297373024143648",
+        "20414976475690894265425364948116786155162480053919701442335217459387124913382"
+      ],
+      "closed": false,
+      "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 3,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "79117020931286590387471436100030452388806937594869517787410410991055065589292",
+        "101429852666331840961925724184147591600258708327014402624351890633755470116046"
+      ],
+      "closed": false,
+      "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 4,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner"
+    }
+  ],
+  "polymarketStartTime": "2026-07-09T08:00:00Z",
+  "polymarketTeams": [
+    "Bilibili Gaming",
+    "Hanwha Life Esports"
+  ],
+  "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports (BO5) - Mid-Season Invitational Playoffs",
+  "sampleMappings": [
+    {
+      "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614576",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "red",
+      "tokenId": "34899681629975596680823272511407820643214154601485383259115476523364469117569"
+    },
+    {
+      "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614576",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "blue",
+      "tokenId": "92155896711226508531656306422645708487529460510087463062559535463800385306518"
+    },
+    {
+      "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614577",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "blue",
+      "tokenId": "79431908131356508084433457755458324207648598535865918981254999649478291541970"
+    },
+    {
+      "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614577",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "red",
+      "tokenId": "9976606108943452206320557993220219533385445389795366122925156864356407411888"
+    },
+    {
+      "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614578",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "red",
+      "tokenId": "47096309526106901328179490804440810907402896830853720942402789297373024143648"
+    },
+    {
+      "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614578",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "blue",
+      "tokenId": "20414976475690894265425364948116786155162480053919701442335217459387124913382"
+    },
+    {
+      "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614579",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+      "outcome": "Bilibili Gaming",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "BLG",
+      "teamId": "99566404853854212",
+      "teamName": "BILIBILI GAMING",
+      "teamSide": "blue",
+      "tokenId": "79117020931286590387471436100030452388806937594869517787410410991055065589292"
+    },
+    {
+      "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614575",
+      "lolesportsGameId": "115570934355614579",
+      "lolesportsMatchId": "115570934355614575",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "red",
+      "tokenId": "101429852666331840961925724184147591600258708327014402624351890633755470116046"
+    }
+  ],
+  "startTimeAligned": true,
+  "teamAliasMapping": {
+    "Bilibili Gaming": [
+      "Bilibili Gaming",
+      "BLG"
+    ],
+    "T1": [
+      "T1"
+    ]
+  },
+  "viable": true
+}
