@@ -1,21 +1,227 @@
 {
   "auth": {
-    "apiKeyLength": 0,
-    "apiKeyPresent": false,
-    "headerName": "x-api-key",
-    "source": null
+    "apiKeyLength": 69,
+    "apiKeyPresent": true,
+    "headerName": "x-api-key"
   },
   "boundaryFindings": [
-    "no_cito_request_sent_without_api_key",
     "read_only_smoke",
     "no_wallet",
     "no_private_key",
-    "no_trade_execution"
+    "no_trade_execution",
+    "no_strategy_or_signal"
   ],
-  "observedAt": "2026-07-07T22:04:39.645103Z",
-  "overallStatus": "blocked_missing_cito_api_key",
-  "rawSamplePaths": {
-    "report": "docs/source-spike/cito-live-polymarket-smoke-2026-07-08.json"
+  "cito": {
+    "baseUrl": "https://api.citoapi.com/api/v1",
+    "live": {
+      "attempts": 1,
+      "gameId": null,
+      "request": {
+        "error": null,
+        "errorClass": null,
+        "observedAt": "2026-07-07T22:56:40.024106Z",
+        "ok": true,
+        "statusCode": 200,
+        "url": "https://api.citoapi.com/api/v1/lol/live"
+      },
+      "status": "no_match"
+    },
+    "scheduleToday": {
+      "matchCount": 7,
+      "matches": [
+        {
+          "gameId": null,
+          "id": "lol-match-116697716933082094",
+          "officialEventId": "116697716933082094",
+          "startTime": "2026-07-07T13:00:00.000Z",
+          "state": "inProgress",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116697716933016537",
+          "officialEventId": "116697716933016537",
+          "startTime": "2026-07-07T15:00:00.000Z",
+          "state": "completed",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116713163972559014",
+          "officialEventId": "116713163972559014",
+          "startTime": "2026-07-07T15:00:00.000Z",
+          "state": "completed",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116713163972559032",
+          "officialEventId": "116713163972559032",
+          "startTime": "2026-07-07T16:00:00.000Z",
+          "state": "completed",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116713163972559074",
+          "officialEventId": "116713163972559074",
+          "startTime": "2026-07-07T17:00:00.000Z",
+          "state": "completed",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116713163972559000",
+          "officialEventId": "116713163972559000",
+          "startTime": "2026-07-07T18:00:00.000Z",
+          "state": "completed",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116713163972559078",
+          "officialEventId": "116713163972559078",
+          "startTime": "2026-07-07T19:00:00.000Z",
+          "state": "completed",
+          "teams": []
+        }
+      ],
+      "request": {
+        "error": null,
+        "errorClass": null,
+        "observedAt": "2026-07-07T22:56:38.178275Z",
+        "ok": true,
+        "statusCode": 200,
+        "url": "https://api.citoapi.com/api/v1/lol/schedule/today"
+      }
+    },
+    "visualState": {
+      "gameId": null,
+      "rawSamplePath": null,
+      "request": null
+    }
   },
-  "script": "scripts/cito_live_polymarket_smoke.py"
+  "endedAt": "2026-07-07T22:56:41.572951Z",
+  "fieldCoverage": {
+    "finalPicks": "missing_no_live_match",
+    "gameClock": "missing_no_live_match",
+    "gameState": "missing_no_live_match",
+    "gold": "missing_no_live_match",
+    "objectives": "missing_no_live_match",
+    "teamIdentity": "present",
+    "winner": "missing_no_live_match"
+  },
+  "overallStatus": "no_match_timeout",
+  "polymarket": {
+    "clobRawSamplePath": "docs/source-spike/cito-polymarket-clob-dry-run-2026-07-08.json",
+    "clobRequest": {
+      "error": null,
+      "errorClass": null,
+      "observedAt": "2026-07-07T22:56:40.875645Z",
+      "ok": true,
+      "statusCode": 200,
+      "url": "https://clob.polymarket.com/markets?clob_token_ids=110491506577429319215901458281219269727103931491196553235644165260842358890906,27887302258343564348577216670687693334180770245262188319873202927710984373441,81010537690765338503673895778010499939742847237660977209689311711260300421774,64072045393646346307848936320042920618456950736788119228752361900062504142486"
+    },
+    "clobTokenIds": [
+      "110491506577429319215901458281219269727103931491196553235644165260842358890906",
+      "27887302258343564348577216670687693334180770245262188319873202927710984373441",
+      "81010537690765338503673895778010499939742847237660977209689311711260300421774",
+      "64072045393646346307848936320042920618456950736788119228752361900062504142486"
+    ],
+    "eventSlugsTried": [
+      "lol-g2-t1-2026-07-08",
+      "lol-ly-tsw-2026-07-08"
+    ],
+    "gameWinnerMarkets": [
+      {
+        "clobTokenIds": [
+          "110491506577429319215901458281219269727103931491196553235644165260842358890906",
+          "27887302258343564348577216670687693334180770245262188319873202927710984373441"
+        ],
+        "conditionId": "0xa922cbbb4da7a885fc8cc5393d412bf6c4ea2f9572fdf6b0fdbb936bc64785b5",
+        "eventSlug": "lol-g2-t1-2026-07-08",
+        "gameNumber": 1,
+        "marketSlug": "lol-g2-t1-2026-07-08-game1",
+        "outcomes": [
+          "G2 Esports",
+          "T1"
+        ],
+        "question": "LoL: G2 Esports vs T1 - Game 1 Winner"
+      },
+      {
+        "clobTokenIds": [
+          "81010537690765338503673895778010499939742847237660977209689311711260300421774",
+          "64072045393646346307848936320042920618456950736788119228752361900062504142486"
+        ],
+        "conditionId": "0xf09078c468c3836113967a8484658a4e59da7158ffdb94317825c1a7acea650a",
+        "eventSlug": "lol-g2-t1-2026-07-08",
+        "gameNumber": 2,
+        "marketSlug": "lol-g2-t1-2026-07-08-game2",
+        "outcomes": [
+          "G2 Esports",
+          "T1"
+        ],
+        "question": "LoL: G2 Esports vs T1 - Game 2 Winner"
+      },
+      {
+        "clobTokenIds": [
+          "69018701533661691194397401738053188148133741644340746626392645756876297697315",
+          "78772974609468063088765948606072301352529204913146059487591603096611573182516"
+        ],
+        "conditionId": "0x56c714fd50419a8269155137c51831045dfefab878a96d380bdc7e5547082a8f",
+        "eventSlug": "lol-g2-t1-2026-07-08",
+        "gameNumber": 3,
+        "marketSlug": "lol-g2-t1-2026-07-08-game3",
+        "outcomes": [
+          "G2 Esports",
+          "T1"
+        ],
+        "question": "LoL: G2 Esports vs T1 - Game 3 Winner"
+      },
+      {
+        "clobTokenIds": [
+          "5727272654081695879671633443851088030941262284133110819958047939985714065533",
+          "53601028630244442133555194600163044419725493329229416514429353923514189379095"
+        ],
+        "conditionId": "0x9ccdbb03592ab891710a37b6c451fdaee9ee6be936ae253454fc1461dc879365",
+        "eventSlug": "lol-g2-t1-2026-07-08",
+        "gameNumber": 4,
+        "marketSlug": "lol-g2-t1-2026-07-08-game4",
+        "outcomes": [
+          "G2 Esports",
+          "T1"
+        ],
+        "question": "LoL: G2 Esports vs T1 - Game 4 Winner"
+      }
+    ],
+    "marketDiscovery": [
+      {
+        "eventSlug": "lol-g2-t1-2026-07-08",
+        "request": {
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-07T22:56:40.435139Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://gamma-api.polymarket.com/events/slug/lol-g2-t1-2026-07-08"
+        }
+      }
+    ],
+    "status": "ok"
+  },
+  "rawSamplePaths": {
+    "dryRun": "docs/source-spike/cito-live-no-match-dry-run-2026-07-08.json",
+    "live": "docs/source-spike/cito-live-dry-run-2026-07-08.json",
+    "polymarketClob": "docs/source-spike/cito-polymarket-clob-dry-run-2026-07-08.json",
+    "report": "docs/source-spike/cito-live-polymarket-smoke-2026-07-08.json",
+    "scheduleToday": "docs/source-spike/cito-schedule-today-dry-run-2026-07-08.json",
+    "visualState": null
+  },
+  "script": "scripts/cito_live_polymarket_smoke.py",
+  "startedAt": "2026-07-07T22:56:38.178250Z",
+  "timing": {
+    "citoSnapshotAt": "2026-07-07T22:56:40.024106Z",
+    "citoVsPolymarketDeltaSec": 0.852,
+    "polymarketSnapshotAt": "2026-07-07T22:56:40.875645Z"
+  }
 }

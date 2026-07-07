@@ -1,0 +1,41 @@
+{
+  "alternatives": [
+    "/api/v1/lol/schedule/today",
+    "/api/v1/lol/schedule/upcoming"
+  ],
+  "count": 0,
+  "coverage": {
+    "coverage_level": "not_found",
+    "expected_live_state": false,
+    "expected_webhooks": false,
+    "live_row": false,
+    "message": "No stored schedule metadata or live row was found for this ID.",
+    "numeric_live_state": false,
+    "schedule_metadata": false,
+    "webhook_event": false
+  },
+  "data": [],
+  "developer_help": {
+    "ai_agent_context": "https://citoapi.com/llms.txt",
+    "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
+    "ai_agent_skill": {
+      "name": "Cito API AI agent context",
+      "url": "https://citoapi.com/llms.txt"
+    },
+    "copy_paste_prompt": "Use the Cito API docs (https://citoapi.com/docs/api/league-of-legends) and the Cito AI agent context (https://citoapi.com/llms.txt). Fix this API request and show the correct endpoint, headers, and example code: /api/v1/lol/live",
+    "docs": "https://citoapi.com/docs/api/league-of-legends"
+  },
+  "docs": "https://citoapi.com/docs/api/league-of-legends",
+  "lastCheckedAt": "2026-07-07T22:56:34.893Z",
+  "lastKnown": [],
+  "liveOnly": true,
+  "message": "No LoL match is live right now. /lol/live only returns in-progress games; scheduled and upcoming matches are available from /api/v1/lol/schedule/today and /api/v1/lol/schedule/upcoming.",
+  "retryAfterSeconds": 60,
+  "scheduleEndpoints": {
+    "today": "/api/v1/lol/schedule/today",
+    "upcoming": "/api/v1/lol/schedule/upcoming"
+  },
+  "status": "no_match",
+  "success": true,
+  "try_instead": "/api/v1/lol/schedule/upcoming"
+}
