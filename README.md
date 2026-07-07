@@ -102,9 +102,10 @@ The script writes raw samples and a report under `docs/source-spike/`.
 
 ## Status
 
-Latest CAL-53 local commit:
+Latest pushed commits:
 
 ```text
+93a0da8 docs(CAL-53): add README and authenticated dry-run samples
 02c352b feat(CAL-53): cito live polymarket smoke script, tests, dry-run samples
 ```
 
