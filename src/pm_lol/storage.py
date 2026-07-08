@@ -274,18 +274,20 @@ class SQLiteStorage:
             conn.execute(
                 """
                 INSERT OR REPLACE INTO game_state_snapshots (
-                    snapshot_id, game_id, observed_at, source_timestamp, game_state,
-                    blue_gold, red_gold, gold_diff, blue_towers, red_towers,
+                    snapshot_id, game_id, game_clock, observed_at, source_timestamp,
+                    game_state, blue_gold, red_gold, gold_diff, blue_towers, red_towers,
                     blue_dragons, red_dragons, blue_dragons_json, red_dragons_json,
                     blue_barons, red_barons, blue_kills, red_kills, blue_inhibitors,
-                    red_inhibitors, paused, finished, participants_json, raw_json,
+                    red_inhibitors, paused, finished, winner, participants_json, raw_json,
+                    source_status, sample_age_seconds, rate_limit_state, error_code,
                     source, confidence, created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     snapshot_id,
                     snapshot.game_id,
+                    snapshot.game_clock,
                     now,
                     snapshot.timestamp,
                     snapshot.game_state,
@@ -304,8 +306,9 @@ class SQLiteStorage:
                     snapshot.red_kills,
                     snapshot.raw.get("blueTeam", {}).get("inhibitors"),
                     snapshot.raw.get("redTeam", {}).get("inhibitors"),
-                    0,
+                    _paused_to_db(snapshot.paused),
                     int(snapshot.game_state in {"finished", "completed"}),
+                    snapshot.winner,
                     json.dumps(
                         {
                             "blue": snapshot.raw.get("blueTeam", {}).get("participants", []),
@@ -313,11 +316,64 @@ class SQLiteStorage:
                         }
                     ),
                     json.dumps(snapshot.raw),
-                    "lolesports_livestats_window",
+                    snapshot.source_status,
+                    snapshot.sample_age_seconds,
+                    json.dumps(snapshot.rate_limit_state),
+                    snapshot.error_code,
+                    snapshot.source,
                     1.0,
                     now,
                 ),
             )
+
+    def get_game_state_snapshots(self, game_id: str) -> list[GameStateSnapshot]:
+        """Read game-state snapshots back for replay/query.
+
+        ``paused`` round-trips as a tri-state: NULL -> None (unknown),
+        1 -> True, 0 -> False. It is never coerced to a hardcoded boolean.
+        """
+        with self._connect() as conn:
+            rows = conn.execute(
+                """
+                SELECT
+                    game_id, source_timestamp, game_state, game_clock,
+                    blue_gold, red_gold, blue_towers, red_towers,
+                    blue_dragons_json, red_dragons_json, blue_barons, red_barons,
+                    blue_kills, red_kills, source_status, sample_age_seconds,
+                    rate_limit_state, error_code, source, winner, paused, raw_json
+                FROM game_state_snapshots
+                WHERE game_id = ?
+                ORDER BY source_timestamp ASC
+                """,
+                (game_id,),
+            ).fetchall()
+        return [
+            GameStateSnapshot(
+                game_id=row["game_id"],
+                timestamp=row["source_timestamp"],
+                game_state=row["game_state"],
+                blue_gold=row["blue_gold"],
+                red_gold=row["red_gold"],
+                blue_towers=row["blue_towers"],
+                red_towers=row["red_towers"],
+                blue_dragons=json.loads(row["blue_dragons_json"]),
+                red_dragons=json.loads(row["red_dragons_json"]),
+                blue_barons=row["blue_barons"],
+                red_barons=row["red_barons"],
+                blue_kills=row["blue_kills"],
+                red_kills=row["red_kills"],
+                game_clock=row["game_clock"],
+                source_status=row["source_status"],
+                sample_age_seconds=row["sample_age_seconds"],
+                rate_limit_state=json.loads(row["rate_limit_state"]),
+                error_code=row["error_code"],
+                source=row["source"],
+                winner=row["winner"],
+                paused=_paused_from_db(row["paused"]),
+                raw=json.loads(row["raw_json"]),
+            )
+            for row in rows
+        ]
 
     def insert_draft_snapshot(
         self,
@@ -603,11 +659,15 @@ CREATE TABLE IF NOT EXISTS game_state_snapshots (
     red_kills INTEGER NOT NULL,
     blue_inhibitors INTEGER,
     red_inhibitors INTEGER,
-    paused INTEGER NOT NULL,
+    paused INTEGER,
     finished INTEGER NOT NULL,
     winner TEXT,
     participants_json TEXT NOT NULL,
     raw_json TEXT NOT NULL,
+    source_status TEXT NOT NULL DEFAULT 'ok',
+    sample_age_seconds INTEGER,
+    rate_limit_state TEXT NOT NULL DEFAULT '{}',
+    error_code TEXT,
     source TEXT NOT NULL,
     confidence REAL NOT NULL,
     created_at TEXT NOT NULL,
@@ -642,3 +702,20 @@ CREATE TABLE IF NOT EXISTS draft_snapshots (
     UNIQUE(game_id, participant_id, observed_at)
 );
 """
+
+
+def _paused_to_db(paused: bool | None) -> int | None:
+    """Serialize the tri-state pause flag: None -> NULL (unknown), else 0/1.
+
+    Deliberately does NOT collapse ``None`` to ``0`` — an unproven pause state
+    must persist as unknown, not a fabricated ``not paused``.
+    """
+    if paused is None:
+        return None
+    return int(paused)
+
+
+def _paused_from_db(value: int | None) -> bool | None:
+    if value is None:
+        return None
+    return bool(value)
