@@ -29,5 +29,19 @@ def test_run_replay_writes_all_phase1_tables(tmp_path):
                 "draft_snapshots",
             )
         }
+        quote_rows = conn.execute(
+            """
+            SELECT market_slug, game_number, outcome, source_status
+            FROM quotes
+            ORDER BY token_id
+            """
+        ).fetchall()
 
     assert all(counts[table] > 0 for table in counts)
+    assert {row[0] for row in quote_rows} == {"lol-ktc-sgw-2026-06-15-game2"}
+    assert {row[1] for row in quote_rows} == {2}
+    assert {row[2] for row in quote_rows} == {
+        "KT Rolster Challengers",
+        "Saigon Warriors",
+    }
+    assert {row[3] for row in quote_rows} == {"ok"}

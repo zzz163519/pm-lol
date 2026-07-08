@@ -97,6 +97,8 @@ def _parse_orderbook(book: dict[str, Any]) -> QuoteSnapshot:
         spread=spread,
         bid_depth=sum(_float_or_none(level.get("size")) or 0.0 for level in bids),
         ask_depth=sum(_float_or_none(level.get("size")) or 0.0 for level in asks),
+        bid_count=len(bids),
+        ask_count=len(asks),
         timestamp_ms=int(book["timestamp"]) if book.get("timestamp") is not None else None,
         bids=bids,
         asks=asks,

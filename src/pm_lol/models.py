@@ -32,6 +32,14 @@ class QuoteSnapshot:
     spread: float | None
     bid_depth: float
     ask_depth: float
+    event_slug: str | None = None
+    market_slug: str | None = None
+    outcome: str | None = None
+    game_number: int | None = None
+    bid_count: int = 0
+    ask_count: int = 0
+    source_status: str = "ok"
+    error_code: str | None = None
     timestamp_ms: int | None = None
     bids: list[dict[str, str]] = field(default_factory=list)
     asks: list[dict[str, str]] = field(default_factory=list)

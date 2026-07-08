@@ -71,6 +71,26 @@ Never commit `.env` or API keys.
 
 ## Verification
 
+QuoteRecorder v1 uses read-only Polymarket REST polling as the current baseline:
+Gamma metadata provides market/outcome context and public CLOB `/book` provides
+orderbook snapshots. Polymarket WebSocket remains a deferred optimization until a
+clean retest passes; it is not a Phase 1 dependency.
+
+Build a local replay SQLite snapshot from checked-in fixtures:
+
+```bash
+.venv/bin/python -m pm_lol.replay_pipeline
+```
+
+Query quote snapshots by market/game/time range:
+
+```bash
+.venv/bin/python scripts/query_quote_snapshots.py \
+  --db data/db/replay.db \
+  --market-slug lol-ktc-sgw-2026-06-15-game2 \
+  --game-number 2
+```
+
 Run the focused tests:
 
 ```bash
