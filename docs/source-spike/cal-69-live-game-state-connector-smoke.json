@@ -1,0 +1,54 @@
+{
+  "artifact": "cal-69-live-game-state-connector-smoke",
+  "generated_at": "2026-07-08T14:57:18.132483+00:00",
+  "mode": "offline_read_only_fixture",
+  "boundaries": "read-only; no strategy/signal/order/wallet/private-key; no API key printed",
+  "cito_visual_poll": {
+    "summary": {
+      "polls": 2,
+      "snapshots_written": 2,
+      "fresh_snapshots": 1,
+      "stale_snapshots": 1,
+      "partial_snapshots": 0,
+      "skipped_snapshots": 0,
+      "rate_limited": false,
+      "request_budget_per_min": 3,
+      "min_interval_sec": 20,
+      "backoff_seconds": null,
+      "backoff_until": null
+    },
+    "snapshots": [
+      {
+        "source_status": "fresh",
+        "sample_age_seconds": 18,
+        "game_clock": 1146.0,
+        "paused": null,
+        "source": "cito_visual_state"
+      },
+      {
+        "source_status": "stale",
+        "sample_age_seconds": 142,
+        "game_clock": 1146.0,
+        "paused": null,
+        "source": "cito_visual_state"
+      }
+    ]
+  },
+  "bo5_reconciliation": {
+    "summary": {
+      "match_id": "smoke-bo5-match",
+      "game_id": "smoke-bo5-g2",
+      "draft_snapshots": 10,
+      "winner": null,
+      "winner_error_code": "winner_unknown",
+      "game_state": "completed"
+    },
+    "snapshot": {
+      "winner": null,
+      "error_code": "winner_unknown",
+      "source_status": "final",
+      "paused": null
+    },
+    "note": "series was 3-2 but the individual game winner is NOT inferred from gameWins"
+  }
+}

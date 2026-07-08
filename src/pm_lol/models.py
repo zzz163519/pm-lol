@@ -88,6 +88,16 @@ class GameStateSnapshot:
     red_barons: int
     blue_kills: int
     red_kills: int
+    game_clock: float | None = None
+    source_status: str = "ok"
+    sample_age_seconds: int | None = None
+    rate_limit_state: dict[str, Any] = field(default_factory=dict)
+    error_code: str | None = None
+    source: str = "lolesports_livestats_window"
+    winner: str | None = None
+    # Tri-state pause contract: None = unknown/unproven, True = paused/remake/on-break,
+    # False = source explicitly reported not paused. Never hardcode False when unknown.
+    paused: bool | None = None
     raw: dict[str, Any] = field(default_factory=dict)
 
 
