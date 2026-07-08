@@ -274,18 +274,20 @@ class SQLiteStorage:
             conn.execute(
                 """
                 INSERT OR REPLACE INTO game_state_snapshots (
-                    snapshot_id, game_id, observed_at, source_timestamp, game_state,
-                    blue_gold, red_gold, gold_diff, blue_towers, red_towers,
+                    snapshot_id, game_id, game_clock, observed_at, source_timestamp,
+                    game_state, blue_gold, red_gold, gold_diff, blue_towers, red_towers,
                     blue_dragons, red_dragons, blue_dragons_json, red_dragons_json,
                     blue_barons, red_barons, blue_kills, red_kills, blue_inhibitors,
-                    red_inhibitors, paused, finished, participants_json, raw_json,
+                    red_inhibitors, paused, finished, winner, participants_json, raw_json,
+                    source_status, sample_age_seconds, rate_limit_state, error_code,
                     source, confidence, created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     snapshot_id,
                     snapshot.game_id,
+                    snapshot.game_clock,
                     now,
                     snapshot.timestamp,
                     snapshot.game_state,
@@ -304,8 +306,9 @@ class SQLiteStorage:
                     snapshot.red_kills,
                     snapshot.raw.get("blueTeam", {}).get("inhibitors"),
                     snapshot.raw.get("redTeam", {}).get("inhibitors"),
-                    0,
+                    _bool_to_db(snapshot.paused),
                     int(snapshot.game_state in {"finished", "completed"}),
+                    snapshot.winner,
                     json.dumps(
                         {
                             "blue": snapshot.raw.get("blueTeam", {}).get("participants", []),
@@ -313,7 +316,11 @@ class SQLiteStorage:
                         }
                     ),
                     json.dumps(snapshot.raw),
-                    "lolesports_livestats_window",
+                    snapshot.source_status,
+                    snapshot.sample_age_seconds,
+                    json.dumps(snapshot.rate_limit_state),
+                    snapshot.error_code,
+                    snapshot.source,
                     1.0,
                     now,
                 ),
@@ -426,6 +433,22 @@ class SQLiteStorage:
     def _init_schema(self) -> None:
         with self._connect() as conn:
             conn.executescript(SCHEMA)
+            # Additive migrations for DBs created by an older schema.
+            _ensure_columns(
+                conn,
+                "game_state_snapshots",
+                {
+                    "game_clock": "REAL",
+                    "source_status": "TEXT NOT NULL DEFAULT 'ok'",
+                    "sample_age_seconds": "INTEGER",
+                    "rate_limit_state": "TEXT NOT NULL DEFAULT '{}'",
+                    "error_code": "TEXT",
+                    "winner": "TEXT",
+                },
+            )
+            # Legacy DBs stored `paused` as INTEGER NOT NULL, which cannot hold the
+            # "unknown" state. Rebuild the table so unobserved pause status is NULL.
+            _relax_paused_not_null(conn)
 
     def _connect(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.path)
@@ -457,7 +480,103 @@ def _now() -> str:
     return datetime.now(UTC).isoformat()
 
 
-SCHEMA = """
+def _bool_to_db(value: bool | None) -> int | None:
+    """Map a tri-state flag to storage: unknown -> NULL, never a hardcoded 0."""
+    if value is None:
+        return None
+    return int(value)
+
+
+def _ensure_columns(
+    conn: sqlite3.Connection,
+    table: str,
+    columns: dict[str, str],
+) -> None:
+    existing = {row["name"] for row in conn.execute(f"PRAGMA table_info({table})")}
+    for name, definition in columns.items():
+        if name not in existing:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {definition}")
+
+
+def _relax_paused_not_null(conn: sqlite3.Connection) -> None:
+    """Rebuild game_state_snapshots so `paused` accepts NULL (unknown).
+
+    SQLite cannot drop a NOT NULL constraint in place, so when a legacy DB is
+    detected we recreate the canonical table (nullable paused) and copy rows
+    across, preserving any previously stored data.
+    """
+    info = conn.execute("PRAGMA table_info(game_state_snapshots)").fetchall()
+    paused = next((row for row in info if row["name"] == "paused"), None)
+    if paused is None or not paused["notnull"]:
+        return
+
+    columns = ", ".join(row["name"] for row in info)
+    conn.execute("PRAGMA foreign_keys = OFF")
+    try:
+        conn.executescript(
+            GAME_STATE_SNAPSHOTS_SCHEMA.replace(
+                "game_state_snapshots", "game_state_snapshots__new", 1
+            )
+        )
+        conn.execute(
+            f"INSERT INTO game_state_snapshots__new ({columns}) "
+            f"SELECT {columns} FROM game_state_snapshots"
+        )
+        conn.execute("DROP TABLE game_state_snapshots")
+        conn.execute("ALTER TABLE game_state_snapshots__new RENAME TO game_state_snapshots")
+    finally:
+        conn.execute("PRAGMA foreign_keys = ON")
+
+
+# `paused` is nullable on purpose: unobserved pause status is stored as NULL
+# (unknown) instead of a hardcoded 0. Kept as a standalone constant so the
+# nullability migration can rebuild the canonical table.
+GAME_STATE_SNAPSHOTS_SCHEMA = """
+CREATE TABLE IF NOT EXISTS game_state_snapshots (
+    snapshot_id TEXT PRIMARY KEY,
+    game_id TEXT NOT NULL REFERENCES games(game_id),
+    game_clock REAL,
+    observed_at TEXT NOT NULL,
+    source_timestamp TEXT NOT NULL,
+    source_latency_sec REAL,
+    game_state TEXT NOT NULL,
+    blue_gold INTEGER NOT NULL,
+    red_gold INTEGER NOT NULL,
+    gold_diff INTEGER NOT NULL,
+    blue_towers INTEGER NOT NULL,
+    red_towers INTEGER NOT NULL,
+    blue_dragons INTEGER NOT NULL,
+    red_dragons INTEGER NOT NULL,
+    blue_dragons_json TEXT NOT NULL,
+    red_dragons_json TEXT NOT NULL,
+    first_dragon_team TEXT,
+    blue_barons INTEGER NOT NULL,
+    red_barons INTEGER NOT NULL,
+    baron_status TEXT,
+    elder_status TEXT,
+    blue_kills INTEGER NOT NULL,
+    red_kills INTEGER NOT NULL,
+    blue_inhibitors INTEGER,
+    red_inhibitors INTEGER,
+    paused INTEGER,
+    finished INTEGER NOT NULL,
+    winner TEXT,
+    participants_json TEXT NOT NULL,
+    raw_json TEXT NOT NULL,
+    source_status TEXT NOT NULL DEFAULT 'ok',
+    sample_age_seconds INTEGER,
+    rate_limit_state TEXT NOT NULL DEFAULT '{}',
+    error_code TEXT,
+    source TEXT NOT NULL,
+    confidence REAL NOT NULL,
+    created_at TEXT NOT NULL,
+    UNIQUE(game_id, source_timestamp)
+);
+"""
+
+
+SCHEMA = (
+    """
 CREATE TABLE IF NOT EXISTS markets (
     market_id TEXT PRIMARY KEY,
     condition_id TEXT NOT NULL UNIQUE,
@@ -576,44 +695,9 @@ CREATE TABLE IF NOT EXISTS quotes (
     confidence REAL NOT NULL,
     created_at TEXT NOT NULL
 );
-
-CREATE TABLE IF NOT EXISTS game_state_snapshots (
-    snapshot_id TEXT PRIMARY KEY,
-    game_id TEXT NOT NULL REFERENCES games(game_id),
-    game_clock REAL,
-    observed_at TEXT NOT NULL,
-    source_timestamp TEXT NOT NULL,
-    source_latency_sec REAL,
-    game_state TEXT NOT NULL,
-    blue_gold INTEGER NOT NULL,
-    red_gold INTEGER NOT NULL,
-    gold_diff INTEGER NOT NULL,
-    blue_towers INTEGER NOT NULL,
-    red_towers INTEGER NOT NULL,
-    blue_dragons INTEGER NOT NULL,
-    red_dragons INTEGER NOT NULL,
-    blue_dragons_json TEXT NOT NULL,
-    red_dragons_json TEXT NOT NULL,
-    first_dragon_team TEXT,
-    blue_barons INTEGER NOT NULL,
-    red_barons INTEGER NOT NULL,
-    baron_status TEXT,
-    elder_status TEXT,
-    blue_kills INTEGER NOT NULL,
-    red_kills INTEGER NOT NULL,
-    blue_inhibitors INTEGER,
-    red_inhibitors INTEGER,
-    paused INTEGER NOT NULL,
-    finished INTEGER NOT NULL,
-    winner TEXT,
-    participants_json TEXT NOT NULL,
-    raw_json TEXT NOT NULL,
-    source TEXT NOT NULL,
-    confidence REAL NOT NULL,
-    created_at TEXT NOT NULL,
-    UNIQUE(game_id, source_timestamp)
-);
-
+"""
+    + GAME_STATE_SNAPSHOTS_SCHEMA
+    + """
 CREATE TABLE IF NOT EXISTS draft_snapshots (
     draft_snapshot_id TEXT PRIMARY KEY,
     match_id TEXT NOT NULL REFERENCES matches(match_id),
@@ -642,3 +726,4 @@ CREATE TABLE IF NOT EXISTS draft_snapshots (
     UNIQUE(game_id, participant_id, observed_at)
 );
 """
+)

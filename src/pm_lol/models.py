@@ -80,6 +80,17 @@ class GameStateSnapshot:
     red_barons: int
     blue_kills: int
     red_kills: int
+    game_clock: float | None = None
+    # None means "unknown / unobserved" — never inferred as False. Cito visual
+    # state and LoLEsports livestats windows do not report a reliable pause flag,
+    # so an absent value stays None (stored as NULL) rather than a hardcoded 0.
+    paused: bool | None = None
+    source_status: str = "ok"
+    sample_age_seconds: int | None = None
+    rate_limit_state: dict[str, Any] = field(default_factory=dict)
+    error_code: str | None = None
+    source: str = "lolesports_livestats_window"
+    winner: str | None = None
     raw: dict[str, Any] = field(default_factory=dict)
 
 
