@@ -3,22 +3,27 @@
 > 版本：v0.2
 > 日期：2026-06-15
 > 基于：架构框架 v0.2 + v0.3 P0 问题清单
-> 当前阶段：Conditional Phase 1 Data Foundation with Phase 0 gates pending
+> 当前阶段：Conditional Phase 1 Data Foundation
 
 ---
 
 ## 0. 路线原则
 
 本项目按“先验证输入源，再建设数据底座，再验证 edge，最后接真钱”的顺序推进。
+当前阶段只允许 Data Foundation，不是 full Phase 1。
 
 核心原则：
 
-- Phase 0 不写策略、不建预测模型，只验证自动数据输入闭环是否可行。
+- Conditional Phase 1 只做数据底座验证，不写策略、不建预测模型。
 - Phase 1-3 不接钱包、不引入私钥、不调用真实下单接口。
 - Phase 1 唯一交易标的是 `Game N Winner`，不做 Series、Handicap、Total Games。
 - 人工/半人工录入只作为 debug / fallback，不作为生产主线。
 - 每个阶段必须有可保存、可复盘的产出物；没有证据不算完成。
 - 任一硬门失败时，停止进入下一阶段，先重审项目假设。
+- 禁止范围：strategy / edge / signal / paper trading / wallet / private key / order。
+- DoD：代码类卡不能只靠本地脏树；必须有 PR，无 PR 不验收。文档类卡也应提交 PR；
+  若只做文档评论不改 repo，必须在结果中明确说明。
+- Secret hygiene：API key / token 不得贴 issue 评论、不得写入 artifact；泄露即轮换。
 
 当前代码库已存在一套 Phase 1 Data Foundation 的本地验证骨架，包括
 schema、collectors、resolver、SQLite storage 和 replay smoke test。这些代码只作为
@@ -41,7 +46,7 @@ Phase 0/conditional Phase 1 的数据源验证工具，不代表 Phase 0 硬门�
 
 | 编号 | 里程碑 | 完成证据 |
 |---|---|---|
-| P0.1 | Polymarket 行情可用 | 记录至少 1 个 LOL Game Winner 市场的 conditionId、tokenId、best bid/ask、orderbook、WS 订阅结果 |
+| P0.1 | Polymarket 行情可用 | 记录至少 1 个 LOL Game Winner 市场的 conditionId、tokenId、best bid/ask、orderbook REST polling 样例；WS 订阅 deferred 到 clean network retest |
 | P0.2 | LOL 实时源可用 | 优先验证 LoLEsports Frontend API；至少 1 个候选源实测返回 final picks + derived game clock + gold + objectives，并记录延迟、覆盖联赛、限制 |
 | P0.3 | 赛程/映射源可用 | 能从 LoLEsports 或等效源拿到 schedule/event details，并形成 matchId/gameNumber/team alias 映射样例 |
 | P0.4 | SourceScore 完成 | 对 LoLEsports Frontend API 优先 spike 源，以及 PandaScore、GRID、Abios、Cito 商业备选源完成打分表 |
@@ -52,8 +57,8 @@ Phase 0/conditional Phase 1 的数据源验证工具，不代表 Phase 0 硬门�
 
 必须同时满足：
 
-- Polymarket public 行情可在无认证下读取 Game Winner market、token、orderbook，并能订阅 WS。
-- 至少一个 LOL 实时源自动提供 final picks、可推算 game clock、gold、objectives，字段稳定性足够进入纸面交易验证（项目策略为错配/价值交易模型，不追求秒级延迟，Cito 24s 延迟可接受）。
+- Polymarket public 行情可在无认证下读取 Game Winner market、token、orderbook；REST polling 为 v1 baseline，WS 需 clean network retest 后再升级。
+- 至少一个 LOL 实时源自动提供 final picks、可推算 game clock、gold、objectives，字段稳定性足够进入数据底座验证（项目策略为错配/价值交易模型，不追求秒级延迟，Cito 24s 延迟可接受）。
 - 当前优先 spike 源为 LoLEsports Frontend API；PandaScore / GRID / Abios 作为商业备选或生产升级源。
 - 赛程/映射源能支持 `market -> match -> gameNumber -> team side` 的映射，低置信度市场可被跳过。
 - SourceScore 和 schema 草案已记录在案。
@@ -66,14 +71,14 @@ Phase 0/conditional Phase 1 的数据源验证工具，不代表 Phase 0 硬门�
 
 ---
 
-## 2. Phase 1 — Data Foundation
+## 2. Conditional Phase 1 — Data Foundation
 
 **目标：建好数据底座，让系统能稳定“看见”市场与比赛。**
 
 ### 进入条件
 
-完整进入 Phase 1 仍要求 Phase 0 全部硬门通过。当前只允许
-`conditional Phase 1 Data Foundation` 范围内的本地数据底座验证：
+完整进入 full Phase 1 仍要求 Phase 0 全部硬门通过。当前只允许
+`Conditional Phase 1 Data Foundation` 范围内的本地数据底座验证：
 market/orderbook REST polling、LoLEsports historical parser、schema/storage、
 resolver hard gate 和 replay pipeline。
 
@@ -88,7 +93,7 @@ resolver hard gate 和 replay pipeline。
 
 | 编号 | 里程碑 | 验收条件 |
 |---|---|---|
-| P1.1 | Polymarket QuoteRecorder | 定时拉取 orderbook + WS 订阅，持续写入 `quotes` |
+| P1.1 | Polymarket QuoteRecorder | REST polling baseline 持续写入 `quotes`；WS deferred，clean network retest 通过后再接入 |
 | P1.2 | MarketResolver / MatchMapper | `market -> match/game/team side` 映射状态机可运行，低于置信度阈值自动跳过 |
 | P1.3 | TeamAliasResolver | 覆盖 LCK、LPL、LEC、国际赛常见队伍别名 |
 | P1.4 | LiveGameStateConnector | 选定主源的 game clock、gold、objectives、paused、winner 入库 |
@@ -97,9 +102,10 @@ resolver hard gate 和 replay pipeline。
 
 ### 禁止事项
 
-- 不接 DraftGap 作为最终概率。
-- 不生成交易信号。
-- 不接私钥、不做真实下单。
+- 不接 DraftGap 或任何模型作为最终概率。
+- 不生成 strategy / edge / signal。
+- 不做 paper trading。
+- 不接 wallet / private key / order，不做真实下单。
 
 ---
 
@@ -206,7 +212,7 @@ Phase 3 主线验证通过，或 Phase 4 中某个非主线策略验证通过；
 
 ```text
 Phase 0: [~] Source Feasibility Spike — 主源定为 Cito（gold/objectives/gameClock/gameState）+ LoLEsports（draft/picks），CAL-59 已验证。剩余 gates：多场次字段稳定性复核、mappingConfidence ≥ 0.90 复核、Polymarket WS retest
-Phase 1: [~] Data Foundation — 本地验证骨架已存在，仅 conditional，不能视为 full go
+Phase 1: [~] Conditional Phase 1 Data Foundation — 本地验证骨架已存在，不是 full Phase 1
 Phase 2: [ ] Strategy Skeleton — 冻结
 Phase 3: [ ] Paper Trading Loop — 未启动
 Phase 4: [ ] Unlock Non-Mainline Strategies — 冻结

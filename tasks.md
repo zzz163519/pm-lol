@@ -2,7 +2,7 @@
 
 > 版本：v0.2
 > 日期：2026-06-15
-> 当前阶段：Conditional Phase 1 Data Foundation with Phase 0 gates pending
+> 当前阶段：Conditional Phase 1 Data Foundation
 > 阶段目标：验证自动数据输入闭环是否成立；只允许数据底座验证，不写策略，不建模型，不接私钥。
 
 ---
@@ -10,11 +10,15 @@
 ## 0. 执行规则
 
 - 每个任务必须留下可复查产出：原始响应样例、字段清单、延迟记录、费用/限制说明、结论。
-- 没有 API key 的任务优先执行，先快速验证公开源。
-- API 验证只做读取，不做下单，不接钱包。
+- API key / token 只能走受控 secret 注入，不得贴 issue 评论、不得写入 artifact；
+  一旦泄露必须立即轮换。
+- API 验证只做读取，不做下单，不接钱包，不接 private key。
 - 若某源不可用，记录失败原因，不在代码中绕过约束。
-- Phase 0 完整通过前不扩张 Phase 1 范围。当前已存在的数据底座骨架只作为
-  collector/parser/storage/resolver/replay 验证工具，不代表进入策略层。
+- 当前是 Conditional Phase 1 Data Foundation，不是 full Phase 1。当前已存在的数据
+  底座骨架只作为 collector/parser/storage/resolver/replay 验证工具，不代表进入策略层。
+- 禁止范围：strategy / edge / signal / paper trading / wallet / private key / order。
+- DoD：代码类卡不能只靠本地脏树；必须有 PR，无 PR 不验收。文档类卡也优先走 PR；
+  若只做文档评论不改 repo，必须在结果中明确说明。
 
 ---
 
@@ -27,7 +31,7 @@
 3. `F0-01` PandaScore API 验证：商业备选源，免费层不满足局中数据；至少需 Basic Live。
 4. `F0-02` GRID 商务/技术确认：质量最高，但可能成本和门槛最高。
 5. `F0-03` Abios trial 验证：备选商业源。
-6. `F0-04` Cito free/starter 验证：低成本备选源，当前可信度低。
+6. `F0-04` Cito free/starter 验证：当前主源组合的一部分，仍需多场次 freshness/stability 复核。
 7. `F0-07` 数据 schema 草案：已完成。
 8. `F0-08` SourceScore 打分：已完成。
 9. `F0-09` 项目骨架初始化：已初始化，必须保持数据底座边界。
@@ -84,7 +88,7 @@ getSchedule -> matchId -> getEventDetails -> gameId -> livestats/window/details
 - [ ] bans 是否存在于其他前端接口
 - [ ] 暂停 / 重赛 / remake 时 `gameState` 如何变化
 - [ ] LCK / LPL / LEC / MSI / Worlds 覆盖是否一致
-- [ ] 前端 API key 失效时的监控与降级方案
+- [ ] 前端 credential/header 失效时的监控与降级方案
 
 **产出物：**
 
@@ -132,7 +136,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 **执行步骤：**
 
-- [ ] 注册或申请 PandaScore API key。
+- [ ] 注册或申请 PandaScore credential，并通过受控 secret 注入。
 - [ ] 找一场 live 或最近结束的 LoL match，调用 live frame / game frame 相关 endpoint。
 - [ ] 保存一份原始 JSON 样例。
 - [ ] 记录 observedAt 与 sourceTimestamp，估算 `sourceLatencySec`。
@@ -221,9 +225,9 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-04 — Cito / LoLEsportsAPI 验证
 
-**状态：** [ ]
+**状态：** [~] 当前主源组合的一部分；字段链路已有验证，freshness/stability 仍需复核
 
-**目标：** 确认 Cito 是否能作为低成本备选实时源。
+**目标：** 确认 Cito 是否能作为 Conditional Phase 1 Data Foundation 的低成本主实时源组件。
 
 **验证 endpoint：**
 
@@ -246,7 +250,8 @@ candidate_primary_for_production = risky_until_live_validation
 
 **完成证据：**
 
-- 明确结论：`usable_as_primary` / `usable_as_backup` / `not_usable`
+- 明确结论：`usable_as_conditional_primary` / `usable_as_backup` / `not_usable`
+- 不得把 key/token 写入 issue 评论或 artifact；只记录无敏感值的调用方式、字段覆盖和稳定性结论。
 
 ---
 
@@ -300,7 +305,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 **状态：** [~] HTML slug discovery + Gamma slug detail + CLOB REST 已验证；generic search / network path / Market WebSocket 仍需处理
 
-**目标：** 验证 Polymarket public 行情是否足够支持 LOL Game Winner 市场发现、orderbook 记录和 WebSocket 订阅。
+**目标：** 验证 Polymarket public 行情是否足够支持 LOL Game Winner 市场发现和 orderbook REST polling 记录；WebSocket deferred 到 clean network retest。
 
 **必须验证：**
 
@@ -308,7 +313,7 @@ candidate_primary_for_production = risky_until_live_validation
 - 能拿到 `conditionId`。
 - 能拿到 YES/NO `tokenId`。
 - 能读取 orderbook、best bid、best ask、spread、depth。
-- 能订阅 Market WebSocket 的 orderbook/trade 更新。
+- WS 订阅作为升级项，clean network retest 通过后再接入。
 - 能记录 400、429、空市场、暂停市场等异常。
 
 **执行步骤：**
@@ -317,7 +322,7 @@ candidate_primary_for_production = risky_until_live_validation
 - [x] 识别 Game Winner 与 Series 市场的标题差异。
 - [x] 选 1 个 Game Winner 市场，保存 market metadata。
 - [x] 调用 CLOB public orderbook endpoint，保存 orderbook 样例。
-- [ ] 测试 Market WebSocket 订阅，保存至少 1 条消息样例。
+- [ ] 在 clean network retest 中测试 Market WebSocket 订阅，保存至少 1 条消息样例；失败则继续使用 REST polling baseline。
 - [ ] 记录接口延迟、限流、错误码、字段不一致情况。
 
 **产出物：**
@@ -330,8 +335,8 @@ candidate_primary_for_production = risky_until_live_validation
 **完成证据：**
 
 - 输出 REST 链路样例：`marketSlug -> conditionId -> tokenId -> orderbook -> bestBid/bestAsk`
-- WebSocket 完成证据仍待补充：`tokenId -> WS subscription -> orderbook/trade update`
-- 明确 Phase 1 是否可以基于 public endpoint 建 QuoteRecorder。
+- WebSocket 完成证据 deferred：`tokenId -> WS subscription -> orderbook/trade update`
+- 明确 QuoteRecorder v1 基于 public REST polling，WS 只作为后续升级。
 
 **当前完成证据：**
 
@@ -384,7 +389,7 @@ candidate_primary_for_production = risky_until_live_validation
 - `markets`、`resolved_markets`、`quotes`、`matches`、`games`、
   `game_state_snapshots`、`draft_snapshots` 字段草案已记录。
 - 本地 SQLite storage 已能初始化这些表并支持 replay smoke test。
-- 该 schema 只用于数据底座，不允许据此启动 Phase 2 signal / strategy。
+- 该 schema 只用于数据底座，不允许据此启动 strategy / edge / signal / paper trading。
 
 ---
 
@@ -432,8 +437,8 @@ candidate_primary_for_production = risky_until_live_validation
 **边界说明：**
 
 - 该骨架已在 Phase 0 gate 全部关闭前初始化，视为数据源验证工具。
-- 不得在该骨架中新增 strategy、signal、fair probability、broker、wallet、
-  private key 或真实下单逻辑。
+- 不得在该骨架中新增 strategy、edge、signal、fair probability、paper trading、
+  broker、wallet、private key 或真实下单逻辑。
 
 **计划目录：**
 
@@ -464,7 +469,7 @@ docs/
 
 - 能运行基础测试命令。
 - 包结构与 Phase 1 模块边界一致。
-- 当前代码未发现 strategy / signal / broker / execution / wallet 实现。
+- 当前代码未发现 strategy / edge / signal / paper trading / broker / execution / wallet 实现。
 
 ---
 
@@ -493,7 +498,7 @@ Live game backup source:
 Schedule/mapping source:
 Rejected sources:
 Main risks:
-Phase 1 go/no-go:
+Conditional Phase 1 scope decision:
 ```
 
 **产出物：**

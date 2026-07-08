@@ -4,12 +4,27 @@
 
 Date: 2026-06-15
 
-Current status: `CONDITIONAL_GO_FOR_PHASE_1_DATA_FOUNDATION_WITH_PHASE_0_GATES`.
+Current status: `CONDITIONAL_PHASE_1_DATA_FOUNDATION`.
 
-This is not a full Phase 0 pass and not permission to start strategy, signals,
-paper trading, wallet integration, private key handling, broker code, or real
-order placement. The existing Phase 1 data foundation skeleton is treated as
-local validation tooling only.
+This is not full Phase 1 approval and not permission to start strategy, edge,
+signals, paper trading, wallet integration, private key handling, broker code,
+or real order placement. The existing Phase 1 data foundation skeleton is
+treated as local validation tooling only.
+
+DoD decision:
+
+- Code cards cannot be accepted from a local dirty tree only; they must have a
+  PR. No PR means not accepted.
+- Documentation cards should also use a PR when repository files change. If a
+  run only posts a documentation comment and does not change the repo, it must
+  say so explicitly.
+
+Secret hygiene decision:
+
+- API key / token values must never be pasted into issue comments.
+- API key / token values must never be written into artifacts, logs, sample
+  payloads, or docs.
+- Any leaked key/token must be treated as compromised and rotated.
 
 ## Data Source Selection
 
@@ -130,7 +145,7 @@ Boundary:
 |---|---|---|---|
 | LoLEsports live latency unknown | `pending_risk` | Could make live signals stale | Measure source latency during an active match. |
 | LoLEsports frontend API stability | `pending_risk` | Header/key/schema changes could break ingestion | Add monitoring and fallback source before production. |
-| Polymarket Market WebSocket unverified | `pending_network_retest` | QuoteRecorder may need REST polling fallback | Retest WS subscription on active Game Winner market. |
+| Polymarket Market WebSocket unverified | `deferred_network_retest` | QuoteRecorder v1 uses REST polling baseline | Retest WS subscription on active Game Winner market before upgrading. |
 | Polymarket generic search unreliable | `known_gap` | Market discovery may miss or mis-rank LoL markets | Use page HTML slug discovery plus Gamma slug detail, not generic search alone. |
 | Polymarket network path unstable | `pending_network_retest` | Collectors may see intermittent TLS failures | Add retry/backoff and classify SSL/proxy/direct failures during source spike. |
 | Bans unavailable in current LoLEsports samples | `known_gap` | Draft features may be incomplete | Search alternate frontend endpoint or accept picks-only Phase 1. |
@@ -139,7 +154,7 @@ Boundary:
 
 ## Go / No-Go
 
-Recommendation: `CONDITIONAL_GO_FOR_PHASE_1_DATA_FOUNDATION_WITH_PHASE_0_GATES`.
+Recommendation: `CONDITIONAL_PHASE_1_DATA_FOUNDATION`.
 
 Conditions:
 
