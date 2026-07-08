@@ -1,0 +1,1902 @@
+{
+  "boundaryFindings": [
+    "read_only_get_requests_only",
+    "no_wallet",
+    "no_private_key",
+    "no_trade_execution",
+    "no_strategy_or_signal"
+  ],
+  "conclusion": "Partial: Cito returned a live candidate, but these requested fields were missing in visual-state: draftPicks, winner.",
+  "endedAt": "2026-07-08T06:27:16.667Z",
+  "fieldCoverage": {
+    "draftPicks": {
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "status": "missing"
+    },
+    "gameClock": {
+      "sample": "30:45",
+      "status": "present"
+    },
+    "gameState": {
+      "sample": "provisional",
+      "status": "present"
+    },
+    "gold": {
+      "goldDiff": -1900,
+      "sample": {
+        "blue": 57800,
+        "red": 59700
+      },
+      "status": "present"
+    },
+    "kills": {
+      "sample": {
+        "blue": 17,
+        "red": 16
+      },
+      "status": "present"
+    },
+    "objectives": {
+      "sample": {
+        "blue": {
+          "barons": 0,
+          "dragons": 3,
+          "towers": 3
+        },
+        "red": {
+          "barons": 0,
+          "dragons": 0,
+          "towers": 5
+        }
+      },
+      "status": "present"
+    },
+    "teamIdentity": {
+      "sample": {
+        "blue": "G2",
+        "red": "T1"
+      },
+      "status": "present"
+    },
+    "winner": {
+      "sample": null,
+      "status": "missing"
+    }
+  },
+  "iterations": [
+    {
+      "coverage": {
+        "body": {
+          "active_live_game_id": null,
+          "checked_at": "2026-07-08T06:26:55.481Z",
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "precheck_endpoint": "/api/v1/lol/matches/lol-match-115570934355614581/coverage",
+            "schedule_metadata": true,
+            "webhook_event": false
+          },
+          "definitions": {
+            "live_row": "The match is currently present in Cito live discovery or live cache.",
+            "numeric_live_state": "Current kills, gold, towers, objectives, player stats, or game clock are present.",
+            "postgame_enrichment": "Section-by-section postgame coverage for completed games. Use availableSections and missingSections on /lol/games/{gameId}/postgame for the exact game-level contract.",
+            "recommended_rule": "For production decisions, require schedule_metadata + live_row + numeric_live_state. For LCK CL / Academy, never assume live state before this pre-check confirms it.",
+            "schedule_metadata": "A stored schedule/match row exists in Cito.",
+            "webhook_event": "Cito has enough numeric live-state data to emit lol.live.state webhooks for subscribed users."
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "games": [
+            {
+              "esportsApiId": "115570934355614582",
+              "gameId": "lol-game-115570934355614582",
+              "gameNumber": 1,
+              "has_final_stats": true
+            },
+            {
+              "esportsApiId": "115570934355614583",
+              "gameId": "lol-game-115570934355614583",
+              "gameNumber": 2,
+              "has_final_stats": false
+            },
+            {
+              "esportsApiId": "115570934355614584",
+              "gameId": "lol-game-115570934355614584",
+              "gameNumber": 3,
+              "has_final_stats": false
+            }
+          ],
+          "input_id": "115570934355614581",
+          "input_type": "match_id",
+          "league": {
+            "leagueId": "lol-msi",
+            "live_state_policy": "opportunistic_live_state",
+            "name": "MSI",
+            "region": "INTERNATIONAL",
+            "shortName": "MSI",
+            "slug": "msi",
+            "tier": "international"
+          },
+          "live_cache": [],
+          "live_status": {
+            "lastCheckedAt": "2026-07-08T06:26:54.081Z",
+            "status": "live"
+          },
+          "match_id": "lol-match-115570934355614581",
+          "success": true,
+          "teams": {
+            "team1": {
+              "name": "T1",
+              "shortName": "T1",
+              "slug": "t1"
+            },
+            "team2": {
+              "name": "G2 Esports",
+              "shortName": "G2",
+              "slug": "g2-esports"
+            }
+          }
+        },
+        "request": {
+          "elapsedSec": 0.64,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:26:55.158Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/matches/115570934355614581/coverage"
+        }
+      },
+      "gameId": "115570934355614582",
+      "iteration": 1,
+      "live": {
+        "body": {
+          "alternatives": [
+            "/api/v1/lol/schedule/today",
+            "/api/v1/lol/schedule/upcoming"
+          ],
+          "count": 1,
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "schedule_metadata": false,
+            "webhook_event": false
+          },
+          "data": [
+            {
+              "blockName": "Knockouts",
+              "coverage": {
+                "coverage_level": "live_listed",
+                "expected_live_state": false,
+                "expected_webhooks": false,
+                "live_row": true,
+                "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+                "numeric_live_state": false,
+                "precheck_endpoint": "/api/v1/lol/matches/115570934355614581/coverage",
+                "schedule_metadata": true,
+                "webhook_event": false
+              },
+              "leagueId": "98767991325878492",
+              "leagueImage": "http://static.lolesports.com/leagues/1592594634248_MSIDarkBG.png",
+              "leagueName": "MSI",
+              "matchId": "115570934355614581",
+              "startTime": "2026-07-08T08:00:00.000Z",
+              "state": "inProgress",
+              "strategy": {
+                "count": 5,
+                "type": "bestOf"
+              },
+              "team1": {
+                "code": "G2",
+                "id": "98767991926151025",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "name": "G2 Esports",
+                "score": 0,
+                "slug": "g2-esports"
+              },
+              "team2": {
+                "code": "T1",
+                "id": "98767991853197861",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "name": "T1",
+                "score": 0,
+                "slug": "t1"
+              },
+              "watch": {
+                "lolesportsUrl": "https://lolesports.com/live/msi",
+                "mediaEndpoint": "/api/v1/lol/live/115570934355614581/watch"
+              }
+            }
+          ],
+          "developer_help": {
+            "ai_agent_context": "https://citoapi.com/llms.txt",
+            "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
+            "ai_agent_skill": {
+              "name": "Cito API AI agent context",
+              "url": "https://citoapi.com/llms.txt"
+            },
+            "copy_paste_prompt": "Use the Cito API docs (https://citoapi.com/docs/api/league-of-legends) and the Cito AI agent context (https://citoapi.com/llms.txt). Fix this API request and show the correct endpoint, headers, and example code: /api/v1/lol/live",
+            "docs": "https://citoapi.com/docs/api/league-of-legends"
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "lastCheckedAt": "2026-07-08T06:26:54.081Z",
+          "lastKnown": [],
+          "liveOnly": true,
+          "message": "Live LoL matches are currently detected.",
+          "scheduleEndpoints": {
+            "today": "/api/v1/lol/schedule/today",
+            "upcoming": "/api/v1/lol/schedule/upcoming"
+          },
+          "status": "live",
+          "success": true,
+          "try_instead": "/api/v1/lol/schedule/today"
+        },
+        "request": {
+          "elapsedSec": 0.426,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:26:54.732Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live"
+        }
+      },
+      "matchId": "115570934355614581",
+      "observedAt": "2026-07-08T06:26:56.402Z",
+      "visualState": {
+        "body": {
+          "blueTeam": {
+            "barons": 0,
+            "dragons": 3,
+            "gold": 47600,
+            "kills": 13,
+            "tag": "G2",
+            "towers": 3
+          },
+          "canonicalGameId": "lol-game-115570934355614582",
+          "confidence": {
+            "broadcastState": 1,
+            "gold": 1,
+            "kills": 1,
+            "objectives": 1,
+            "seriesScore": 0,
+            "teams": 1,
+            "timer": 1
+          },
+          "data": null,
+          "dataQuality": {
+            "finalAccuracyComesFromPostMatchReconciliation": true,
+            "lowQualityFramesSkipped": true,
+            "provisional": true,
+            "replayFramesSkipped": true
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "feedStatus": null,
+          "finalDataEndpoint": "/api/v1/lol/games/lol-game-115570934355614582/postgame",
+          "freshness": {
+            "isFresh": false,
+            "latestCaptureIsFresh": false,
+            "staleAfterSeconds": 45
+          },
+          "gameId": "115570934355614582",
+          "gameTime": 1548,
+          "gameTimeFormatted": "25:48",
+          "gameTimeSeconds": 1548,
+          "lastKnownGameplayAgeSeconds": 278,
+          "lastKnownGameplayState": {
+            "blueTeam": {
+              "barons": 0,
+              "dragons": 3,
+              "gold": 47600,
+              "kills": 13,
+              "tag": "G2",
+              "towers": 3
+            },
+            "gameTime": 1548,
+            "gameTimeFormatted": "25:48",
+            "gameTimeSeconds": 1548,
+            "redTeam": {
+              "barons": 0,
+              "dragons": 0,
+              "gold": 48700,
+              "kills": 12,
+              "tag": "T1",
+              "towers": 4
+            }
+          },
+          "leagueId": "98767991325878492",
+          "matchId": "115570934355614581",
+          "message": "The latest visual gameplay state is stale. Waiting for fresh live gameplay or post-match reconciliation.",
+          "redTeam": {
+            "barons": 0,
+            "dragons": 0,
+            "gold": 48700,
+            "kills": 12,
+            "tag": "T1",
+            "towers": 4
+          },
+          "reliability": "provisional_until_postgame_reconciliation",
+          "requestedGameId": "115570934355614582",
+          "riotGameId": "115570934355614582",
+          "sampleAgeSeconds": 278,
+          "sampledAt": {},
+          "source": "visual_live_extraction",
+          "status": "stale",
+          "streamQuality": "1080p",
+          "success": true,
+          "validation": {
+            "accepted": true,
+            "acceptedFields": [
+              "gameTime",
+              "blueTeamTag",
+              "redTeamTag",
+              "blueKills",
+              "redKills",
+              "blueGold",
+              "redGold",
+              "blueTowers",
+              "redTowers",
+              "blueDragons",
+              "redDragons",
+              "blueBarons",
+              "redBarons"
+            ],
+            "reasons": [],
+            "rejectedFields": {}
+          },
+          "willReconcilePostMatch": true
+        },
+        "request": {
+          "elapsedSec": 0.605,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:26:55.798Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live/115570934355614582/visual-state"
+        }
+      }
+    },
+    {
+      "coverage": {
+        "body": {
+          "active_live_game_id": null,
+          "checked_at": "2026-07-08T06:27:02.054Z",
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "precheck_endpoint": "/api/v1/lol/matches/lol-match-115570934355614581/coverage",
+            "schedule_metadata": true,
+            "webhook_event": false
+          },
+          "definitions": {
+            "live_row": "The match is currently present in Cito live discovery or live cache.",
+            "numeric_live_state": "Current kills, gold, towers, objectives, player stats, or game clock are present.",
+            "postgame_enrichment": "Section-by-section postgame coverage for completed games. Use availableSections and missingSections on /lol/games/{gameId}/postgame for the exact game-level contract.",
+            "recommended_rule": "For production decisions, require schedule_metadata + live_row + numeric_live_state. For LCK CL / Academy, never assume live state before this pre-check confirms it.",
+            "schedule_metadata": "A stored schedule/match row exists in Cito.",
+            "webhook_event": "Cito has enough numeric live-state data to emit lol.live.state webhooks for subscribed users."
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "games": [
+            {
+              "esportsApiId": "115570934355614582",
+              "gameId": "lol-game-115570934355614582",
+              "gameNumber": 1,
+              "has_final_stats": true
+            },
+            {
+              "esportsApiId": "115570934355614583",
+              "gameId": "lol-game-115570934355614583",
+              "gameNumber": 2,
+              "has_final_stats": false
+            },
+            {
+              "esportsApiId": "115570934355614584",
+              "gameId": "lol-game-115570934355614584",
+              "gameNumber": 3,
+              "has_final_stats": false
+            }
+          ],
+          "input_id": "115570934355614581",
+          "input_type": "match_id",
+          "league": {
+            "leagueId": "lol-msi",
+            "live_state_policy": "opportunistic_live_state",
+            "name": "MSI",
+            "region": "INTERNATIONAL",
+            "shortName": "MSI",
+            "slug": "msi",
+            "tier": "international"
+          },
+          "live_cache": [],
+          "live_status": {
+            "lastCheckedAt": "2026-07-08T06:26:54.081Z",
+            "status": "live"
+          },
+          "match_id": "lol-match-115570934355614581",
+          "success": true,
+          "teams": {
+            "team1": {
+              "name": "T1",
+              "shortName": "T1",
+              "slug": "t1"
+            },
+            "team2": {
+              "name": "G2 Esports",
+              "shortName": "G2",
+              "slug": "g2-esports"
+            }
+          }
+        },
+        "request": {
+          "elapsedSec": 0.76,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:01.810Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/matches/115570934355614581/coverage"
+        }
+      },
+      "gameId": "115570934355614582",
+      "iteration": 2,
+      "live": {
+        "body": {
+          "alternatives": [
+            "/api/v1/lol/schedule/today",
+            "/api/v1/lol/schedule/upcoming"
+          ],
+          "count": 1,
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "schedule_metadata": false,
+            "webhook_event": false
+          },
+          "data": [
+            {
+              "blockName": "Knockouts",
+              "coverage": {
+                "coverage_level": "live_listed",
+                "expected_live_state": false,
+                "expected_webhooks": false,
+                "live_row": true,
+                "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+                "numeric_live_state": false,
+                "precheck_endpoint": "/api/v1/lol/matches/115570934355614581/coverage",
+                "schedule_metadata": true,
+                "webhook_event": false
+              },
+              "leagueId": "98767991325878492",
+              "leagueImage": "http://static.lolesports.com/leagues/1592594634248_MSIDarkBG.png",
+              "leagueName": "MSI",
+              "matchId": "115570934355614581",
+              "startTime": "2026-07-08T08:00:00.000Z",
+              "state": "inProgress",
+              "strategy": {
+                "count": 5,
+                "type": "bestOf"
+              },
+              "team1": {
+                "code": "G2",
+                "id": "98767991926151025",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "name": "G2 Esports",
+                "score": 0,
+                "slug": "g2-esports"
+              },
+              "team2": {
+                "code": "T1",
+                "id": "98767991853197861",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "name": "T1",
+                "score": 0,
+                "slug": "t1"
+              },
+              "watch": {
+                "lolesportsUrl": "https://lolesports.com/live/msi",
+                "mediaEndpoint": "/api/v1/lol/live/115570934355614581/watch"
+              }
+            }
+          ],
+          "developer_help": {
+            "ai_agent_context": "https://citoapi.com/llms.txt",
+            "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
+            "ai_agent_skill": {
+              "name": "Cito API AI agent context",
+              "url": "https://citoapi.com/llms.txt"
+            },
+            "copy_paste_prompt": "Use the Cito API docs (https://citoapi.com/docs/api/league-of-legends) and the Cito AI agent context (https://citoapi.com/llms.txt). Fix this API request and show the correct endpoint, headers, and example code: /api/v1/lol/live",
+            "docs": "https://citoapi.com/docs/api/league-of-legends"
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "lastCheckedAt": "2026-07-08T06:26:54.081Z",
+          "lastKnown": [],
+          "liveOnly": true,
+          "message": "Live LoL matches are currently detected.",
+          "scheduleEndpoints": {
+            "today": "/api/v1/lol/schedule/today",
+            "upcoming": "/api/v1/lol/schedule/upcoming"
+          },
+          "status": "live",
+          "success": true,
+          "try_instead": "/api/v1/lol/schedule/today"
+        },
+        "request": {
+          "elapsedSec": 0.408,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:01.402Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live"
+        }
+      },
+      "matchId": "115570934355614581",
+      "observedAt": "2026-07-08T06:27:03.127Z",
+      "visualState": {
+        "body": {
+          "blueTeam": {
+            "barons": 0,
+            "dragons": 3,
+            "gold": 47600,
+            "kills": 13,
+            "tag": "G2",
+            "towers": 3
+          },
+          "canonicalGameId": "lol-game-115570934355614582",
+          "confidence": {
+            "broadcastState": 1,
+            "gold": 1,
+            "kills": 1,
+            "objectives": 1,
+            "seriesScore": 0,
+            "teams": 1,
+            "timer": 1
+          },
+          "data": null,
+          "dataQuality": {
+            "finalAccuracyComesFromPostMatchReconciliation": true,
+            "lowQualityFramesSkipped": true,
+            "provisional": true,
+            "replayFramesSkipped": true
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "feedStatus": null,
+          "finalDataEndpoint": "/api/v1/lol/games/lol-game-115570934355614582/postgame",
+          "freshness": {
+            "isFresh": false,
+            "latestCaptureIsFresh": false,
+            "staleAfterSeconds": 45
+          },
+          "gameId": "115570934355614582",
+          "gameTime": 1548,
+          "gameTimeFormatted": "25:48",
+          "gameTimeSeconds": 1548,
+          "lastKnownGameplayAgeSeconds": 284,
+          "lastKnownGameplayState": {
+            "blueTeam": {
+              "barons": 0,
+              "dragons": 3,
+              "gold": 47600,
+              "kills": 13,
+              "tag": "G2",
+              "towers": 3
+            },
+            "gameTime": 1548,
+            "gameTimeFormatted": "25:48",
+            "gameTimeSeconds": 1548,
+            "redTeam": {
+              "barons": 0,
+              "dragons": 0,
+              "gold": 48700,
+              "kills": 12,
+              "tag": "T1",
+              "towers": 4
+            }
+          },
+          "leagueId": "98767991325878492",
+          "matchId": "115570934355614581",
+          "message": "The latest visual gameplay state is stale. Waiting for fresh live gameplay or post-match reconciliation.",
+          "redTeam": {
+            "barons": 0,
+            "dragons": 0,
+            "gold": 48700,
+            "kills": 12,
+            "tag": "T1",
+            "towers": 4
+          },
+          "reliability": "provisional_until_postgame_reconciliation",
+          "requestedGameId": "115570934355614582",
+          "riotGameId": "115570934355614582",
+          "sampleAgeSeconds": 284,
+          "sampledAt": {},
+          "source": "visual_live_extraction",
+          "status": "stale",
+          "streamQuality": "1080p",
+          "success": true,
+          "validation": {
+            "accepted": true,
+            "acceptedFields": [
+              "gameTime",
+              "blueTeamTag",
+              "redTeamTag",
+              "blueKills",
+              "redKills",
+              "blueGold",
+              "redGold",
+              "blueTowers",
+              "redTowers",
+              "blueDragons",
+              "redDragons",
+              "blueBarons",
+              "redBarons"
+            ],
+            "reasons": [],
+            "rejectedFields": {}
+          },
+          "willReconcilePostMatch": true
+        },
+        "request": {
+          "elapsedSec": 0.557,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:02.570Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live/115570934355614582/visual-state"
+        }
+      }
+    },
+    {
+      "coverage": {
+        "body": {
+          "active_live_game_id": null,
+          "checked_at": "2026-07-08T06:27:08.898Z",
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "precheck_endpoint": "/api/v1/lol/matches/lol-match-115570934355614581/coverage",
+            "schedule_metadata": true,
+            "webhook_event": false
+          },
+          "definitions": {
+            "live_row": "The match is currently present in Cito live discovery or live cache.",
+            "numeric_live_state": "Current kills, gold, towers, objectives, player stats, or game clock are present.",
+            "postgame_enrichment": "Section-by-section postgame coverage for completed games. Use availableSections and missingSections on /lol/games/{gameId}/postgame for the exact game-level contract.",
+            "recommended_rule": "For production decisions, require schedule_metadata + live_row + numeric_live_state. For LCK CL / Academy, never assume live state before this pre-check confirms it.",
+            "schedule_metadata": "A stored schedule/match row exists in Cito.",
+            "webhook_event": "Cito has enough numeric live-state data to emit lol.live.state webhooks for subscribed users."
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "games": [
+            {
+              "esportsApiId": "115570934355614582",
+              "gameId": "lol-game-115570934355614582",
+              "gameNumber": 1,
+              "has_final_stats": true
+            },
+            {
+              "esportsApiId": "115570934355614583",
+              "gameId": "lol-game-115570934355614583",
+              "gameNumber": 2,
+              "has_final_stats": false
+            },
+            {
+              "esportsApiId": "115570934355614584",
+              "gameId": "lol-game-115570934355614584",
+              "gameNumber": 3,
+              "has_final_stats": false
+            }
+          ],
+          "input_id": "115570934355614581",
+          "input_type": "match_id",
+          "league": {
+            "leagueId": "lol-msi",
+            "live_state_policy": "opportunistic_live_state",
+            "name": "MSI",
+            "region": "INTERNATIONAL",
+            "shortName": "MSI",
+            "slug": "msi",
+            "tier": "international"
+          },
+          "live_cache": [],
+          "live_status": {
+            "lastCheckedAt": "2026-07-08T06:27:08.432Z",
+            "status": "live"
+          },
+          "match_id": "lol-match-115570934355614581",
+          "success": true,
+          "teams": {
+            "team1": {
+              "name": "T1",
+              "shortName": "T1",
+              "slug": "t1"
+            },
+            "team2": {
+              "name": "G2 Esports",
+              "shortName": "G2",
+              "slug": "g2-esports"
+            }
+          }
+        },
+        "request": {
+          "elapsedSec": 0.759,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:10.949Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/matches/115570934355614581/coverage"
+        }
+      },
+      "gameId": "115570934355614582",
+      "iteration": 3,
+      "live": {
+        "body": {
+          "alternatives": [
+            "/api/v1/lol/schedule/today",
+            "/api/v1/lol/schedule/upcoming"
+          ],
+          "count": 1,
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "schedule_metadata": false,
+            "webhook_event": false
+          },
+          "data": [
+            {
+              "blockName": "Knockouts",
+              "coverage": {
+                "coverage_level": "live_listed",
+                "expected_live_state": false,
+                "expected_webhooks": false,
+                "live_row": true,
+                "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+                "numeric_live_state": false,
+                "precheck_endpoint": "/api/v1/lol/matches/115570934355614581/coverage",
+                "schedule_metadata": true,
+                "webhook_event": false
+              },
+              "leagueId": "98767991325878492",
+              "leagueImage": "http://static.lolesports.com/leagues/1592594634248_MSIDarkBG.png",
+              "leagueName": "MSI",
+              "matchId": "115570934355614581",
+              "startTime": "2026-07-08T08:00:00.000Z",
+              "state": "inProgress",
+              "strategy": {
+                "count": 5,
+                "type": "bestOf"
+              },
+              "team1": {
+                "code": "G2",
+                "id": "98767991926151025",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "name": "G2 Esports",
+                "score": 0,
+                "slug": "g2-esports"
+              },
+              "team2": {
+                "code": "T1",
+                "id": "98767991853197861",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "name": "T1",
+                "score": 0,
+                "slug": "t1"
+              },
+              "watch": {
+                "lolesportsUrl": "https://lolesports.com/live/msi",
+                "mediaEndpoint": "/api/v1/lol/live/115570934355614581/watch"
+              }
+            }
+          ],
+          "developer_help": {
+            "ai_agent_context": "https://citoapi.com/llms.txt",
+            "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
+            "ai_agent_skill": {
+              "name": "Cito API AI agent context",
+              "url": "https://citoapi.com/llms.txt"
+            },
+            "copy_paste_prompt": "Use the Cito API docs (https://citoapi.com/docs/api/league-of-legends) and the Cito AI agent context (https://citoapi.com/llms.txt). Fix this API request and show the correct endpoint, headers, and example code: /api/v1/lol/live",
+            "docs": "https://citoapi.com/docs/api/league-of-legends"
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "lastCheckedAt": "2026-07-08T06:27:08.432Z",
+          "lastKnown": [],
+          "liveOnly": true,
+          "message": "Live LoL matches are currently detected.",
+          "scheduleEndpoints": {
+            "today": "/api/v1/lol/schedule/today",
+            "upcoming": "/api/v1/lol/schedule/upcoming"
+          },
+          "status": "live",
+          "success": true,
+          "try_instead": "/api/v1/lol/schedule/today"
+        },
+        "request": {
+          "elapsedSec": 0.425,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:10.523Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live"
+        }
+      },
+      "matchId": "115570934355614581",
+      "observedAt": "2026-07-08T06:27:12.301Z",
+      "visualState": {
+        "body": {
+          "blueTeam": {
+            "barons": 0,
+            "dragons": 3,
+            "gold": 47600,
+            "kills": 13,
+            "tag": "G2",
+            "towers": 3
+          },
+          "canonicalGameId": "lol-game-115570934355614582",
+          "confidence": {
+            "broadcastState": 1,
+            "gold": 1,
+            "kills": 1,
+            "objectives": 1,
+            "seriesScore": 0,
+            "teams": 1,
+            "timer": 1
+          },
+          "data": null,
+          "dataQuality": {
+            "finalAccuracyComesFromPostMatchReconciliation": true,
+            "lowQualityFramesSkipped": true,
+            "provisional": true,
+            "replayFramesSkipped": true
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "feedStatus": null,
+          "finalDataEndpoint": "/api/v1/lol/games/lol-game-115570934355614582/postgame",
+          "freshness": {
+            "isFresh": false,
+            "latestCaptureIsFresh": false,
+            "staleAfterSeconds": 45
+          },
+          "gameId": "115570934355614582",
+          "gameTime": 1548,
+          "gameTimeFormatted": "25:48",
+          "gameTimeSeconds": 1548,
+          "lastKnownGameplayAgeSeconds": 291,
+          "lastKnownGameplayState": {
+            "blueTeam": {
+              "barons": 0,
+              "dragons": 3,
+              "gold": 47600,
+              "kills": 13,
+              "tag": "G2",
+              "towers": 3
+            },
+            "gameTime": 1548,
+            "gameTimeFormatted": "25:48",
+            "gameTimeSeconds": 1548,
+            "redTeam": {
+              "barons": 0,
+              "dragons": 0,
+              "gold": 48700,
+              "kills": 12,
+              "tag": "T1",
+              "towers": 4
+            }
+          },
+          "leagueId": "98767991325878492",
+          "matchId": "115570934355614581",
+          "message": "The latest visual gameplay state is stale. Waiting for fresh live gameplay or post-match reconciliation.",
+          "redTeam": {
+            "barons": 0,
+            "dragons": 0,
+            "gold": 48700,
+            "kills": 12,
+            "tag": "T1",
+            "towers": 4
+          },
+          "reliability": "provisional_until_postgame_reconciliation",
+          "requestedGameId": "115570934355614582",
+          "riotGameId": "115570934355614582",
+          "sampleAgeSeconds": 291,
+          "sampledAt": {},
+          "source": "visual_live_extraction",
+          "status": "stale",
+          "streamQuality": "1080p",
+          "success": true,
+          "validation": {
+            "accepted": true,
+            "acceptedFields": [
+              "gameTime",
+              "blueTeamTag",
+              "redTeamTag",
+              "blueKills",
+              "redKills",
+              "blueGold",
+              "redGold",
+              "blueTowers",
+              "redTowers",
+              "blueDragons",
+              "redDragons",
+              "blueBarons",
+              "redBarons"
+            ],
+            "reasons": [],
+            "rejectedFields": {}
+          },
+          "willReconcilePostMatch": true
+        },
+        "request": {
+          "elapsedSec": 0.593,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:11.708Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live/115570934355614582/visual-state"
+        }
+      }
+    },
+    {
+      "coverage": {
+        "body": {
+          "active_live_game_id": null,
+          "checked_at": "2026-07-08T06:27:15.870Z",
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "precheck_endpoint": "/api/v1/lol/matches/lol-match-115570934355614581/coverage",
+            "schedule_metadata": true,
+            "webhook_event": false
+          },
+          "definitions": {
+            "live_row": "The match is currently present in Cito live discovery or live cache.",
+            "numeric_live_state": "Current kills, gold, towers, objectives, player stats, or game clock are present.",
+            "postgame_enrichment": "Section-by-section postgame coverage for completed games. Use availableSections and missingSections on /lol/games/{gameId}/postgame for the exact game-level contract.",
+            "recommended_rule": "For production decisions, require schedule_metadata + live_row + numeric_live_state. For LCK CL / Academy, never assume live state before this pre-check confirms it.",
+            "schedule_metadata": "A stored schedule/match row exists in Cito.",
+            "webhook_event": "Cito has enough numeric live-state data to emit lol.live.state webhooks for subscribed users."
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "games": [
+            {
+              "esportsApiId": "115570934355614582",
+              "gameId": "lol-game-115570934355614582",
+              "gameNumber": 1,
+              "has_final_stats": true
+            },
+            {
+              "esportsApiId": "115570934355614583",
+              "gameId": "lol-game-115570934355614583",
+              "gameNumber": 2,
+              "has_final_stats": false
+            },
+            {
+              "esportsApiId": "115570934355614584",
+              "gameId": "lol-game-115570934355614584",
+              "gameNumber": 3,
+              "has_final_stats": false
+            }
+          ],
+          "input_id": "115570934355614581",
+          "input_type": "match_id",
+          "league": {
+            "leagueId": "lol-msi",
+            "live_state_policy": "opportunistic_live_state",
+            "name": "MSI",
+            "region": "INTERNATIONAL",
+            "shortName": "MSI",
+            "slug": "msi",
+            "tier": "international"
+          },
+          "live_cache": [],
+          "live_status": {
+            "lastCheckedAt": "2026-07-08T06:27:08.432Z",
+            "status": "live"
+          },
+          "match_id": "lol-match-115570934355614581",
+          "success": true,
+          "teams": {
+            "team1": {
+              "name": "T1",
+              "shortName": "T1",
+              "slug": "t1"
+            },
+            "team2": {
+              "name": "G2 Esports",
+              "shortName": "G2",
+              "slug": "g2-esports"
+            }
+          }
+        },
+        "request": {
+          "elapsedSec": 0.598,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:15.601Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/matches/115570934355614581/coverage"
+        }
+      },
+      "gameId": "115570934355614582",
+      "iteration": 4,
+      "live": {
+        "body": {
+          "alternatives": [
+            "/api/v1/lol/schedule/today",
+            "/api/v1/lol/schedule/upcoming"
+          ],
+          "count": 1,
+          "coverage": {
+            "coverage_level": "live_listed",
+            "expected_live_state": false,
+            "expected_webhooks": false,
+            "live_row": true,
+            "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+            "numeric_live_state": false,
+            "schedule_metadata": false,
+            "webhook_event": false
+          },
+          "data": [
+            {
+              "blockName": "Knockouts",
+              "coverage": {
+                "coverage_level": "live_listed",
+                "expected_live_state": false,
+                "expected_webhooks": false,
+                "live_row": true,
+                "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+                "numeric_live_state": false,
+                "precheck_endpoint": "/api/v1/lol/matches/115570934355614581/coverage",
+                "schedule_metadata": true,
+                "webhook_event": false
+              },
+              "leagueId": "98767991325878492",
+              "leagueImage": "http://static.lolesports.com/leagues/1592594634248_MSIDarkBG.png",
+              "leagueName": "MSI",
+              "matchId": "115570934355614581",
+              "startTime": "2026-07-08T08:00:00.000Z",
+              "state": "inProgress",
+              "strategy": {
+                "count": 5,
+                "type": "bestOf"
+              },
+              "team1": {
+                "code": "G2",
+                "id": "98767991926151025",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "name": "G2 Esports",
+                "score": 0,
+                "slug": "g2-esports"
+              },
+              "team2": {
+                "code": "T1",
+                "id": "98767991853197861",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "name": "T1",
+                "score": 0,
+                "slug": "t1"
+              },
+              "watch": {
+                "lolesportsUrl": "https://lolesports.com/live/msi",
+                "mediaEndpoint": "/api/v1/lol/live/115570934355614581/watch"
+              }
+            }
+          ],
+          "developer_help": {
+            "ai_agent_context": "https://citoapi.com/llms.txt",
+            "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
+            "ai_agent_skill": {
+              "name": "Cito API AI agent context",
+              "url": "https://citoapi.com/llms.txt"
+            },
+            "copy_paste_prompt": "Use the Cito API docs (https://citoapi.com/docs/api/league-of-legends) and the Cito AI agent context (https://citoapi.com/llms.txt). Fix this API request and show the correct endpoint, headers, and example code: /api/v1/lol/live",
+            "docs": "https://citoapi.com/docs/api/league-of-legends"
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "lastCheckedAt": "2026-07-08T06:27:08.432Z",
+          "lastKnown": [],
+          "liveOnly": true,
+          "message": "Live LoL matches are currently detected.",
+          "scheduleEndpoints": {
+            "today": "/api/v1/lol/schedule/today",
+            "upcoming": "/api/v1/lol/schedule/upcoming"
+          },
+          "status": "live",
+          "success": true,
+          "try_instead": "/api/v1/lol/schedule/today"
+        },
+        "request": {
+          "elapsedSec": 0.425,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:15.176Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live"
+        }
+      },
+      "matchId": "115570934355614581",
+      "observedAt": "2026-07-08T06:27:16.667Z",
+      "visualState": {
+        "body": {
+          "blueTeam": {
+            "barons": 0,
+            "dragons": 3,
+            "gold": 57800,
+            "kills": 17,
+            "tag": "G2",
+            "towers": 3
+          },
+          "canonicalGameId": "lol-game-115570934355614582",
+          "confidence": {
+            "broadcastState": 1,
+            "gold": 1,
+            "kills": 1,
+            "objectives": 1,
+            "seriesScore": 0,
+            "teams": 1,
+            "timer": 1
+          },
+          "data": {
+            "blueTeam": {
+              "barons": 0,
+              "dragons": 3,
+              "gold": 57800,
+              "kills": 17,
+              "tag": "G2",
+              "towers": 3
+            },
+            "gameTime": 1845,
+            "gameTimeFormatted": "30:45",
+            "gameTimeSeconds": 1845,
+            "redTeam": {
+              "barons": 0,
+              "dragons": 0,
+              "gold": 59700,
+              "kills": 16,
+              "tag": "T1",
+              "towers": 5
+            }
+          },
+          "dataQuality": {
+            "finalAccuracyComesFromPostMatchReconciliation": true,
+            "lowQualityFramesSkipped": true,
+            "provisional": true,
+            "replayFramesSkipped": true
+          },
+          "docs": "https://citoapi.com/docs/api/league-of-legends",
+          "feedStatus": null,
+          "finalDataEndpoint": "/api/v1/lol/games/lol-game-115570934355614582/postgame",
+          "freshness": {
+            "isFresh": true,
+            "latestCaptureIsFresh": true,
+            "staleAfterSeconds": 45
+          },
+          "gameId": "115570934355614582",
+          "gameTime": 1845,
+          "gameTimeFormatted": "30:45",
+          "gameTimeSeconds": 1845,
+          "lastKnownGameplayAgeSeconds": 0,
+          "lastKnownGameplayState": {
+            "blueTeam": {
+              "barons": 0,
+              "dragons": 3,
+              "gold": 57800,
+              "kills": 17,
+              "tag": "G2",
+              "towers": 3
+            },
+            "gameTime": 1845,
+            "gameTimeFormatted": "30:45",
+            "gameTimeSeconds": 1845,
+            "redTeam": {
+              "barons": 0,
+              "dragons": 0,
+              "gold": 59700,
+              "kills": 16,
+              "tag": "T1",
+              "towers": 5
+            }
+          },
+          "leagueId": "98767991325878492",
+          "matchId": "115570934355614581",
+          "message": "Live visual gameplay state is provisional and will be reconciled with post-match data.",
+          "redTeam": {
+            "barons": 0,
+            "dragons": 0,
+            "gold": 59700,
+            "kills": 16,
+            "tag": "T1",
+            "towers": 5
+          },
+          "reliability": "provisional_until_postgame_reconciliation",
+          "requestedGameId": "115570934355614582",
+          "riotGameId": "115570934355614582",
+          "sampleAgeSeconds": 0,
+          "sampledAt": {},
+          "source": "visual_live_extraction",
+          "status": "provisional",
+          "streamQuality": "1080p",
+          "success": true,
+          "validation": {
+            "accepted": true,
+            "acceptedFields": [
+              "gameTime",
+              "blueTeamTag",
+              "redTeamTag",
+              "blueKills",
+              "redKills",
+              "blueGold",
+              "redGold",
+              "blueTowers",
+              "redTowers",
+              "blueDragons",
+              "redDragons",
+              "blueBarons",
+              "redBarons"
+            ],
+            "reasons": [],
+            "rejectedFields": {}
+          },
+          "willReconcilePostMatch": true
+        },
+        "request": {
+          "elapsedSec": 0.469,
+          "error": null,
+          "errorClass": null,
+          "observedAt": "2026-07-08T06:27:16.199Z",
+          "ok": true,
+          "statusCode": 200,
+          "url": "https://api.citoapi.com/api/v1/lol/live/115570934355614582/visual-state"
+        }
+      }
+    }
+  ],
+  "polling": {
+    "durationSecRequested": 20,
+    "iterations": 4,
+    "pollIntervalSec": 5
+  },
+  "rawSamplePath": "docs/source-spike/cito-t1-g2-field-probe-20260708T062648799Z.json",
+  "reportPath": "docs/source-spike/cito-t1-g2-field-probe-20260708T062648799Z.md",
+  "requestFrequency": {
+    "citoRequestCount": 13,
+    "limitPolicy": "poll_interval_sec>=3 and observed_request_rate<=60_per_minute",
+    "maxIntervalSec": 7.953,
+    "maxRequestsPerMinuteObserved": 13.0,
+    "minIntervalSec": 0.408,
+    "status429Count": 0,
+    "windowEndedAt": "2026-07-08T06:27:16.199000Z",
+    "windowStartedAt": "2026-07-08T06:26:48.799000Z"
+  },
+  "scheduleToday": {
+    "body": {
+      "count": 13,
+      "data": [
+        {
+          "blockName": "Knockouts",
+          "endTime": null,
+          "leagueEsportsApiId": "98767991325878492",
+          "leagueId": "lol-msi",
+          "leagueName": "MSI",
+          "leagueSlug": "msi",
+          "matchId": "lol-match-115570934355614581",
+          "metadataWarning": null,
+          "metadataWarnings": [],
+          "officialEventId": "115570934355614581",
+          "officialTournamentId": "115570934354631452",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T03:00:00.000Z",
+          "state": "inProgress",
+          "strategy": "Bo5",
+          "team1": {
+            "code": "G2",
+            "logoUrl": "http://static.lolesports.com/teams/G2-FullonDark.png",
+            "name": "G2 Esports",
+            "score": 0,
+            "slug": "g2-esports"
+          },
+          "team2": {
+            "code": "T1",
+            "logoUrl": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+            "name": "T1",
+            "score": 0,
+            "slug": "t1"
+          },
+          "tournamentEsportsApiId": "115570934354631452",
+          "tournamentId": "lol-tournament-115570934354631452",
+          "tournamentName": "2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Knockouts",
+          "endTime": null,
+          "leagueEsportsApiId": "98767991325878492",
+          "leagueId": "lol-msi",
+          "leagueName": "MSI",
+          "leagueSlug": "msi",
+          "matchId": "lol-match-115570934355614587",
+          "metadataWarning": null,
+          "metadataWarnings": [],
+          "officialEventId": "115570934355614587",
+          "officialTournamentId": "115570934354631452",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T08:00:00.000Z",
+          "state": "completed",
+          "strategy": "Bo5",
+          "team1": {
+            "code": "LYON",
+            "logoUrl": "http://static.lolesports.com/teams/1743717443673_isotypelyon-03.png",
+            "name": "LYON",
+            "score": 3,
+            "slug": "lyon"
+          },
+          "team2": {
+            "code": "TSW",
+            "logoUrl": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+            "name": "Team Secret Whales",
+            "score": 0,
+            "slug": "team-secret-whales"
+          },
+          "tournamentEsportsApiId": "115570934354631452",
+          "tournamentId": "lol-tournament-115570934354631452",
+          "tournamentName": "2026",
+          "winnerSlug": "lyon"
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "105266108767593290",
+          "leagueId": "lol-hellenic_legends_league",
+          "leagueName": "Hellenic Legends League",
+          "leagueSlug": "hellenic_legends_league",
+          "matchId": "lol-match-116697716933082112",
+          "metadataWarning": "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116697716933082112",
+          "officialTournamentId": "116697716930132912",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T13:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo2",
+          "team1": {
+            "code": "HELL",
+            "logoUrl": "http://static.lolesports.com/teams/ZRLLogowhite600x600.png",
+            "name": "Hell ZeroLag",
+            "score": 0,
+            "slug": "spartans-eu"
+          },
+          "team2": {
+            "code": "WLG",
+            "logoUrl": "http://static.lolesports.com/teams/WLGlogo.png",
+            "name": "WLGaming",
+            "score": 0,
+            "slug": "we-love-gaming"
+          },
+          "tournamentEsportsApiId": "115746382932861179",
+          "tournamentId": "lol-tournament-116697716930132912",
+          "tournamentName": "Winter 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "105266108767593290",
+          "leagueId": "lol-hellenic_legends_league",
+          "leagueName": "Hellenic Legends League",
+          "leagueSlug": "hellenic_legends_league",
+          "matchId": "lol-match-116697716933082100",
+          "metadataWarning": "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116697716933082100",
+          "officialTournamentId": "116697716930132912",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T15:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo2",
+          "team1": {
+            "code": "TPX",
+            "logoUrl": "http://static.lolesports.com/teams/1773838306977_TpOXRed_Gold-removebg-preview.png",
+            "name": "TheParadOx Invaders",
+            "score": 0,
+            "slug": "tpx"
+          },
+          "team2": {
+            "code": "ALMO",
+            "logoUrl": "http://static.lolesports.com/teams/1766149888302_Ogi7qeR.webp",
+            "name": "ALMO Players",
+            "score": 0,
+            "slug": "almo-players"
+          },
+          "tournamentEsportsApiId": "115746382932861179",
+          "tournamentId": "lol-tournament-116697716930132912",
+          "tournamentName": "Winter 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "105266091639104326",
+          "leagueId": "lol-primeleague",
+          "leagueName": "Prime League",
+          "leagueSlug": "primeleague",
+          "matchId": "lol-match-116713163972559042",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116713163972559042",
+          "officialTournamentId": "116713163971248266",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T15:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo1",
+          "team1": {
+            "code": "ROSS",
+            "logoUrl": "http://static.lolesports.com/teams/1734307301367_ROSS.png",
+            "name": "Rossmann Centaurs",
+            "score": 0,
+            "slug": "rossmann-centaurs"
+          },
+          "team2": {
+            "code": "EWI",
+            "logoUrl": "http://static.lolesports.com/teams/1674832938539_MicrosoftTeams-image14.png",
+            "name": "E Wie Einfach E-Sports",
+            "score": 0,
+            "slug": "e-wie-einfach-e-sports"
+          },
+          "tournamentEsportsApiId": "113668056932202938",
+          "tournamentId": "lol-tournament-116713163971248266",
+          "tournamentName": "Prime League 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "105266091639104326",
+          "leagueId": "lol-primeleague",
+          "leagueName": "Prime League",
+          "leagueSlug": "primeleague",
+          "matchId": "lol-match-116713163972559038",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116713163972559038",
+          "officialTournamentId": "116713163971248266",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T16:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo1",
+          "team1": {
+            "code": "G2N",
+            "logoUrl": "http://static.lolesports.com/teams/1767714240621_G2_Nord_White.png",
+            "name": "G2 NORD",
+            "score": 0,
+            "slug": "nord-esports"
+          },
+          "team2": {
+            "code": "USE",
+            "logoUrl": "http://static.lolesports.com/teams/1674832383233_PRM_USE-FullColorDarkBG.png",
+            "name": "Unicorns of Love Sexy Edition",
+            "score": 0,
+            "slug": "unicorns-of-love-sexy-edition"
+          },
+          "tournamentEsportsApiId": "113668056932202938",
+          "tournamentId": "lol-tournament-116713163971248266",
+          "tournamentName": "Prime League 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "105266091639104326",
+          "leagueId": "lol-primeleague",
+          "leagueName": "Prime League",
+          "leagueSlug": "primeleague",
+          "matchId": "lol-match-116713163972559022",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116713163972559022",
+          "officialTournamentId": "116713163971248266",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T17:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo1",
+          "team1": {
+            "code": "KHK",
+            "logoUrl": "http://static.lolesports.com/teams/1734307355268_KHK.png",
+            "name": "Kaufland Hangry Knights",
+            "score": 0,
+            "slug": "kaufland-hangry-knights"
+          },
+          "team2": {
+            "code": "TOG",
+            "logoUrl": "http://static.lolesports.com/teams/1758889281207_TOG.png",
+            "name": "TeamOrangeGaming",
+            "score": 0,
+            "slug": "teamorangegaming"
+          },
+          "tournamentEsportsApiId": "113668056932202938",
+          "tournamentId": "lol-tournament-116713163971248266",
+          "tournamentName": "Prime League 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "105266091639104326",
+          "leagueId": "lol-primeleague",
+          "leagueName": "Prime League",
+          "leagueSlug": "primeleague",
+          "matchId": "lol-match-116713163972559070",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116713163972559070",
+          "officialTournamentId": "116713163971248266",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T18:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo1",
+          "team1": {
+            "code": "VFB",
+            "logoUrl": "http://static.lolesports.com/teams/1774439138920_VfB.png",
+            "name": "VfB Stuttgart",
+            "score": 0,
+            "slug": "vfb-stuttgart"
+          },
+          "team2": {
+            "code": "EINS",
+            "logoUrl": "http://static.lolesports.com/teams/1674832820210_PRM_EINS-FullColorDarkBG.png",
+            "name": "Eintracht Spandau",
+            "score": 0,
+            "slug": "eintracht-spandau"
+          },
+          "tournamentEsportsApiId": "113668056932202938",
+          "tournamentId": "lol-tournament-116713163971248266",
+          "tournamentName": "Prime League 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "105266091639104326",
+          "leagueId": "lol-primeleague",
+          "leagueName": "Prime League",
+          "leagueSlug": "primeleague",
+          "matchId": "lol-match-116713163972559004",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116713163972559004",
+          "officialTournamentId": "116713163971248266",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T19:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo1",
+          "team1": {
+            "code": "SGE",
+            "logoUrl": "http://static.lolesports.com/teams/1674832854605_SGE.png",
+            "name": "Eintracht Frankfurt",
+            "score": 0,
+            "slug": "eintracht-frankfurt"
+          },
+          "team2": {
+            "code": "BIG",
+            "logoUrl": "http://static.lolesports.com/teams/1674839453682_PRM_BIG-MonochromeLightBG.png",
+            "name": "Berlin International Gaming",
+            "score": 0,
+            "slug": "berlin-international-gaming"
+          },
+          "tournamentEsportsApiId": "113668056932202938",
+          "tournamentId": "lol-tournament-116713163971248266",
+          "tournamentName": "Prime League 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "110372322609949919",
+          "leagueId": "lol-south_regional_league",
+          "leagueName": "LRS",
+          "leagueSlug": "south_regional_league",
+          "matchId": "lol-match-116520721101367158",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116520721101367158",
+          "officialTournamentId": "116520721100318553",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T20:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo3",
+          "team1": {
+            "code": "9ZG",
+            "logoUrl": "http://static.lolesports.com/teams/1771234194177_FULL_COLOR_FOR_DARK_BG-2.png",
+            "name": "9z Globant",
+            "score": 0,
+            "slug": "9z-gaming"
+          },
+          "team2": {
+            "code": "DEC",
+            "logoUrl": "http://static.lolesports.com/teams/1781849600840_DOCTA-DOH.png",
+            "name": "Docta Esports Club",
+            "score": 0,
+            "slug": "docta-esports-club"
+          },
+          "tournamentEsportsApiId": "114776582140270669",
+          "tournamentId": "lol-tournament-116520721100318553",
+          "tournamentName": "LRS 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "110372322609949919",
+          "leagueId": "lol-south_regional_league",
+          "leagueName": "LRS",
+          "leagueSlug": "south_regional_league",
+          "matchId": "lol-match-116520721101367190",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116520721101367190",
+          "officialTournamentId": "116520721100318553",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T20:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo3",
+          "team1": {
+            "code": "7D",
+            "logoUrl": "http://static.lolesports.com/teams/1770889439846_FULL_COLOR_FOR_DARK_BG-3.png",
+            "name": "Seven Dark",
+            "score": 0,
+            "slug": "seven-dark"
+          },
+          "team2": {
+            "code": "MAZ",
+            "logoUrl": "http://static.lolesports.com/teams/1643036820055_maze-ColorLight.png",
+            "name": "Maze Gaming",
+            "score": 0,
+            "slug": "maze-gaming"
+          },
+          "tournamentEsportsApiId": "114776582140270669",
+          "tournamentId": "lol-tournament-116520721100318553",
+          "tournamentName": "LRS 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "110372322609949919",
+          "leagueId": "lol-south_regional_league",
+          "leagueName": "LRS",
+          "leagueSlug": "south_regional_league",
+          "matchId": "lol-match-116520721101367178",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116520721101367178",
+          "officialTournamentId": "116520721100318553",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T23:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo3",
+          "team1": {
+            "code": "VTC",
+            "logoUrl": "http://static.lolesports.com/teams/1770889539409_FULL_COLOR_FOR_DARK_BG2.png",
+            "name": "Volticons",
+            "score": 0,
+            "slug": "volticons"
+          },
+          "team2": {
+            "code": "Z3N",
+            "logoUrl": "http://static.lolesports.com/teams/1782197670211_FULL_COLOR_FOR_LIGHT_BG.png",
+            "name": "ZEN",
+            "score": 0,
+            "slug": "zen"
+          },
+          "tournamentEsportsApiId": "114776582140270669",
+          "tournamentId": "lol-tournament-116520721100318553",
+          "tournamentName": "LRS 2026",
+          "winnerSlug": null
+        },
+        {
+          "blockName": "Week 2",
+          "endTime": null,
+          "leagueEsportsApiId": "110372322609949919",
+          "leagueId": "lol-south_regional_league",
+          "leagueName": "LRS",
+          "leagueSlug": "south_regional_league",
+          "matchId": "lol-match-116520721101367210",
+          "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
+          "metadataWarnings": [
+            "Match startTime is current but joined tournament metadata contains an older season year.",
+            "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
+            "Response was repaired from Riot LoL Esports event details."
+          ],
+          "officialEventId": "116520721101367210",
+          "officialTournamentId": "116520721100318553",
+          "round": null,
+          "source": "Riot LoL Esports API",
+          "startTime": "2026-07-08T23:00:00.000Z",
+          "state": "unstarted",
+          "strategy": "Bo3",
+          "team1": {
+            "code": "MVG",
+            "logoUrl": "http://static.lolesports.com/teams/1770889502736_FULL_COLOR_FOR_DARK_BG1.png",
+            "name": "Malvinas Gaming",
+            "score": 0,
+            "slug": "malvinas-gaming"
+          },
+          "team2": {
+            "code": "GLE",
+            "logoUrl": "http://static.lolesports.com/teams/1770889382925_FULL_COLOR_FOR_DARK_BG.png",
+            "name": "Golden Lions",
+            "score": 0,
+            "slug": "gle"
+          },
+          "tournamentEsportsApiId": "114776582140270669",
+          "tournamentId": "lol-tournament-116520721100318553",
+          "tournamentName": "LRS 2026",
+          "winnerSlug": null
+        }
+      ],
+      "meta": {
+        "dataCompleteness": "partial",
+        "dataFreshness": "fresh",
+        "lastCheckedAt": "2026-07-08T06:26:54.470Z",
+        "requestedDate": "2026-07-08",
+        "source": "Cito schedule monitor + Riot LoL Esports API verification",
+        "timezone": "UTC",
+        "warnings": [
+          "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912.",
+          "Response was repaired from Riot LoL Esports event details.",
+          "Match startTime is current but joined tournament metadata contains an older season year.",
+          "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+          "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553."
+        ]
+      },
+      "status": "partial_data",
+      "success": true,
+      "warning": "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912. Response was repaired from Riot LoL Esports event details. Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553."
+    },
+    "request": {
+      "elapsedSec": 5.933,
+      "error": null,
+      "errorClass": null,
+      "observedAt": "2026-07-08T06:26:48.799Z",
+      "ok": true,
+      "statusCode": 200,
+      "url": "https://api.citoapi.com/api/v1/lol/schedule/today"
+    },
+    "targetMatch": {
+      "blockName": "Knockouts",
+      "endTime": null,
+      "leagueEsportsApiId": "98767991325878492",
+      "leagueId": "lol-msi",
+      "leagueName": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "lol-match-115570934355614581",
+      "metadataWarning": null,
+      "metadataWarnings": [],
+      "officialEventId": "115570934355614581",
+      "officialTournamentId": "115570934354631452",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T03:00:00.000Z",
+      "state": "inProgress",
+      "strategy": "Bo5",
+      "team1": {
+        "code": "G2",
+        "logoUrl": "http://static.lolesports.com/teams/G2-FullonDark.png",
+        "name": "G2 Esports",
+        "score": 0,
+        "slug": "g2-esports"
+      },
+      "team2": {
+        "code": "T1",
+        "logoUrl": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+        "name": "T1",
+        "score": 0,
+        "slug": "t1"
+      },
+      "tournamentEsportsApiId": "115570934354631452",
+      "tournamentId": "lol-tournament-115570934354631452",
+      "tournamentName": "2026",
+      "winnerSlug": null
+    }
+  },
+  "scope": "CAL-59 Cito T1 vs G2 field completeness probe",
+  "script": "scripts/cito_t1_g2_field_probe.py",
+  "startedAt": "2026-07-08T06:26:48.799Z",
+  "target": {
+    "gameId": "115570934355614582",
+    "matchId": "115570934355614581",
+    "scheduleGameId": null,
+    "scheduleMatchId": "lol-match-115570934355614581",
+    "scheduleTargetFound": true,
+    "teams": [
+      "T1",
+      "G2"
+    ]
+  }
+}

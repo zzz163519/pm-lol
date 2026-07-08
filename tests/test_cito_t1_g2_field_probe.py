@@ -127,3 +127,54 @@ def test_run_probe_stops_after_schedule_rate_limit(tmp_path):
     assert calls == ["https://api.citoapi.com/api/v1/lol/schedule/today"]
     assert result["requestFrequency"]["status429Count"] == 1
     assert result["polling"]["iterations"] == 0
+
+
+def test_run_probe_uses_coverage_game_id_for_visual_state(tmp_path):
+    probe = load_probe_module()
+    calls = []
+
+    def fake_get(url, headers=None, timeout=20.0):
+        calls.append(url)
+        if url.endswith("/lol/schedule/today"):
+            return {
+                "matches": [
+                    {
+                        "matchId": "lol-match-1",
+                        "teams": [{"code": "G2"}, {"code": "T1"}],
+                    }
+                ]
+            }, {"observedAt": "2026-07-08T08:00:00Z", "statusCode": 200, "url": url, "ok": True}
+        if url.endswith("/lol/live"):
+            return {
+                "status": "live",
+                "data": [{"matchId": "lol-match-1", "team1": {"code": "G2"}, "team2": {"code": "T1"}}],
+            }, {"observedAt": "2026-07-08T08:00:05Z", "statusCode": 200, "url": url, "ok": True}
+        if url.endswith("/lol/matches/1/coverage"):
+            return {
+                "active_live_game_id": "lol-game-2",
+                "coverage": {"numeric_live_state": True},
+            }, {"observedAt": "2026-07-08T08:00:06Z", "statusCode": 200, "url": url, "ok": True}
+        if url.endswith("/lol/live/2/visual-state"):
+            return {
+                "status": "live",
+                "blueTeam": {"tag": "G2", "gold": 1000, "kills": 1, "dragons": 0, "barons": 0, "towers": 0},
+                "redTeam": {"tag": "T1", "gold": 900, "kills": 0, "dragons": 0, "barons": 0, "towers": 0},
+            }, {"observedAt": "2026-07-08T08:00:07Z", "statusCode": 200, "url": url, "ok": True}
+        raise AssertionError(url)
+
+    result = probe.run_probe(
+        cito_api_key="secret",
+        output_dir=tmp_path,
+        target_teams=("T1", "G2"),
+        duration_sec=0,
+        poll_interval_sec=5,
+        http_get=fake_get,
+        sleep=lambda _: None,
+        now=lambda: "2026-07-08T08:00:08Z",
+    )
+
+    assert "https://api.citoapi.com/api/v1/lol/live/1/visual-state" not in calls
+    assert "https://api.citoapi.com/api/v1/lol/live/2/visual-state" in calls
+    assert result["target"]["matchId"] == "1"
+    assert result["target"]["gameId"] == "2"
+    assert result["fieldCoverage"]["gold"]["status"] == "present"

@@ -324,6 +324,32 @@ def discover_game_id(payload: Any, target_teams: tuple[str, str] = DEFAULT_TARGE
     return None
 
 
+def normalize_cito_id(value: Any) -> str | None:
+    if value in (None, "", [], {}):
+        return None
+    text = str(value)
+    return text.removeprefix("lol-game-").removeprefix("lol-match-")
+
+
+def discover_visual_game_id(coverage_payload: Any) -> str | None:
+    if not isinstance(coverage_payload, dict):
+        return None
+    for key in ("active_live_game_id", "activeLiveGameId", "gameId", "currentGameId"):
+        value = normalize_cito_id(coverage_payload.get(key))
+        if value:
+            return value
+    games = coverage_payload.get("games")
+    if isinstance(games, list):
+        for game in games:
+            if not isinstance(game, dict):
+                continue
+            for key in ("esportsApiId", "gameId", "id"):
+                value = normalize_cito_id(game.get(key))
+                if value:
+                    return value
+    return None
+
+
 def summarize_request_frequency(records: list[dict[str, Any]]) -> dict[str, Any]:
     cito_records = [record for record in records if "api.citoapi.com" in str(record.get("url") or "")]
     times = [parse_time(record.get("observedAt")) for record in cito_records]
@@ -447,15 +473,25 @@ def run_probe(
     iterations = []
     visual_payload = None
     game_id = str(schedule_game_id) if schedule_game_id else None
+    match_id = normalize_cito_id(schedule_match_id)
     deadline = time.monotonic() + duration_sec
     iteration = 0
     while not rate_limited(schedule_record):
         iteration += 1
         live_payload, live_record = http_get(f"{CITO_BASE_URL}/lol/live", headers=headers)
         request_records.append(live_record)
-        discovered_game_id = discover_game_id(live_payload, target_teams)
-        if discovered_game_id:
-            game_id = discovered_game_id
+        discovered_match_id = normalize_cito_id(discover_game_id(live_payload, target_teams))
+        if discovered_match_id:
+            match_id = discovered_match_id
+
+        coverage_payload = None
+        coverage_record = None
+        if match_id:
+            coverage_payload, coverage_record = http_get(f"{CITO_BASE_URL}/lol/matches/{match_id}/coverage", headers=headers)
+            request_records.append(coverage_record)
+            discovered_game_id = discover_visual_game_id(coverage_payload)
+            if discovered_game_id:
+                game_id = discovered_game_id
 
         visual_record = None
         current_visual_payload = None
@@ -469,12 +505,14 @@ def run_probe(
                 "iteration": iteration,
                 "observedAt": now(),
                 "live": {"request": live_record, "body": live_payload},
+                "coverage": {"request": coverage_record, "body": coverage_payload},
                 "visualState": {"request": visual_record, "body": current_visual_payload},
+                "matchId": match_id,
                 "gameId": game_id,
             }
         )
 
-        if rate_limited(live_record) or rate_limited(visual_record):
+        if rate_limited(live_record) or rate_limited(coverage_record) or rate_limited(visual_record):
             break
         if time.monotonic() >= deadline:
             break
@@ -492,6 +530,7 @@ def run_probe(
             "scheduleTargetFound": target_match is not None,
             "scheduleMatchId": str(schedule_match_id) if schedule_match_id else None,
             "scheduleGameId": str(schedule_game_id) if schedule_game_id else None,
+            "matchId": match_id,
             "gameId": game_id,
         },
         "polling": {
