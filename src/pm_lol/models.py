@@ -152,3 +152,20 @@ class MarketResolutionAttempt:
     resolved_market: ResolvedMarket | None = None
     token_mappings: list[TokenTeamMapping] = field(default_factory=list)
     evidence: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(slots=True)
+class CollectorRunEvent:
+    run_id: str
+    collector_name: str
+    source: str
+    target: str | None
+    source_status: str
+    outcome: str
+    observed_at: str | None = None
+    source_schema_version: str | None = None
+    records_read: int = 0
+    records_written: int = 0
+    error_code: str | None = None
+    error_message: str | None = None
+    budget_state: dict[str, Any] = field(default_factory=dict)

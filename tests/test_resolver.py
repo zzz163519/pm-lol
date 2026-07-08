@@ -447,6 +447,53 @@ def test_resolve_pending_markets_writes_high_confidence_mapping(tmp_path):
     assert "tokenMappings" in row[3]
 
 
+def test_resolve_pending_markets_persists_blue_red_token_ids_as_first_class_columns(tmp_path):
+    db_path = tmp_path / "resolver.db"
+    storage = SQLiteStorage(db_path)
+    market = Market(
+        market_id="m-side",
+        condition_id="0xside",
+        slug="lol-blg-hle-2026-07-09-game1",
+        title="LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner",
+        outcomes=["Bilibili Gaming", "Hanwha Life Esports"],
+        token_ids=["blg-token", "hle-token"],
+        raw={"startTime": "2026-07-09T08:00:00Z"},
+    )
+    match = Match(
+        match_id="match-side",
+        league="MSI",
+        team_a_id="hle",
+        team_a_name="Hanwha Life Esports",
+        team_b_id="blg",
+        team_b_name="BLG",
+        start_time="2026-07-09T08:00:00Z",
+    )
+    game = Game(
+        game_id="game-side-1",
+        match_id="match-side",
+        game_number=1,
+        blue_team_id="hle",
+        red_team_id="blg",
+        state="unstarted",
+    )
+    storage.upsert_market(market)
+    storage.upsert_match(match)
+    storage.upsert_game(game)
+
+    summary = resolve_pending_markets(storage)
+
+    with sqlite3.connect(db_path) as conn:
+        row = conn.execute(
+            """
+            SELECT blue_token_id, red_token_id
+            FROM resolved_markets WHERE market_id = 'm-side'
+            """
+        ).fetchone()
+
+    assert summary == {"markets_seen": 1, "resolved": 1, "skipped": 0}
+    assert row == ("hle-token", "blg-token")
+
+
 def test_resolve_pending_markets_persists_skip_attempt(tmp_path):
     db_path = tmp_path / "resolver.db"
     storage = SQLiteStorage(db_path)
