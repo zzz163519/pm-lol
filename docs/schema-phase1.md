@@ -102,24 +102,18 @@ Indexes:
 
 ## 3. `quotes`
 
-QuoteRecorder v1 REST polling snapshots of Polymarket CLOB orderbooks.
+Polymarket CLOB orderbook snapshots by token.
 
 | Field | Type | Nullable | Source | Notes |
 |---|---:|---:|---|---|
 | `quote_id` | TEXT | no | Collector | Primary key; can be hash of token/time. |
-| `event_slug` | TEXT | yes | Polymarket Gamma event `slug` | Enables event-level replay/query filters. |
-| `market_slug` | TEXT | yes | Polymarket Gamma market `slug` | Enables market/game replay/query filters. |
-| `condition_id` | TEXT | yes | Polymarket orderbook `market` | Links to market condition; nullable only for recorded absent markets. |
-| `token_id` | TEXT | yes | Polymarket orderbook `asset_id` | Outcome token ID; nullable only for recorded absent markets. |
-| `outcome` | TEXT | yes | Polymarket Gamma outcome aligned to token | Display/debug label, not a trading direction. |
-| `game_number` | INTEGER | yes | Polymarket title/slug | Query helper for Game N snapshots. |
+| `condition_id` | TEXT | no | Polymarket orderbook `market` | Links to market condition. |
+| `token_id` | TEXT | no | Polymarket orderbook `asset_id` | Outcome token ID. |
 | `best_bid` | REAL | yes | Polymarket orderbook `bids` | Highest bid; null if no bids. |
 | `best_ask` | REAL | yes | Polymarket orderbook `asks` | Lowest ask; null if no asks. |
 | `spread` | REAL | yes | Derived | `best_ask - best_bid` when both exist. |
 | `bid_depth` | REAL | no | Derived from bids | Sum of bid sizes in snapshot. |
 | `ask_depth` | REAL | no | Derived from asks | Sum of ask sizes in snapshot. |
-| `bid_count` | INTEGER | no | Derived from bids | Number of bid levels. |
-| `ask_count` | INTEGER | no | Derived from asks | Number of ask levels. |
 | `bids_json` | TEXT | no | Polymarket orderbook `bids` | Full ladder. |
 | `asks_json` | TEXT | no | Polymarket orderbook `asks` | Full ladder. |
 | `last_trade_price` | REAL | yes | Polymarket orderbook `last_trade_price` | Optional. |
@@ -129,10 +123,6 @@ QuoteRecorder v1 REST polling snapshots of Polymarket CLOB orderbooks.
 | `source_timestamp_ms` | INTEGER | yes | Polymarket orderbook `timestamp` | Epoch millis from CLOB. |
 | `observed_at` | TEXT | no | System | Local receipt time. |
 | `source_latency_sec` | REAL | yes | Derived | `observed_at - source_timestamp_ms` when meaningful. |
-| `source_status` | TEXT | no | Collector | Canonical collector status, e.g. `ok`, `no_liquidity`, `absent`, `partial`, `network_error`, `parse_error`. |
-| `source_schema_version` | TEXT | yes | Collector | Version of the parser/output contract. |
-| `collector_run_id` | TEXT | yes | `collector_runs.run_id` | Groups snapshots from one polling run. |
-| `error_code` | TEXT | yes | Collector | Example: `missing_market`, `http_429`, `http_503`, `network_error`. |
 | `raw_json` | TEXT | no | Polymarket CLOB | Original orderbook object. |
 | `source` | TEXT | no | Collector | Example: `polymarket_clob_rest`. |
 | `confidence` | REAL | no | Collector | Default `1.0` for valid snapshots. |
@@ -142,6 +132,17 @@ Indexes:
 
 - `INDEX(condition_id, observed_at)`
 - `INDEX(token_id, observed_at)`
+
+QuoteRecorder v1 compatibility note:
+
+- CAL-67 / PR #3 owns the authoritative QuoteRecorder v1 `quotes` snapshot
+  contract and should remain the source of truth for quote-table wording.
+- Within Conditional Phase 1 docs, `quotes.source_status` should be treated as
+  the canonical per-snapshot status field when QuoteRecorder v1 is layered in.
+- Snapshot lineage should carry `source_schema_version` plus either
+  `collector_run_id` through `collector_runs` or an adjacent `source_events`
+  table in a later follow-up, without widening the current CAL-70-preceding
+  data-foundation boundary.
 
 ## 4. `matches`
 
@@ -331,6 +332,5 @@ games.match_id -> matches.match_id
 game_state_snapshots.game_id -> games.game_id
 draft_snapshots.match_id -> matches.match_id
 draft_snapshots.game_id -> games.game_id
-quotes.collector_run_id -> collector_runs.run_id
 game_state_snapshots.collector_run_id -> collector_runs.run_id
 ```
