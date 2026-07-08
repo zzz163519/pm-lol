@@ -9,10 +9,11 @@ from typing import Any
 if __package__ is None or __package__ == "":
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from pm_lol.collectors.polymarket_quote_recorder import QuoteTarget, PolymarketQuoteRecorder
 from pm_lol.models import Game, Market, Match
 from pm_lol.resolvers.market_match_resolver import resolve_market_to_game, team_name_confidence
 from pm_lol.sources.lolesports import parse_event_details, parse_window
-from pm_lol.sources.polymarket import parse_market, parse_orderbooks
+from pm_lol.sources.polymarket import parse_market
 from pm_lol.storage import SQLiteStorage
 
 
@@ -30,7 +31,6 @@ def run_replay(db_path: str | Path = DEFAULT_DB_PATH) -> dict[str, Any]:
     match, games = parse_event_details(_load_json("lolesports-event-t1-gen-sample.json"))
     drafts, game_state = parse_window(_load_json("lolesports-window-t1-gen-g1-15m-sample.json"))
     market = parse_market(_load_json("polymarket-market-sample.json"))
-    quotes = parse_orderbooks(_load_json("polymarket-orderbook-sample.json"))
 
     storage.upsert_match(match)
     for game in games:
@@ -51,8 +51,22 @@ def run_replay(db_path: str | Path = DEFAULT_DB_PATH) -> dict[str, Any]:
         )
 
     storage.upsert_market(market)
-    for quote in quotes:
-        storage.insert_quote(quote)
+    quote_targets = [
+        QuoteTarget(
+            event_slug=market.event_slug,
+            market_slug=market.slug,
+            condition_id=market.condition_id,
+            token_id=token_id,
+            outcome=outcome,
+            game_number=_extract_game_number(market),
+        )
+        for outcome, token_id in zip(market.outcomes, market.token_ids, strict=False)
+    ]
+    quote_summary = PolymarketQuoteRecorder(
+        _FixtureOrderbookClient(_load_json("polymarket-orderbook-sample.json")),
+        storage,
+        quote_targets,
+    ).run_once()
 
     resolved = resolve_market_to_game(market, match, games)
     game_number = _extract_game_number(market) or games[0].game_number
@@ -76,7 +90,7 @@ def run_replay(db_path: str | Path = DEFAULT_DB_PATH) -> dict[str, Any]:
         "draft_snapshots": len(drafts),
         "game_state_snapshots": 1,
         "markets": 1,
-        "quotes": len(quotes),
+        "quotes": quote_summary["quotes_written"],
         "resolved_markets": 1,
         "mappingConfidence": round(mapping_confidence, 4),
         "resolved": resolved is not None,
@@ -90,6 +104,14 @@ def main() -> None:
 
 def _load_json(filename: str) -> Any:
     return json.loads((SOURCE_SPIKE_DIR / filename).read_text())
+
+
+class _FixtureOrderbookClient:
+    def __init__(self, books: list[dict[str, Any]]) -> None:
+        self.books = books
+
+    def get_orderbook(self, token_id: str) -> dict[str, Any]:
+        return next(book for book in self.books if book["asset_id"] == token_id)
 
 
 def _market_match_confidence(market: Market, match: Match) -> float:

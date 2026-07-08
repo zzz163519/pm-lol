@@ -103,30 +103,47 @@ class SQLiteStorage:
 
     def insert_quote(self, quote: QuoteSnapshot) -> None:
         now = _now()
-        quote_id = f"{quote.condition_id}:{quote.token_id}:{quote.timestamp_ms or now}"
+        condition_id = quote.condition_id
+        token_id = quote.token_id
+        quote_id = f"{condition_id or 'absent'}:{token_id or 'absent'}:{quote.market_slug or ''}:{quote.timestamp_ms or now}"
+        bid_count = quote.bid_count or len(quote.bids)
+        ask_count = quote.ask_count or len(quote.asks)
+        source_status = quote.source_status
+        if source_status == "ok" and bid_count == 0 and ask_count == 0:
+            source_status = "no_liquidity"
         with self._connect() as conn:
             conn.execute(
                 """
                 INSERT OR REPLACE INTO quotes (
-                    quote_id, condition_id, token_id, best_bid, best_ask, spread,
-                    bid_depth, ask_depth, bids_json, asks_json, source_timestamp_ms,
-                    observed_at, raw_json, source, confidence, created_at
+                    quote_id, event_slug, market_slug, condition_id, token_id,
+                    outcome, game_number, best_bid, best_ask, spread, bid_depth,
+                    ask_depth, bid_count, ask_count, bids_json, asks_json,
+                    source_timestamp_ms, observed_at, source_status, error_code,
+                    raw_json, source, confidence, created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     quote_id,
-                    quote.condition_id,
-                    quote.token_id,
+                    quote.event_slug,
+                    quote.market_slug,
+                    condition_id,
+                    token_id,
+                    quote.outcome,
+                    quote.game_number,
                     quote.best_bid,
                     quote.best_ask,
                     quote.spread,
                     quote.bid_depth,
                     quote.ask_depth,
+                    bid_count,
+                    ask_count,
                     json.dumps(quote.bids),
                     json.dumps(quote.asks),
                     quote.timestamp_ms,
                     now,
+                    source_status,
+                    quote.error_code,
                     json.dumps(quote.raw),
                     "polymarket_clob_rest",
                     1.0,
@@ -155,11 +172,63 @@ class SQLiteStorage:
             spread=row["spread"],
             bid_depth=row["bid_depth"],
             ask_depth=row["ask_depth"],
+            event_slug=row["event_slug"],
+            market_slug=row["market_slug"],
+            outcome=row["outcome"],
+            game_number=row["game_number"],
+            bid_count=row["bid_count"],
+            ask_count=row["ask_count"],
+            source_status=row["source_status"],
+            error_code=row["error_code"],
             timestamp_ms=row["source_timestamp_ms"],
             bids=json.loads(row["bids_json"]),
             asks=json.loads(row["asks_json"]),
             raw=json.loads(row["raw_json"]),
         )
+
+    def query_quotes(
+        self,
+        *,
+        market_slug: str | None = None,
+        game_number: int | None = None,
+        token_id: str | None = None,
+        observed_from: str | None = None,
+        observed_to: str | None = None,
+    ) -> list[dict]:
+        clauses: list[str] = []
+        params: list[object] = []
+        if market_slug is not None:
+            clauses.append("market_slug = ?")
+            params.append(market_slug)
+        if game_number is not None:
+            clauses.append("game_number = ?")
+            params.append(game_number)
+        if token_id is not None:
+            clauses.append("token_id = ?")
+            params.append(token_id)
+        if observed_from is not None:
+            clauses.append("observed_at >= ?")
+            params.append(observed_from)
+        if observed_to is not None:
+            clauses.append("observed_at <= ?")
+            params.append(observed_to)
+
+        where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
+        with self._connect() as conn:
+            rows = conn.execute(
+                f"""
+                SELECT
+                    quote_id, event_slug, market_slug, condition_id, token_id,
+                    outcome, game_number, best_bid, best_ask, spread, bid_depth,
+                    ask_depth, bid_count, ask_count, source_timestamp_ms,
+                    observed_at, source_status, error_code
+                FROM quotes
+                {where}
+                ORDER BY observed_at ASC, token_id ASC
+                """,
+                params,
+            ).fetchall()
+        return [dict(row) for row in rows]
 
     def upsert_match(self, match: Match) -> None:
         now = _now()
@@ -426,6 +495,20 @@ class SQLiteStorage:
     def _init_schema(self) -> None:
         with self._connect() as conn:
             conn.executescript(SCHEMA)
+            _ensure_columns(
+                conn,
+                "quotes",
+                {
+                    "event_slug": "TEXT",
+                    "market_slug": "TEXT",
+                    "outcome": "TEXT",
+                    "game_number": "INTEGER",
+                    "bid_count": "INTEGER NOT NULL DEFAULT 0",
+                    "ask_count": "INTEGER NOT NULL DEFAULT 0",
+                    "source_status": "TEXT NOT NULL DEFAULT 'ok'",
+                    "error_code": "TEXT",
+                },
+            )
 
     def _connect(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.path)
@@ -455,6 +538,17 @@ class SQLiteStorage:
 
 def _now() -> str:
     return datetime.now(UTC).isoformat()
+
+
+def _ensure_columns(
+    conn: sqlite3.Connection,
+    table: str,
+    columns: dict[str, str],
+) -> None:
+    existing = {row["name"] for row in conn.execute(f"PRAGMA table_info({table})")}
+    for name, definition in columns.items():
+        if name not in existing:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {definition}")
 
 
 SCHEMA = """
@@ -555,13 +649,19 @@ CREATE TABLE IF NOT EXISTS resolved_markets (
 
 CREATE TABLE IF NOT EXISTS quotes (
     quote_id TEXT PRIMARY KEY,
-    condition_id TEXT NOT NULL,
-    token_id TEXT NOT NULL,
+    event_slug TEXT,
+    market_slug TEXT,
+    condition_id TEXT,
+    token_id TEXT,
+    outcome TEXT,
+    game_number INTEGER,
     best_bid REAL,
     best_ask REAL,
     spread REAL,
     bid_depth REAL NOT NULL,
     ask_depth REAL NOT NULL,
+    bid_count INTEGER NOT NULL DEFAULT 0,
+    ask_count INTEGER NOT NULL DEFAULT 0,
     bids_json TEXT NOT NULL,
     asks_json TEXT NOT NULL,
     last_trade_price REAL,
@@ -571,6 +671,8 @@ CREATE TABLE IF NOT EXISTS quotes (
     source_timestamp_ms INTEGER,
     observed_at TEXT NOT NULL,
     source_latency_sec REAL,
+    source_status TEXT NOT NULL DEFAULT 'ok',
+    error_code TEXT,
     raw_json TEXT NOT NULL,
     source TEXT NOT NULL,
     confidence REAL NOT NULL,
