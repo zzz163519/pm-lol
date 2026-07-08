@@ -13,111 +13,201 @@
   ],
   "cito": {
     "baseUrl": "https://api.citoapi.com/api/v1",
-    "live": {
-      "attempts": 1,
-      "gameId": null,
+    "coverage": {
+      "rawSamplePath": "docs/source-spike/cito-coverage-115570934355614588-2026-07-08.json",
       "request": {
         "error": null,
         "errorClass": null,
-        "observedAt": "2026-07-07T22:56:40.024106Z",
+        "observedAt": "2026-07-08T03:03:43.838676Z",
+        "ok": true,
+        "statusCode": 200,
+        "url": "https://api.citoapi.com/api/v1/lol/matches/115570934355614587/coverage"
+      }
+    },
+    "live": {
+      "attempts": 1,
+      "gameId": "115570934355614588",
+      "matchId": "115570934355614587",
+      "request": {
+        "error": null,
+        "errorClass": null,
+        "observedAt": "2026-07-08T03:03:43.339012Z",
         "ok": true,
         "statusCode": 200,
         "url": "https://api.citoapi.com/api/v1/lol/live"
       },
-      "status": "no_match"
+      "status": "live"
+    },
+    "postgame": {
+      "rawSamplePath": "docs/source-spike/cito-postgame-115570934355614588-2026-07-08.json",
+      "request": {
+        "error": null,
+        "errorClass": null,
+        "observedAt": "2026-07-08T03:03:45.684918Z",
+        "ok": true,
+        "statusCode": 200,
+        "url": "https://api.citoapi.com/api/v1/lol/games/115570934355614588/postgame"
+      }
     },
     "scheduleToday": {
-      "matchCount": 7,
+      "matchCount": 13,
       "matches": [
         {
           "gameId": null,
-          "id": "lol-match-116697716933082094",
-          "officialEventId": "116697716933082094",
-          "startTime": "2026-07-07T13:00:00.000Z",
+          "id": "lol-match-115570934355614581",
+          "officialEventId": "115570934355614581",
+          "startTime": "2026-07-08T03:00:00.000Z",
+          "state": "unstarted",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-115570934355614587",
+          "officialEventId": "115570934355614587",
+          "startTime": "2026-07-08T08:00:00.000Z",
           "state": "inProgress",
           "teams": []
         },
         {
           "gameId": null,
-          "id": "lol-match-116697716933016537",
-          "officialEventId": "116697716933016537",
-          "startTime": "2026-07-07T15:00:00.000Z",
-          "state": "completed",
+          "id": "lol-match-116697716933082112",
+          "officialEventId": "116697716933082112",
+          "startTime": "2026-07-08T13:00:00.000Z",
+          "state": "unstarted",
           "teams": []
         },
         {
           "gameId": null,
-          "id": "lol-match-116713163972559014",
-          "officialEventId": "116713163972559014",
-          "startTime": "2026-07-07T15:00:00.000Z",
-          "state": "completed",
+          "id": "lol-match-116697716933082100",
+          "officialEventId": "116697716933082100",
+          "startTime": "2026-07-08T15:00:00.000Z",
+          "state": "unstarted",
           "teams": []
         },
         {
           "gameId": null,
-          "id": "lol-match-116713163972559032",
-          "officialEventId": "116713163972559032",
-          "startTime": "2026-07-07T16:00:00.000Z",
-          "state": "completed",
+          "id": "lol-match-116713163972559042",
+          "officialEventId": "116713163972559042",
+          "startTime": "2026-07-08T15:00:00.000Z",
+          "state": "unstarted",
           "teams": []
         },
         {
           "gameId": null,
-          "id": "lol-match-116713163972559074",
-          "officialEventId": "116713163972559074",
-          "startTime": "2026-07-07T17:00:00.000Z",
-          "state": "completed",
+          "id": "lol-match-116713163972559038",
+          "officialEventId": "116713163972559038",
+          "startTime": "2026-07-08T16:00:00.000Z",
+          "state": "unstarted",
           "teams": []
         },
         {
           "gameId": null,
-          "id": "lol-match-116713163972559000",
-          "officialEventId": "116713163972559000",
-          "startTime": "2026-07-07T18:00:00.000Z",
-          "state": "completed",
+          "id": "lol-match-116713163972559022",
+          "officialEventId": "116713163972559022",
+          "startTime": "2026-07-08T17:00:00.000Z",
+          "state": "unstarted",
           "teams": []
         },
         {
           "gameId": null,
-          "id": "lol-match-116713163972559078",
-          "officialEventId": "116713163972559078",
-          "startTime": "2026-07-07T19:00:00.000Z",
-          "state": "completed",
+          "id": "lol-match-116713163972559070",
+          "officialEventId": "116713163972559070",
+          "startTime": "2026-07-08T18:00:00.000Z",
+          "state": "unstarted",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116713163972559004",
+          "officialEventId": "116713163972559004",
+          "startTime": "2026-07-08T19:00:00.000Z",
+          "state": "unstarted",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116520721101367158",
+          "officialEventId": "116520721101367158",
+          "startTime": "2026-07-08T20:00:00.000Z",
+          "state": "unstarted",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116520721101367190",
+          "officialEventId": "116520721101367190",
+          "startTime": "2026-07-08T20:00:00.000Z",
+          "state": "unstarted",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116520721101367178",
+          "officialEventId": "116520721101367178",
+          "startTime": "2026-07-08T23:00:00.000Z",
+          "state": "unstarted",
+          "teams": []
+        },
+        {
+          "gameId": null,
+          "id": "lol-match-116520721101367210",
+          "officialEventId": "116520721101367210",
+          "startTime": "2026-07-08T23:00:00.000Z",
+          "state": "unstarted",
           "teams": []
         }
       ],
       "request": {
         "error": null,
         "errorClass": null,
-        "observedAt": "2026-07-07T22:56:38.178275Z",
+        "observedAt": "2026-07-08T03:03:40.891379Z",
         "ok": true,
         "statusCode": 200,
         "url": "https://api.citoapi.com/api/v1/lol/schedule/today"
       }
     },
+    "stats": {
+      "rawSamplePath": "docs/source-spike/cito-stats-115570934355614588-2026-07-08.json",
+      "request": {
+        "error": null,
+        "errorClass": null,
+        "observedAt": "2026-07-08T03:03:45.074100Z",
+        "ok": true,
+        "statusCode": 200,
+        "url": "https://api.citoapi.com/api/v1/lol/live/115570934355614588/stats"
+      }
+    },
     "visualState": {
-      "gameId": null,
-      "rawSamplePath": null,
-      "request": null
+      "gameId": "115570934355614588",
+      "rawSamplePath": "docs/source-spike/cito-visual-state-115570934355614588-2026-07-08.json",
+      "ready": false,
+      "request": {
+        "error": null,
+        "errorClass": null,
+        "observedAt": "2026-07-08T03:03:44.440990Z",
+        "ok": true,
+        "statusCode": 200,
+        "url": "https://api.citoapi.com/api/v1/lol/live/115570934355614588/visual-state"
+      }
     }
   },
-  "endedAt": "2026-07-07T22:56:41.572951Z",
+  "endedAt": "2026-07-08T03:03:47.854441Z",
   "fieldCoverage": {
-    "finalPicks": "missing_no_live_match",
-    "gameClock": "missing_no_live_match",
-    "gameState": "missing_no_live_match",
-    "gold": "missing_no_live_match",
-    "objectives": "missing_no_live_match",
-    "teamIdentity": "present",
-    "winner": "missing_no_live_match"
+    "finalPicks": "missing",
+    "gameClock": "missing",
+    "gameState": "missing",
+    "gold": "missing",
+    "objectives": "missing",
+    "teamIdentity": "missing",
+    "winner": "missing"
   },
-  "overallStatus": "no_match_timeout",
+  "overallStatus": "live_visual_state_not_ready",
   "polymarket": {
     "clobRawSamplePath": "docs/source-spike/cito-polymarket-clob-dry-run-2026-07-08.json",
     "clobRequest": {
       "error": null,
       "errorClass": null,
-      "observedAt": "2026-07-07T22:56:40.875645Z",
+      "observedAt": "2026-07-08T03:03:46.654206Z",
       "ok": true,
       "statusCode": 200,
       "url": "https://clob.polymarket.com/markets?clob_token_ids=110491506577429319215901458281219269727103931491196553235644165260842358890906,27887302258343564348577216670687693334180770245262188319873202927710984373441,81010537690765338503673895778010499939742847237660977209689311711260300421774,64072045393646346307848936320042920618456950736788119228752361900062504142486"
@@ -200,7 +290,7 @@
         "request": {
           "error": null,
           "errorClass": null,
-          "observedAt": "2026-07-07T22:56:40.435139Z",
+          "observedAt": "2026-07-08T03:03:46.388495Z",
           "ok": true,
           "statusCode": 200,
           "url": "https://gamma-api.polymarket.com/events/slug/lol-g2-t1-2026-07-08"
@@ -210,18 +300,21 @@
     "status": "ok"
   },
   "rawSamplePaths": {
+    "coverage": "docs/source-spike/cito-coverage-115570934355614588-2026-07-08.json",
     "dryRun": "docs/source-spike/cito-live-no-match-dry-run-2026-07-08.json",
     "live": "docs/source-spike/cito-live-dry-run-2026-07-08.json",
     "polymarketClob": "docs/source-spike/cito-polymarket-clob-dry-run-2026-07-08.json",
+    "postgame": "docs/source-spike/cito-postgame-115570934355614588-2026-07-08.json",
     "report": "docs/source-spike/cito-live-polymarket-smoke-2026-07-08.json",
     "scheduleToday": "docs/source-spike/cito-schedule-today-dry-run-2026-07-08.json",
-    "visualState": null
+    "stats": "docs/source-spike/cito-stats-115570934355614588-2026-07-08.json",
+    "visualState": "docs/source-spike/cito-visual-state-115570934355614588-2026-07-08.json"
   },
   "script": "scripts/cito_live_polymarket_smoke.py",
-  "startedAt": "2026-07-07T22:56:38.178250Z",
+  "startedAt": "2026-07-08T03:03:40.891354Z",
   "timing": {
-    "citoSnapshotAt": "2026-07-07T22:56:40.024106Z",
-    "citoVsPolymarketDeltaSec": 0.852,
-    "polymarketSnapshotAt": "2026-07-07T22:56:40.875645Z"
+    "citoSnapshotAt": "2026-07-08T03:03:44.440990Z",
+    "citoVsPolymarketDeltaSec": 2.213,
+    "polymarketSnapshotAt": "2026-07-08T03:03:46.654206Z"
   }
 }

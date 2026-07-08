@@ -1,0 +1,62 @@
+{
+  "active_live_game_id": null,
+  "checked_at": "2026-07-08T03:03:44.209Z",
+  "coverage": {
+    "coverage_level": "live_listed",
+    "expected_live_state": false,
+    "expected_webhooks": false,
+    "live_row": true,
+    "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+    "numeric_live_state": false,
+    "precheck_endpoint": "/api/v1/lol/matches/lol-match-115570934355614587/coverage",
+    "schedule_metadata": true,
+    "webhook_event": false
+  },
+  "definitions": {
+    "live_row": "The match is currently present in Cito live discovery or live cache.",
+    "numeric_live_state": "Current kills, gold, towers, objectives, player stats, or game clock are present.",
+    "postgame_enrichment": "Section-by-section postgame coverage for completed games. Use availableSections and missingSections on /lol/games/{gameId}/postgame for the exact game-level contract.",
+    "recommended_rule": "For production decisions, require schedule_metadata + live_row + numeric_live_state. For LCK CL / Academy, never assume live state before this pre-check confirms it.",
+    "schedule_metadata": "A stored schedule/match row exists in Cito.",
+    "webhook_event": "Cito has enough numeric live-state data to emit lol.live.state webhooks for subscribed users."
+  },
+  "docs": "https://citoapi.com/docs/api/league-of-legends",
+  "games": [
+    {
+      "esportsApiId": "115570934355614588",
+      "gameId": "lol-game-115570934355614588",
+      "gameNumber": 1,
+      "has_final_stats": false
+    }
+  ],
+  "input_id": "115570934355614587",
+  "input_type": "match_id",
+  "league": {
+    "leagueId": "lol-msi",
+    "live_state_policy": "opportunistic_live_state",
+    "name": "MSI",
+    "region": "INTERNATIONAL",
+    "shortName": "MSI",
+    "slug": "msi",
+    "tier": "international"
+  },
+  "live_cache": [],
+  "live_status": {
+    "lastCheckedAt": "2026-07-08T03:03:43.725Z",
+    "status": "live"
+  },
+  "match_id": "lol-match-115570934355614587",
+  "success": true,
+  "teams": {
+    "team1": {
+      "name": "Lyon Academy",
+      "shortName": "LYON",
+      "slug": "lyon"
+    },
+    "team2": {
+      "name": "Team Secret Whales",
+      "shortName": "TSW",
+      "slug": "team-secret-whales"
+    }
+  }
+}

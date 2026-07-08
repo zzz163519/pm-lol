@@ -1,0 +1,36 @@
+{
+  "alternatives": [
+    "/api/v1/lol/live",
+    "/api/v1/lol/schedule/today"
+  ],
+  "count": 0,
+  "coverage": {
+    "coverage_level": "not_found",
+    "expected_live_state": false,
+    "expected_webhooks": false,
+    "live_row": false,
+    "message": "No stored schedule metadata or live row was found for this ID.",
+    "numeric_live_state": false,
+    "schedule_metadata": false,
+    "webhook_event": false
+  },
+  "data": [],
+  "developer_help": {
+    "ai_agent_context": "https://citoapi.com/llms.txt",
+    "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
+    "ai_agent_skill": {
+      "name": "Cito API AI agent context",
+      "url": "https://citoapi.com/llms.txt"
+    },
+    "copy_paste_prompt": "Use the Cito API docs (https://citoapi.com/docs/api/league-of-legends) and the Cito AI agent context (https://citoapi.com/llms.txt). Fix this API request and show the correct endpoint, headers, and example code: /api/v1/lol/live/115570934355614588/stats",
+    "docs": "https://citoapi.com/docs/api/league-of-legends"
+  },
+  "docs": "https://citoapi.com/docs/api/league-of-legends",
+  "gameId": "115570934355614588",
+  "message": "Live player stats are not published for this game yet. Keep polling this endpoint, or use stored game stats after completion.",
+  "retryAfterSeconds": 30,
+  "source": "not_ready",
+  "status": "not_ready",
+  "success": true,
+  "suggested_endpoint": "/api/v1/lol/games/115570934355614588/stats"
+}

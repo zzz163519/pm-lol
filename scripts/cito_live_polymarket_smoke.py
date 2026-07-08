@@ -242,14 +242,37 @@ def summarize_match(match: dict[str, Any]) -> dict[str, Any]:
 
 def discover_game_id(live_payload: Any) -> str | None:
     if isinstance(live_payload, dict):
-        for key in ("gameId", "currentGameId", "id"):
+        for key in ("gameId", "currentGameId", "matchId", "id"):
             value = live_payload.get(key)
             if value:
                 return str(value)
-        for key in ("game", "match", "data"):
+        for key in ("game", "match", "data", "coverage"):
             value = discover_game_id(live_payload.get(key))
             if value:
                 return value
+    elif isinstance(live_payload, list):
+        for item in live_payload:
+            value = discover_game_id(item)
+            if value:
+                return value
+    return None
+
+
+def discover_visual_game_id(coverage_payload: Any) -> str | None:
+    if not isinstance(coverage_payload, dict):
+        return None
+    active = coverage_payload.get("active_live_game_id")
+    if active:
+        return str(active)
+    games = coverage_payload.get("games")
+    if isinstance(games, list):
+        for game in games:
+            if not isinstance(game, dict):
+                continue
+            for key in ("esportsApiId", "gameId", "id"):
+                value = game.get(key)
+                if value:
+                    return str(value).removeprefix("lol-game-")
     return None
 
 
@@ -300,6 +323,18 @@ def visual_state_coverage(visual_state: Any, schedule_matches: list[dict[str, An
     }
 
 
+def is_visual_state_ready(visual_state: Any) -> bool:
+    if not isinstance(visual_state, dict):
+        return False
+    status = str(visual_state.get("status") or "").lower()
+    if status in {"not_ready", "unavailable", "error"}:
+        return False
+    return visual_state.get("data") not in (None, [], {}) or any(
+        contains_key_name(visual_state, names)
+        for names in (("gametime", "gameclock", "clock"), ("gold",), ("dragon", "baron", "tower", "objective"))
+    )
+
+
 def write_json(path: Path, payload: Any) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -341,14 +376,35 @@ def run_smoke(
             break
         sleep(poll_interval_sec)
 
-    game_id = discover_game_id(live_payload)
+    match_id = discover_game_id(live_payload)
+    game_id = match_id
     visual_payload = None
     visual_record = None
-    if game_id:
+    coverage_payload = None
+    coverage_record = None
+    stats_payload = None
+    stats_record = None
+    postgame_payload = None
+    postgame_record = None
+    if match_id:
+        coverage_payload, coverage_record = http_get(
+            f"{CITO_BASE_URL}/lol/matches/{match_id}/coverage",
+            headers=cito_headers,
+        )
+        game_id = discover_visual_game_id(coverage_payload) or match_id
         visual_payload, visual_record = http_get(
             f"{CITO_BASE_URL}/lol/live/{game_id}/visual-state",
             headers=cito_headers,
         )
+        if isinstance(visual_payload, dict) and not is_visual_state_ready(visual_payload):
+            stats_payload, stats_record = http_get(
+                f"{CITO_BASE_URL}/lol/live/{game_id}/stats",
+                headers=cito_headers,
+            )
+            postgame_payload, postgame_record = http_get(
+                f"{CITO_BASE_URL}/lol/games/{game_id}/postgame",
+                headers=cito_headers,
+            )
 
     markets, market_discovery_records = discover_polymarket_tokens(event_slugs, http_get)
     clob = fetch_clob_markets(markets, http_get)
@@ -362,14 +418,28 @@ def run_smoke(
         "live": write_json(output_dir / "cito-live-dry-run-2026-07-08.json", live_payload),
         "dryRun": write_json(output_dir / "cito-live-no-match-dry-run-2026-07-08.json", live_payload),
         "visualState": None,
+        "coverage": None,
+        "stats": None,
+        "postgame": None,
         "polymarketClob": write_json(output_dir / "cito-polymarket-clob-dry-run-2026-07-08.json", clob.get("raw")),
         "report": "",
     }
     if visual_payload is not None:
         raw_paths["visualState"] = write_json(output_dir / f"cito-visual-state-{game_id}-2026-07-08.json", visual_payload)
+    if coverage_payload is not None:
+        raw_paths["coverage"] = write_json(output_dir / f"cito-coverage-{game_id}-2026-07-08.json", coverage_payload)
+    if stats_payload is not None:
+        raw_paths["stats"] = write_json(output_dir / f"cito-stats-{game_id}-2026-07-08.json", stats_payload)
+    if postgame_payload is not None:
+        raw_paths["postgame"] = write_json(output_dir / f"cito-postgame-{game_id}-2026-07-08.json", postgame_payload)
 
-    if game_id and visual_record and visual_record.get("ok"):
+    visual_ready = is_visual_state_ready(visual_payload)
+    if game_id and visual_record and visual_record.get("ok") and visual_ready:
         overall_status = "live_sample_collected"
+    elif game_id and visual_record and visual_record.get("ok"):
+        overall_status = "live_visual_state_not_ready"
+    elif game_id and visual_record and not visual_record.get("ok"):
+        overall_status = "live_visual_state_unavailable"
     elif live_status(live_payload) == "no_match" and live_record.get("ok"):
         overall_status = "no_match_timeout"
     elif not live_record.get("ok"):
@@ -397,6 +467,7 @@ def run_smoke(
             "live": {
                 "request": live_record,
                 "status": live_status(live_payload),
+                "matchId": match_id,
                 "gameId": game_id,
                 "attempts": len(live_attempts),
             },
@@ -404,6 +475,19 @@ def run_smoke(
                 "request": visual_record,
                 "gameId": game_id,
                 "rawSamplePath": raw_paths["visualState"],
+                "ready": visual_ready,
+            },
+            "coverage": {
+                "request": coverage_record,
+                "rawSamplePath": raw_paths["coverage"],
+            },
+            "stats": {
+                "request": stats_record,
+                "rawSamplePath": raw_paths["stats"],
+            },
+            "postgame": {
+                "request": postgame_record,
+                "rawSamplePath": raw_paths["postgame"],
             },
         },
         "polymarket": {

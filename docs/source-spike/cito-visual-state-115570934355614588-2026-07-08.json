@@ -1,0 +1,17 @@
+{
+  "alternatives": [
+    "/api/v1/lol/live/115570934355614588/stats",
+    "/api/v1/lol/games/115570934355614588/postgame",
+    "/api/v1/lol/live"
+  ],
+  "data": null,
+  "docs": "https://citoapi.com/docs/api/league-of-legends",
+  "finalDataEndpoint": "/api/v1/lol/games/115570934355614588/postgame",
+  "gameId": "115570934355614588",
+  "message": "No accepted visual live state is available for this game yet. This endpoint only returns high-confidence 720p/1080p reads and skips replay/low-quality frames.",
+  "reliability": "provisional_until_postgame_reconciliation",
+  "retryAfterSeconds": 10,
+  "source": "visual_live_extraction",
+  "status": "not_ready",
+  "success": true
+}

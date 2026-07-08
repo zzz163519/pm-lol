@@ -117,6 +117,8 @@ def test_live_game_fetches_visual_state_and_marks_field_coverage(tmp_path):
                 ],
                 "winner": None,
             }, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:02Z"}
+        if url.endswith("/lol/matches/game-123/coverage"):
+            return {"success": True}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:02Z"}
         if "gamma-api.polymarket.com/events/slug" in url:
             return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:03Z"}
         return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:04Z"}
@@ -144,3 +146,147 @@ def test_live_game_fetches_visual_state_and_marks_field_coverage(tmp_path):
         "teamIdentity": "present",
     }
     assert Path(result["rawSamplePaths"]["visualState"]).exists()
+
+
+def test_live_listed_match_id_is_discovered_from_cito_data_rows(tmp_path):
+    smoke = load_smoke_module()
+
+    def fake_get(url, headers=None, timeout=10.0):
+        if url.endswith("/lol/schedule/today"):
+            return {"success": True, "data": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:00Z"}
+        if url.endswith("/lol/live"):
+            return {
+                "success": True,
+                "status": "live",
+                "data": [
+                    {
+                        "matchId": "115570934355614587",
+                        "coverage": {
+                            "precheck_endpoint": "/api/v1/lol/matches/115570934355614587/coverage"
+                        },
+                    }
+                ],
+            }, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:01Z"}
+        if url.endswith("/lol/live/115570934355614587/visual-state"):
+            return {"error": "numeric live state not ready"}, {
+                "ok": False,
+                "statusCode": 404,
+                "observedAt": "2026-07-08T03:00:02Z",
+            }
+        if url.endswith("/lol/matches/115570934355614587/coverage"):
+            return {"success": True}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:02Z"}
+        if "gamma-api.polymarket.com/events/slug" in url:
+            return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:03Z"}
+        return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:04Z"}
+
+    result = smoke.run_smoke(
+        cito_api_key="secret-key",
+        output_dir=tmp_path,
+        event_slugs=["lol-ly-tsw-2026-07-08"],
+        poll_timeout_sec=15,
+        poll_interval_sec=0,
+        http_get=fake_get,
+        sleep=lambda _: None,
+        now=lambda: "2026-07-08T03:00:05Z",
+    )
+
+    assert result["cito"]["live"]["gameId"] == "115570934355614587"
+    assert result["cito"]["visualState"]["request"]["statusCode"] == 404
+    assert result["overallStatus"] == "live_visual_state_unavailable"
+
+
+def test_visual_state_not_ready_is_not_counted_as_collected(tmp_path):
+    smoke = load_smoke_module()
+
+    def fake_get(url, headers=None, timeout=10.0):
+        if url.endswith("/lol/schedule/today"):
+            return {"success": True, "data": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:00Z"}
+        if url.endswith("/lol/live"):
+            return {"success": True, "status": "live", "data": [{"matchId": "match-1"}]}, {
+                "ok": True,
+                "statusCode": 200,
+                "observedAt": "2026-07-08T03:00:01Z",
+            }
+        if url.endswith("/lol/matches/match-1/coverage"):
+            return {"coverage": {"numeric_live_state": False}}, {
+                "ok": True,
+                "statusCode": 200,
+                "observedAt": "2026-07-08T03:00:02Z",
+            }
+        if url.endswith("/lol/live/match-1/visual-state"):
+            return {"success": True, "status": "not_ready", "data": None}, {
+                "ok": True,
+                "statusCode": 200,
+                "observedAt": "2026-07-08T03:00:03Z",
+            }
+        if url.endswith("/lol/live/match-1/stats") or url.endswith("/lol/games/match-1/postgame"):
+            return {"success": True, "data": None}, {
+                "ok": True,
+                "statusCode": 200,
+                "observedAt": "2026-07-08T03:00:04Z",
+            }
+        if "gamma-api.polymarket.com/events/slug" in url:
+            return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:05Z"}
+        return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:06Z"}
+
+    result = smoke.run_smoke(
+        cito_api_key="secret-key",
+        output_dir=tmp_path,
+        event_slugs=["lol-ly-tsw-2026-07-08"],
+        poll_timeout_sec=15,
+        poll_interval_sec=0,
+        http_get=fake_get,
+        sleep=lambda _: None,
+        now=lambda: "2026-07-08T03:00:07Z",
+    )
+
+    assert result["overallStatus"] == "live_visual_state_not_ready"
+    assert result["cito"]["visualState"]["ready"] is False
+    assert Path(result["rawSamplePaths"]["coverage"]).exists()
+    assert Path(result["rawSamplePaths"]["stats"]).exists()
+    assert Path(result["rawSamplePaths"]["postgame"]).exists()
+
+
+def test_coverage_game_id_is_used_for_visual_state_when_live_returns_match_id(tmp_path):
+    smoke = load_smoke_module()
+
+    def fake_get(url, headers=None, timeout=10.0):
+        if url.endswith("/lol/schedule/today"):
+            return {"success": True, "data": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:00Z"}
+        if url.endswith("/lol/live"):
+            return {"success": True, "status": "live", "data": [{"matchId": "match-1"}]}, {
+                "ok": True,
+                "statusCode": 200,
+                "observedAt": "2026-07-08T03:00:01Z",
+            }
+        if url.endswith("/lol/matches/match-1/coverage"):
+            return {"games": [{"esportsApiId": "game-1", "gameNumber": 1}]}, {
+                "ok": True,
+                "statusCode": 200,
+                "observedAt": "2026-07-08T03:00:02Z",
+            }
+        if url.endswith("/lol/live/game-1/visual-state"):
+            return {
+                "gameId": "game-1",
+                "gameState": "in_game",
+                "gameTime": 10,
+                "teams": [{"name": "LYON", "gold": 1000, "dragons": 0}],
+            }, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:03Z"}
+        if "gamma-api.polymarket.com/events/slug" in url:
+            return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:05Z"}
+        return {"markets": []}, {"ok": True, "statusCode": 200, "observedAt": "2026-07-08T03:00:06Z"}
+
+    result = smoke.run_smoke(
+        cito_api_key="secret-key",
+        output_dir=tmp_path,
+        event_slugs=["lol-ly-tsw-2026-07-08"],
+        poll_timeout_sec=15,
+        poll_interval_sec=0,
+        http_get=fake_get,
+        sleep=lambda _: None,
+        now=lambda: "2026-07-08T03:00:07Z",
+    )
+
+    assert result["overallStatus"] == "live_sample_collected"
+    assert result["cito"]["live"]["matchId"] == "match-1"
+    assert result["cito"]["visualState"]["gameId"] == "game-1"

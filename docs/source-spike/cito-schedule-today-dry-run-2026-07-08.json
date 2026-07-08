@@ -1,6 +1,78 @@
 {
-  "count": 7,
+  "count": 13,
   "data": [
+    {
+      "blockName": "Knockouts",
+      "endTime": null,
+      "leagueEsportsApiId": "98767991325878492",
+      "leagueId": "lol-msi",
+      "leagueName": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "lol-match-115570934355614581",
+      "metadataWarning": null,
+      "metadataWarnings": [],
+      "officialEventId": "115570934355614581",
+      "officialTournamentId": "115570934354631452",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T03:00:00.000Z",
+      "state": "unstarted",
+      "strategy": "Bo5",
+      "team1": {
+        "code": "G2",
+        "logoUrl": "http://static.lolesports.com/teams/G2-FullonDark.png",
+        "name": "G2 Esports",
+        "score": 0,
+        "slug": "g2-esports"
+      },
+      "team2": {
+        "code": "T1",
+        "logoUrl": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+        "name": "T1",
+        "score": 0,
+        "slug": "t1"
+      },
+      "tournamentEsportsApiId": "115570934354631452",
+      "tournamentId": "lol-tournament-115570934354631452",
+      "tournamentName": "2026",
+      "winnerSlug": null
+    },
+    {
+      "blockName": "Knockouts",
+      "endTime": null,
+      "leagueEsportsApiId": "98767991325878492",
+      "leagueId": "lol-msi",
+      "leagueName": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "lol-match-115570934355614587",
+      "metadataWarning": null,
+      "metadataWarnings": [],
+      "officialEventId": "115570934355614587",
+      "officialTournamentId": "115570934354631452",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T08:00:00.000Z",
+      "state": "inProgress",
+      "strategy": "Bo5",
+      "team1": {
+        "code": "LYON",
+        "logoUrl": "http://static.lolesports.com/teams/1743717443673_isotypelyon-03.png",
+        "name": "LYON",
+        "score": 0,
+        "slug": "lyon"
+      },
+      "team2": {
+        "code": "TSW",
+        "logoUrl": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+        "name": "Team Secret Whales",
+        "score": 0,
+        "slug": "team-secret-whales"
+      },
+      "tournamentEsportsApiId": "115570934354631452",
+      "tournamentId": "lol-tournament-115570934354631452",
+      "tournamentName": "2026",
+      "winnerSlug": null
+    },
     {
       "blockName": "Week 2",
       "endTime": null,
@@ -8,32 +80,32 @@
       "leagueId": "lol-hellenic_legends_league",
       "leagueName": "Hellenic Legends League",
       "leagueSlug": "hellenic_legends_league",
-      "matchId": "lol-match-116697716933082094",
+      "matchId": "lol-match-116697716933082112",
       "metadataWarning": "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912. Response was repaired from Riot LoL Esports event details.",
       "metadataWarnings": [
         "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912.",
         "Response was repaired from Riot LoL Esports event details."
       ],
-      "officialEventId": "116697716933082094",
+      "officialEventId": "116697716933082112",
       "officialTournamentId": "116697716930132912",
       "round": null,
       "source": "Riot LoL Esports API",
-      "startTime": "2026-07-07T13:00:00.000Z",
-      "state": "inProgress",
+      "startTime": "2026-07-08T13:00:00.000Z",
+      "state": "unstarted",
       "strategy": "Bo2",
       "team1": {
+        "code": "HELL",
+        "logoUrl": "http://static.lolesports.com/teams/ZRLLogowhite600x600.png",
+        "name": "Hell ZeroLag",
+        "score": 0,
+        "slug": "spartans-eu"
+      },
+      "team2": {
         "code": "WLG",
         "logoUrl": "http://static.lolesports.com/teams/WLGlogo.png",
         "name": "WLGaming",
-        "score": 1,
+        "score": 0,
         "slug": "we-love-gaming"
-      },
-      "team2": {
-        "code": "TPX",
-        "logoUrl": "http://static.lolesports.com/teams/1773838306977_TpOXRed_Gold-removebg-preview.png",
-        "name": "TheParadOx Invaders",
-        "score": 1,
-        "slug": "tpx"
       },
       "tournamentEsportsApiId": "115746382932861179",
       "tournamentId": "lol-tournament-116697716930132912",
@@ -47,37 +119,37 @@
       "leagueId": "lol-hellenic_legends_league",
       "leagueName": "Hellenic Legends League",
       "leagueSlug": "hellenic_legends_league",
-      "matchId": "lol-match-116697716933016537",
+      "matchId": "lol-match-116697716933082100",
       "metadataWarning": "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912. Response was repaired from Riot LoL Esports event details.",
       "metadataWarnings": [
         "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912.",
         "Response was repaired from Riot LoL Esports event details."
       ],
-      "officialEventId": "116697716933016537",
+      "officialEventId": "116697716933082100",
       "officialTournamentId": "116697716930132912",
       "round": null,
       "source": "Riot LoL Esports API",
-      "startTime": "2026-07-07T15:00:00.000Z",
-      "state": "completed",
+      "startTime": "2026-07-08T15:00:00.000Z",
+      "state": "unstarted",
       "strategy": "Bo2",
       "team1": {
+        "code": "TPX",
+        "logoUrl": "http://static.lolesports.com/teams/1773838306977_TpOXRed_Gold-removebg-preview.png",
+        "name": "TheParadOx Invaders",
+        "score": 0,
+        "slug": "tpx"
+      },
+      "team2": {
         "code": "ALMO",
         "logoUrl": "http://static.lolesports.com/teams/1766149888302_Ogi7qeR.webp",
         "name": "ALMO Players",
         "score": 0,
         "slug": "almo-players"
       },
-      "team2": {
-        "code": "GSMC",
-        "logoUrl": "http://static.lolesports.com/teams/GameSpaceMediterraneanCollegeeSports.png",
-        "name": "Gamespace M.C.",
-        "score": 2,
-        "slug": "gsmc"
-      },
       "tournamentEsportsApiId": "115746382932861179",
       "tournamentId": "lol-tournament-116697716930132912",
       "tournamentName": "Winter 2026",
-      "winnerSlug": "gsmc"
+      "winnerSlug": null
     },
     {
       "blockName": "Week 2",
@@ -86,38 +158,38 @@
       "leagueId": "lol-primeleague",
       "leagueName": "Prime League",
       "leagueSlug": "primeleague",
-      "matchId": "lol-match-116713163972559014",
+      "matchId": "lol-match-116713163972559042",
       "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
       "metadataWarnings": [
         "Match startTime is current but joined tournament metadata contains an older season year.",
         "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
         "Response was repaired from Riot LoL Esports event details."
       ],
-      "officialEventId": "116713163972559014",
+      "officialEventId": "116713163972559042",
       "officialTournamentId": "116713163971248266",
       "round": null,
       "source": "Riot LoL Esports API",
-      "startTime": "2026-07-07T15:00:00.000Z",
-      "state": "completed",
+      "startTime": "2026-07-08T15:00:00.000Z",
+      "state": "unstarted",
       "strategy": "Bo1",
       "team1": {
+        "code": "ROSS",
+        "logoUrl": "http://static.lolesports.com/teams/1734307301367_ROSS.png",
+        "name": "Rossmann Centaurs",
+        "score": 0,
+        "slug": "rossmann-centaurs"
+      },
+      "team2": {
         "code": "EWI",
         "logoUrl": "http://static.lolesports.com/teams/1674832938539_MicrosoftTeams-image14.png",
         "name": "E Wie Einfach E-Sports",
         "score": 0,
         "slug": "e-wie-einfach-e-sports"
       },
-      "team2": {
-        "code": "TOG",
-        "logoUrl": "http://static.lolesports.com/teams/1758889281207_TOG.png",
-        "name": "TeamOrangeGaming",
-        "score": 1,
-        "slug": "teamorangegaming"
-      },
       "tournamentEsportsApiId": "113668056932202938",
       "tournamentId": "lol-tournament-116713163971248266",
       "tournamentName": "Prime League 2026",
-      "winnerSlug": "teamorangegaming"
+      "winnerSlug": null
     },
     {
       "blockName": "Week 2",
@@ -126,26 +198,106 @@
       "leagueId": "lol-primeleague",
       "leagueName": "Prime League",
       "leagueSlug": "primeleague",
-      "matchId": "lol-match-116713163972559032",
+      "matchId": "lol-match-116713163972559038",
       "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
       "metadataWarnings": [
         "Match startTime is current but joined tournament metadata contains an older season year.",
         "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
         "Response was repaired from Riot LoL Esports event details."
       ],
-      "officialEventId": "116713163972559032",
+      "officialEventId": "116713163972559038",
       "officialTournamentId": "116713163971248266",
       "round": null,
       "source": "Riot LoL Esports API",
-      "startTime": "2026-07-07T16:00:00.000Z",
-      "state": "completed",
+      "startTime": "2026-07-08T16:00:00.000Z",
+      "state": "unstarted",
       "strategy": "Bo1",
       "team1": {
+        "code": "G2N",
+        "logoUrl": "http://static.lolesports.com/teams/1767714240621_G2_Nord_White.png",
+        "name": "G2 NORD",
+        "score": 0,
+        "slug": "nord-esports"
+      },
+      "team2": {
         "code": "USE",
         "logoUrl": "http://static.lolesports.com/teams/1674832383233_PRM_USE-FullColorDarkBG.png",
         "name": "Unicorns of Love Sexy Edition",
-        "score": 1,
+        "score": 0,
         "slug": "unicorns-of-love-sexy-edition"
+      },
+      "tournamentEsportsApiId": "113668056932202938",
+      "tournamentId": "lol-tournament-116713163971248266",
+      "tournamentName": "Prime League 2026",
+      "winnerSlug": null
+    },
+    {
+      "blockName": "Week 2",
+      "endTime": null,
+      "leagueEsportsApiId": "105266091639104326",
+      "leagueId": "lol-primeleague",
+      "leagueName": "Prime League",
+      "leagueSlug": "primeleague",
+      "matchId": "lol-match-116713163972559022",
+      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+      "metadataWarnings": [
+        "Match startTime is current but joined tournament metadata contains an older season year.",
+        "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+        "Response was repaired from Riot LoL Esports event details."
+      ],
+      "officialEventId": "116713163972559022",
+      "officialTournamentId": "116713163971248266",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T17:00:00.000Z",
+      "state": "unstarted",
+      "strategy": "Bo1",
+      "team1": {
+        "code": "KHK",
+        "logoUrl": "http://static.lolesports.com/teams/1734307355268_KHK.png",
+        "name": "Kaufland Hangry Knights",
+        "score": 0,
+        "slug": "kaufland-hangry-knights"
+      },
+      "team2": {
+        "code": "TOG",
+        "logoUrl": "http://static.lolesports.com/teams/1758889281207_TOG.png",
+        "name": "TeamOrangeGaming",
+        "score": 0,
+        "slug": "teamorangegaming"
+      },
+      "tournamentEsportsApiId": "113668056932202938",
+      "tournamentId": "lol-tournament-116713163971248266",
+      "tournamentName": "Prime League 2026",
+      "winnerSlug": null
+    },
+    {
+      "blockName": "Week 2",
+      "endTime": null,
+      "leagueEsportsApiId": "105266091639104326",
+      "leagueId": "lol-primeleague",
+      "leagueName": "Prime League",
+      "leagueSlug": "primeleague",
+      "matchId": "lol-match-116713163972559070",
+      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+      "metadataWarnings": [
+        "Match startTime is current but joined tournament metadata contains an older season year.",
+        "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+        "Response was repaired from Riot LoL Esports event details."
+      ],
+      "officialEventId": "116713163972559070",
+      "officialTournamentId": "116713163971248266",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T18:00:00.000Z",
+      "state": "unstarted",
+      "strategy": "Bo1",
+      "team1": {
+        "code": "VFB",
+        "logoUrl": "http://static.lolesports.com/teams/1774439138920_VfB.png",
+        "name": "VfB Stuttgart",
+        "score": 0,
+        "slug": "vfb-stuttgart"
       },
       "team2": {
         "code": "EINS",
@@ -157,7 +309,7 @@
       "tournamentEsportsApiId": "113668056932202938",
       "tournamentId": "lol-tournament-116713163971248266",
       "tournamentName": "Prime League 2026",
-      "winnerSlug": "unicorns-of-love-sexy-edition"
+      "winnerSlug": null
     },
     {
       "blockName": "Week 2",
@@ -166,135 +318,216 @@
       "leagueId": "lol-primeleague",
       "leagueName": "Prime League",
       "leagueSlug": "primeleague",
-      "matchId": "lol-match-116713163972559074",
+      "matchId": "lol-match-116713163972559004",
       "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
       "metadataWarnings": [
         "Match startTime is current but joined tournament metadata contains an older season year.",
         "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
         "Response was repaired from Riot LoL Esports event details."
       ],
-      "officialEventId": "116713163972559074",
+      "officialEventId": "116713163972559004",
       "officialTournamentId": "116713163971248266",
       "round": null,
       "source": "Riot LoL Esports API",
-      "startTime": "2026-07-07T17:00:00.000Z",
-      "state": "completed",
+      "startTime": "2026-07-08T19:00:00.000Z",
+      "state": "unstarted",
       "strategy": "Bo1",
       "team1": {
-        "code": "G2N",
-        "logoUrl": "http://static.lolesports.com/teams/1767714240621_G2_Nord_White.png",
-        "name": "G2 NORD",
-        "score": 1,
-        "slug": "nord-esports"
-      },
-      "team2": {
         "code": "SGE",
         "logoUrl": "http://static.lolesports.com/teams/1674832854605_SGE.png",
         "name": "Eintracht Frankfurt",
         "score": 0,
         "slug": "eintracht-frankfurt"
       },
-      "tournamentEsportsApiId": "113668056932202938",
-      "tournamentId": "lol-tournament-116713163971248266",
-      "tournamentName": "Prime League 2026",
-      "winnerSlug": "nord-esports"
-    },
-    {
-      "blockName": "Week 2",
-      "endTime": null,
-      "leagueEsportsApiId": "105266091639104326",
-      "leagueId": "lol-primeleague",
-      "leagueName": "Prime League",
-      "leagueSlug": "primeleague",
-      "matchId": "lol-match-116713163972559000",
-      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
-      "metadataWarnings": [
-        "Match startTime is current but joined tournament metadata contains an older season year.",
-        "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
-        "Response was repaired from Riot LoL Esports event details."
-      ],
-      "officialEventId": "116713163972559000",
-      "officialTournamentId": "116713163971248266",
-      "round": null,
-      "source": "Riot LoL Esports API",
-      "startTime": "2026-07-07T18:00:00.000Z",
-      "state": "completed",
-      "strategy": "Bo1",
-      "team1": {
-        "code": "ROSS",
-        "logoUrl": "http://static.lolesports.com/teams/1734307301367_ROSS.png",
-        "name": "Rossmann Centaurs",
-        "score": 0,
-        "slug": "rossmann-centaurs"
-      },
       "team2": {
         "code": "BIG",
         "logoUrl": "http://static.lolesports.com/teams/1674839453682_PRM_BIG-MonochromeLightBG.png",
         "name": "Berlin International Gaming",
-        "score": 1,
+        "score": 0,
         "slug": "berlin-international-gaming"
       },
       "tournamentEsportsApiId": "113668056932202938",
       "tournamentId": "lol-tournament-116713163971248266",
       "tournamentName": "Prime League 2026",
-      "winnerSlug": "berlin-international-gaming"
+      "winnerSlug": null
     },
     {
       "blockName": "Week 2",
       "endTime": null,
-      "leagueEsportsApiId": "105266091639104326",
-      "leagueId": "lol-primeleague",
-      "leagueName": "Prime League",
-      "leagueSlug": "primeleague",
-      "matchId": "lol-match-116713163972559078",
-      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Response was repaired from Riot LoL Esports event details.",
+      "leagueEsportsApiId": "110372322609949919",
+      "leagueId": "lol-south_regional_league",
+      "leagueName": "LRS",
+      "leagueSlug": "south_regional_league",
+      "matchId": "lol-match-116520721101367158",
+      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
       "metadataWarnings": [
         "Match startTime is current but joined tournament metadata contains an older season year.",
-        "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+        "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
         "Response was repaired from Riot LoL Esports event details."
       ],
-      "officialEventId": "116713163972559078",
-      "officialTournamentId": "116713163971248266",
+      "officialEventId": "116520721101367158",
+      "officialTournamentId": "116520721100318553",
       "round": null,
       "source": "Riot LoL Esports API",
-      "startTime": "2026-07-07T19:00:00.000Z",
-      "state": "completed",
-      "strategy": "Bo1",
+      "startTime": "2026-07-08T20:00:00.000Z",
+      "state": "unstarted",
+      "strategy": "Bo3",
       "team1": {
-        "code": "KHK",
-        "logoUrl": "http://static.lolesports.com/teams/1734307355268_KHK.png",
-        "name": "Kaufland Hangry Knights",
+        "code": "9ZG",
+        "logoUrl": "http://static.lolesports.com/teams/1771234194177_FULL_COLOR_FOR_DARK_BG-2.png",
+        "name": "9z Globant",
         "score": 0,
-        "slug": "kaufland-hangry-knights"
+        "slug": "9z-gaming"
       },
       "team2": {
-        "code": "G2N",
-        "logoUrl": "http://static.lolesports.com/teams/1767714240621_G2_Nord_White.png",
-        "name": "G2 NORD",
-        "score": 1,
-        "slug": "nord-esports"
+        "code": "DEC",
+        "logoUrl": "http://static.lolesports.com/teams/1781849600840_DOCTA-DOH.png",
+        "name": "Docta Esports Club",
+        "score": 0,
+        "slug": "docta-esports-club"
       },
-      "tournamentEsportsApiId": "113668056932202938",
-      "tournamentId": "lol-tournament-116713163971248266",
-      "tournamentName": "Prime League 2026",
-      "winnerSlug": "nord-esports"
+      "tournamentEsportsApiId": "114776582140270669",
+      "tournamentId": "lol-tournament-116520721100318553",
+      "tournamentName": "LRS 2026",
+      "winnerSlug": null
+    },
+    {
+      "blockName": "Week 2",
+      "endTime": null,
+      "leagueEsportsApiId": "110372322609949919",
+      "leagueId": "lol-south_regional_league",
+      "leagueName": "LRS",
+      "leagueSlug": "south_regional_league",
+      "matchId": "lol-match-116520721101367190",
+      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
+      "metadataWarnings": [
+        "Match startTime is current but joined tournament metadata contains an older season year.",
+        "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
+        "Response was repaired from Riot LoL Esports event details."
+      ],
+      "officialEventId": "116520721101367190",
+      "officialTournamentId": "116520721100318553",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T20:00:00.000Z",
+      "state": "unstarted",
+      "strategy": "Bo3",
+      "team1": {
+        "code": "7D",
+        "logoUrl": "http://static.lolesports.com/teams/1770889439846_FULL_COLOR_FOR_DARK_BG-3.png",
+        "name": "Seven Dark",
+        "score": 0,
+        "slug": "seven-dark"
+      },
+      "team2": {
+        "code": "MAZ",
+        "logoUrl": "http://static.lolesports.com/teams/1643036820055_maze-ColorLight.png",
+        "name": "Maze Gaming",
+        "score": 0,
+        "slug": "maze-gaming"
+      },
+      "tournamentEsportsApiId": "114776582140270669",
+      "tournamentId": "lol-tournament-116520721100318553",
+      "tournamentName": "LRS 2026",
+      "winnerSlug": null
+    },
+    {
+      "blockName": "Week 2",
+      "endTime": null,
+      "leagueEsportsApiId": "110372322609949919",
+      "leagueId": "lol-south_regional_league",
+      "leagueName": "LRS",
+      "leagueSlug": "south_regional_league",
+      "matchId": "lol-match-116520721101367178",
+      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
+      "metadataWarnings": [
+        "Match startTime is current but joined tournament metadata contains an older season year.",
+        "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
+        "Response was repaired from Riot LoL Esports event details."
+      ],
+      "officialEventId": "116520721101367178",
+      "officialTournamentId": "116520721100318553",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T23:00:00.000Z",
+      "state": "unstarted",
+      "strategy": "Bo3",
+      "team1": {
+        "code": "VTC",
+        "logoUrl": "http://static.lolesports.com/teams/1770889539409_FULL_COLOR_FOR_DARK_BG2.png",
+        "name": "Volticons",
+        "score": 0,
+        "slug": "volticons"
+      },
+      "team2": {
+        "code": "Z3N",
+        "logoUrl": "http://static.lolesports.com/teams/1782197670211_FULL_COLOR_FOR_LIGHT_BG.png",
+        "name": "ZEN",
+        "score": 0,
+        "slug": "zen"
+      },
+      "tournamentEsportsApiId": "114776582140270669",
+      "tournamentId": "lol-tournament-116520721100318553",
+      "tournamentName": "LRS 2026",
+      "winnerSlug": null
+    },
+    {
+      "blockName": "Week 2",
+      "endTime": null,
+      "leagueEsportsApiId": "110372322609949919",
+      "leagueId": "lol-south_regional_league",
+      "leagueName": "LRS",
+      "leagueSlug": "south_regional_league",
+      "matchId": "lol-match-116520721101367210",
+      "metadataWarning": "Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553. Response was repaired from Riot LoL Esports event details.",
+      "metadataWarnings": [
+        "Match startTime is current but joined tournament metadata contains an older season year.",
+        "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553.",
+        "Response was repaired from Riot LoL Esports event details."
+      ],
+      "officialEventId": "116520721101367210",
+      "officialTournamentId": "116520721100318553",
+      "round": null,
+      "source": "Riot LoL Esports API",
+      "startTime": "2026-07-08T23:00:00.000Z",
+      "state": "unstarted",
+      "strategy": "Bo3",
+      "team1": {
+        "code": "MVG",
+        "logoUrl": "http://static.lolesports.com/teams/1770889502736_FULL_COLOR_FOR_DARK_BG1.png",
+        "name": "Malvinas Gaming",
+        "score": 0,
+        "slug": "malvinas-gaming"
+      },
+      "team2": {
+        "code": "GLE",
+        "logoUrl": "http://static.lolesports.com/teams/1770889382925_FULL_COLOR_FOR_DARK_BG.png",
+        "name": "Golden Lions",
+        "score": 0,
+        "slug": "gle"
+      },
+      "tournamentEsportsApiId": "114776582140270669",
+      "tournamentId": "lol-tournament-116520721100318553",
+      "tournamentName": "LRS 2026",
+      "winnerSlug": null
     }
   ],
   "meta": {
     "dataCompleteness": "partial",
     "dataFreshness": "fresh",
-    "lastCheckedAt": "2026-07-07T22:56:39.854Z",
-    "requestedDate": "2026-07-07",
+    "lastCheckedAt": "2026-07-08T03:03:43.066Z",
+    "requestedDate": "2026-07-08",
     "source": "Cito schedule monitor + Riot LoL Esports API verification",
     "timezone": "UTC",
     "warnings": [
       "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912.",
       "Response was repaired from Riot LoL Esports event details.",
       "Match startTime is current but joined tournament metadata contains an older season year.",
-      "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266."
+      "Joined tournament esports_api_id does not match Riot tournament id 116713163971248266.",
+      "Joined tournament esports_api_id does not match Riot tournament id 116520721100318553."
     ]
   },
   "status": "partial_data",
   "success": true,
-  "warning": "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912. Response was repaired from Riot LoL Esports event details. Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266."
+  "warning": "Joined tournament esports_api_id does not match Riot tournament id 116697716930132912. Response was repaired from Riot LoL Esports event details. Match startTime is current but joined tournament metadata contains an older season year. Joined tournament esports_api_id does not match Riot tournament id 116713163971248266. Joined tournament esports_api_id does not match Riot tournament id 116520721100318553."
 }

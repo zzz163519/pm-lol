@@ -1,0 +1,33 @@
+{
+  "availableSections": [],
+  "coverageLevel": "none",
+  "damageDistribution": null,
+  "dataQuality": {
+    "allZeroGoldGraphSuppressed": false,
+    "distributionsAvailable": false,
+    "fullPostgameAvailable": false,
+    "goldGraphAvailable": false,
+    "jungleShareAvailable": false,
+    "platesAvailable": false,
+    "timelineAvailable": false,
+    "visionAvailable": false
+  },
+  "gameId": "lol-game-115570934355614588",
+  "goldDistribution": null,
+  "goldGraph": [],
+  "jungleShare": null,
+  "lastUpdated": "2026-07-08T03:03:42.562Z",
+  "missingSections": [
+    "goldGraph",
+    "timeline",
+    "plates",
+    "vision",
+    "jungleShare",
+    "distributions"
+  ],
+  "plates": null,
+  "rawAdvancedStats": null,
+  "source": "cito_postgame_enrichment",
+  "timeline": [],
+  "vision": null
+}

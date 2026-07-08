@@ -3,18 +3,63 @@
     "/api/v1/lol/schedule/today",
     "/api/v1/lol/schedule/upcoming"
   ],
-  "count": 0,
+  "count": 1,
   "coverage": {
-    "coverage_level": "not_found",
+    "coverage_level": "live_listed",
     "expected_live_state": false,
     "expected_webhooks": false,
-    "live_row": false,
-    "message": "No stored schedule metadata or live row was found for this ID.",
+    "live_row": true,
+    "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
     "numeric_live_state": false,
     "schedule_metadata": false,
     "webhook_event": false
   },
-  "data": [],
+  "data": [
+    {
+      "blockName": "Knockouts",
+      "coverage": {
+        "coverage_level": "live_listed",
+        "expected_live_state": false,
+        "expected_webhooks": false,
+        "live_row": true,
+        "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+        "numeric_live_state": false,
+        "precheck_endpoint": "/api/v1/lol/matches/115570934355614587/coverage",
+        "schedule_metadata": true,
+        "webhook_event": false
+      },
+      "leagueId": "98767991325878492",
+      "leagueImage": "http://static.lolesports.com/leagues/1592594634248_MSIDarkBG.png",
+      "leagueName": "MSI",
+      "matchId": "115570934355614587",
+      "startTime": "2026-07-08T03:00:00.000Z",
+      "state": "inProgress",
+      "strategy": {
+        "count": 5,
+        "type": "bestOf"
+      },
+      "team1": {
+        "code": "LYON",
+        "id": "99566405941863385",
+        "image": "http://static.lolesports.com/teams/1743717443673_isotypelyon-03.png",
+        "name": "LYON",
+        "score": 0,
+        "slug": "lyon-gaming"
+      },
+      "team2": {
+        "code": "TSW",
+        "id": "113661839307879869",
+        "image": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+        "name": "Team Secret Whales",
+        "score": 0,
+        "slug": "team-secret-whales"
+      },
+      "watch": {
+        "lolesportsUrl": "https://lolesports.com/live/msi",
+        "mediaEndpoint": "/api/v1/lol/live/115570934355614587/watch"
+      }
+    }
+  ],
   "developer_help": {
     "ai_agent_context": "https://citoapi.com/llms.txt",
     "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
@@ -26,16 +71,15 @@
     "docs": "https://citoapi.com/docs/api/league-of-legends"
   },
   "docs": "https://citoapi.com/docs/api/league-of-legends",
-  "lastCheckedAt": "2026-07-07T22:56:34.893Z",
+  "lastCheckedAt": "2026-07-08T03:03:43.725Z",
   "lastKnown": [],
   "liveOnly": true,
-  "message": "No LoL match is live right now. /lol/live only returns in-progress games; scheduled and upcoming matches are available from /api/v1/lol/schedule/today and /api/v1/lol/schedule/upcoming.",
-  "retryAfterSeconds": 60,
+  "message": "Live LoL matches are currently detected.",
   "scheduleEndpoints": {
     "today": "/api/v1/lol/schedule/today",
     "upcoming": "/api/v1/lol/schedule/upcoming"
   },
-  "status": "no_match",
+  "status": "live",
   "success": true,
-  "try_instead": "/api/v1/lol/schedule/upcoming"
+  "try_instead": "/api/v1/lol/schedule/today"
 }
