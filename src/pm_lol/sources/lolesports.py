@@ -54,6 +54,7 @@ def parse_event_details(payload: dict[str, Any]) -> tuple[Match, list[Game]]:
         team_a_name=teams[0]["name"],
         team_b_id=str(teams[1]["id"]),
         team_b_name=teams[1]["name"],
+        start_time=event.get("startTime"),
         state=event.get("state"),
         raw=event,
     )

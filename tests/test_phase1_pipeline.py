@@ -29,7 +29,12 @@ class FakeMarketClient:
                     "clobTokenIds": '["yes-token", "no-token"]',
                     "groupItemTitle": "Game 1 Winner",
                     "questionID": "qid",
-                }
+                },
+                "event": {
+                    "id": "event-t1-gen",
+                    "slug": "lol-t1-gen-2026-06-14",
+                    "startTime": "2026-06-14T07:00:00Z",
+                },
             }
         ]
 
@@ -54,7 +59,9 @@ class FakeScheduleClient:
 
     def get_event_details(self, match_id):
         assert match_id == "115548128963037587"
-        return json.loads((FIXTURES / "lolesports-event-t1-gen-sample.json").read_text())
+        payload = json.loads((FIXTURES / "lolesports-event-t1-gen-sample.json").read_text())
+        payload["event"]["startTime"] = "2026-06-14T07:00:00Z"
+        return payload
 
 
 def test_phase1_collectors_and_resolver_can_run_in_sequence(tmp_path):
