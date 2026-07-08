@@ -119,3 +119,26 @@ class ResolvedMarket:
     mapping_confidence: float
     market_type: str = "game_winner"
     market_status: str = "resolved"
+
+
+@dataclass(slots=True)
+class TokenTeamMapping:
+    token_outcome: str
+    token_id: str
+    team_id: str
+    team_name: str
+    team_side: str
+
+
+@dataclass(slots=True)
+class MarketResolutionAttempt:
+    market_slug: str
+    match_id: str
+    game_id: str | None
+    game_number: int | None
+    mapping_confidence: float
+    status: str
+    skip_reason: str | None
+    resolved_market: ResolvedMarket | None = None
+    token_mappings: list[TokenTeamMapping] = field(default_factory=list)
+    evidence: dict[str, Any] = field(default_factory=dict)

@@ -58,6 +58,11 @@ def parse_market(payload: dict[str, Any]) -> Market:
     outcomes = _loads_json_array(market_payload["outcomes"])
     token_ids = _loads_json_array(market_payload["clobTokenIds"])
 
+    raw = dict(payload)
+    for key in ("startTime", "startDate", "startDateIso", "endTime", "endDate"):
+        if key not in raw and event_payload.get(key) is not None:
+            raw[key] = event_payload[key]
+
     return Market(
         market_id=str(market_payload["id"]),
         condition_id=market_payload["conditionId"],
@@ -73,7 +78,7 @@ def parse_market(payload: dict[str, Any]) -> Market:
         liquidity=_float_or_none(market_payload.get("liquidity", event_payload.get("liquidity"))),
         active=bool(market_payload.get("active", False)),
         closed=bool(market_payload.get("closed", False)),
-        raw=payload,
+        raw=raw,
     )
 
 

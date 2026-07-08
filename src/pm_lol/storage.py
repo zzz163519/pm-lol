@@ -444,6 +444,7 @@ class SQLiteStorage:
         mapping_confidence: float,
         market_status: str,
         skip_reason: str | None,
+        raw_mapping: dict | None = None,
     ) -> None:
         now = _now()
         resolved_market_id = f"{market.market_id}:{game.game_id}"
@@ -480,7 +481,8 @@ class SQLiteStorage:
                     market_status,
                     skip_reason,
                     json.dumps(
-                        {
+                        raw_mapping
+                        or {
                             "market_outcomes": market.outcomes,
                             "match_teams": [match.team_a_name, match.team_b_name],
                         }

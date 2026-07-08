@@ -1,0 +1,288 @@
+{
+  "minMappingConfidence": 0.9,
+  "notes": [
+    "Structured fixture artifact only; source samples remain the raw evidence.",
+    "Mapped records require mappingConfidence >= 0.90.",
+    "Evidence shortages are marked insufficient_market rather than forced."
+  ],
+  "samples": [
+    {
+      "mappingConfidence": 1.0,
+      "matchId": "115570934355614575",
+      "polymarketEventSlug": "lol-blg-hle1-2026-07-09",
+      "records": [
+        {
+          "gameId": "115570934355614576",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "34899681629975596680823272511407820643214154601485383259115476523364469117569",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614576",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "92155896711226508531656306422645708487529460510087463062559535463800385306518",
+          "tokenOutcome": "Hanwha Life Esports"
+        },
+        {
+          "gameId": "115570934355614577",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "79431908131356508084433457755458324207648598535865918981254999649478291541970",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614577",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "9976606108943452206320557993220219533385445389795366122925156864356407411888",
+          "tokenOutcome": "Hanwha Life Esports"
+        },
+        {
+          "gameId": "115570934355614578",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "47096309526106901328179490804440810907402896830853720942402789297373024143648",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614578",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "20414976475690894265425364948116786155162480053919701442335217459387124913382",
+          "tokenOutcome": "Hanwha Life Esports"
+        },
+        {
+          "gameId": "115570934355614579",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "79117020931286590387471436100030452388806937594869517787410410991055065589292",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614579",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+          "matchId": "115570934355614575",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "101429852666331840961925724184147591600258708327014402624351890633755470116046",
+          "tokenOutcome": "Hanwha Life Esports"
+        }
+      ],
+      "skipReason": null,
+      "sourcePath": "docs/source-spike/phase0-closure-blg-hle-mapping-2026-07-08.json",
+      "status": "mapped"
+    },
+    {
+      "mappingConfidence": 1.0,
+      "matchId": "115570934355614587",
+      "polymarketEventSlug": "lol-ly-tsw-2026-07-08",
+      "records": [
+        {
+          "gameId": "115570934355614588",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game1",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "75021383113657128951254988248873375148926627720724382363852035551289124917774",
+          "tokenOutcome": "LYON"
+        },
+        {
+          "gameId": "115570934355614588",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game1",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "107032957359112030630031326897257998180139727332897728097264952539904550888528",
+          "tokenOutcome": "Team Secret Whales"
+        },
+        {
+          "gameId": "115570934355614589",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game2",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "100457005292152153372253202061468738617711922867164825681469038114409110255689",
+          "tokenOutcome": "LYON"
+        },
+        {
+          "gameId": "115570934355614589",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game2",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "25106904841758773473490359607223285312752109742817439651788740246841101764476",
+          "tokenOutcome": "Team Secret Whales"
+        },
+        {
+          "gameId": "115570934355614590",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game3",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "66171536785918578280775373036270012786811501523436276266562434604899847892095",
+          "tokenOutcome": "LYON"
+        },
+        {
+          "gameId": "115570934355614590",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game3",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "103425355381571913778276222308228019103265572105000862332077174235374709802479",
+          "tokenOutcome": "Team Secret Whales"
+        },
+        {
+          "gameId": "115570934355614591",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game4",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "blue",
+          "tokenId": "79734409571123525917355129558644331777876893075066483767051748409658604211330",
+          "tokenOutcome": "LYON"
+        },
+        {
+          "gameId": "115570934355614591",
+          "mappingConfidence": 1.0,
+          "marketSlug": "lol-ly-tsw-2026-07-08-game4",
+          "matchId": "115570934355614587",
+          "skipReason": null,
+          "teamSide": "red",
+          "tokenId": "81478069136259415055860728528078787449475179746547912579914575007030529167223",
+          "tokenOutcome": "Team Secret Whales"
+        }
+      ],
+      "skipReason": null,
+      "sourcePath": "docs/source-spike/cito-ly-tsw-prematch-mapping-2026-07-08.json",
+      "status": "mapped"
+    },
+    {
+      "mappingConfidence": 0.75,
+      "matchId": "115570934355614527",
+      "polymarketEventSlug": "lol-blg-t1-2026-07-04",
+      "records": [
+        {
+          "gameId": "115570934355614528",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game1",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "red",
+          "tokenId": "54346906519017004815826838861276314699310042763673409676887565361940723790357",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614528",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game1",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "blue",
+          "tokenId": "80610833884813301020603329107861729554436766570394247888281033135395406870833",
+          "tokenOutcome": "T1"
+        },
+        {
+          "gameId": "115570934355614529",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game2",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "blue",
+          "tokenId": "86406490027370319311016332817320707300355053881446554883433310740083426137156",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614529",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game2",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "red",
+          "tokenId": "38613248116538259887617448971570143897255923254128001518622193133245484108989",
+          "tokenOutcome": "T1"
+        },
+        {
+          "gameId": "115570934355614530",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game3",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "red",
+          "tokenId": "48488347609930669044893063124808749874962960947811418885162303731017984698072",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614530",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game3",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "blue",
+          "tokenId": "90754796478240868136112856786015572794905339178032092958653096482980193503244",
+          "tokenOutcome": "T1"
+        },
+        {
+          "gameId": "115570934355614531",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game4",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "blue",
+          "tokenId": "110034907401146993015710881929292261747959007907247136292638619202343622708359",
+          "tokenOutcome": "Bilibili Gaming"
+        },
+        {
+          "gameId": "115570934355614531",
+          "mappingConfidence": 0.75,
+          "marketSlug": "lol-blg-t1-2026-07-04-game4",
+          "matchId": "115570934355614527",
+          "skipReason": "mapping_confidence_below_0.90",
+          "teamSide": "red",
+          "tokenId": "62118793795056836965145587082511368241031502260216426478755488690154166611187",
+          "tokenOutcome": "T1"
+        }
+      ],
+      "skipReason": "mapping_confidence_below_0.90",
+      "sourcePath": "docs/source-spike/blg-t1-prematch-mapping-smoke.json",
+      "status": "skipped"
+    }
+  ],
+  "scope": "CAL-68 MarketResolver v1 fixture regression",
+  "summary": {
+    "availabilityReason": "Fewer than three high-confidence same-event samples are available in checked-in source-spike artifacts.",
+    "availabilityStatus": "insufficient_market",
+    "mappedSamples": 2,
+    "sampleCount": 3,
+    "skippedSamples": 1
+  }
+}
