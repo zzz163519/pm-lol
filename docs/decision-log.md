@@ -156,3 +156,22 @@ No-go triggers:
 - No automatic live source can provide picks plus gold/objectives with acceptable latency.
 - Polymarket Game Winner markets cannot be discovered and quoted reliably.
 - Resolver cannot reach `mappingConfidence >= 0.90` on real matching events.
+
+## 2026-07-08 — 策略定位：不追求秒级延迟，主源定为 Cito
+
+**决策人**：Calvin
+
+**决策**：项目策略为错配/价值交易模型，对延迟敏感度低。Cito median 24s 延迟可接受，不再作为 Phase 0 blockers。
+
+**主源组合**：
+- Cito API：team identity / gold / goldDiff / objectives / kills / gameClock / gameState（CAL-59 fc8f1a6 验证）
+- LoLEsports Frontend API：draft/picks 补充（CAL-59 ec7b4fd 验证）
+
+**Phase 0 剩余 gates**：
+- Cito + LoLEsports 字段组合多场次稳定性复核
+- 映射准确性 ≥ 0.90 复核（更多赛事/联赛）
+- Polymarket WS retest 或正式记录 REST polling 为 baseline
+
+**作废**：
+- CAL-56（找更低延迟源）→ 标 cancelled，原因：项目不追求秒级延迟
+- CAL-55（Cito 延迟量化）→ 降为 backlog，延迟数字已有参考值，不是 blocker

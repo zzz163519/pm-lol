@@ -523,8 +523,6 @@ Phase 1 go/no-go:
 
 当前 P0 blockers：
 
-- [ ] LoLEsports live latency validation：记录 `observedAt`、`sourceTimestamp`、
-  `sourceLatencySec`、poll interval、缺帧/错误和 pause/remake 行为。
 - [ ] Real cross-event mapping validation：同一场 Polymarket Game N Winner 与
   LoLEsports event/game/team side，`mappingConfidence >= 0.90`。
 - [ ] Polymarket Market WebSocket retest：成功则保存订阅消息；失败则正式记录

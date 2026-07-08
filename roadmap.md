@@ -53,7 +53,7 @@ Phase 0/conditional Phase 1 的数据源验证工具，不代表 Phase 0 硬门�
 必须同时满足：
 
 - Polymarket public 行情可在无认证下读取 Game Winner market、token、orderbook，并能订阅 WS。
-- 至少一个 LOL 实时源自动提供 final picks、可推算 game clock、gold、objectives，字段稳定性和延迟足够进入纸面交易验证。
+- 至少一个 LOL 实时源自动提供 final picks、可推算 game clock、gold、objectives，字段稳定性足够进入纸面交易验证（项目策略为错配/价值交易模型，不追求秒级延迟，Cito 24s 延迟可接受）。
 - 当前优先 spike 源为 LoLEsports Frontend API；PandaScore / GRID / Abios 作为商业备选或生产升级源。
 - 赛程/映射源能支持 `market -> match -> gameNumber -> team side` 的映射，低置信度市场可被跳过。
 - SourceScore 和 schema 草案已记录在案。
@@ -79,7 +79,6 @@ resolver hard gate 和 replay pipeline。
 
 继续推进前仍必须关闭以下 Phase 0 gates：
 
-- LoLEsports live source latency 实测。
 - 真实同场 `Polymarket market -> LoLEsports match/game/team side` 映射样例，且
   `mappingConfidence >= 0.90`。
 - Polymarket Market WebSocket clean network retest，或正式记录 REST polling 为
@@ -206,7 +205,7 @@ Phase 3 主线验证通过，或 Phase 4 中某个非主线策略验证通过；
 ## 7. 当前状态
 
 ```text
-Phase 0: [~] Source Feasibility Spike — 部分通过，live latency / real mapping / WS retest pending
+Phase 0: [~] Source Feasibility Spike — 主源定为 Cito（gold/objectives/gameClock/gameState）+ LoLEsports（draft/picks），CAL-59 已验证。剩余 gates：多场次字段稳定性复核、mappingConfidence ≥ 0.90 复核、Polymarket WS retest
 Phase 1: [~] Data Foundation — 本地验证骨架已存在，仅 conditional，不能视为 full go
 Phase 2: [ ] Strategy Skeleton — 冻结
 Phase 3: [ ] Paper Trading Loop — 未启动
@@ -215,5 +214,5 @@ Phase 5: [ ] Execution Layer — 冻结
 ```
 
 下一步：按 `tasks.md` 中的当前 P0 blocker 推进：
-LoLEsports live latency validation、真实同场 mapping validation、Polymarket
-Market WebSocket retest，并保持 Phase 2+ 冻结。
+多场次字段稳定性复核、真实同场 mapping validation、Polymarket Market
+WebSocket retest 或 REST polling baseline 决策，并保持 Phase 2+ 冻结。
