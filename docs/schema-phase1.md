@@ -102,18 +102,24 @@ Indexes:
 
 ## 3. `quotes`
 
-Polymarket CLOB orderbook snapshots by token.
+QuoteRecorder v1 REST polling snapshots of Polymarket CLOB orderbooks.
 
 | Field | Type | Nullable | Source | Notes |
 |---|---:|---:|---|---|
 | `quote_id` | TEXT | no | Collector | Primary key; can be hash of token/time. |
-| `condition_id` | TEXT | no | Polymarket orderbook `market` | Links to market condition. |
-| `token_id` | TEXT | no | Polymarket orderbook `asset_id` | Outcome token ID. |
+| `event_slug` | TEXT | yes | Polymarket Gamma event `slug` | Enables event-level replay/query filters. |
+| `market_slug` | TEXT | yes | Polymarket Gamma market `slug` | Enables market/game replay/query filters. |
+| `condition_id` | TEXT | yes | Polymarket orderbook `market` | Links to market condition; nullable only for recorded absent markets. |
+| `token_id` | TEXT | yes | Polymarket orderbook `asset_id` | Outcome token ID; nullable only for recorded absent markets. |
+| `outcome` | TEXT | yes | Polymarket Gamma outcome aligned to token | Display/debug label, not a trading direction. |
+| `game_number` | INTEGER | yes | Polymarket title/slug | Query helper for Game N snapshots. |
 | `best_bid` | REAL | yes | Polymarket orderbook `bids` | Highest bid; null if no bids. |
 | `best_ask` | REAL | yes | Polymarket orderbook `asks` | Lowest ask; null if no asks. |
 | `spread` | REAL | yes | Derived | `best_ask - best_bid` when both exist. |
 | `bid_depth` | REAL | no | Derived from bids | Sum of bid sizes in snapshot. |
 | `ask_depth` | REAL | no | Derived from asks | Sum of ask sizes in snapshot. |
+| `bid_count` | INTEGER | no | Derived from bids | Number of bid levels. |
+| `ask_count` | INTEGER | no | Derived from asks | Number of ask levels. |
 | `bids_json` | TEXT | no | Polymarket orderbook `bids` | Full ladder. |
 | `asks_json` | TEXT | no | Polymarket orderbook `asks` | Full ladder. |
 | `last_trade_price` | REAL | yes | Polymarket orderbook `last_trade_price` | Optional. |
@@ -123,9 +129,10 @@ Polymarket CLOB orderbook snapshots by token.
 | `source_timestamp_ms` | INTEGER | yes | Polymarket orderbook `timestamp` | Epoch millis from CLOB. |
 | `observed_at` | TEXT | no | System | Local receipt time. |
 | `source_latency_sec` | REAL | yes | Derived | `observed_at - source_timestamp_ms` when meaningful. |
-| `source_status` | TEXT | no | Collector | Canonical collector status, e.g. `ok`, `network_error`, `parse_error`. |
+| `source_status` | TEXT | no | Collector | Canonical collector status, e.g. `ok`, `no_liquidity`, `absent`, `partial`, `network_error`, `parse_error`. |
 | `source_schema_version` | TEXT | yes | Collector | Version of the parser/output contract. |
 | `collector_run_id` | TEXT | yes | `collector_runs.run_id` | Groups snapshots from one polling run. |
+| `error_code` | TEXT | yes | Collector | Example: `missing_market`, `http_429`, `http_503`, `network_error`. |
 | `raw_json` | TEXT | no | Polymarket CLOB | Original orderbook object. |
 | `source` | TEXT | no | Collector | Example: `polymarket_clob_rest`. |
 | `confidence` | REAL | no | Collector | Default `1.0` for valid snapshots. |
@@ -290,6 +297,10 @@ Indexes:
   broker, wallet, private key, or order component is part of Conditional Phase 1.
 - `collector_runs` records collector execution metadata and is the canonical
   place for run-level status/error summaries.
+- This schema remains a CAL-70-preceding data-foundation boundary only. It
+  supports collectors, storage, replay, and read-only inspection, not fair
+  probability, strategy, edge, signal, paper trading, wallet, private key, or
+  order workflows.
 
 ## 8. `collector_runs`
 
