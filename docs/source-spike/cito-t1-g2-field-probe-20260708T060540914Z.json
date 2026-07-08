@@ -1,0 +1,143 @@
+{
+  "boundaryFindings": [
+    "read_only_get_requests_only",
+    "no_wallet",
+    "no_private_key",
+    "no_trade_execution",
+    "no_strategy_or_signal"
+  ],
+  "conclusion": "Blocked for Phase 1 use: Cito returned 429 during this probe, so the polling plan is not rate-limit clean.",
+  "endedAt": "2026-07-08T06:05:49.814Z",
+  "fieldCoverage": {
+    "draftPicks": {
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "status": "missing"
+    },
+    "gameClock": {
+      "sample": null,
+      "status": "missing"
+    },
+    "gameState": {
+      "sample": null,
+      "status": "missing"
+    },
+    "gold": {
+      "goldDiff": null,
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "status": "missing"
+    },
+    "kills": {
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "status": "missing"
+    },
+    "objectives": {
+      "sample": {
+        "blue": {
+          "barons": null,
+          "dragons": null,
+          "towers": null
+        },
+        "red": {
+          "barons": null,
+          "dragons": null,
+          "towers": null
+        }
+      },
+      "status": "missing"
+    },
+    "teamIdentity": {
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "status": "missing"
+    },
+    "winner": {
+      "sample": null,
+      "status": "missing"
+    }
+  },
+  "iterations": [],
+  "polling": {
+    "durationSecRequested": 20,
+    "iterations": 0,
+    "pollIntervalSec": 5
+  },
+  "rawSamplePath": "docs/source-spike/cito-t1-g2-field-probe-20260708T060540914Z.json",
+  "reportPath": "docs/source-spike/cito-t1-g2-field-probe-20260708T060540914Z.md",
+  "requestFrequency": {
+    "citoRequestCount": 1,
+    "limitPolicy": "poll_interval_sec>=3 and observed_request_rate<=60_per_minute",
+    "maxIntervalSec": null,
+    "maxRequestsPerMinuteObserved": 1.0,
+    "minIntervalSec": null,
+    "status429Count": 1,
+    "windowEndedAt": "2026-07-08T06:05:40.914000Z",
+    "windowStartedAt": "2026-07-08T06:05:40.914000Z"
+  },
+  "scheduleToday": {
+    "body": {
+      "developer_help": {
+        "ai_agent_context": "https://citoapi.com/llms.txt",
+        "ai_agent_instruction": "If you are using Cursor, Claude Code, ChatGPT, Codex, or another AI coding agent, give it the ai_agent_context URL plus this response.",
+        "ai_agent_skill": {
+          "name": "Cito API AI agent context",
+          "url": "https://citoapi.com/llms.txt"
+        },
+        "copy_paste_prompt": "Use the Cito API docs (https://citoapi.com/docs/api/league-of-legends) and the Cito AI agent context (https://citoapi.com/llms.txt). Fix this API request and show the correct endpoint, headers, and example code: /api/v1/lol/schedule/today",
+        "docs": "https://citoapi.com/docs/api/league-of-legends"
+      },
+      "error": {
+        "actions": [
+          {
+            "label": "Upgrade plan",
+            "url": "https://citoapi.com/dashboard/billing/plans"
+          },
+          {
+            "label": "Learn about webhooks",
+            "url": "https://citoapi.com/webhooks/"
+          }
+        ],
+        "ai_agent_context": "https://citoapi.com/llms.txt",
+        "code": "RATE_LIMIT_EXCEEDED",
+        "docs": "https://citoapi.com/docs/rate-limits",
+        "message": "You hit your current request limit. If you’re polling live data frequently, webhooks can reduce unnecessary requests by pushing updates directly to your app. Upgrade for higher limits or use webhooks for real-time updates.",
+        "upgradeUrl": "https://citoapi.com/dashboard/billing/plans",
+        "webhooksUrl": "https://citoapi.com/webhooks/"
+      },
+      "success": false
+    },
+    "request": {
+      "elapsedSec": 8.899,
+      "error": null,
+      "errorClass": "rate_limited",
+      "observedAt": "2026-07-08T06:05:40.914Z",
+      "ok": false,
+      "statusCode": 429,
+      "url": "https://api.citoapi.com/api/v1/lol/schedule/today"
+    },
+    "targetMatch": null
+  },
+  "scope": "CAL-59 Cito T1 vs G2 field completeness probe",
+  "script": "scripts/cito_t1_g2_field_probe.py",
+  "startedAt": "2026-07-08T06:05:40.914Z",
+  "target": {
+    "gameId": null,
+    "scheduleGameId": null,
+    "scheduleMatchId": null,
+    "scheduleTargetFound": false,
+    "teams": [
+      "T1",
+      "G2"
+    ]
+  }
+}
