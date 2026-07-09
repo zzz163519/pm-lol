@@ -2,13 +2,17 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
+import os
 from typing import Any, Protocol
+
+import requests
 
 from pm_lol.config import LIVE_GAME_POLL_INTERVAL_SEC
 from pm_lol.models import Game, GameStateSnapshot
 from pm_lol.sources.lolesports import parse_event_details, parse_window
 from pm_lol.storage import SQLiteStorage
 
+CITO_BASE_URL = "https://api.citoapi.com/api/v1"
 # Cito free plan allows <=10 req/min. We stay strictly under that with buffer.
 CITO_FREE_PLAN_MAX_REQ_PER_MIN = 10
 CITO_DEFAULT_REQUEST_BUDGET_PER_MIN = 6
@@ -28,6 +32,49 @@ class CitoVisualStateClient(Protocol):
 
 class RateLimitedError(Exception):
     """Raised when the Cito visual-state endpoint returns a 429."""
+
+
+class CitoApiClient:
+    def __init__(
+        self,
+        *,
+        api_key: str | None = None,
+        session: Any | None = None,
+        base_url: str = CITO_BASE_URL,
+        timeout: float = 15.0,
+    ) -> None:
+        self.api_key = api_key or os.environ.get("CITO_API_KEY")
+        if not self.api_key:
+            raise ValueError("CITO_API_KEY is required")
+        self.session = session or requests.Session()
+        self.base_url = base_url.rstrip("/")
+        self.timeout = timeout
+
+    def list_live_matches(self) -> dict[str, Any]:
+        return self._get("/lol/live")
+
+    def list_today_schedule(self) -> dict[str, Any]:
+        return self._get("/lol/schedule/today")
+
+    def get_match_coverage(self, match_id: str) -> dict[str, Any]:
+        return self._get(f"/lol/matches/{match_id}/coverage")
+
+    def get_visual_state(self, game_id: str) -> dict[str, Any]:
+        return self._get(f"/lol/live/{game_id}/visual-state")
+
+    def _get(self, path: str) -> dict[str, Any]:
+        response = self.session.get(
+            f"{self.base_url}{path}",
+            headers={"x-api-key": self.api_key},
+            timeout=self.timeout,
+        )
+        if response.status_code == 429:
+            raise RateLimitedError
+        response.raise_for_status()
+        if not response.content:
+            return {}
+        payload = response.json()
+        return payload if isinstance(payload, dict) else {"data": payload}
 
 
 class CitoBudgetScheduler:
@@ -147,6 +194,7 @@ class LiveGameStateConnector:
         fresh_snapshots = 0
         stale_snapshots = 0
         partial_snapshots = 0
+        unavailable_numeric_snapshots = 0
         skipped_snapshots = 0
         rate_limited = False
         backoff_seconds: int | None = None
@@ -176,6 +224,8 @@ class LiveGameStateConnector:
                     stale_snapshots += 1
                 elif snapshot.source_status == "partial":
                     partial_snapshots += 1
+                if snapshot.error_code == "live_numeric_stats_unavailable":
+                    unavailable_numeric_snapshots += 1
 
             if self.sleep_func is not None and polls < max_polls:
                 self.sleep_func(min_interval_sec)
@@ -186,6 +236,7 @@ class LiveGameStateConnector:
             "fresh_snapshots": fresh_snapshots,
             "stale_snapshots": stale_snapshots,
             "partial_snapshots": partial_snapshots,
+            "unavailable_numeric_snapshots": unavailable_numeric_snapshots,
             "skipped_snapshots": skipped_snapshots,
             "rate_limited": rate_limited,
             "request_budget_per_min": request_budget_per_min,
@@ -277,8 +328,9 @@ def _parse_cito_visual_state(payload: dict[str, Any], game: Game) -> GameStateSn
         return None
 
     status = str(body.get("status") or "partial")
-    if status not in {"fresh", "stale"}:
+    if status not in {"fresh", "stale", "on_break"}:
         status = "partial"
+    error_code = "live_numeric_stats_unavailable" if _numeric_stats_unavailable(body) else None
     timestamp = _source_timestamp(body)
     rate_limit_state = body.get("rateLimit")
     if not isinstance(rate_limit_state, dict):
@@ -302,12 +354,30 @@ def _parse_cito_visual_state(payload: dict[str, Any], game: Game) -> GameStateSn
         source_status=status,
         sample_age_seconds=_optional_int(body.get("sampleAgeSeconds")),
         rate_limit_state=rate_limit_state,
-        error_code=None,
+        error_code=error_code,
         source="cito_visual_state",
         winner=body.get("winner"),
         paused=_parse_paused(body),
         raw=body,
     )
+
+
+def _numeric_stats_unavailable(body: dict[str, Any]) -> bool:
+    if str(body.get("status") or "").lower() in {"on_break", "stale"}:
+        return True
+    if str(body.get("reason") or "").lower() == "broadcast_desk_or_break_detected":
+        return True
+    data_quality = body.get("dataQuality")
+    if isinstance(data_quality, dict):
+        quality_value = data_quality.get("numericLiveStats") or data_quality.get("numeric_live_stats")
+        if str(quality_value or "").lower() == "unavailable":
+            return True
+    confidence = body.get("confidence")
+    if not isinstance(confidence, dict):
+        return False
+    keys = ("gold", "kills", "objectives", "timer")
+    values = [confidence.get(key) for key in keys if key in confidence]
+    return bool(values) and all(value == 0 for value in values)
 
 
 def _parse_paused(body: dict[str, Any]) -> bool | None:

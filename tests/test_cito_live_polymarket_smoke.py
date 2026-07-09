@@ -109,6 +109,11 @@ def test_live_game_fetches_visual_state_and_marks_field_coverage(tmp_path):
         if url.endswith("/lol/live/game-123/visual-state"):
             return {
                 "gameId": "game-123",
+                "status": "on_break",
+                "reason": "broadcast_desk_or_break_detected",
+                "sampleAgeSeconds": 17,
+                "confidence": {"gold": 0, "kills": 0, "objectives": 0, "timer": 0},
+                "dataQuality": {"numericLiveStats": "unavailable"},
                 "gameState": "in_game",
                 "gameTime": 123,
                 "teams": [
@@ -136,6 +141,17 @@ def test_live_game_fetches_visual_state_and_marks_field_coverage(tmp_path):
 
     assert result["overallStatus"] == "live_sample_collected"
     assert result["cito"]["visualState"]["gameId"] == "game-123"
+    assert result["cito"]["visualState"]["status"] == "on_break"
+    assert result["cito"]["visualState"]["reason"] == "broadcast_desk_or_break_detected"
+    assert result["cito"]["visualState"]["sampleAgeSeconds"] == 17
+    assert result["cito"]["visualState"]["confidence"] == {
+        "gold": 0,
+        "kills": 0,
+        "objectives": 0,
+        "timer": 0,
+    }
+    assert result["cito"]["visualState"]["dataQuality"] == {"numericLiveStats": "unavailable"}
+    assert result["cito"]["visualState"]["liveNumericStatsAvailable"] is False
     assert result["fieldCoverage"] == {
         "gameClock": "present",
         "gold": "present",

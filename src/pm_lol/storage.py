@@ -33,6 +33,7 @@ CANONICAL_SOURCE_STATUSES = frozenset(
         "error",
         "fresh",
         "final",
+        "on_break",
     }
 )
 
