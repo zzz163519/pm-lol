@@ -12,14 +12,14 @@ def test_dashboard_snapshot_contract_reads_phase1_sqlite(tmp_path):
     snapshot = build_dashboard_snapshot(
         db_path,
         match_id="115548128963037587",
-        game_id="115548128963037588",
+        game_id="115548128963037589",
         source="cito_visual_state",
     )
 
     assert snapshot["schemaVersion"] == SCHEMA_VERSION
     assert snapshot["filters"] == {
         "matchId": "115548128963037587",
-        "gameId": "115548128963037588",
+        "gameId": "115548128963037589",
         "source": "cito_visual_state",
         "observedFrom": None,
         "observedTo": None,
@@ -35,13 +35,20 @@ def test_dashboard_snapshot_contract_reads_phase1_sqlite(tmp_path):
     assert market["noQuote"]["bestBid"] == 0.199
     assert market["noQuote"]["bestAsk"] == 0.209
 
-    game_state = snapshot["gameStates"][0]
+    assert snapshot["gameStates"] == []
+
+    match_snapshot = build_dashboard_snapshot(
+        db_path,
+        match_id="115548128963037587",
+        source="cito_visual_state",
+    )
+    game_state = match_snapshot["gameStates"][0]
     assert game_state["gameClock"] is None
     assert game_state["gold"] == {"blue": 26066, "red": 28132, "diff": -2066}
     assert game_state["objectives"]["redDragons"] == ["infernal", "mountain"]
     assert game_state["sourceStatus"] == "ok"
 
-    assert snapshot["picks"]["blue"] == ["Vayne", "Trundle", "Cassiopeia", "Ziggs", "Shen"]
+    assert match_snapshot["picks"]["blue"] == ["Vayne", "Trundle", "Cassiopeia", "Ziggs", "Shen"]
     assert snapshot["sourceStatusSummary"]["stale"] == 1
     assert snapshot["sourceStatusSummary"]["rate_limited"] == 1
     assert snapshot["collectorEvents"][0]["source"] == "cito_visual_state"
@@ -63,6 +70,34 @@ def test_dashboard_snapshot_surfaces_missing_and_no_liquidity(tmp_path):
     assert snapshot["gameStates"] == []
     assert snapshot["picks"] == {"blue": [], "red": []}
     assert "missing" in snapshot["sourceStatusSummary"]
+
+
+def test_dashboard_game_filter_excludes_other_game_markets(tmp_path):
+    db_path = tmp_path / "replay.db"
+    run_replay(db_path)
+
+    unknown_game = build_dashboard_snapshot(
+        db_path,
+        match_id="115548128963037587",
+        game_id="unknown-game",
+    )
+    live_state_game = build_dashboard_snapshot(
+        db_path,
+        match_id="115548128963037587",
+        game_id="115548128963037588",
+    )
+    market_game = build_dashboard_snapshot(
+        db_path,
+        match_id="115548128963037587",
+        game_id="115548128963037589",
+    )
+
+    assert unknown_game["markets"] == []
+    assert unknown_game["gameStates"] == []
+    assert live_state_game["markets"] == []
+    assert len(live_state_game["gameStates"]) == 1
+    assert len(market_game["markets"]) == 1
+    assert market_game["markets"][0]["gameId"] == "115548128963037589"
 
 
 def test_dashboard_html_smoke_renders_read_only_status_badges(tmp_path):

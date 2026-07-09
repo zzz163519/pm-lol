@@ -44,6 +44,7 @@ def build_dashboard_snapshot(
     markets = _dashboard_markets(
         storage.path,
         match_id=match_id,
+        game_id=game_id,
         observed_from=observed_from,
         observed_to=observed_to,
     )
@@ -397,6 +398,7 @@ def _dashboard_markets(
     db_path: Path,
     *,
     match_id: str | None,
+    game_id: str | None,
     observed_from: str | None,
     observed_to: str | None,
 ) -> list[dict[str, Any]]:
@@ -405,6 +407,9 @@ def _dashboard_markets(
     if match_id:
         clauses.append("rm.match_id = ?")
         params.append(match_id)
+    if game_id:
+        clauses.append("rm.game_id = ?")
+        params.append(game_id)
     where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
     with _connect(db_path) as conn:
         rows = conn.execute(
