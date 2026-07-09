@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "dev:dashboard": ".venv/bin/python -m pm_lol.dashboard --db data/db/replay.db"
+  }
+}
