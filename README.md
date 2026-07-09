@@ -91,6 +91,24 @@ Query quote snapshots by market/game/time range:
   --game-number 2
 ```
 
+Build the replay SQLite snapshot and launch the read-only dashboard:
+
+```bash
+.venv/bin/python -m pm_lol.replay_pipeline
+npm run dev:dashboard
+```
+
+The dashboard serves:
+
+- `http://127.0.0.1:8787/` — compact read-only UI for market mapping, Yes/No
+  bestBid/bestAsk, game state, picks, and source status badges.
+- `http://127.0.0.1:8787/api/dashboard` — stable JSON contract. Optional query
+  filters: `matchId`, `gameId`, `source`, `observedFrom`, `observedTo`.
+
+It reads existing SQLite snapshots only. Fair probability, Polymarket orders,
+and strategy signals are disabled placeholders; there is no order, broker,
+or secret-bearing module in the dashboard path.
+
 Run the focused tests:
 
 ```bash
