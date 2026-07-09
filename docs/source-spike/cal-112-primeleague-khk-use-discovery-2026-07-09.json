@@ -1,0 +1,1334 @@
+{
+  "events": [
+    {
+      "eventSlug": "lol-khk-use1-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "59857423533223872502617935933057070440802695611369124751377013864498785164863",
+          "88782764775108941189197775031772925371181008867056614016514616349476323496917"
+        ],
+        "closed": false,
+        "conditionId": "0x2fcf2f9ff20f660b6f0cabd9439ec937261ec6c98593b7fc1b0e61081291d2c9",
+        "eventSlug": "lol-khk-use1-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-khk-use1-2026-07-09",
+        "outcomes": [
+          "Kaufland Hangry Knights",
+          "Unicorns Of Love Sexy Edition"
+        ],
+        "question": "LoL: Kaufland Hangry Knights vs Unicorns Of Love Sexy Edition (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-09T16:00:00Z",
+      "teams": [
+        "Kaufland Hangry Knights",
+        "Unicorns Of Love Sexy Edition"
+      ],
+      "title": "LoL: Kaufland Hangry Knights vs Unicorns Of Love Sexy Edition (BO1) - Prime League 1st Division Regular Season"
+    },
+    {
+      "eventSlug": "lol-agal-dk-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "5304637618631659031478056816717300185938842043322386358682708915753188815877",
+          "83568380812209090320126052283226875147905968079124732996013139930437707331222"
+        ],
+        "closed": false,
+        "conditionId": "0x11074f07b008456da88e44f83800d4edf5a85cb5bada6c7c48d59f9b3f05b93c",
+        "eventSlug": "lol-agal-dk-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-agal-dk-2026-07-15",
+        "outcomes": [
+          "AG.AL",
+          "Dplus KIA"
+        ],
+        "question": "LoL: AG.AL vs Dplus KIA (BO1) - Esports World Cup Group A"
+      },
+      "startTime": "2026-07-15T11:20:00Z",
+      "teams": [
+        "AG.AL",
+        "Dplus KIA"
+      ],
+      "title": "LoL: AG.AL vs Dplus KIA (BO1) - Esports World Cup Group A"
+    },
+    {
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "54865409545970127818483222224309761077922946344974606824700577010363479992269",
+          "39577055225479084916752164627874450289163320947168445560952025705247541157415"
+        ],
+        "closed": false,
+        "conditionId": "0x487187034dadebc71441bd70c34351eb189c12a05c99220eb43be41b919e9261",
+        "eventSlug": "lol-blg-hle1-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-blg-hle1-2026-07-09",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Hanwha Life Esports"
+        ],
+        "question": "LoL: Bilibili Gaming vs Hanwha Life Esports (BO5) - Mid-Season Invitational Playoffs"
+      },
+      "startTime": "2026-07-09T08:00:00Z",
+      "teams": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "title": "LoL: Bilibili Gaming vs Hanwha Life Esports (BO5) - Mid-Season Invitational Playoffs"
+    },
+    {
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "38177142711883240643763953452942479646113729925114420729474549821504213059443",
+          "33275688672219959103125370166116350732205425299647744895777059513890001558598"
+        ],
+        "closed": true,
+        "conditionId": "0x5a225548a5cf5c61ea03c8f1a04648ed9ee10a0614918073df73ed6d3388581c",
+        "eventSlug": "lol-blg-ly-2026-07-05",
+        "gameNumber": null,
+        "marketSlug": "lol-blg-ly-2026-07-05",
+        "outcomes": [
+          "Bilibili Gaming",
+          "LYON"
+        ],
+        "question": "LoL: Bilibili Gaming vs LYON (BO5) - Mid-Season Invitational Playoffs"
+      },
+      "startTime": "2026-07-06T03:00:00Z",
+      "teams": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "title": "LoL: Bilibili Gaming vs LYON (BO5) - Mid-Season Invitational Playoffs"
+    },
+    {
+      "eventSlug": "lol-blg-mkoi-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "81491299804535610121225812224530397412626649724875240161718993949106149870328",
+          "25372789947615362687494652885625875811349393818532923489681520547430242192129"
+        ],
+        "closed": false,
+        "conditionId": "0x53de075821a6f02eebe4f415f8bc49257cc5bb57404c0471e447676b30d66363",
+        "eventSlug": "lol-blg-mkoi-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-blg-mkoi-2026-07-15",
+        "outcomes": [
+          "Bilibili Gaming",
+          "Movistar KOI"
+        ],
+        "question": "LoL: Bilibili Gaming vs Movistar KOI (BO1) - Esports World Cup Group C"
+      },
+      "startTime": "2026-07-15T10:10:00Z",
+      "teams": [
+        "Bilibili Gaming",
+        "Movistar KOI"
+      ],
+      "title": "LoL: Bilibili Gaming vs Movistar KOI (BO1) - Esports World Cup Group C"
+    },
+    {
+      "eventSlug": "lol-es1-ewi-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "15998368568140480132444916562903392005286439348478668200202242633975997500886",
+          "44809898065879770829607605027523101358909279431657076803806113201786498861813"
+        ],
+        "closed": false,
+        "conditionId": "0x5cd7166ca024a6a39b8393c107baa205725703183355ca5ea357d37b4975f976",
+        "eventSlug": "lol-es1-ewi-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-es1-ewi-2026-07-09",
+        "outcomes": [
+          "Eintracht Spandau",
+          "E WIE EINFACH E-SPORTS"
+        ],
+        "question": "LoL: Eintracht Spandau vs E WIE EINFACH E-SPORTS (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-09T15:00:00Z",
+      "teams": [
+        "Eintracht Spandau",
+        "E WIE EINFACH E-SPORTS"
+      ],
+      "title": "LoL: Eintracht Spandau vs E WIE EINFACH E-SPORTS (BO1) - Prime League 1st Division Regular Season"
+    },
+    {
+      "eventSlug": "lol-g2-fur-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "71123274765516653409477813460233013209755522387787533757538387065591407959563",
+          "24083435797272145482598931629266279411541937542792344267450270912122562490257"
+        ],
+        "closed": false,
+        "conditionId": "0xfd96581537ba0bb28a38d09779d9944fb76c05801fda4deeb399f380ea5f7acb",
+        "eventSlug": "lol-g2-fur-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-g2-fur-2026-07-15",
+        "outcomes": [
+          "G2 Esports",
+          "FURIA Esports"
+        ],
+        "question": "LoL: G2 Esports vs FURIA Esports (BO1) - Esports World Cup Group A"
+      },
+      "startTime": "2026-07-15T11:20:00Z",
+      "teams": [
+        "G2 Esports",
+        "FURIA Esports"
+      ],
+      "title": "LoL: G2 Esports vs FURIA Esports (BO1) - Esports World Cup Group A"
+    },
+    {
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "36672524051099400704479350956933470211496007520976133070767770909332705741584",
+          "42826827269337662227132258510523648168029986913137136040434207961719503278816"
+        ],
+        "closed": false,
+        "conditionId": "0x9023eedb2645ee65bccb6aa93753b26b837e98ac64f065e1acdac188aff54b2b",
+        "eventSlug": "lol-g2-ly-2026-07-10",
+        "gameNumber": null,
+        "marketSlug": "lol-g2-ly-2026-07-10",
+        "outcomes": [
+          "G2 Esports",
+          "LYON"
+        ],
+        "question": "LoL: G2 Esports vs LYON (BO5) - Mid-Season Invitational Playoffs"
+      },
+      "startTime": "2026-07-10T08:00:00Z",
+      "teams": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "title": "LoL: G2 Esports vs LYON (BO5) - Mid-Season Invitational Playoffs"
+    },
+    {
+      "eventSlug": "lol-g2nord-sge-2026-07-07",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "15059495868784215394946367496188429679403525881404541306021328096134447036557",
+          "81051188482567528873475932045851495731776442851628668706851051221606766221604"
+        ],
+        "closed": true,
+        "conditionId": "0x512d76732e92beda03e9db1465b713276587d5f33fdcd9e97db4f36ca488b15e",
+        "eventSlug": "lol-g2nord-sge-2026-07-07",
+        "gameNumber": null,
+        "marketSlug": "lol-g2nord-sge-2026-07-07",
+        "outcomes": [
+          "G2 NORD",
+          "Eintracht Frankfurt"
+        ],
+        "question": "LoL: G2 NORD vs Eintracht Frankfurt (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-07T17:00:00Z",
+      "teams": [
+        "G2 NORD",
+        "Eintracht Frankfurt"
+      ],
+      "title": "LoL: G2 NORD vs Eintracht Frankfurt (BO1) - Prime League 1st Division Regular Season"
+    },
+    {
+      "eventSlug": "lol-gen-kc-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "40571829497236400754130791233572006681671269527083953387110532077407893416357",
+          "109290733918090672646764503527410390885986502376443095183076944352512341188928"
+        ],
+        "closed": false,
+        "conditionId": "0xaa5c804ff72f9bc8556c4918cbb1e9815456b80518ba3bf1d83b9ff5872d9764",
+        "eventSlug": "lol-gen-kc-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-gen-kc-2026-07-15",
+        "outcomes": [
+          "Gen.G",
+          "Karmine Corp"
+        ],
+        "question": "LoL: Gen.G vs Karmine Corp (BO1) - Esports World Cup Group B"
+      },
+      "startTime": "2026-07-15T09:00:00Z",
+      "teams": [
+        "Gen.G",
+        "Karmine Corp"
+      ],
+      "title": "LoL: Gen.G vs Karmine Corp (BO1) - Esports World Cup Group B"
+    },
+    {
+      "eventSlug": "lol-hle1-milo-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "75433623545195045280316080965548080960233334830166640648253138603649270191739",
+          "70997363910335744433805250121305182922034234973912683791060829369027451848783"
+        ],
+        "closed": false,
+        "conditionId": "0x59ee845064fe48028dfadd6d37ca4352791a3aaf7dd377c62b97025bd126d4a8",
+        "eventSlug": "lol-hle1-milo-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-hle1-milo-2026-07-15",
+        "outcomes": [
+          "Hanwha Life Esports",
+          "MIBR.LOS"
+        ],
+        "question": "LoL: Hanwha Life Esports vs MIBR.LOS (BO1) - Esports World Cup Group D"
+      },
+      "startTime": "2026-07-15T12:30:00Z",
+      "teams": [
+        "Hanwha Life Esports",
+        "MIBR.LOS"
+      ],
+      "title": "LoL: Hanwha Life Esports vs MIBR.LOS (BO1) - Esports World Cup Group D"
+    },
+    {
+      "eventSlug": "lol-ly-jdg-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "115505266710035807909380926677566879209661091509044798896919335070669591065587",
+          "102150067501570524544482956540058270073616337435001320884652430500224193734688"
+        ],
+        "closed": false,
+        "conditionId": "0x92bdf7efbb8cab957c0df41b474823618dc1e6f0ec0cc38ab20be4a033945b5f",
+        "eventSlug": "lol-ly-jdg-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-ly-jdg-2026-07-15",
+        "outcomes": [
+          "LYON",
+          "JD Gaming"
+        ],
+        "question": "LoL: LYON vs JD Gaming (BO1) - Esports World Cup Group D"
+      },
+      "startTime": "2026-07-15T12:30:00Z",
+      "teams": [
+        "LYON",
+        "JD Gaming"
+      ],
+      "title": "LoL: LYON vs JD Gaming (BO1) - Esports World Cup Group D"
+    },
+    {
+      "eventSlug": "lol-t1-gam-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "63425473212073420149058717421082439192546210330322675284160950281063957475870",
+          "101511572533964795707416385073531613397730952681417013069345433248067561679904"
+        ],
+        "closed": false,
+        "conditionId": "0x6cbd8aff21c73da18408cc5a1c2868a34170de902d16a919bcc309cbccee4951",
+        "eventSlug": "lol-t1-gam-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-t1-gam-2026-07-15",
+        "outcomes": [
+          "T1",
+          "GAM Esports"
+        ],
+        "question": "LoL: T1 vs GAM Esports (BO1) - Esports World Cup Group C"
+      },
+      "startTime": "2026-07-15T10:10:00Z",
+      "teams": [
+        "T1",
+        "GAM Esports"
+      ],
+      "title": "LoL: T1 vs GAM Esports (BO1) - Esports World Cup Group C"
+    },
+    {
+      "eventSlug": "lol-tog-big1-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "20716709944360508149915252066683923097458309434848415335238834148441628312987",
+          "47475529081345013486715607446299042692965879596106854334579880982766459299632"
+        ],
+        "closed": false,
+        "conditionId": "0xf1cd07ea25c660d2c732240ee7b1acd070271557f6eb04af991ad6d8a2d60290",
+        "eventSlug": "lol-tog-big1-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-tog-big1-2026-07-09",
+        "outcomes": [
+          "Team Orange Gaming",
+          "BIG"
+        ],
+        "question": "LoL: Team Orange Gaming vs BIG (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-09T18:00:00Z",
+      "teams": [
+        "Team Orange Gaming",
+        "BIG"
+      ],
+      "title": "LoL: Team Orange Gaming vs BIG (BO1) - Prime League 1st Division Regular Season"
+    },
+    {
+      "eventSlug": "lol-ts-sen-2026-07-15",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "105242116070012403549374882864306370413030590765888037770635382355803686374112",
+          "17150953852223495340174292981735056916488790070968692844610786281339235958703"
+        ],
+        "closed": false,
+        "conditionId": "0xb496850d7e2fcbb11f2534c4e6aa1b87c1c6a611e32ff13440f5a7c2c6430a61",
+        "eventSlug": "lol-ts-sen-2026-07-15",
+        "gameNumber": null,
+        "marketSlug": "lol-ts-sen-2026-07-15",
+        "outcomes": [
+          "Team Secret ",
+          "Sentinels"
+        ],
+        "question": "LoL: Team Secret  vs Sentinels (BO1) - Esports World Cup Group B"
+      },
+      "startTime": "2026-07-15T09:00:00Z",
+      "teams": [
+        "Team Secret",
+        "Sentinels"
+      ],
+      "title": "LoL: Team Secret  vs Sentinels (BO1) - Esports World Cup Group B"
+    },
+    {
+      "eventSlug": "lol-vfb-ross-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "18094290151666543108142624603948919994239603954123892385377729085635273979850",
+          "16067120027383387250146461327100011818331473976667861277297761866704665109831"
+        ],
+        "closed": false,
+        "conditionId": "0x0adacd6e1b5d7d29ba497c3eac8a0faa1ccb8142d4a45ebc3d81f1027657dadb",
+        "eventSlug": "lol-vfb-ross-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-vfb-ross-2026-07-09",
+        "outcomes": [
+          "VfB eSports",
+          "ROSSMANN Centaurs"
+        ],
+        "question": "LoL: VfB eSports vs ROSSMANN Centaurs (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-09T17:00:00Z",
+      "teams": [
+        "VfB eSports",
+        "ROSSMANN Centaurs"
+      ],
+      "title": "LoL: VfB eSports vs ROSSMANN Centaurs (BO1) - Prime League 1st Division Regular Season"
+    },
+    {
+      "eventSlug": "lol-vfb-sge-2026-07-09",
+      "seriesMarket": {
+        "active": true,
+        "clobTokenIds": [
+          "49122866486443333366920852732176700859078597602473994251319512981750600501323",
+          "16021497643075812572135271503062386435781236184357848377333597719923769155096"
+        ],
+        "closed": false,
+        "conditionId": "0x99332b3b8cd8f80b573b2940164b83881a86b6173cd613e2253cbbd97aeab471",
+        "eventSlug": "lol-vfb-sge-2026-07-09",
+        "gameNumber": null,
+        "marketSlug": "lol-vfb-sge-2026-07-09",
+        "outcomes": [
+          "VfB eSports",
+          "Eintracht Frankfurt"
+        ],
+        "question": "LoL: VfB eSports vs Eintracht Frankfurt (BO1) - Prime League 1st Division Regular Season"
+      },
+      "startTime": "2026-07-09T19:00:00Z",
+      "teams": [
+        "VfB eSports",
+        "Eintracht Frankfurt"
+      ],
+      "title": "LoL: VfB eSports vs Eintracht Frankfurt (BO1) - Prime League 1st Division Regular Season"
+    }
+  ],
+  "gameWinnerMarkets": [
+    {
+      "active": true,
+      "clobTokenIds": [
+        "34899681629975596680823272511407820643214154601485383259115476523364469117569",
+        "92155896711226508531656306422645708487529460510087463062559535463800385306518"
+      ],
+      "closed": true,
+      "conditionId": "0x86d9c29b6bd497d00ea0bfd1341caf040bbf7e04bc603a55f0353f2594f0f17c",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 1,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game1",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "79431908131356508084433457755458324207648598535865918981254999649478291541970",
+        "9976606108943452206320557993220219533385445389795366122925156864356407411888"
+      ],
+      "closed": true,
+      "conditionId": "0x6869e94f6f21fbe1d35af01120f5e2274389f1ff3e01eabf33a695064cc7b96f",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 2,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game2",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "47096309526106901328179490804440810907402896830853720942402789297373024143648",
+        "20414976475690894265425364948116786155162480053919701442335217459387124913382"
+      ],
+      "closed": true,
+      "conditionId": "0x9feec0e8301d26be7db36412dfd040769f7fbd3efcc892309863c6062adb3cf7",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 3,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game3",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "79117020931286590387471436100030452388806937594869517787410410991055065589292",
+        "101429852666331840961925724184147591600258708327014402624351890633755470116046"
+      ],
+      "closed": false,
+      "conditionId": "0x71d513cd8f99d2805e4ce75df19e18bebf46d4f43d45cd5dc8cf50856982ea41",
+      "eventSlug": "lol-blg-hle1-2026-07-09",
+      "gameNumber": 4,
+      "marketSlug": "lol-blg-hle1-2026-07-09-game4",
+      "outcomes": [
+        "Bilibili Gaming",
+        "Hanwha Life Esports"
+      ],
+      "question": "LoL: Bilibili Gaming vs Hanwha Life Esports - Game 4 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "5002714671247093436099392396939712777228297496010125902196982570959505353253",
+        "108247539562720632314732011526013280280400671796217869742352801497482916456605"
+      ],
+      "closed": true,
+      "conditionId": "0x9bf22299c580ffe62b20c7511995b66e0131aa69aa716a120d0f567b34bdccb7",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 1,
+      "marketSlug": "lol-blg-ly-2026-07-05-game1",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "7637026368732196921824599509816355494318100511074467507503025282536605565210",
+        "77885964302446834117476493554239777778548327052473355196312942816710622961664"
+      ],
+      "closed": true,
+      "conditionId": "0x9c81dfa75ed5c58a648edb84668061ca205293e3d83cf54375ab4b01c6293692",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 2,
+      "marketSlug": "lol-blg-ly-2026-07-05-game2",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "109626706301825910078079946375902941065865884567250950659804681976197896311826",
+        "22396416150391112604316534450005865531176311352826607046849224722907563638943"
+      ],
+      "closed": true,
+      "conditionId": "0xddde23953e6ca61a081b31f13ce221c1167c3d0adc49457d0345c546df51d708",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 3,
+      "marketSlug": "lol-blg-ly-2026-07-05-game3",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "85511699303473638406296767036888390729743015563083683929058296466152195509624",
+        "5244108474748859819473283220397541756299066420606575599865324272472201456757"
+      ],
+      "closed": true,
+      "conditionId": "0x7958bfd85a25960fade6c401b5b0b03fc12f59b68876646a7e5a351e8c9a6090",
+      "eventSlug": "lol-blg-ly-2026-07-05",
+      "gameNumber": 4,
+      "marketSlug": "lol-blg-ly-2026-07-05-game4",
+      "outcomes": [
+        "Bilibili Gaming",
+        "LYON"
+      ],
+      "question": "LoL: Bilibili Gaming vs LYON - Game 4 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "76139101447828300858775026719426172181701825631465488526712436980225218230538",
+        "11375244638573387322653973021095160832667152479398725838897146290628938005476"
+      ],
+      "closed": false,
+      "conditionId": "0xafa3f92ef06b1f42eeb4239054d133b92b52423bb199350c5f0bfe6eb5aaca94",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 1,
+      "marketSlug": "lol-g2-ly-2026-07-10-game1",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "1161663761026248928741317236361093152095776065309269380062540556077381245572",
+        "33609950325255448197129891500016919686890698412468372975023048260919067557916"
+      ],
+      "closed": false,
+      "conditionId": "0xc1dd38f36d3ec4a6a5d8ec03bf5af0ea75113ad188b85a895317c51e48b80dce",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 2,
+      "marketSlug": "lol-g2-ly-2026-07-10-game2",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "47405794293316148244590035888323531202770006061275899647071095856237793879763",
+        "9306033963311851564212548176894914508758998308587255967584753177135725757149"
+      ],
+      "closed": false,
+      "conditionId": "0xce8bc40907b928e7d02717975855be7272c3589f8fdd1f70b9f03ea14f280577",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 3,
+      "marketSlug": "lol-g2-ly-2026-07-10-game3",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "93701377540053248919917010045639513003879676000036840938644210840680356230480",
+        "96305276129173095401172786313679504270045258691665073871855533156862298784482"
+      ],
+      "closed": false,
+      "conditionId": "0x77dfdc06f52dc6c35c37f02dc1eb0f989149e4194f32ab39831397e1dee38fe3",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 4,
+      "marketSlug": "lol-g2-ly-2026-07-10-game4",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 4 Winner"
+    }
+  ],
+  "mappingCandidate": {
+    "lolesports": {
+      "matchId": "116713163972559036",
+      "metadata": {
+        "eventId": "116713163972559036",
+        "games": [
+          {
+            "id": "116713163972559037",
+            "number": 1,
+            "state": "unstarted",
+            "teams": [
+              {
+                "id": "109671612150787863",
+                "side": "blue"
+              },
+              {
+                "id": "105504044166670507",
+                "side": "red"
+              }
+            ]
+          }
+        ],
+        "league": "Prime League",
+        "leagueSlug": "primeleague",
+        "matchId": "116713163972559036",
+        "startTime": "2026-07-09T15:00:00Z",
+        "state": "unstarted",
+        "teams": [
+          {
+            "code": "KHK",
+            "id": "109671612150787863",
+            "name": "Kaufland Hangry Knights"
+          },
+          {
+            "code": "USE",
+            "id": "105504044166670507",
+            "name": "Unicorns of Love Sexy Edition"
+          }
+        ]
+      },
+      "ok": true,
+      "scheduleLookup": {
+        "error": null,
+        "errorClass": null,
+        "ok": true
+      }
+    },
+    "lolesportsMatchId": "116713163972559036",
+    "mappingConfidence": 0.6,
+    "notes": [
+      "Pre-match static mapping smoke only.",
+      "LoLEsports live latency is not validated by this output.",
+      "Token-to-side samples are gated at mappingConfidence >= 0.90."
+    ],
+    "pendingLiveValidation": true,
+    "polymarketEventSlug": "lol-khk-use1-2026-07-09",
+    "polymarketGameWinnerMarkets": [],
+    "polymarketStartTime": "2026-07-09T16:00:00Z",
+    "polymarketTeams": [
+      "Kaufland Hangry Knights",
+      "Unicorns Of Love Sexy Edition"
+    ],
+    "polymarketTitle": "LoL: Kaufland Hangry Knights vs Unicorns Of Love Sexy Edition (BO1) - Prime League 1st Division Regular Season",
+    "sampleMappings": [],
+    "startTimeAligned": false,
+    "teamAliasMapping": {
+      "Kaufland Hangry Knights": [
+        "Kaufland Hangry Knights",
+        "KHK"
+      ],
+      "Unicorns Of Love Sexy Edition": [
+        "Unicorns Of Love Sexy Edition",
+        "Unicorns of Love Sexy Edition",
+        "USE"
+      ]
+    },
+    "viable": false
+  },
+  "networkDiagnostics": {
+    "errorClasses": [
+      "http_error"
+    ],
+    "proxyEnv": {
+      "ALL_PROXY": false,
+      "HTTPS_PROXY": true,
+      "HTTP_PROXY": true,
+      "all_proxy": false,
+      "http_proxy": true,
+      "https_proxy": true
+    },
+    "requests": [
+      {
+        "attempts": 1,
+        "bytes": 1176350,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://polymarket.com/esports/league-of-legends"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36951,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-khk-use1-2026-07-09"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36009,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-agal-dk-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 292719,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-blg-hle1-2026-07-09"
+      },
+      {
+        "attempts": 1,
+        "bytes": 261049,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-blg-ly-2026-07-05"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36559,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-blg-mkoi-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 37089,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-es1-ewi-2026-07-09"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36479,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-g2-fur-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 215645,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-g2-ly-2026-07-10"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36653,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-g2nord-sge-2026-07-07"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36430,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-gen-kc-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36724,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-hle1-milo-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36371,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-ly-jdg-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36350,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-t1-gam-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36496,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-tog-big1-2026-07-09"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36368,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-ts-sen-2026-07-15"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36516,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-vfb-ross-2026-07-09"
+      },
+      {
+        "attempts": 1,
+        "bytes": 36662,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://gamma-api.polymarket.com/events/slug/lol-vfb-sge-2026-07-09"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=34899681629975596680823272511407820643214154601485383259115476523364469117569"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=92155896711226508531656306422645708487529460510087463062559535463800385306518"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=79431908131356508084433457755458324207648598535865918981254999649478291541970"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=9976606108943452206320557993220219533385445389795366122925156864356407411888"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=47096309526106901328179490804440810907402896830853720942402789297373024143648"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=20414976475690894265425364948116786155162480053919701442335217459387124913382"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=79117020931286590387471436100030452388806937594869517787410410991055065589292"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=101429852666331840961925724184147591600258708327014402624351890633755470116046"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=5002714671247093436099392396939712777228297496010125902196982570959505353253"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=108247539562720632314732011526013280280400671796217869742352801497482916456605"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=7637026368732196921824599509816355494318100511074467507503025282536605565210"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=77885964302446834117476493554239777778548327052473355196312942816710622961664"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=109626706301825910078079946375902941065865884567250950659804681976197896311826"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=22396416150391112604316534450005865531176311352826607046849224722907563638943"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=85511699303473638406296767036888390729743015563083683929058296466152195509624"
+      },
+      {
+        "attempts": 3,
+        "error": "HTTP 404",
+        "errorClass": "http_error",
+        "ok": false,
+        "priorErrors": [
+          {
+            "attempt": 1,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          },
+          {
+            "attempt": 2,
+            "error": "HTTP 404",
+            "errorClass": "http_error"
+          }
+        ],
+        "retryCount": 2,
+        "statusCode": 404,
+        "url": "https://clob.polymarket.com/book?token_id=5244108474748859819473283220397541756299066420606575599865324272472201456757"
+      },
+      {
+        "attempts": 1,
+        "bytes": 1631,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://clob.polymarket.com/book?token_id=76139101447828300858775026719426172181701825631465488526712436980225218230538"
+      },
+      {
+        "attempts": 1,
+        "bytes": 836,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id=116713163972559036"
+      },
+      {
+        "attempts": 1,
+        "bytes": 49822,
+        "error": null,
+        "errorClass": null,
+        "ok": true,
+        "priorErrors": [],
+        "retryCount": 0,
+        "statusCode": 200,
+        "url": "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US"
+      }
+    ],
+    "totalRequests": 37,
+    "totalRetries": 32
+  },
+  "observedAt": "2026-07-09T14:10:52.823521Z",
+  "orderbookSamples": [
+    {
+      "askCount": 21,
+      "bestAsk": 0.67,
+      "bestBid": 0.66,
+      "bidCount": 20,
+      "conditionId": "0xafa3f92ef06b1f42eeb4239054d133b92b52423bb199350c5f0bfe6eb5aaca94",
+      "marketSlug": "lol-g2-ly-2026-07-10-game1",
+      "outcome": "G2 Esports",
+      "sourceTimestamp": "1783606295077",
+      "tokenId": "76139101447828300858775026719426172181701825631465488526712436980225218230538"
+    }
+  ],
+  "warnings": [
+    "Gamma generic keyword search is unreliable for LoL discovery.",
+    "Game 5 Winner was not observed in the current documented samples.",
+    "Polymarket Market WebSocket remains pending_network_retest.",
+    "This is read-only source proof, not strategy, signal, execution, or live-latency validation."
+  ]
+}

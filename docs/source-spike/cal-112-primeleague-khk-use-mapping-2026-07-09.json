@@ -1,0 +1,78 @@
+{
+  "lolesports": {
+    "matchId": "116713163972559036",
+    "metadata": {
+      "eventId": "116713163972559036",
+      "games": [
+        {
+          "id": "116713163972559037",
+          "number": 1,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "109671612150787863",
+              "side": "blue"
+            },
+            {
+              "id": "105504044166670507",
+              "side": "red"
+            }
+          ]
+        }
+      ],
+      "league": "Prime League",
+      "leagueSlug": "primeleague",
+      "matchId": "116713163972559036",
+      "startTime": "2026-07-09T15:00:00Z",
+      "state": "unstarted",
+      "teams": [
+        {
+          "code": "KHK",
+          "id": "109671612150787863",
+          "name": "Kaufland Hangry Knights"
+        },
+        {
+          "code": "USE",
+          "id": "105504044166670507",
+          "name": "Unicorns of Love Sexy Edition"
+        }
+      ]
+    },
+    "ok": true,
+    "scheduleLookup": {
+      "error": null,
+      "errorClass": null,
+      "ok": true
+    }
+  },
+  "lolesportsMatchId": "116713163972559036",
+  "mappingConfidence": 0.6,
+  "notes": [
+    "Pre-match static mapping smoke only.",
+    "LoLEsports live latency is not validated by this output.",
+    "Token-to-side samples are gated at mappingConfidence >= 0.90."
+  ],
+  "pendingLiveValidation": true,
+  "polymarketEventSlug": "lol-khk-use1-2026-07-09",
+  "polymarketGameWinnerMarkets": [],
+  "polymarketStartTime": "2026-07-09T16:00:00Z",
+  "polymarketTeams": [
+    "Kaufland Hangry Knights",
+    "Unicorns Of Love Sexy Edition"
+  ],
+  "polymarketTitle": "LoL: Kaufland Hangry Knights vs Unicorns Of Love Sexy Edition (BO1) - Prime League 1st Division Regular Season",
+  "sampleMappings": [],
+  "startTimeAligned": false,
+  "teamAliasMapping": {
+    "Kaufland Hangry Knights": [
+      "Kaufland Hangry Knights",
+      "KHK"
+    ],
+    "Unicorns Of Love Sexy Edition": [
+      "Unicorns Of Love Sexy Edition",
+      "Unicorns of Love Sexy Edition",
+      "USE"
+    ]
+  },
+  "viable": false
+}
