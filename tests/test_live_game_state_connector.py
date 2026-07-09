@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from pm_lol.collectors.live_game_state_connector import LiveGameStateConnector
+from pm_lol.collectors.live_game_state_connector import CitoBudgetScheduler, LiveGameStateConnector
 from pm_lol.models import Game, Match
 from pm_lol.storage import SQLiteStorage
 
@@ -167,8 +167,8 @@ def test_cito_poll_writes_freshness_metadata_and_respects_default_budget(tmp_pat
         "partial_snapshots": 0,
         "skipped_snapshots": 0,
         "rate_limited": False,
-        "request_budget_per_min": 3,
-        "min_interval_sec": 20,
+        "request_budget_per_min": 6,
+        "min_interval_sec": 10,
         "backoff_seconds": None,
         "backoff_until": None,
     }
@@ -225,13 +225,30 @@ def test_cito_poll_rejects_budget_at_or_above_free_plan_and_paces_under_10_per_m
 
     summary = connector.run_cito_visual_poll(game, max_polls=2)
 
-    # Default budget stays strictly under the free-plan ceiling.
-    assert summary["request_budget_per_min"] == 3
+    # Default global budget stays in the CAL-70 6-8 req/min range and below the free-plan ceiling.
+    assert summary["request_budget_per_min"] == 6
     assert summary["request_budget_per_min"] < 10
     # Pacing enforces >= 60/budget seconds between calls -> effective rate < 10 req/min.
-    assert summary["min_interval_sec"] == 20
-    assert sleeps and all(gap >= 60 // summary["request_budget_per_min"] for gap in sleeps)
+    assert summary["min_interval_sec"] == 10
+    assert sleeps and all(gap >= 60 / summary["request_budget_per_min"] for gap in sleeps)
     assert 60 / summary["min_interval_sec"] < 10
+
+
+def test_cito_budget_scheduler_keeps_multi_match_plan_under_free_plan():
+    scheduler = CitoBudgetScheduler(request_budget_per_min=6, poll_interval_sec=1)
+
+    plan = scheduler.plan_offsets(targets=["game-a", "game-b", "game-c"], polls_per_target=3)
+
+    assert scheduler.min_interval_sec == 10
+    assert len(plan) == 9
+    assert plan[:3] == [
+        {"offset_sec": 0, "target": "game-a"},
+        {"offset_sec": 10, "target": "game-b"},
+        {"offset_sec": 20, "target": "game-c"},
+    ]
+    first_minute_requests = [item for item in plan if item["offset_sec"] < 60]
+    assert len(first_minute_requests) == 6
+    assert len(first_minute_requests) < 10
 
 
 def test_cito_poll_persists_paused_unknown_and_known(tmp_path):

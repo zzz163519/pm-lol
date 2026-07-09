@@ -5,7 +5,36 @@ import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 
-from pm_lol.models import DraftSnapshot, Game, GameStateSnapshot, Market, Match, QuoteSnapshot
+from pm_lol.models import (
+    CollectorRunEvent,
+    DraftSnapshot,
+    Game,
+    GameStateSnapshot,
+    Market,
+    Match,
+    QuoteSnapshot,
+)
+
+
+SCHEMA_VERSION = "phase1-data-foundation-v1"
+CANONICAL_SOURCE_STATUSES = frozenset(
+    {
+        "ok",
+        "partial",
+        "missing_field",
+        "stale",
+        "rate_limited",
+        "auth_required",
+        "network_error",
+        "parse_error",
+        "skipped_low_confidence",
+        "no_liquidity",
+        "absent",
+        "error",
+        "fresh",
+        "final",
+    }
+)
 
 
 class SQLiteStorage:
@@ -20,6 +49,86 @@ class SQLiteStorage:
                 "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name"
             ).fetchall()
         return [row["name"] for row in rows]
+
+    def get_schema_version(self) -> str:
+        with self._connect() as conn:
+            row = conn.execute(
+                "SELECT value FROM schema_metadata WHERE key = 'schema_version'"
+            ).fetchone()
+        if row is None:
+            raise KeyError("schema_version")
+        return str(row["value"])
+
+    def record_collector_run_event(self, event: CollectorRunEvent) -> None:
+        _validate_source_status(event.source_status)
+        now = _now()
+        observed_at = event.observed_at or now
+        source_schema_version = event.source_schema_version or SCHEMA_VERSION
+        with self._connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO collector_runs (
+                    run_id, collector_name, source, target, observed_at, outcome,
+                    source_status, source_schema_version, records_read,
+                    records_written, error_code, error_message, budget_state_json,
+                    created_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    event.run_id,
+                    event.collector_name,
+                    event.source,
+                    event.target,
+                    observed_at,
+                    event.outcome,
+                    event.source_status,
+                    source_schema_version,
+                    event.records_read,
+                    event.records_written,
+                    event.error_code,
+                    event.error_message,
+                    json.dumps(event.budget_state),
+                    now,
+                ),
+            )
+
+    def list_collector_run_events(
+        self,
+        *,
+        target: str | None = None,
+        source: str | None = None,
+    ) -> list[dict]:
+        clauses: list[str] = []
+        params: list[object] = []
+        if target is not None:
+            clauses.append("target = ?")
+            params.append(target)
+        if source is not None:
+            clauses.append("source = ?")
+            params.append(source)
+
+        where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
+        with self._connect() as conn:
+            rows = conn.execute(
+                f"""
+                SELECT
+                    run_id, collector_name, source, target, observed_at, outcome,
+                    source_status, source_schema_version, records_read,
+                    records_written, error_code, error_message, budget_state_json
+                FROM collector_runs
+                {where}
+                ORDER BY observed_at ASC, run_id ASC
+                """,
+                params,
+            ).fetchall()
+        return [
+            {
+                **{key: row[key] for key in row.keys() if key != "budget_state_json"},
+                "budget_state": json.loads(row["budget_state_json"]),
+            }
+            for row in rows
+        ]
 
     def upsert_market(self, market: Market) -> None:
         now = _now()
@@ -504,17 +613,24 @@ class SQLiteStorage:
     ) -> None:
         now = _now()
         resolved_market_id = f"{market.market_id}:{game.game_id}"
+        raw_mapping = raw_mapping or {
+            "market_outcomes": market.outcomes,
+            "match_teams": [match.team_a_name, match.team_b_name],
+        }
+        blue_token_id = _token_id_for_side(raw_mapping, "blue")
+        red_token_id = _token_id_for_side(raw_mapping, "red")
         with self._connect() as conn:
             conn.execute(
                 """
                 INSERT OR REPLACE INTO resolved_markets (
                     resolved_market_id, market_id, condition_id, yes_token_id, no_token_id,
+                    blue_token_id, red_token_id,
                     league, match_id, game_id, game_number, team_a_id, team_b_id,
                     team_a_name, team_b_name, blue_team_id, red_team_id, market_type,
                     mapping_confidence, market_status, skip_reason, raw_mapping_json,
                     source, confidence, created_at, updated_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     resolved_market_id,
@@ -522,6 +638,8 @@ class SQLiteStorage:
                     market.condition_id,
                     market.token_ids[0],
                     market.token_ids[1],
+                    blue_token_id,
+                    red_token_id,
                     match.league,
                     match.match_id,
                     game.game_id,
@@ -536,13 +654,7 @@ class SQLiteStorage:
                     mapping_confidence,
                     market_status,
                     skip_reason,
-                    json.dumps(
-                        raw_mapping
-                        or {
-                            "market_outcomes": market.outcomes,
-                            "match_teams": [match.team_a_name, match.team_b_name],
-                        }
-                    ),
+                    json.dumps(raw_mapping),
                     "market_match_resolver",
                     mapping_confidence,
                     now,
@@ -553,6 +665,16 @@ class SQLiteStorage:
     def _init_schema(self) -> None:
         with self._connect() as conn:
             conn.executescript(SCHEMA)
+            conn.execute(
+                """
+                INSERT INTO schema_metadata (key, value, updated_at)
+                VALUES ('schema_version', ?, ?)
+                ON CONFLICT(key) DO UPDATE SET
+                    value = excluded.value,
+                    updated_at = excluded.updated_at
+                """,
+                (SCHEMA_VERSION, _now()),
+            )
             _ensure_columns(
                 conn,
                 "quotes",
@@ -565,6 +687,14 @@ class SQLiteStorage:
                     "ask_count": "INTEGER NOT NULL DEFAULT 0",
                     "source_status": "TEXT NOT NULL DEFAULT 'ok'",
                     "error_code": "TEXT",
+                },
+            )
+            _ensure_columns(
+                conn,
+                "resolved_markets",
+                {
+                    "blue_token_id": "TEXT",
+                    "red_token_id": "TEXT",
                 },
             )
 
@@ -609,7 +739,25 @@ def _ensure_columns(
             conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {definition}")
 
 
+def _validate_source_status(source_status: str) -> None:
+    if source_status not in CANONICAL_SOURCE_STATUSES:
+        raise ValueError(f"unknown source_status: {source_status}")
+
+
+def _token_id_for_side(raw_mapping: dict, team_side: str) -> str | None:
+    for item in raw_mapping.get("tokenMappings") or []:
+        if item.get("teamSide") == team_side or item.get("team_side") == team_side:
+            return item.get("tokenId") or item.get("token_id")
+    return None
+
+
 SCHEMA = """
+CREATE TABLE IF NOT EXISTS schema_metadata (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS markets (
     market_id TEXT PRIMARY KEY,
     condition_id TEXT NOT NULL UNIQUE,
@@ -804,6 +952,23 @@ CREATE TABLE IF NOT EXISTS draft_snapshots (
     confidence REAL NOT NULL,
     created_at TEXT NOT NULL,
     UNIQUE(game_id, participant_id, observed_at)
+);
+
+CREATE TABLE IF NOT EXISTS collector_runs (
+    run_id TEXT PRIMARY KEY,
+    collector_name TEXT NOT NULL,
+    source TEXT NOT NULL,
+    target TEXT,
+    observed_at TEXT NOT NULL,
+    outcome TEXT NOT NULL,
+    source_status TEXT NOT NULL,
+    source_schema_version TEXT,
+    records_read INTEGER NOT NULL DEFAULT 0,
+    records_written INTEGER NOT NULL DEFAULT 0,
+    error_code TEXT,
+    error_message TEXT,
+    budget_state_json TEXT NOT NULL DEFAULT '{}',
+    created_at TEXT NOT NULL
 );
 """
 

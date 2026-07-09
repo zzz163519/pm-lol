@@ -11,7 +11,7 @@ from pm_lol.storage import SQLiteStorage
 
 # Cito free plan allows <=10 req/min. We stay strictly under that with buffer.
 CITO_FREE_PLAN_MAX_REQ_PER_MIN = 10
-CITO_DEFAULT_REQUEST_BUDGET_PER_MIN = 3
+CITO_DEFAULT_REQUEST_BUDGET_PER_MIN = 6
 # 429 backoff must cool down for at least this long before retrying.
 CITO_RATE_LIMIT_BACKOFF_SEC = 60
 
@@ -28,6 +28,33 @@ class CitoVisualStateClient(Protocol):
 
 class RateLimitedError(Exception):
     """Raised when the Cito visual-state endpoint returns a 429."""
+
+
+class CitoBudgetScheduler:
+    def __init__(
+        self,
+        request_budget_per_min: int = CITO_DEFAULT_REQUEST_BUDGET_PER_MIN,
+        poll_interval_sec: int = LIVE_GAME_POLL_INTERVAL_SEC,
+    ) -> None:
+        if request_budget_per_min >= CITO_FREE_PLAN_MAX_REQ_PER_MIN:
+            raise ValueError(
+                "request_budget_per_min must stay under the Cito free-plan limit "
+                f"(<{CITO_FREE_PLAN_MAX_REQ_PER_MIN} req/min)"
+            )
+        if request_budget_per_min <= 0:
+            raise ValueError("request_budget_per_min must be positive")
+        self.request_budget_per_min = request_budget_per_min
+        self.poll_interval_sec = poll_interval_sec
+        self.min_interval_sec = max(poll_interval_sec, 60 // request_budget_per_min)
+
+    def plan_offsets(self, targets: list[str], polls_per_target: int) -> list[dict[str, Any]]:
+        plan: list[dict[str, Any]] = []
+        offset_sec = 0
+        for _ in range(polls_per_target):
+            for target in targets:
+                plan.append({"offset_sec": offset_sec, "target": target})
+                offset_sec += self.min_interval_sec
+        return plan
 
 
 class LiveGameStateConnector:
@@ -112,17 +139,8 @@ class LiveGameStateConnector:
         max_polls: int = 4,
         request_budget_per_min: int = CITO_DEFAULT_REQUEST_BUDGET_PER_MIN,
     ) -> dict[str, Any]:
-        # Stay strictly under the Cito free-plan ceiling so we always keep buffer.
-        if request_budget_per_min >= CITO_FREE_PLAN_MAX_REQ_PER_MIN:
-            raise ValueError(
-                "request_budget_per_min must stay under the Cito free-plan limit "
-                f"(<{CITO_FREE_PLAN_MAX_REQ_PER_MIN} req/min)"
-            )
-        if request_budget_per_min <= 0:
-            raise ValueError("request_budget_per_min must be positive")
-
-        # Minimum spacing between calls to honour the request budget (e.g. 3/min -> 20s).
-        min_interval_sec = max(self.poll_interval_sec, 60 // request_budget_per_min)
+        scheduler = CitoBudgetScheduler(request_budget_per_min, self.poll_interval_sec)
+        min_interval_sec = scheduler.min_interval_sec
 
         polls = 0
         snapshots_written = 0
