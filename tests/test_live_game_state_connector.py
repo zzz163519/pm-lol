@@ -4,7 +4,11 @@ from pathlib import Path
 
 import pytest
 
-from pm_lol.collectors.live_game_state_connector import CitoBudgetScheduler, LiveGameStateConnector
+from pm_lol.collectors.live_game_state_connector import (
+    CitoApiClient,
+    CitoBudgetScheduler,
+    LiveGameStateConnector,
+)
 from pm_lol.models import Game, Match
 from pm_lol.storage import SQLiteStorage
 
@@ -165,6 +169,7 @@ def test_cito_poll_writes_freshness_metadata_and_respects_default_budget(tmp_pat
         "fresh_snapshots": 1,
         "stale_snapshots": 1,
         "partial_snapshots": 0,
+        "unavailable_numeric_snapshots": 1,
         "skipped_snapshots": 0,
         "rate_limited": False,
         "request_budget_per_min": 6,
@@ -278,6 +283,79 @@ def test_cito_poll_persists_paused_unknown_and_known(tmp_path):
     # Typed read-back round-trips the tri-state (None / True), never coercing to False.
     snapshots = storage.get_game_state_snapshots(game.game_id)
     assert [snap.paused for snap in snapshots] == [None, True]
+
+
+def test_cito_poll_persists_on_break_zero_confidence_as_unavailable_numeric_state(tmp_path):
+    db_path = tmp_path / "live.db"
+    storage = SQLiteStorage(db_path)
+    game = _make_match_and_game(storage, match_id="match-break", game_id="game-cito-1")
+
+    on_break = {
+        "status": "on_break",
+        "reason": "broadcast_desk_or_break_detected",
+        "sampleAgeSeconds": 17,
+        "gameId": game.game_id,
+        "matchId": "match-break",
+        "gameTimeSeconds": 0,
+        "confidence": {
+            "gold": 0,
+            "kills": 0,
+            "objectives": 0,
+            "timer": 0,
+        },
+        "dataQuality": {"numericLiveStats": "unavailable"},
+        "blueTeam": {"gold": 0, "kills": 0, "towers": 0, "dragons": 0, "barons": 0},
+        "redTeam": {"gold": 0, "kills": 0, "towers": 0, "dragons": 0, "barons": 0},
+    }
+    client = FakeCitoVisualClient([on_break])
+
+    summary = LiveGameStateConnector(client, storage).run_cito_visual_poll(game, max_polls=1)
+
+    assert summary["snapshots_written"] == 1
+    assert summary["unavailable_numeric_snapshots"] == 1
+    snapshot = storage.get_game_state_snapshots(game.game_id)[0]
+    assert snapshot.source_status == "on_break"
+    assert snapshot.error_code == "live_numeric_stats_unavailable"
+    assert snapshot.raw["reason"] == "broadcast_desk_or_break_detected"
+    assert snapshot.raw["confidence"] == {
+        "gold": 0,
+        "kills": 0,
+        "objectives": 0,
+        "timer": 0,
+    }
+    assert snapshot.raw["dataQuality"] == {"numericLiveStats": "unavailable"}
+
+
+def test_cito_api_client_reads_env_key_and_calls_required_lol_endpoints(monkeypatch):
+    calls = []
+
+    class FakeResponse:
+        status_code = 200
+        content = b"{}"
+
+        def __init__(self, payload):
+            self._payload = payload
+
+        def json(self):
+            return self._payload
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def get(self, url, headers=None, timeout=None):
+            calls.append({"url": url, "headers": headers, "timeout": timeout})
+            return FakeResponse({"url": url})
+
+    monkeypatch.setenv("CITO_API_KEY", "env-secret")
+    client = CitoApiClient(session=FakeSession(), timeout=7)
+
+    assert client.list_live_matches()["url"].endswith("/lol/live")
+    assert client.list_today_schedule()["url"].endswith("/lol/schedule/today")
+    assert client.get_match_coverage("match-1")["url"].endswith("/lol/matches/match-1/coverage")
+    assert client.get_visual_state("game-1")["url"].endswith("/lol/live/game-1/visual-state")
+    assert all(call["headers"] == {"x-api-key": "env-secret"} for call in calls)
+    assert all(call["timeout"] == 7 for call in calls)
 
 
 class FakeEventDetailsClient:

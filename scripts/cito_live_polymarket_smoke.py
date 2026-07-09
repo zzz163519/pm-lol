@@ -335,6 +335,45 @@ def is_visual_state_ready(visual_state: Any) -> bool:
     )
 
 
+def visual_state_status_summary(visual_state: Any) -> dict[str, Any]:
+    if not isinstance(visual_state, dict):
+        return {
+            "status": None,
+            "reason": None,
+            "sampleAgeSeconds": None,
+            "confidence": None,
+            "dataQuality": None,
+            "liveNumericStatsAvailable": False,
+        }
+    confidence = visual_state.get("confidence")
+    data_quality = visual_state.get("dataQuality")
+    return {
+        "status": visual_state.get("status"),
+        "reason": visual_state.get("reason"),
+        "sampleAgeSeconds": visual_state.get("sampleAgeSeconds"),
+        "confidence": confidence if isinstance(confidence, dict) else None,
+        "dataQuality": data_quality if isinstance(data_quality, dict) else None,
+        "liveNumericStatsAvailable": live_numeric_stats_available(visual_state),
+    }
+
+
+def live_numeric_stats_available(visual_state: dict[str, Any]) -> bool:
+    if str(visual_state.get("status") or "").lower() in {"on_break", "stale"}:
+        return False
+    if str(visual_state.get("reason") or "").lower() == "broadcast_desk_or_break_detected":
+        return False
+    data_quality = visual_state.get("dataQuality")
+    if isinstance(data_quality, dict):
+        value = data_quality.get("numericLiveStats") or data_quality.get("numeric_live_stats")
+        if str(value or "").lower() == "unavailable":
+            return False
+    confidence = visual_state.get("confidence")
+    if not isinstance(confidence, dict):
+        return True
+    values = [confidence.get(key) for key in ("gold", "kills", "objectives", "timer") if key in confidence]
+    return not (values and all(value == 0 for value in values))
+
+
 def write_json(path: Path, payload: Any) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -434,6 +473,7 @@ def run_smoke(
         raw_paths["postgame"] = write_json(output_dir / f"cito-postgame-{game_id}-2026-07-08.json", postgame_payload)
 
     visual_ready = is_visual_state_ready(visual_payload)
+    visual_summary = visual_state_status_summary(visual_payload)
     if game_id and visual_record and visual_record.get("ok") and visual_ready:
         overall_status = "live_sample_collected"
     elif game_id and visual_record and visual_record.get("ok"):
@@ -476,6 +516,7 @@ def run_smoke(
                 "gameId": game_id,
                 "rawSamplePath": raw_paths["visualState"],
                 "ready": visual_ready,
+                **visual_summary,
             },
             "coverage": {
                 "request": coverage_record,

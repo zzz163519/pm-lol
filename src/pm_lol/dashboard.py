@@ -32,6 +32,7 @@ def build_dashboard_snapshot(
     source: str | None = None,
     observed_from: str | None = None,
     observed_to: str | None = None,
+    fixture_mode: bool = False,
 ) -> dict[str, Any]:
     storage = SQLiteStorage(db_path)
     filters = {
@@ -40,6 +41,7 @@ def build_dashboard_snapshot(
         "source": source,
         "observedFrom": observed_from,
         "observedTo": observed_to,
+        "fixtureMode": fixture_mode,
     }
     markets = _dashboard_markets(
         storage.path,
@@ -47,6 +49,7 @@ def build_dashboard_snapshot(
         game_id=game_id,
         observed_from=observed_from,
         observed_to=observed_to,
+        fixture_mode=fixture_mode,
     )
     game_states = _game_states(
         storage.path,
@@ -54,8 +57,13 @@ def build_dashboard_snapshot(
         game_id=game_id,
         observed_from=observed_from,
         observed_to=observed_to,
+        fixture_mode=fixture_mode,
     )
-    picks = _picks(storage.path, match_id=match_id, game_id=game_id)
+    picks = (
+        _picks(storage.path, match_id=match_id, game_id=game_id)
+        if fixture_mode or game_states
+        else {"blue": [], "red": []}
+    )
     collector_events = _collector_events(storage.path, source=source)
     status_summary = _source_status_summary(markets, game_states, collector_events)
     if not markets or not game_states:
@@ -63,6 +71,7 @@ def build_dashboard_snapshot(
 
     return {
         "schemaVersion": SCHEMA_VERSION,
+        "snapshotMode": "fixture" if fixture_mode else "current",
         "filters": filters,
         "markets": markets,
         "gameStates": game_states,
@@ -401,6 +410,7 @@ def _dashboard_markets(
     game_id: str | None,
     observed_from: str | None,
     observed_to: str | None,
+    fixture_mode: bool,
 ) -> list[dict[str, Any]]:
     clauses: list[str] = []
     params: list[object] = []
@@ -410,6 +420,11 @@ def _dashboard_markets(
     if game_id:
         clauses.append("rm.game_id = ?")
         params.append(game_id)
+    if not fixture_mode:
+        clauses.append("rm.mapping_confidence >= 0.9")
+        clauses.append("rm.market_status NOT LIKE 'skipped%'")
+        clauses.append("m.active = 1")
+        clauses.append("m.closed = 0")
     where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
     with _connect(db_path) as conn:
         rows = conn.execute(
@@ -565,6 +580,7 @@ def _game_states(
     game_id: str | None,
     observed_from: str | None,
     observed_to: str | None,
+    fixture_mode: bool,
 ) -> list[dict[str, Any]]:
     clauses: list[str] = []
     params: list[object] = []
@@ -580,6 +596,8 @@ def _game_states(
     if observed_to:
         clauses.append("s.observed_at <= ?")
         params.append(observed_to)
+    if not fixture_mode:
+        clauses.append("g.state IN ('in_game', 'inProgress', 'in_progress', 'live')")
     where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
     with _connect(db_path) as conn:
         rows = conn.execute(
@@ -591,7 +609,7 @@ def _game_states(
                 s.blue_dragons_json, s.red_dragons_json, s.blue_barons,
                 s.red_barons, s.blue_kills, s.red_kills, s.paused,
                 s.finished, s.winner, s.source_status, s.sample_age_seconds,
-                s.error_code, s.source
+                s.error_code, s.source, s.raw_json
             FROM game_state_snapshots s
             JOIN games g ON g.game_id = s.game_id
             {where}
@@ -600,29 +618,32 @@ def _game_states(
             """,
             params,
         ).fetchall()
-    return [
-        {
+    game_states = []
+    for row in rows:
+        raw = json.loads(row["raw_json"])
+        numeric_available = _live_numeric_stats_available(row, raw)
+        game_state = {
             "gameId": row["game_id"],
             "matchId": row["match_id"],
             "gameNumber": row["game_number"],
             "sourceTimestamp": row["source_timestamp"],
             "observedAt": row["observed_at"],
-            "gameClock": row["game_clock"],
+            "gameClock": row["game_clock"] if numeric_available else None,
             "gameState": row["game_state"],
             "gold": {
-                "blue": row["blue_gold"],
-                "red": row["red_gold"],
-                "diff": row["gold_diff"],
+                "blue": row["blue_gold"] if numeric_available else None,
+                "red": row["red_gold"] if numeric_available else None,
+                "diff": row["gold_diff"] if numeric_available else None,
             },
             "objectives": {
-                "blueTowers": row["blue_towers"],
-                "redTowers": row["red_towers"],
-                "blueDragons": json.loads(row["blue_dragons_json"]),
-                "redDragons": json.loads(row["red_dragons_json"]),
-                "blueBarons": row["blue_barons"],
-                "redBarons": row["red_barons"],
-                "blueKills": row["blue_kills"],
-                "redKills": row["red_kills"],
+                "blueTowers": row["blue_towers"] if numeric_available else None,
+                "redTowers": row["red_towers"] if numeric_available else None,
+                "blueDragons": json.loads(row["blue_dragons_json"]) if numeric_available else [],
+                "redDragons": json.loads(row["red_dragons_json"]) if numeric_available else [],
+                "blueBarons": row["blue_barons"] if numeric_available else None,
+                "redBarons": row["red_barons"] if numeric_available else None,
+                "blueKills": row["blue_kills"] if numeric_available else None,
+                "redKills": row["red_kills"] if numeric_available else None,
             },
             "paused": None if row["paused"] is None else bool(row["paused"]),
             "finished": bool(row["finished"]),
@@ -631,9 +652,33 @@ def _game_states(
             "sampleAgeSeconds": row["sample_age_seconds"],
             "errorCode": row["error_code"],
             "source": row["source"],
+            "citoStatus": raw.get("status") or row["source_status"],
+            "citoReason": raw.get("reason"),
+            "citoConfidence": raw.get("confidence"),
+            "dataQuality": raw.get("dataQuality"),
+            "liveNumericStatsAvailable": numeric_available,
         }
-        for row in rows
-    ]
+        game_states.append(game_state)
+    return game_states
+
+
+def _live_numeric_stats_available(row: sqlite3.Row, raw: dict[str, Any]) -> bool:
+    if row["error_code"] == "live_numeric_stats_unavailable":
+        return False
+    if row["source_status"] in {"on_break", "stale"}:
+        return False
+    if str(raw.get("status") or "").lower() in {"on_break", "stale"}:
+        return False
+    data_quality = raw.get("dataQuality")
+    if isinstance(data_quality, dict):
+        value = data_quality.get("numericLiveStats") or data_quality.get("numeric_live_stats")
+        if str(value or "").lower() == "unavailable":
+            return False
+    confidence = raw.get("confidence")
+    if not isinstance(confidence, dict):
+        return True
+    values = [confidence.get(key) for key in ("gold", "kills", "objectives", "timer") if key in confidence]
+    return not (values and all(value == 0 for value in values))
 
 
 def _picks(db_path: Path, *, match_id: str | None, game_id: str | None) -> dict[str, list[str]]:
@@ -741,9 +786,17 @@ def _market_row(market: dict[str, Any]) -> str:
 
 def _game_state_card(row: dict[str, Any]) -> str:
     objectives = row["objectives"]
+    numeric_notice = ""
+    if not row.get("liveNumericStatsAvailable", True):
+        numeric_notice = (
+            '<p class="empty">live numeric stats unavailable'
+            f" · {_e(row.get('citoStatus'))}"
+            f" · {_e(row.get('citoReason'))}</p>"
+        )
     return f"""
     <section class="panel">
       <h2>Game state</h2>
+      {numeric_notice}
       <div class="metric-grid">
         <div class="metric"><div class="label">Game clock</div><div class="value">{_fmt_clock(row['gameClock'])}</div></div>
         <div class="metric"><div class="label">State</div><div class="value">{_e(row['gameState'])}</div></div>
@@ -752,7 +805,7 @@ def _game_state_card(row: dict[str, Any]) -> str:
         <div class="metric"><div class="label">Towers</div><div class="value">{_fmt_int(objectives['blueTowers'])} / {_fmt_int(objectives['redTowers'])}</div></div>
         <div class="metric"><div class="label">Dragons</div><div class="value">{_e(', '.join(objectives['blueDragons']) or 'none')} / {_e(', '.join(objectives['redDragons']) or 'none')}</div></div>
         <div class="metric"><div class="label">Barons</div><div class="value">{_fmt_int(objectives['blueBarons'])} / {_fmt_int(objectives['redBarons'])}</div></div>
-        <div class="metric"><div class="label">sourceStatus / sampleAgeSeconds</div><div class="value">{_badge(row['sourceStatus'])}</div><div class="subtle">{_e(row['sampleAgeSeconds'])}</div></div>
+        <div class="metric"><div class="label">CITO status / sampleAgeSeconds</div><div class="value">{_badge(row.get('citoStatus') or row['sourceStatus'])}</div><div class="subtle">{_e(row['sampleAgeSeconds'])}</div></div>
       </div>
     </section>
     """
@@ -766,12 +819,17 @@ def _request_filters(query: str) -> dict[str, str | None]:
         "source": _first(params, "source"),
         "observed_from": _first(params, "observedFrom") or _first(params, "observed_from"),
         "observed_to": _first(params, "observedTo") or _first(params, "observed_to"),
+        "fixture_mode": _truthy(_first(params, "fixtureMode") or _first(params, "fixture_mode")),
     }
 
 
 def _first(params: dict[str, list[str]], key: str) -> str | None:
     values = params.get(key) or []
     return values[0] if values and values[0] else None
+
+
+def _truthy(value: str | None) -> bool:
+    return str(value or "").lower() in {"1", "true", "yes", "fixture", "dev"}
 
 
 def _connect(db_path: Path) -> sqlite3.Connection:
