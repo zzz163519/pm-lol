@@ -257,7 +257,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-05 — LoLEsports schedule/event 映射复核
 
-**状态：** [~] LoLEsports event/game/team 结构已从历史样本验证；真实同场 Polymarket 映射待验证
+**状态：** [~] CAL-157 已捕获真实赛中同场映射且 `mappingConfidence=1.0`；Game 3 team side 跨 365.5 秒样本翻转，稳定性待验证
 
 **目标：** 在 F0-00 基础上，专门复核 LoLEsports schedule/event 数据是否足够支撑 Polymarket MarketResolver / MatchMapper / TeamAliasResolver / GameNumberResolver。
 
@@ -271,10 +271,10 @@ candidate_primary_for_production = risky_until_live_validation
 
 **执行步骤：**
 
-- [ ] 调用 `getSchedule`。
-- [ ] 调用 `getEventDetails`。
-- [ ] 保存至少 1 个 BO3/BO5 event 的原始 JSON。
-- [ ] 手工比对同一场 Polymarket market title，记录映射难点。
+- [x] 调用 `getSchedule`。
+- [x] 调用 `getEventDetails`。
+- [x] 保存至少 1 个 BO3/BO5 event 的 source capture JSON。
+- [x] 手工比对同一场 Polymarket market title，记录映射难点。
 
 **产出物：**
 
@@ -292,12 +292,18 @@ candidate_primary_for_production = risky_until_live_validation
 - T1 vs GEN 历史 event details 可提供 `matchId -> gameId -> gameNumber -> blue/red side`。
 - 当前 replay 中 Polymarket 样例为 KT vs Saigon Warriors，与 LoLEsports 样例不是同一场；
   低置信度 skip 是正确行为，不是映射成功证据。
+- CAL-157 在 G2 vs LYON 活跃 BO5 中于 `2026-07-10T09:48:38.926396Z` 和
+  `2026-07-10T09:54:44.462731Z` 两次捕获同场映射；match/Game 1-5/team identity
+  与 Polymarket Game 1-4 market/token 均稳定，`mappingConfidence=1.0`。
+- 同一 live window 内 Game 3 side 从 G2 red / LYON blue 翻转为 G2 blue /
+  LYON red，因此完整 team-side hard gate 尚未关闭。
 
 **仍需验证：**
 
-- [ ] 找到真实同一场 Polymarket Game N Winner 市场与 LoLEsports event。
-- [ ] 记录 `polymarketTitle -> marketSlug -> conditionId -> matchId -> gameNumber -> team side`。
-- [ ] `mappingConfidence >= 0.90` 才能视为通过。
+- [x] 找到真实同一场 Polymarket Game N Winner 市场与 LoLEsports event。
+- [x] 记录 `polymarketTitle -> marketSlug -> conditionId -> matchId -> gameNumber -> team side`。
+- [x] live 样本 `mappingConfidence >= 0.90`。
+- [ ] 确认 authoritative team-side source，并证明重复 live 样本不再翻转。
 
 ---
 
@@ -519,7 +525,7 @@ Conditional Phase 1 scope decision:
 ```text
 [~] Polymarket public 行情实测可用：HTML slug discovery + Gamma slug detail + Game Winner tokenId + CLOB orderbook REST 已验证；generic search 不可靠、网络路径不稳定、WS pending_network_retest
 [ ] 至少一个 LOL 实时源实测可用：历史样本覆盖 final picks + derived clock + gold + objectives；live sourceLatencySec 未实测
-[~] 赛程/映射源实测可用：LoLEsports schedule/event/gameNumber/team side 历史样本已验证；真实同场 Polymarket mapping 待验证
+[~] 赛程/映射源实测可用：CAL-157 已捕获 G2 vs LYON 真实赛中同场 mappingConfidence=1.0；Game 3 team side 跨样本翻转，稳定性 gate 仍 pending
 [x] SourceScore 完成：候选源有证据打分，live latency 风险仍 pending
 [~] Phase 1 主输入源组合确定：conditional go，仅限 Data Foundation；生产主源未确认
 [x] Phase 1 schema 草案完成：核心 connector 输出可落库
@@ -528,8 +534,9 @@ Conditional Phase 1 scope decision:
 
 当前 P0 blockers：
 
-- [ ] Real cross-event mapping validation：同一场 Polymarket Game N Winner 与
-  LoLEsports event/game/team side，`mappingConfidence >= 0.90`。
+- [ ] Live mapping stability：同一场 Polymarket Game N Winner 与 LoLEsports
+  event/game/team identity 已达到 `mappingConfidence=1.0`；仍需确认 authoritative
+  team-side source，并在重复 live 样本中保持稳定。
 - [ ] Polymarket Market WebSocket retest：成功则保存订阅消息；失败则正式记录
   REST polling 为 QuoteRecorder v1 baseline。
 

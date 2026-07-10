@@ -84,8 +84,9 @@ resolver hard gate 和 replay pipeline。
 
 继续推进前仍必须关闭以下 Phase 0 gates：
 
-- 真实同场 `Polymarket market -> LoLEsports match/game/team side` 映射样例，且
-  `mappingConfidence >= 0.90`。
+- 真实同场 `Polymarket market -> LoLEsports match/game/team side` 映射需在重复
+  live 样本中保持稳定且 `mappingConfidence >= 0.90`。CAL-157 已在 G2 vs LYON
+  赛中两次达到 `1.0`，但 Game 3 team side 在 365.5 秒内翻转，稳定性仍 pending。
 - Polymarket Market WebSocket clean network retest，或正式记录 REST polling 为
   v1 baseline。
 
@@ -211,7 +212,7 @@ Phase 3 主线验证通过，或 Phase 4 中某个非主线策略验证通过；
 ## 7. 当前状态
 
 ```text
-Phase 0: [~] Source Feasibility Spike — 主源定为 Cito（gold/objectives/gameClock/gameState）+ LoLEsports（draft/picks），CAL-59 已验证。剩余 gates：多场次字段稳定性复核、mappingConfidence ≥ 0.90 复核、Polymarket WS retest
+Phase 0: [~] Source Feasibility Spike — 主源定为 Cito（gold/objectives/gameClock/gameState）+ LoLEsports（draft/picks），CAL-59 已验证。CAL-157 已捕获 G2 vs LYON 真实赛中 mappingConfidence=1.0，但 Game 3 team side 跨样本翻转；剩余 gates：多场次字段/side 稳定性复核、Polymarket WS retest
 Phase 1: [~] Conditional Phase 1 Data Foundation — 本地验证骨架已存在，不是 full Phase 1
 Phase 2: [ ] Strategy Skeleton — 冻结
 Phase 3: [ ] Paper Trading Loop — 未启动
@@ -220,5 +221,5 @@ Phase 5: [ ] Execution Layer — 冻结
 ```
 
 下一步：按 `tasks.md` 中的当前 P0 blocker 推进：
-多场次字段稳定性复核、真实同场 mapping validation、Polymarket Market
-WebSocket retest 或 REST polling baseline 决策，并保持 Phase 2+ 冻结。
+多场次字段稳定性与 live team-side authority 复核、Polymarket Market WebSocket
+retest 或 REST polling baseline 决策，并保持 Phase 2+ 冻结。

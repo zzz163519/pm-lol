@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "cal-157-live-mapping-evidence-v1",
+  "observedAt": "2026-07-10T09:48:38.926396Z",
+  "secondObservedAt": "2026-07-10T09:54:44.462731Z",
+  "scheduledStart": "2026-07-10T08:00:00Z",
+  "sampleIntervalSec": 365.536335,
+  "match": {
+    "name": "G2 Esports vs LYON",
+    "league": "MSI",
+    "format": "BO5",
+    "lolesportsMatchId": "115570934355614593",
+    "stateAtBothSamples": "inProgress",
+    "teams": [
+      {
+        "id": "98767991926151025",
+        "code": "G2",
+        "name": "G2 Esports"
+      },
+      {
+        "id": "99566405941863385",
+        "code": "LYON",
+        "name": "LYON"
+      }
+    ]
+  },
+  "liveClassification": {
+    "value": "genuinely_live",
+    "isPrematchStatic": false,
+    "basis": [
+      "LoLEsports match state was inProgress in both samples.",
+      "Games 1 and 2 were completed while Game 3 was inProgress in both samples.",
+      "The samples were captured 365.536335 seconds apart during the active BO5 window."
+    ],
+    "limitation": "The first sample was 6518.926396 seconds after scheduled start, not at the opening instant, and the endpoint exposes no source timestamp for latency measurement."
+  },
+  "lolesportsGames": [
+    {
+      "gameNumber": 1,
+      "gameId": "115570934355614594",
+      "stateAtBothSamples": "completed"
+    },
+    {
+      "gameNumber": 2,
+      "gameId": "115570934355614595",
+      "stateAtBothSamples": "completed"
+    },
+    {
+      "gameNumber": 3,
+      "gameId": "115570934355614596",
+      "stateAtBothSamples": "inProgress"
+    },
+    {
+      "gameNumber": 4,
+      "gameId": "115570934355614597",
+      "stateAtBothSamples": "unstarted"
+    },
+    {
+      "gameNumber": 5,
+      "gameId": "115570934355614598",
+      "stateAtBothSamples": "unstarted"
+    }
+  ],
+  "polymarket": {
+    "eventSlug": "lol-g2-ly-2026-07-10",
+    "eventTitle": "LoL: G2 Esports vs LYON (BO5) - Mid-Season Invitational Playoffs",
+    "seriesConditionId": "0x9023eedb2645ee65bccb6aa93753b26b837e98ac64f065e1acdac188aff54b2b",
+    "gameWinnerMarkets": [
+      {
+        "gameNumber": 1,
+        "marketSlug": "lol-g2-ly-2026-07-10-game1",
+        "conditionId": "0xafa3f92ef06b1f42eeb4239054d133b92b52423bb199350c5f0bfe6eb5aaca94",
+        "g2TokenId": "76139101447828300858775026719426172181701825631465488526712436980225218230538",
+        "lyonTokenId": "11375244638573387322653973021095160832667152479398725838897146290628938005476"
+      },
+      {
+        "gameNumber": 2,
+        "marketSlug": "lol-g2-ly-2026-07-10-game2",
+        "conditionId": "0xc1dd38f36d3ec4a6a5d8ec03bf5af0ea75113ad188b85a895317c51e48b80dce",
+        "g2TokenId": "1161663761026248928741317236361093152095776065309269380062540556077381245572",
+        "lyonTokenId": "33609950325255448197129891500016919686890698412468372975023048260919067557916"
+      },
+      {
+        "gameNumber": 3,
+        "marketSlug": "lol-g2-ly-2026-07-10-game3",
+        "conditionId": "0xce8bc40907b928e7d02717975855be7272c3589f8fdd1f70b9f03ea14f280577",
+        "g2TokenId": "47405794293316148244590035888323531202770006061275899647071095856237793879763",
+        "lyonTokenId": "9306033963311851564212548176894914508758998308587255967584753177135725757149"
+      },
+      {
+        "gameNumber": 4,
+        "marketSlug": "lol-g2-ly-2026-07-10-game4",
+        "conditionId": "0x77dfdc06f52dc6c35c37f02dc1eb0f989149e4194f32ab39831397e1dee38fe3",
+        "g2TokenId": "93701377540053248919917010045639513003879676000036840938644210840680356230480",
+        "lyonTokenId": "96305276129173095401172786313679504270045258691665073871855533156862298784482"
+      }
+    ],
+    "game1ClobAtFirstSample": {
+      "outcome": "G2 Esports",
+      "bestBid": null,
+      "bestAsk": 0.001,
+      "bidCount": 0,
+      "askCount": 89,
+      "sourceTimestamp": "1783676900309"
+    },
+    "game1ClobAtSecondSample": {
+      "outcome": "G2 Esports",
+      "bestBid": null,
+      "bestAsk": 0.001,
+      "bidCount": 0,
+      "askCount": 78,
+      "sourceTimestamp": "1783677267498"
+    }
+  },
+  "mapping": {
+    "mappingConfidenceAtBothSamples": 1.0,
+    "stableMatchId": true,
+    "stableGameIds": true,
+    "stableTeamIds": true,
+    "stableMarketAndTokenIds": true,
+    "stableTeamSides": false,
+    "teamSideChange": {
+      "gameNumber": 3,
+      "gameId": "115570934355614596",
+      "firstSample": {
+        "G2 Esports": "red",
+        "LYON": "blue"
+      },
+      "secondSample": {
+        "G2 Esports": "blue",
+        "LYON": "red"
+      }
+    }
+  },
+  "network": {
+    "firstSample": {
+      "totalRequests": 15,
+      "totalRetries": 0,
+      "errorClasses": []
+    },
+    "secondSample": {
+      "totalRequests": 15,
+      "totalRetries": 0,
+      "errorClasses": []
+    }
+  },
+  "conclusion": {
+    "status": "pending",
+    "liveEvidenceCapture": "pass",
+    "matchGameTeamIdentityMapping": "pass",
+    "polymarketMarketTokenMapping": "pass",
+    "crossSampleTeamSideStability": "pending",
+    "reason": "A real in-progress match was captured twice with mappingConfidence 1.0, but Game 3 team sides flipped between samples. CAL-112 should remain NO-GO until side authority and stability are reconciled."
+  },
+  "commandUsed": "ts=$(date -u +%Y%m%dT%H%M%SZ); python scripts/polymarket_discovery_smoke.py --target-event-slug lol-g2-ly-2026-07-10 --lolesports-match-id 115570934355614593 --max-events 20 --retries 3 --output docs/source-spike/cal-157-g2-ly-discovery-${ts}.json --mapping-output docs/source-spike/cal-157-g2-ly-mapping-${ts}.json",
+  "sourcePayloadReferences": [
+    "docs/source-spike/cal-157-g2-ly-discovery-20260710T094838Z.json",
+    "docs/source-spike/cal-157-g2-ly-mapping-20260710T094838Z.json",
+    "docs/source-spike/cal-157-g2-ly-discovery-20260710T095444Z.json",
+    "docs/source-spike/cal-157-g2-ly-mapping-20260710T095444Z.json"
+  ],
+  "scope": "Read-only data-source, market-discovery, and match/game/team mapping verification only. No strategy, signal, fair probability, wallet, private key, broker, order, or live trading logic was used or changed."
+}

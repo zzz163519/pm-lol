@@ -150,7 +150,7 @@ Boundary:
 | Polymarket network path unstable | `pending_network_retest` | Collectors may see intermittent TLS failures | Add retry/backoff and classify SSL/proxy/direct failures during source spike. |
 | Bans unavailable in current LoLEsports samples | `known_gap` | Draft features may be incomplete | Search alternate frontend endpoint or accept picks-only Phase 1. |
 | Market-to-match resolver depends on aliases | `known_gap` | Low confidence mappings are skipped | Expand team alias table after more sample markets. |
-| Real cross-event mapping unproven | `pending_risk` | Markets cannot be trusted without high-confidence match/game/team mapping | Capture a true same-match Polymarket and LoLEsports sample with `mappingConfidence >= 0.90`. |
+| Live mapping team side unstable | `pending_risk` | Match/game/team and market/token identity are high-confidence, but side-dependent consumers could bind a token to the wrong side | Identify the authoritative side source and require stable sides across repeated live samples. |
 
 ## Go / No-Go
 
@@ -163,8 +163,9 @@ Conditions:
 - Do not build strategy, signals, or execution logic yet.
 - Do not treat LoLEsports as production primary until live latency is measured.
 - Do not rely on Polymarket WebSocket until it is retested; REST orderbook remains acceptable for local replay.
-- Do not treat any market mapping as passed until a real matching event reaches
-  `mappingConfidence >= 0.90`.
+- Do not treat the complete market-to-team-side mapping as passed until a real
+  matching event reaches `mappingConfidence >= 0.90` and repeated live samples
+  keep team sides stable.
 
 No-go triggers:
 
@@ -190,3 +191,30 @@ No-go triggers:
 **作废**：
 - CAL-56（找更低延迟源）→ 标 cancelled，原因：项目不追求秒级延迟
 - CAL-55（Cito 延迟量化）→ 降为 backlog，延迟数字已有参考值，不是 blocker
+
+## 2026-07-10 — CAL-157 G2 vs LYON 真实赛中映射复核
+
+**证据**：在 `2026-07-10T09:48:38.926396Z` 和
+`2026-07-10T09:54:44.462731Z` 两次只读采样。LoLEsports match
+`115570934355614593` 均为 `inProgress`，Game 3 均为 `inProgress`；不是 pre-match
+static 样本。Polymarket event `lol-g2-ly-2026-07-10` 的 Game 1-4 market、
+conditionId、tokenId 与 LoLEsports match/game/team identity 均稳定，两个样本的
+`mappingConfidence` 均为 `1.0`。每次 15 个 source 请求全部成功、零重试。
+
+**发现**：Game 3 的 team side 在 365.536335 秒内从 G2 red / LYON blue 翻转为
+G2 blue / LYON red；当前 confidence 计算未反映该跨样本不稳定性。
+
+**决策**：真实赛中证据捕获 PASS；match/game/team identity 与
+Polymarket market/token mapping PASS；完整 team-side stability PENDING。CAL-112
+保持 NO-GO，直到确认 authoritative side source 并用重复 live 样本证明 side 稳定。
+LoLEsports live latency 仍为 `pending_risk`，因为 event details 无 source timestamp。
+Phase 2 继续冻结。
+
+**Artifacts**：
+
+- `docs/source-spike/cal-157-g2-ly-live-mapping-evidence-20260710T094838Z.json`
+- `docs/source-spike/cal-157-g2-ly-live-mapping-report-20260710T094838Z.md`
+- `docs/source-spike/cal-157-g2-ly-discovery-20260710T094838Z.json`
+- `docs/source-spike/cal-157-g2-ly-mapping-20260710T094838Z.json`
+- `docs/source-spike/cal-157-g2-ly-discovery-20260710T095444Z.json`
+- `docs/source-spike/cal-157-g2-ly-mapping-20260710T095444Z.json`
