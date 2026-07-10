@@ -257,7 +257,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-05 — LoLEsports schedule/event 映射复核
 
-**状态：** [~] CAL-157 已捕获真实赛中同场映射且 `mappingConfidence=1.0`；Game 3 team side 跨 365.5 秒样本翻转，稳定性待验证
+**状态：** [~] CAL-157 authenticated CITO 重跑已完成；无 active match，identity/market-token PASS，game/team-side PENDING
 
 **目标：** 在 F0-00 基础上，专门复核 LoLEsports schedule/event 数据是否足够支撑 Polymarket MarketResolver / MatchMapper / TeamAliasResolver / GameNumberResolver。
 
@@ -297,6 +297,11 @@ candidate_primary_for_production = risky_until_live_validation
   与 Polymarket Game 1-4 market/token 均稳定，`mappingConfidence=1.0`。
 - 同一 live window 内 Game 3 side 从 G2 red / LYON blue 翻转为 G2 blue /
   LYON red，因此完整 team-side hard gate 尚未关闭。
+- `2026-07-10T10:50:59.151801Z` authenticated CITO 重跑中，`GET /lol/live`
+  返回 HTTP 200 / `no_match` / `count=0`；CITO schedule、LoLEsports event/window
+  与 Polymarket Game 1-4 REST 对照确认 identity 和 market-token mapping PASS。
+  因已无 active match，CITO Game 3 visual-state 返回 `no_live_match`，game 与
+  team-side 交叉验证保持 PENDING，CAL-112 保持 NO-GO。
 
 **仍需验证：**
 
@@ -304,6 +309,8 @@ candidate_primary_for_production = risky_until_live_validation
 - [x] 记录 `polymarketTitle -> marketSlug -> conditionId -> matchId -> gameNumber -> team side`。
 - [x] live 样本 `mappingConfidence >= 0.90`。
 - [ ] 确认 authoritative team-side source，并证明重复 live 样本不再翻转。
+- [ ] 在下一场 active match 同一采样窗口复核 CITO live numeric fields、LoLEsports
+  picks/side 与 Polymarket Game Winner token side。
 
 ---
 
@@ -525,7 +532,7 @@ Conditional Phase 1 scope decision:
 ```text
 [~] Polymarket public 行情实测可用：HTML slug discovery + Gamma slug detail + Game Winner tokenId + CLOB orderbook REST 已验证；generic search 不可靠、网络路径不稳定、WS pending_network_retest
 [ ] 至少一个 LOL 实时源实测可用：历史样本覆盖 final picks + derived clock + gold + objectives；live sourceLatencySec 未实测
-[~] 赛程/映射源实测可用：CAL-157 已捕获 G2 vs LYON 真实赛中同场 mappingConfidence=1.0；Game 3 team side 跨样本翻转，稳定性 gate 仍 pending
+[~] 赛程/映射源实测可用：CAL-157 authenticated CITO 重跑为 no-active-match/near-live；identity 与 market-token PASS，game/team-side PENDING，稳定性 gate 未关闭
 [x] SourceScore 完成：候选源有证据打分，live latency 风险仍 pending
 [~] Phase 1 主输入源组合确定：conditional go，仅限 Data Foundation；生产主源未确认
 [x] Phase 1 schema 草案完成：核心 connector 输出可落库

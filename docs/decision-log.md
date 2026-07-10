@@ -218,3 +218,28 @@ Phase 2 继续冻结。
 - `docs/source-spike/cal-157-g2-ly-mapping-20260710T094838Z.json`
 - `docs/source-spike/cal-157-g2-ly-discovery-20260710T095444Z.json`
 - `docs/source-spike/cal-157-g2-ly-mapping-20260710T095444Z.json`
+
+## 2026-07-10 — CAL-157 authenticated CITO no-active-match 重跑
+
+**证据**：`2026-07-10T10:50:59.151801Z` 起使用仅存在于进程环境的
+`CITO_API_KEY` 执行 authenticated read-only GET。CITO `/lol/live` 返回 HTTP 200、
+业务状态 `no_match`、`count=0`、`liveOnly=true`；`/lol/schedule/today` 返回 HTTP
+200、`partial_data`、`dataFreshness=fresh`，并把 G2 vs LYON match
+`115570934355614593` 标为 completed、LYON 3–0。CITO 明确警告 schedule 数据经
+Riot LoL Esports event details 修复，因此不把它伪装成独立 live 确认。
+
+同一重跑窗口内，CITO Game 3 visual-state 返回 HTTP 200 / `no_live_match`；
+LoLEsports event details 显示 match 与 Games 1–3 completed，Game 3 final picks
+仍可从 livestats window 读取；Polymarket public Gamma/CLOB REST 仍可读取 Game
+1–4 condition/token mapping，`mappingConfidence=1.0`，orderbook source timestamp
+距 discovery observation 37.534 秒。
+
+**决策**：这是 `no-active-match/near-live` 证据，不是 live 证据。identity PASS；
+game PENDING；team side PENDING；market token side PASS。Authenticated CITO read
+access 已验证，但 active-match CITO live numeric fields 与 authoritative team-side
+stability 尚未验证。CAL-112 保持 NO-GO，Phase 2 继续冻结。
+
+**Artifacts**：
+
+- `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.json`
+- `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.md`
