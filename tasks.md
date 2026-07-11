@@ -532,7 +532,7 @@ Conditional Phase 1 scope decision:
 ```text
 [~] Polymarket public 行情实测可用：HTML slug discovery + Gamma slug detail + Game Winner tokenId + CLOB orderbook REST 已验证；generic search 不可靠、网络路径不稳定、WS pending_network_retest
 [ ] 至少一个 LOL 实时源实测可用：历史样本覆盖 final picks + derived clock + gold + objectives；live sourceLatencySec 未实测
-[~] 赛程/映射源实测可用：CAL-157 authenticated CITO 重跑为 no-active-match/near-live；identity 与 market-token PASS，game/team-side PENDING，稳定性 gate 未关闭
+[~] 赛程/映射源实测可用：CAL-169 已取得两次真正 active HLE–LYON 样本；identity 与 market-token PASS（confidence 1.0），Game 1 side 跨样本翻转且 CITO 无 numeric frame，game/team-side PENDING
 [x] SourceScore 完成：候选源有证据打分，live latency 风险仍 pending
 [~] Phase 1 主输入源组合确定：conditional go，仅限 Data Foundation；生产主源未确认
 [x] Phase 1 schema 草案完成：核心 connector 输出可落库
