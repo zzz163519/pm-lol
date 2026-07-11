@@ -1,0 +1,652 @@
+{
+  "boundaryFindings": [
+    "read_only_get_requests_only",
+    "no_wallet",
+    "no_private_key",
+    "no_trade_execution",
+    "no_strategy_or_signal"
+  ],
+  "conclusion": "Dual-source mapping is wired, but unresolved fields remain: teamIdentity, gold, goldDiff, objectives, kills, gameClock, draftPicks, winner.",
+  "endedAt": "2026-07-11T08:08:39.440Z",
+  "fieldCoverage": {
+    "draftPicks": {
+      "endpoint": "GET https://feed.lolesports.com/livestats/v1/window/{gameId}",
+      "path": "gameMetadata.{blue,red}TeamMetadata.participantMetadata[].championId",
+      "sample": {
+        "blue": [],
+        "red": []
+      },
+      "source": "lolesports_livestats",
+      "status": "missing"
+    },
+    "gameClock": {
+      "endpoint": "GET /api/v1/lol/live/{gameId}/visual-state",
+      "path": "gameTimeFormatted, gameTimeSeconds",
+      "sample": {
+        "formatted": null,
+        "seconds": null
+      },
+      "source": "cito_visual_state",
+      "status": "missing"
+    },
+    "gameState": {
+      "endpoint": "GET /api/v1/lol/live/{gameId}/visual-state",
+      "path": "status",
+      "sample": "not_ready",
+      "source": "cito_visual_state",
+      "status": "present"
+    },
+    "gold": {
+      "endpoint": "GET /api/v1/lol/live/{gameId}/visual-state",
+      "path": "blueTeam.gold, redTeam.gold",
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "source": "cito_visual_state",
+      "status": "missing"
+    },
+    "goldDiff": {
+      "endpoint": "GET /api/v1/lol/live/{gameId}/visual-state",
+      "path": "blueTeam.gold - redTeam.gold",
+      "sample": null,
+      "source": "derived_from_cito_visual_state",
+      "status": "missing"
+    },
+    "kills": {
+      "endpoint": "GET /api/v1/lol/live/{gameId}/visual-state",
+      "path": "blueTeam.kills, redTeam.kills",
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "source": "cito_visual_state",
+      "status": "missing"
+    },
+    "objectives": {
+      "endpoint": "GET /api/v1/lol/live/{gameId}/visual-state",
+      "path": "blueTeam.{dragons,barons,towers}, redTeam.{dragons,barons,towers}",
+      "sample": {
+        "blue": {
+          "barons": null,
+          "dragons": null,
+          "towers": null
+        },
+        "red": {
+          "barons": null,
+          "dragons": null,
+          "towers": null
+        }
+      },
+      "source": "cito_visual_state",
+      "status": "missing"
+    },
+    "teamIdentity": {
+      "endpoint": "GET /api/v1/lol/live/{gameId}/visual-state",
+      "path": "blueTeam.tag, redTeam.tag",
+      "sample": {
+        "blue": null,
+        "red": null
+      },
+      "source": "cito_visual_state",
+      "status": "missing"
+    },
+    "winner": {
+      "completedGameCount": 0,
+      "endpoint": "GET https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id={matchId}",
+      "path": "event.match.teams[].result.gameWins with event.match.games[].state",
+      "sample": null,
+      "source": "lolesports_event_details",
+      "status": "pending",
+      "teamResults": [
+        {
+          "code": "LYON",
+          "gameWins": 0,
+          "id": "99566405941863385",
+          "name": "LYON"
+        },
+        {
+          "code": "HLE",
+          "gameWins": 0,
+          "id": "100205573496804586",
+          "name": "Hanwha Life Esports"
+        }
+      ]
+    }
+  },
+  "raw": {
+    "citoCoverage": {
+      "active_live_game_id": null,
+      "checked_at": "2026-07-11T08:08:30.704Z",
+      "coverage": {
+        "coverage_level": "live_listed",
+        "expected_live_state": false,
+        "expected_webhooks": false,
+        "live_row": true,
+        "message": "The match is live-listed, but numeric live state is not present yet. Keep polling the coverage endpoint before treating live-state webhooks as expected.",
+        "numeric_live_state": false,
+        "precheck_endpoint": "/api/v1/lol/matches/lol-match-115570934355614599/coverage",
+        "schedule_metadata": true,
+        "webhook_event": false
+      },
+      "definitions": {
+        "live_row": "The match is currently present in Cito live discovery or live cache.",
+        "numeric_live_state": "Current kills, gold, towers, objectives, player stats, or game clock are present.",
+        "postgame_enrichment": "Section-by-section postgame coverage for completed games. Use availableSections and missingSections on /lol/games/{gameId}/postgame for the exact game-level contract.",
+        "recommended_rule": "For production decisions, require schedule_metadata + live_row + numeric_live_state. For LCK CL / Academy, never assume live state before this pre-check confirms it.",
+        "schedule_metadata": "A stored schedule/match row exists in Cito.",
+        "webhook_event": "Cito has enough numeric live-state data to emit lol.live.state webhooks for subscribed users."
+      },
+      "docs": "https://citoapi.com/docs/api/league-of-legends",
+      "games": [
+        {
+          "esportsApiId": "115570934355614600",
+          "gameId": "lol-game-115570934355614600",
+          "gameNumber": 1,
+          "has_final_stats": false
+        }
+      ],
+      "input_id": "115570934355614599",
+      "input_type": "match_id",
+      "league": {
+        "leagueId": "lol-msi",
+        "live_state_policy": "opportunistic_live_state",
+        "name": "MSI",
+        "region": "INTERNATIONAL",
+        "shortName": "MSI",
+        "slug": "msi",
+        "tier": "international"
+      },
+      "live_cache": [],
+      "live_status": {
+        "lastCheckedAt": "2026-07-11T08:08:23.514Z",
+        "status": "live"
+      },
+      "match_id": "lol-match-115570934355614599",
+      "success": true,
+      "teams": {
+        "team1": {
+          "name": "TBD",
+          "shortName": "TBD",
+          "slug": "tbd"
+        },
+        "team2": {
+          "name": "Hanwha Life Esports",
+          "shortName": "HLE",
+          "slug": "hle"
+        }
+      }
+    },
+    "citoLive": null,
+    "citoScheduleToday": null,
+    "citoVisualState": {
+      "alternatives": [
+        "/api/v1/lol/live/115570934355614600/stats",
+        "/api/v1/lol/games/115570934355614600/postgame",
+        "/api/v1/lol/live"
+      ],
+      "data": null,
+      "docs": "https://citoapi.com/docs/api/league-of-legends",
+      "finalDataEndpoint": "/api/v1/lol/games/115570934355614600/postgame",
+      "gameId": "115570934355614600",
+      "message": "No accepted visual live state is available for this game yet. This endpoint only returns high-confidence 720p/1080p reads and skips replay/low-quality frames.",
+      "reliability": "provisional_until_postgame_reconciliation",
+      "retryAfterSeconds": 10,
+      "source": "visual_live_extraction",
+      "status": "not_ready",
+      "success": true
+    },
+    "lolesportsEventDetails": {
+      "data": {
+        "event": {
+          "id": "115570934355614599",
+          "league": {
+            "id": "98767991325878492",
+            "image": "http://static.lolesports.com/leagues/1592594634248_MSIDarkBG.png",
+            "name": "MSI",
+            "slug": "msi"
+          },
+          "match": {
+            "games": [
+              {
+                "id": "115570934355614600",
+                "number": 1,
+                "state": "inProgress",
+                "teams": [
+                  {
+                    "id": "99566405941863385",
+                    "side": "blue"
+                  },
+                  {
+                    "id": "100205573496804586",
+                    "side": "red"
+                  }
+                ],
+                "vods": []
+              },
+              {
+                "id": "115570934355614601",
+                "number": 2,
+                "state": "unstarted",
+                "teams": [
+                  {
+                    "id": "100205573496804586",
+                    "side": "blue"
+                  },
+                  {
+                    "id": "99566405941863385",
+                    "side": "red"
+                  }
+                ],
+                "vods": []
+              },
+              {
+                "id": "115570934355614602",
+                "number": 3,
+                "state": "unstarted",
+                "teams": [
+                  {
+                    "id": "99566405941863385",
+                    "side": "blue"
+                  },
+                  {
+                    "id": "100205573496804586",
+                    "side": "red"
+                  }
+                ],
+                "vods": []
+              },
+              {
+                "id": "115570934355614603",
+                "number": 4,
+                "state": "unstarted",
+                "teams": [
+                  {
+                    "id": "100205573496804586",
+                    "side": "blue"
+                  },
+                  {
+                    "id": "99566405941863385",
+                    "side": "red"
+                  }
+                ],
+                "vods": []
+              },
+              {
+                "id": "115570934355614604",
+                "number": 5,
+                "state": "unstarted",
+                "teams": [
+                  {
+                    "id": "99566405941863385",
+                    "side": "blue"
+                  },
+                  {
+                    "id": "100205573496804586",
+                    "side": "red"
+                  }
+                ],
+                "vods": []
+              }
+            ],
+            "strategy": {
+              "count": 5
+            },
+            "teams": [
+              {
+                "code": "LYON",
+                "id": "99566405941863385",
+                "image": "http://static.lolesports.com/teams/1743717443673_isotypelyon-03.png",
+                "name": "LYON",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "code": "HLE",
+                "id": "100205573496804586",
+                "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+                "name": "Hanwha Life Esports",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ]
+          },
+          "streams": [
+            {
+              "countries": [],
+              "locale": "hu-HU",
+              "mediaLocale": {
+                "englishName": "Hungarian (Hungary)",
+                "locale": "hu-HU",
+                "translatedName": "Magyar"
+              },
+              "offset": -40000,
+              "parameter": "esport2tv",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "de-DE",
+              "mediaLocale": {
+                "englishName": "German (Germany)",
+                "locale": "de-DE",
+                "translatedName": "Deutsch"
+              },
+              "offset": -40000,
+              "parameter": "tolkin",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "en-US",
+              "mediaLocale": {
+                "englishName": "English (North America)",
+                "locale": "en-US",
+                "translatedName": "English (North America)"
+              },
+              "offset": -30000,
+              "parameter": "riotgames",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "en-US",
+              "mediaLocale": {
+                "englishName": "English (North America)",
+                "locale": "en-US",
+                "translatedName": "English (North America)"
+              },
+              "offset": -30000,
+              "parameter": "CYfcAt4Wu50",
+              "provider": "youtube",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "en-US",
+              "mediaLocale": {
+                "englishName": "English (North America)",
+                "locale": "en-US",
+                "translatedName": "English (North America)"
+              },
+              "offset": -40000,
+              "parameter": "riotgames",
+              "provider": "kick",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "zh-TW",
+              "mediaLocale": {
+                "englishName": "Chinese (Republic of China)",
+                "locale": "zh-TW",
+                "translatedName": "繁體中文"
+              },
+              "offset": -40000,
+              "parameter": "lolesportstw",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [
+                "BR"
+              ],
+              "locale": "pt-BR",
+              "mediaLocale": {
+                "englishName": "Portuguese (Brazil)",
+                "locale": "pt-BR",
+                "translatedName": "Português (Brasil)"
+              },
+              "offset": -40000,
+              "parameter": "cblol",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "pt-BR",
+              "mediaLocale": {
+                "englishName": "Portuguese (Brazil)",
+                "locale": "pt-BR",
+                "translatedName": "Português (Brasil)"
+              },
+              "offset": -40000,
+              "parameter": "_8rBDBefEmY",
+              "provider": "youtube",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "pt-BR",
+              "mediaLocale": {
+                "englishName": "Portuguese (Brazil)",
+                "locale": "pt-BR",
+                "translatedName": "Português (Brasil)"
+              },
+              "offset": -40000,
+              "parameter": "cblol",
+              "provider": "kick",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "ko-KR",
+              "mediaLocale": {
+                "englishName": "Korean (Korea)",
+                "locale": "ko-KR",
+                "translatedName": "한국어"
+              },
+              "offset": -40000,
+              "parameter": "aflol",
+              "provider": "afreecatv",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "es-ES",
+              "mediaLocale": {
+                "englishName": "Spanish (Spain)",
+                "locale": "es-ES",
+                "translatedName": "Español (España)"
+              },
+              "offset": -40000,
+              "parameter": "LES",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "es-MX",
+              "mediaLocale": {
+                "englishName": "Spanish (Mexico)",
+                "locale": "es-MX",
+                "translatedName": "Español (Latinoamérica)"
+              },
+              "offset": -40000,
+              "parameter": "lolesportsla",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "es-MX",
+              "mediaLocale": {
+                "englishName": "Spanish (Mexico)",
+                "locale": "es-MX",
+                "translatedName": "Español (Latinoamérica)"
+              },
+              "offset": -40000,
+              "parameter": "lbHKD3tXhd0",
+              "provider": "youtube",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "es-MX",
+              "mediaLocale": {
+                "englishName": "Spanish (Mexico)",
+                "locale": "es-MX",
+                "translatedName": "Español (Latinoamérica)"
+              },
+              "offset": -40000,
+              "parameter": "lolesportsla",
+              "provider": "kick",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "pl-PL",
+              "mediaLocale": {
+                "englishName": "Polish (Poland)",
+                "locale": "pl-PL",
+                "translatedName": "Polski"
+              },
+              "offset": -40000,
+              "parameter": "nervarien",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [
+                "FR"
+              ],
+              "locale": "fr-FR",
+              "mediaLocale": {
+                "englishName": "French (France)",
+                "locale": "fr-FR",
+                "translatedName": "Français"
+              },
+              "offset": -40000,
+              "parameter": "otplol_",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "vi-VN",
+              "mediaLocale": {
+                "englishName": "Vietnamese (Vietnam)",
+                "locale": "vi-VN",
+                "translatedName": "Tiếng Việt"
+              },
+              "offset": -40000,
+              "parameter": "pOPYD60l-oM",
+              "provider": "youtube",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "ja-JP",
+              "mediaLocale": {
+                "englishName": "Japanese (Japan)",
+                "locale": "ja-JP",
+                "translatedName": "日本語"
+              },
+              "offset": -40000,
+              "parameter": "leagueoflegendsjp",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            },
+            {
+              "countries": [],
+              "locale": "th-TH",
+              "mediaLocale": {
+                "englishName": "Thai (Thailand)",
+                "locale": "th-TH",
+                "translatedName": "ภาษาไทย"
+              },
+              "offset": -40000,
+              "parameter": "leagueoflegendsth",
+              "provider": "twitch",
+              "statsStatus": "enabled"
+            }
+          ],
+          "tournament": {
+            "id": "115570934354631452"
+          },
+          "type": "match"
+        }
+      }
+    },
+    "lolesportsWindow": null
+  },
+  "rawSamplePath": "docs/source-spike/field-source-map-probe-20260711T080826091Z.json",
+  "reportPath": "docs/source-spike/field-source-map-probe-20260711T080826091Z.md",
+  "requests": {
+    "citoCoverage": {
+      "elapsedSec": 4.45,
+      "error": null,
+      "errorClass": null,
+      "observedAt": "2026-07-11T08:08:26.091Z",
+      "ok": true,
+      "statusCode": 200,
+      "url": "https://api.citoapi.com/api/v1/lol/matches/115570934355614599/coverage"
+    },
+    "citoLive": {
+      "errorClass": "skipped_explicit_match_id",
+      "ok": false,
+      "statusCode": null
+    },
+    "citoScheduleToday": {
+      "errorClass": "skipped_explicit_match_id",
+      "ok": false,
+      "statusCode": null
+    },
+    "citoVisualState": {
+      "elapsedSec": 0.617,
+      "error": null,
+      "errorClass": null,
+      "observedAt": "2026-07-11T08:08:30.541Z",
+      "ok": true,
+      "statusCode": 200,
+      "url": "https://api.citoapi.com/api/v1/lol/live/115570934355614600/visual-state"
+    },
+    "lolesportsEventDetails": {
+      "elapsedSec": 3.57,
+      "error": null,
+      "errorClass": null,
+      "observedAt": "2026-07-11T08:08:31.158Z",
+      "ok": true,
+      "statusCode": 200,
+      "url": "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id=115570934355614599"
+    },
+    "lolesportsEventDetailsPolls": [
+      {
+        "attempt": 1,
+        "elapsedSec": 3.57,
+        "error": null,
+        "errorClass": null,
+        "observedAt": "2026-07-11T08:08:31.158Z",
+        "ok": true,
+        "statusCode": 200,
+        "url": "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id=115570934355614599",
+        "winnerStatus": "pending"
+      }
+    ],
+    "lolesportsWindow": {
+      "elapsedSec": 3.866,
+      "error": null,
+      "errorClass": "empty_body",
+      "observedAt": "2026-07-11T08:08:34.728Z",
+      "ok": false,
+      "statusCode": 204,
+      "url": "https://feed.lolesports.com/livestats/v1/window/115570934355614600"
+    }
+  },
+  "scope": "CAL-59 dual-source field source map probe",
+  "script": "scripts/field_source_map_probe.py",
+  "startedAt": "2026-07-11T08:08:26.091Z",
+  "target": {
+    "gameId": "115570934355614600",
+    "matchId": "115570934355614599",
+    "teams": [
+      "Hanwha Life Esports",
+      "LYON"
+    ]
+  }
+}

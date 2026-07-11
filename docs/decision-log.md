@@ -243,3 +243,30 @@ stability 尚未验证。CAL-112 保持 NO-GO，Phase 2 继续冻结。
 
 - `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.json`
 - `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.md`
+
+## 2026-07-11 — CAL-169 HLE vs LYON active 三源复核
+
+**证据**：`2026-07-11T08:02:37.499Z` 与 `08:08:26.091Z` 两次同步只读采样，
+间隔 348.592 秒。LoLEsports match `115570934355614599` 的 Game 1
+`115570934355614600` 两次均为 `inProgress`，因此是真实 active 样本。Polymarket
+event `lol-hle1-ly-2026-07-11` 的 Game 1-4 condition/token IDs 稳定，两个样本
+`mappingConfidence=1.0`。
+
+**发现**：Game 1 side 从 HLE blue / LYON red 翻转为 HLE red / LYON blue，复现
+CAL-157 的 side instability。CITO coverage 与 visual-state HTTP 200，但状态从
+`on_break` 变为 `not_ready`，没有 numeric gameplay/team-side frame。LoLEsports
+livestats 首次 TLS 失败、第二次 HTTP 204；event details 无 source timestamp。
+
+**决策**：active capture、identity、market-token side PASS；game、team-side、
+freshness/latency PENDING。完整三源 hard gate 未关闭，CAL-112 继续 NO-GO，Phase 2
+继续冻结。
+
+**Artifact**：
+
+- `docs/source-spike/cal-169-hle-ly-live-mapping-report-20260711T080237Z.md`
+- `docs/source-spike/field-source-map-probe-20260711T080237499Z.json`
+- `docs/source-spike/field-source-map-probe-20260711T080826091Z.json`
+- `docs/source-spike/cal-169-hle-ly-discovery-20260711T080237Z.json`
+- `docs/source-spike/cal-169-hle-ly-mapping-20260711T080237Z.json`
+- `docs/source-spike/cal-169-hle-ly-discovery-20260711T080826Z.json`
+- `docs/source-spike/cal-169-hle-ly-mapping-20260711T080826Z.json`

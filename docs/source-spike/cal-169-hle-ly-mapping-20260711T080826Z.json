@@ -1,0 +1,350 @@
+{
+  "lolesports": {
+    "matchId": "115570934355614599",
+    "metadata": {
+      "eventId": "115570934355614599",
+      "games": [
+        {
+          "id": "115570934355614600",
+          "number": 1,
+          "state": "inProgress",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "100205573496804586",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614601",
+          "number": 2,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "100205573496804586",
+              "side": "blue"
+            },
+            {
+              "id": "99566405941863385",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614602",
+          "number": 3,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "100205573496804586",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614603",
+          "number": 4,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "100205573496804586",
+              "side": "blue"
+            },
+            {
+              "id": "99566405941863385",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614604",
+          "number": 5,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "100205573496804586",
+              "side": "red"
+            }
+          ]
+        }
+      ],
+      "league": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "115570934355614599",
+      "startTime": "2026-07-11T08:00:00Z",
+      "state": "inProgress",
+      "teams": [
+        {
+          "code": "LYON",
+          "id": "99566405941863385",
+          "name": "LYON"
+        },
+        {
+          "code": "HLE",
+          "id": "100205573496804586",
+          "name": "Hanwha Life Esports"
+        }
+      ]
+    },
+    "ok": true,
+    "scheduleLookup": {
+      "error": null,
+      "errorClass": null,
+      "ok": true
+    }
+  },
+  "lolesportsMatchId": "115570934355614599",
+  "mappingConfidence": 1.0,
+  "notes": [
+    "Pre-match static mapping smoke only.",
+    "LoLEsports live latency is not validated by this output.",
+    "Token-to-side samples are gated at mappingConfidence >= 0.90."
+  ],
+  "pendingLiveValidation": true,
+  "polymarketEventSlug": "lol-hle1-ly-2026-07-11",
+  "polymarketGameWinnerMarkets": [
+    {
+      "active": true,
+      "clobTokenIds": [
+        "97030903347936099809712211774880132820716149097020948618258743557775057824890",
+        "44493745424505015673580654907543976603055456440015971152797098728448469253828"
+      ],
+      "closed": false,
+      "conditionId": "0xc944b0677a883c8dc0bbeb4eab57c573d19335012968bb0f38dad40bc2a058d8",
+      "eventSlug": "lol-hle1-ly-2026-07-11",
+      "gameNumber": 1,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game1",
+      "outcomes": [
+        "Hanwha Life Esports",
+        "LYON"
+      ],
+      "question": "LoL: Hanwha Life Esports vs LYON - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "65328205516380543612846787748813341526311971547662868381895905879621611718854",
+        "43352177745029765381117903182775050090151239577341482408278783749515380599854"
+      ],
+      "closed": false,
+      "conditionId": "0xbc2f4d888dee905c541499a7a045a70fa2159d0655da1b4f39b449f6390fb0e1",
+      "eventSlug": "lol-hle1-ly-2026-07-11",
+      "gameNumber": 2,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game2",
+      "outcomes": [
+        "Hanwha Life Esports",
+        "LYON"
+      ],
+      "question": "LoL: Hanwha Life Esports vs LYON - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "100094646481889411045608903542709537170681601408861322501769657932997311570009",
+        "63396348548938433495483250843101847170314165320994552131531502015999904774935"
+      ],
+      "closed": false,
+      "conditionId": "0xbcec2dfc25ad448b0a5066be89013eea34d452be4bb6aad5ce75a851f29eba8b",
+      "eventSlug": "lol-hle1-ly-2026-07-11",
+      "gameNumber": 3,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game3",
+      "outcomes": [
+        "Hanwha Life Esports",
+        "LYON"
+      ],
+      "question": "LoL: Hanwha Life Esports vs LYON - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "22293458003405574504714007164622746211949900414139391877327291617757461162520",
+        "43846976494098272646563389120447614630449411564808893089345137008608456450110"
+      ],
+      "closed": false,
+      "conditionId": "0x1567cfbb3597df9c9b43a91d227081b21e9cc0795488570c7bcd58b30b21353f",
+      "eventSlug": "lol-hle1-ly-2026-07-11",
+      "gameNumber": 4,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game4",
+      "outcomes": [
+        "Hanwha Life Esports",
+        "LYON"
+      ],
+      "question": "LoL: Hanwha Life Esports vs LYON - Game 4 Winner"
+    }
+  ],
+  "polymarketStartTime": "2026-07-11T08:00:00Z",
+  "polymarketTeams": [
+    "Hanwha Life Esports",
+    "LYON"
+  ],
+  "polymarketTitle": "LoL: Hanwha Life Esports vs LYON (BO5) - Mid-Season Invitational Playoffs",
+  "sampleMappings": [
+    {
+      "conditionId": "0xc944b0677a883c8dc0bbeb4eab57c573d19335012968bb0f38dad40bc2a058d8",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614600",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game1",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "red",
+      "tokenId": "97030903347936099809712211774880132820716149097020948618258743557775057824890"
+    },
+    {
+      "conditionId": "0xc944b0677a883c8dc0bbeb4eab57c573d19335012968bb0f38dad40bc2a058d8",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614600",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game1",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "blue",
+      "tokenId": "44493745424505015673580654907543976603055456440015971152797098728448469253828"
+    },
+    {
+      "conditionId": "0xbc2f4d888dee905c541499a7a045a70fa2159d0655da1b4f39b449f6390fb0e1",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614601",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game2",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "blue",
+      "tokenId": "65328205516380543612846787748813341526311971547662868381895905879621611718854"
+    },
+    {
+      "conditionId": "0xbc2f4d888dee905c541499a7a045a70fa2159d0655da1b4f39b449f6390fb0e1",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614601",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game2",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "red",
+      "tokenId": "43352177745029765381117903182775050090151239577341482408278783749515380599854"
+    },
+    {
+      "conditionId": "0xbcec2dfc25ad448b0a5066be89013eea34d452be4bb6aad5ce75a851f29eba8b",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614602",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game3",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "red",
+      "tokenId": "100094646481889411045608903542709537170681601408861322501769657932997311570009"
+    },
+    {
+      "conditionId": "0xbcec2dfc25ad448b0a5066be89013eea34d452be4bb6aad5ce75a851f29eba8b",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614602",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game3",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "blue",
+      "tokenId": "63396348548938433495483250843101847170314165320994552131531502015999904774935"
+    },
+    {
+      "conditionId": "0x1567cfbb3597df9c9b43a91d227081b21e9cc0795488570c7bcd58b30b21353f",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614603",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game4",
+      "outcome": "Hanwha Life Esports",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "HLE",
+      "teamId": "100205573496804586",
+      "teamName": "Hanwha Life Esports",
+      "teamSide": "blue",
+      "tokenId": "22293458003405574504714007164622746211949900414139391877327291617757461162520"
+    },
+    {
+      "conditionId": "0x1567cfbb3597df9c9b43a91d227081b21e9cc0795488570c7bcd58b30b21353f",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614599",
+      "lolesportsGameId": "115570934355614603",
+      "lolesportsMatchId": "115570934355614599",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-hle1-ly-2026-07-11-game4",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: Hanwha Life Esports vs LYON - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "red",
+      "tokenId": "43846976494098272646563389120447614630449411564808893089345137008608456450110"
+    }
+  ],
+  "startTimeAligned": true,
+  "teamAliasMapping": {
+    "Hanwha Life Esports": [
+      "Hanwha Life Esports",
+      "HLE"
+    ],
+    "LYON": [
+      "LYON"
+    ]
+  },
+  "viable": true
+}

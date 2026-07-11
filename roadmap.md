@@ -214,7 +214,7 @@ Phase 3 主线验证通过，或 Phase 4 中某个非主线策略验证通过；
 ## 7. 当前状态
 
 ```text
-Phase 0: [~] Source Feasibility Spike — 主源定为 Cito（gold/objectives/gameClock/gameState）+ LoLEsports（draft/picks），CAL-59 已验证。CAL-157 authenticated CITO 重跑为 no-active-match/near-live：identity 与 market-token mapping PASS，game/team-side PENDING；剩余 gates：active-match 多场次字段/side 稳定性复核、Polymarket WS retest
+Phase 0: [~] Source Feasibility Spike — 主源定为 Cito（gold/objectives/gameClock/gameState）+ LoLEsports（draft/picks），CAL-59 已验证。CAL-169 两次 active HLE–LYON 样本的 identity 与 market-token mapping PASS（confidence 1.0），但 Game 1 side 再次翻转且 CITO 无 numeric frame，game/team-side PENDING；剩余 gates：authoritative side 与 active numeric-field 稳定性复核、Polymarket WS retest
 Phase 1: [~] Conditional Phase 1 Data Foundation — 本地验证骨架已存在，不是 full Phase 1
 Phase 2: [ ] Strategy Skeleton — 冻结
 Phase 3: [ ] Paper Trading Loop — 未启动
