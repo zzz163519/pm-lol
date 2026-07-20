@@ -224,13 +224,19 @@ It does not fully close Phase 0 until a live match test confirms:
 
 ## Next Test
 
-Use the next scheduled match:
+The previous `2026-06-15` target is historical. The current prepared observation target is:
 
 ```text
-2026-06-15T15:00:00Z
-EMEA Masters
-GL vs SLY
-matchId: 116634566264113564
+2026-07-21T06:00:00Z
+KeSPA Cup Groups, BO1
+Hanwha Life Esports vs Gen.G Esports
+matchId: unresolved until a current runtime LOLESPORTS_API_KEY is injected
+```
+
+Execution plan and schedule evidence:
+
+```text
+docs/source-spike/lolesports-live-spike-plan-2026-07-21.md
 ```
 
 Live test checklist:

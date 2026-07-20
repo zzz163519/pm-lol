@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only LoLEsports livestats field probe for CAL-59 T1 vs G2."""
+"""Read-only Phase 0 LoLEsports schedule-to-livestats field probe."""
 
 from __future__ import annotations
 
@@ -125,23 +125,46 @@ def text_blob(value: Any) -> str:
     return " ".join(parts).lower()
 
 
-def find_target_event(payload: Any, target_teams: tuple[str, str]) -> dict[str, Any] | None:
+def find_target_events(payload: Any, target_teams: tuple[str, str]) -> list[dict[str, Any]]:
     targets = tuple(team.lower() for team in target_teams)
+    matches: list[dict[str, Any]] = []
     if isinstance(payload, dict):
         event = payload.get("event") if "event" in payload else payload
         match = event.get("match") if isinstance(event, dict) else None
         if isinstance(match, dict) and all(team in text_blob(match) for team in targets):
-            return event
+            matches.append(event)
         for child in payload.values():
-            found = find_target_event(child, target_teams)
-            if found:
-                return found
+            matches.extend(find_target_events(child, target_teams))
     elif isinstance(payload, list):
         for child in payload:
-            found = find_target_event(child, target_teams)
-            if found:
-                return found
-    return None
+            matches.extend(find_target_events(child, target_teams))
+
+    unique: dict[str, dict[str, Any]] = {}
+    for event in matches:
+        match = event.get("match") or {}
+        identity = str(event.get("id") or match.get("id") or id(event))
+        unique[identity] = event
+    return list(unique.values())
+
+
+def find_target_event(
+    payload: Any,
+    target_teams: tuple[str, str],
+    expected_start: str | None = None,
+) -> dict[str, Any] | None:
+    matches = find_target_events(payload, target_teams)
+    if not matches:
+        return None
+    expected_dt = parse_time(expected_start)
+    if expected_dt is None:
+        return matches[0]
+
+    def distance(event: dict[str, Any]) -> float:
+        start_dt = parse_time(event.get("startTime"))
+        return abs(start_dt.timestamp() - expected_dt.timestamp()) if start_dt else float("inf")
+
+    closest = min(matches, key=distance)
+    return closest if distance(closest) <= 60 else None
 
 
 def event_summary(event: dict[str, Any] | None) -> dict[str, Any]:
@@ -212,7 +235,9 @@ def field_coverage(window_payload: Any, details_payload: Any, event: dict[str, A
     frame = sample_frame(window_payload) or sample_frame(details_payload)
     blue = frame.get("blueTeam") if isinstance(frame, dict) else None
     red = frame.get("redTeam") if isinstance(frame, dict) else None
-    picks = final_picks(window_payload) or final_picks(details_payload)
+    picks = final_picks(window_payload)
+    if len(picks["blue"]) + len(picks["red"]) < 10:
+        picks = final_picks(details_payload)
     blue_side = side_sample(blue)
     red_side = side_sample(red)
     blue_gold = blue_side.get("gold")
@@ -242,7 +267,7 @@ def write_json(path: Path, payload: Any) -> str:
 
 def write_markdown(path: Path, result: dict[str, Any]) -> str:
     lines = [
-        "# CAL-59 LoLEsports Livestats Field Probe",
+        "# Phase 0 LoLEsports Livestats Field Probe",
         "",
         f"Window: `{result['startedAt']}` to `{result['endedAt']}` UTC.",
         "",
@@ -250,6 +275,8 @@ def write_markdown(path: Path, result: dict[str, Any]) -> str:
         "",
         "## Target",
         "",
+        f"- teams: `{result['target']['teams']}`",
+        f"- expected start: `{result['target']['expectedStart']}`",
         f"- matchId: `{result['target']['matchId']}`",
         f"- gameId: `{result['target']['gameId']}`",
         f"- event state: `{result['target']['eventState']}`",
@@ -285,26 +312,38 @@ def build_conclusion(result: dict[str, Any]) -> str:
     window = result["requests"]["window"]
     details = result["requests"]["details"]
     if window.get("statusCode") == 204 and details.get("statusCode") == 204:
-        return "LoLEsports schedule/eventDetails can map T1 vs G2, but livestats window/details returned 204/no body in this run, so it cannot yet supplement Cito's missing live fields."
+        return "LoLEsports schedule/eventDetails mapped the target, but livestats window/details returned 204/no body in this run; live field and latency validation remains open."
     missing = [name for name, item in result["fieldCoverage"].items() if item.get("status") == "missing"]
     frame_age = result["freshness"].get("frameAgeSec")
     stale_note = ""
     if isinstance(frame_age, (int, float)) and frame_age > 120:
         stale_note = f" Latest livestats frame was stale at {frame_age}s old, so treat this as schema/field evidence, not fresh live state."
     if missing:
-        return "LoLEsports livestats partially supplements Cito, but these fields remain missing: " + ", ".join(missing) + "." + stale_note
-    return "LoLEsports livestats covers the requested fields for this sample; winner still needs postgame/event reconciliation before using as final source." + stale_note
+        return "LoLEsports livestats only partially covers the Phase 0 target; these fields remain missing: " + ", ".join(missing) + "." + stale_note
+    return "LoLEsports livestats covers the requested fields for this sample; winner still needs postgame/event reconciliation before production use." + stale_note
 
 
-def run_probe(*, output_dir: Path, target_teams: tuple[str, str], timeout_sec: float) -> dict[str, Any]:
+def slugify(value: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+    return slug or "unknown"
+
+
+def run_probe(
+    *,
+    output_dir: Path,
+    target_teams: tuple[str, str],
+    timeout_sec: float,
+    expected_start: str | None = None,
+    game_number: int = 1,
+) -> dict[str, Any]:
     session = requests.Session()
-    session.headers.update({"User-Agent": "pm-lol-lolesports-t1-g2-livestats-probe/0.1"})
+    session.headers.update({"User-Agent": "pm-lol-lolesports-livestats-probe/0.2"})
     headers = {"x-api-key": load_lolesports_api_key()}
     started_at = utc_now()
     stamp = utc_stamp(started_at)
 
     schedule_payload, schedule_record = fetch(session, SCHEDULE_URL, headers=headers, timeout=timeout_sec)
-    event = find_target_event(schedule_payload, target_teams)
+    event = find_target_event(schedule_payload, target_teams, expected_start)
     summary = event_summary(event)
     event_details_payload = None
     event_details_record = {"statusCode": None, "errorClass": "skipped_no_match_id", "ok": False}
@@ -315,7 +354,7 @@ def run_probe(*, output_dir: Path, target_teams: tuple[str, str], timeout_sec: f
             event = details_event
             summary = event_summary(event)
 
-    game = next((candidate for candidate in summary.get("games") or [] if candidate.get("number") == 1), None)
+    game = next((candidate for candidate in summary.get("games") or [] if candidate.get("number") == game_number), None)
     game_id = str(game.get("id")) if isinstance(game, dict) and game.get("id") else None
     window_payload = None
     details_payload = None
@@ -331,10 +370,10 @@ def run_probe(*, output_dir: Path, target_teams: tuple[str, str], timeout_sec: f
     ended_at = utc_now()
     result = {
         "script": "scripts/lolesports_t1_g2_livestats_probe.py",
-        "scope": "CAL-59 LoLEsports livestats T1 vs G2 field supplement probe",
+        "scope": "Phase 0 read-only LoLEsports schedule-to-livestats field probe",
         "startedAt": started_at,
         "endedAt": ended_at,
-        "target": {"teams": list(target_teams), "matchId": summary.get("matchId"), "gameId": game_id, "eventState": summary.get("state"), "startTime": summary.get("startTime"), "event": summary},
+        "target": {"teams": list(target_teams), "expectedStart": expected_start, "gameNumber": game_number, "matchId": summary.get("matchId"), "gameId": game_id, "eventState": summary.get("state"), "startTime": summary.get("startTime"), "event": summary},
         "requests": {"schedule": schedule_record, "eventDetails": event_details_record, "window": window_record, "details": details_record},
         "raw": {"schedule": schedule_payload, "eventDetails": event_details_payload, "window": window_payload, "details": details_payload},
         "fieldCoverage": coverage,
@@ -346,10 +385,11 @@ def run_probe(*, output_dir: Path, target_teams: tuple[str, str], timeout_sec: f
         "boundaryFindings": ["read_only_get_requests_only", "no_wallet", "no_private_key", "no_trade_execution", "no_strategy_or_signal"],
     }
     result["conclusion"] = build_conclusion(result)
-    raw_path = output_dir / f"lolesports-t1-g2-livestats-probe-{stamp}.json"
+    target_slug = "-vs-".join(slugify(team) for team in target_teams)
+    raw_path = output_dir / f"lolesports-{target_slug}-livestats-probe-{stamp}.json"
     result["rawSamplePath"] = str(raw_path)
     write_json(raw_path, result)
-    report_path = output_dir / f"lolesports-t1-g2-livestats-probe-{stamp}.md"
+    report_path = output_dir / f"lolesports-{target_slug}-livestats-probe-{stamp}.md"
     result["reportPath"] = write_markdown(report_path, result)
     write_json(raw_path, result)
     return result
@@ -360,6 +400,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--output-dir", default="docs/source-spike")
     parser.add_argument("--timeout-sec", type=float, default=20.0)
     parser.add_argument("--target-team", action="append", dest="target_teams")
+    parser.add_argument("--expected-start", help="RFC3339 start time used to disambiguate recurring team matchups.")
+    parser.add_argument("--game-number", type=int, default=1)
     return parser.parse_args(argv)
 
 
@@ -369,7 +411,16 @@ def main(argv: list[str] | None = None) -> int:
     if len(target_teams) != 2:
         print("--target-team must be provided exactly twice when used", file=sys.stderr)
         return 2
-    result = run_probe(output_dir=Path(args.output_dir), target_teams=(str(target_teams[0]), str(target_teams[1])), timeout_sec=args.timeout_sec)
+    if args.game_number < 1:
+        print("--game-number must be at least 1", file=sys.stderr)
+        return 2
+    result = run_probe(
+        output_dir=Path(args.output_dir),
+        target_teams=(str(target_teams[0]), str(target_teams[1])),
+        timeout_sec=args.timeout_sec,
+        expected_start=args.expected_start,
+        game_number=args.game_number,
+    )
     print(json.dumps({k: result[k] for k in ("target", "requests", "fieldCoverage", "conclusion", "rawSamplePath", "reportPath")}, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
 
