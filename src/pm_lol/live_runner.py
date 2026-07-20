@@ -16,11 +16,18 @@ from pm_lol.storage import SQLiteStorage
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DB_PATH = PROJECT_ROOT / "data" / "db" / "live.db"
+LOLESPORTS_API_KEY_ENV = "LOLESPORTS_API_KEY"
+
+
+def load_lolesports_api_key() -> str:
+    api_key = os.environ.get(LOLESPORTS_API_KEY_ENV, "").strip()
+    if not api_key:
+        raise RuntimeError(f"{LOLESPORTS_API_KEY_ENV} is required")
+    return api_key
 
 
 def run_live_runner(match_id: str, db_path: str | Path = DEFAULT_DB_PATH) -> dict[str, object]:
-    api_key = os.environ.get("LOLESPORTS_API_KEY", "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z")
-    client = LoLEsportsClient(api_key=api_key)
+    client = LoLEsportsClient(api_key=load_lolesports_api_key())
     payload = client.get_event_details(match_id)
     event = payload["data"]["event"]
     match, games = parse_event_details({"event": event})

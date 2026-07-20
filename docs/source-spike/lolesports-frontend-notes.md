@@ -27,8 +27,11 @@ GET https://esports-api.lolesports.com/persisted/gw/getTeams?hl=en-US&id={teamId
 Required header:
 
 ```text
-x-api-key: 0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z
+x-api-key: ${LOLESPORTS_API_KEY}
 ```
+
+Inject `LOLESPORTS_API_KEY` from the runtime environment. Do not commit the
+credential or write it into source-spike artifacts.
 
 Without the frontend API key, `persisted/gw/*` returns:
 

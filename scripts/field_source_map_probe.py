@@ -23,7 +23,7 @@ import requests
 
 
 CITO_BASE_URL = "https://api.citoapi.com/api/v1"
-LOLESPORTS_KEY = "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z"
+LOLESPORTS_API_KEY_ENV = "LOLESPORTS_API_KEY"
 LOLESPORTS_EVENT_DETAILS_URL = "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id={match_id}"
 LOLESPORTS_WINDOW_URL = "https://feed.lolesports.com/livestats/v1/window/{game_id}"
 DEFAULT_TARGET_TEAMS = ("T1", "G2")
@@ -36,6 +36,13 @@ class ApiKeyLoadResult(NamedTuple):
     present: bool
     source: str | None
     length: int
+
+
+def load_lolesports_api_key() -> str:
+    api_key = os.environ.get(LOLESPORTS_API_KEY_ENV, "").strip()
+    if not api_key:
+        raise RuntimeError(f"{LOLESPORTS_API_KEY_ENV} is required")
+    return api_key
 
 
 def utc_now() -> str:
@@ -390,7 +397,7 @@ def run_probe(
     started_at = now()
     stamp = utc_stamp(started_at)
     cito_headers = {"x-api-key": cito_api_key}
-    lol_headers = {"x-api-key": LOLESPORTS_KEY}
+    lol_headers = {"x-api-key": load_lolesports_api_key()}
 
     match_id = normalize_cito_id(match_id)
     game_id = normalize_cito_id(game_id)

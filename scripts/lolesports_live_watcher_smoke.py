@@ -15,7 +15,7 @@ from typing import Any
 import requests
 
 
-LOLESPORTS_KEY = "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z"
+LOLESPORTS_API_KEY_ENV = "LOLESPORTS_API_KEY"
 MATCH_ID = "115570934355614533"
 EVENT_SLUG = "lol-ly-fur-2026-07-03"
 GAME_IDS = {
@@ -33,6 +33,13 @@ LOLESPORTS_EVENT_URL = (
 LOLESPORTS_SCHEDULE_URL = "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US"
 LIVE_WINDOW_URL = "https://feed.lolesports.com/livestats/v1/window/{game_id}"
 LIVE_DETAILS_URL = "https://feed.lolesports.com/livestats/v1/details/{game_id}"
+
+
+def load_lolesports_api_key() -> str:
+    api_key = os.environ.get(LOLESPORTS_API_KEY_ENV, "").strip()
+    if not api_key:
+        raise RuntimeError(f"{LOLESPORTS_API_KEY_ENV} is required")
+    return api_key
 
 
 def utc_now() -> str:
@@ -289,19 +296,25 @@ def summarize_livestats(game_id: str, game_number: int, record: dict[str, Any], 
     }
 
 
-def collect_sample(session: requests.Session, markets: list[dict[str, Any]]) -> dict[str, Any]:
+def collect_sample(
+    session: requests.Session,
+    markets: list[dict[str, Any]],
+    *,
+    lolesports_api_key: str | None = None,
+) -> dict[str, Any]:
     observed_at = utc_now()
     warnings = []
+    lolesports_api_key = lolesports_api_key or load_lolesports_api_key()
     event_payload, event_record = fetch(
         session,
         LOLESPORTS_EVENT_URL.format(match_id=MATCH_ID),
-        headers={"x-api-key": LOLESPORTS_KEY},
+        headers={"x-api-key": lolesports_api_key},
         timeout=12.0,
     )
     schedule_payload, schedule_record = fetch(
         session,
         LOLESPORTS_SCHEDULE_URL,
-        headers={"x-api-key": LOLESPORTS_KEY},
+        headers={"x-api-key": lolesports_api_key},
         timeout=12.0,
     )
     schedule_event = find_schedule_event(schedule_payload) if isinstance(schedule_payload, dict) else None
@@ -407,6 +420,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
+    lolesports_api_key = load_lolesports_api_key()
     session = requests.Session()
     session.headers.update({"User-Agent": "pm-lol-live-watcher-smoke/0.1"})
     markets, discovery_warnings = discover_polymarket_markets(session)
@@ -415,7 +429,7 @@ def main(argv: list[str] | None = None) -> int:
     deadline = time.monotonic() + args.duration_sec
     with open(args.jsonl, "w", encoding="utf-8") as handle:
         while True:
-            sample = collect_sample(session, markets)
+            sample = collect_sample(session, markets, lolesports_api_key=lolesports_api_key)
             if discovery_warnings:
                 sample["warnings"].extend(discovery_warnings)
             handle.write(json.dumps(sample, ensure_ascii=False, sort_keys=True))
