@@ -2,14 +2,15 @@
 
 ## Phase 0 Decisions
 
-Date: 2026-06-15
+Date: 2026-07-21
 
-Current status: `CONDITIONAL_PHASE_1_DATA_FOUNDATION`.
+Current status: `PHASE_0_SOURCE_FEASIBILITY_SPIKE`.
 
-This is not full Phase 1 approval and not permission to start strategy, edge,
-signals, paper trading, wallet integration, private key handling, broker code,
-or real order placement. The existing Phase 1 data foundation skeleton is
-treated as local validation tooling only.
+Phase 1 is not started. This is not permission to expand the existing code into
+a Phase 1 skeleton or to start strategy, models, signals, paper trading, wallet
+integration, private key handling, broker code, or real order placement.
+Existing schema, collectors, storage, replay, resolver, and dashboard code are
+frozen as Phase 0 validation assets.
 
 DoD decision:
 
@@ -28,13 +29,12 @@ Secret hygiene decision:
 
 ## Data Source Selection
 
-Decision: Use LoLEsports frontend API as the current primary spike source for
-local replay and conditional Phase 1 data foundation work.
+Decision: Use LoLEsports frontend API as the current Phase 0 primary spike source.
 
 Rationale:
 
 - Existing local samples prove the path from event details to game IDs, final picks, patch, and 15-minute game state.
-- The source is free and requires no external key for the current replay pipeline.
+- The source requires runtime `LOLESPORTS_API_KEY` injection; no credential is stored in the repository.
 - It is not yet accepted as production-safe because live latency and stability are not validated.
 
 Backup decision: Keep PandaScore as the commercial backup candidate.
@@ -58,8 +58,7 @@ Rejected or limited sources:
 
 ## Polymarket Market Data
 
-Decision: Use Polymarket REST endpoints for conditional Phase 1 local market
-and orderbook ingestion.
+Decision: Use Polymarket REST endpoints for Phase 0 market and orderbook evidence.
 
 Current evidence:
 
@@ -95,7 +94,7 @@ Risk:
   failed in the 2026-07-03 retest.
 
 Decision update on 2026-07-03: Polymarket LOL Game Winner source is viable for
-conditional data-foundation work via HTML slug discovery, Gamma slug detail, and
+Phase 0 evidence collection via HTML slug discovery, Gamma slug detail, and
 CLOB REST polling, with retry/backoff and explicit error classification. It is
 not production-safe until WebSocket and network-path stability are retested.
 
@@ -121,9 +120,8 @@ Result:
 
 ## Local Data Foundation Skeleton
 
-Decision: Treat the existing Python package, SQLite schema, collectors,
-resolver, and replay pipeline as a conditional data-foundation validation
-skeleton.
+Decision: Freeze the existing Python package, SQLite schema, collectors,
+resolver, replay pipeline, and dashboard as Phase 0 validation assets.
 
 Evidence:
 
@@ -135,6 +133,7 @@ Evidence:
 Boundary:
 
 - This does not close Phase 0 hard gates.
+- This does not authorize new Phase 1 skeleton work.
 - This does not start Phase 2.
 - No strategy, signal, fair probability, broker, wallet, private key, or real
   order placement code is allowed.
@@ -145,7 +144,7 @@ Boundary:
 |---|---|---|---|
 | LoLEsports live latency unknown | `pending_risk` | Could make live signals stale | Measure source latency during an active match. |
 | LoLEsports frontend API stability | `pending_risk` | Header/key/schema changes could break ingestion | Add monitoring and fallback source before production. |
-| Polymarket Market WebSocket unverified | `deferred_network_retest` | QuoteRecorder v1 uses REST polling baseline | Retest WS subscription on active Game Winner market before upgrading. |
+| Polymarket Market WebSocket unverified | `phase0_open_gate` | Push-path stability is unknown | Retest WS subscription on an active Game Winner market and save a message or reproducible failure evidence. |
 | Polymarket generic search unreliable | `known_gap` | Market discovery may miss or mis-rank LoL markets | Use page HTML slug discovery plus Gamma slug detail, not generic search alone. |
 | Polymarket network path unstable | `pending_network_retest` | Collectors may see intermittent TLS failures | Add retry/backoff and classify SSL/proxy/direct failures during source spike. |
 | Bans unavailable in current LoLEsports samples | `known_gap` | Draft features may be incomplete | Search alternate frontend endpoint or accept picks-only Phase 1. |
@@ -154,15 +153,15 @@ Boundary:
 
 ## Go / No-Go
 
-Recommendation: `CONDITIONAL_PHASE_1_DATA_FOUNDATION`.
+Recommendation: `PHASE_0_NO_GO`.
 
 Conditions:
 
-- Continue with local replay, SQLite schema, source parsers, collectors, storage,
-  and resolver hard gates.
-- Do not build strategy, signals, or execution logic yet.
+- Continue only read-only source spikes, schema drafts, raw evidence collection,
+  and mapping hard-gate validation.
+- Do not expand Phase 1 code or build strategy, models, signals, or execution logic.
 - Do not treat LoLEsports as production primary until live latency is measured.
-- Do not rely on Polymarket WebSocket until it is retested; REST orderbook remains acceptable for local replay.
+- Complete the Polymarket REST/orderbook stability run and WebSocket clean retest before closing Phase 0.
 - Do not treat the complete market-to-team-side mapping as passed until a real
   matching event reaches `mappingConfidence >= 0.90` and repeated live samples
   keep team sides stable.
@@ -173,9 +172,11 @@ No-go triggers:
 - Polymarket Game Winner markets cannot be discovered and quoted reliably.
 - Resolver cannot reach `mappingConfidence >= 0.90` on real matching events.
 
-## 2026-07-08 — 策略定位：不追求秒级延迟，主源定为 Cito
+## 2026-07-08 — 历史决策：不追求秒级延迟，主源定为 Cito（已取代）
 
 **决策人**：Calvin
+
+**状态**：该数据源角色决策已被 2026-07-21 Phase 0 治理校准取代。以下内容仅保留历史记录，不再作为当前主源选择或阶段授权。
 
 **决策**：项目策略为错配/价值交易模型，对延迟敏感度低。Cito median 24s 延迟可接受，不再作为 Phase 0 blockers。
 
@@ -243,3 +244,30 @@ stability 尚未验证。CAL-112 保持 NO-GO，Phase 2 继续冻结。
 
 - `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.json`
 - `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.md`
+
+## 2026-07-21 — Phase 0 治理校准
+
+**决策人**：Calvin
+
+**当前阶段**：`PHASE_0_SOURCE_FEASIBILITY_SPIKE`。撤销
+`CONDITIONAL_PHASE_1_DATA_FOUNDATION` 作为当前状态；Phase 0 完成前不得启动或扩建
+Phase 1 代码骨架。
+
+**当前数据源角色**：
+
+- 主 spike：LoLEsports Frontend API；active-match latency/field stability 未通过前不视为生产安全。
+- 盘口：Polymarket public REST/orderbook；Market WebSocket 仍需 clean retest。
+- 商业备选：PandaScore；未来升级：GRID。
+- 历史研究：Oracle's Elixir，不作为 live 输入。
+- Cito / 非官方源：保留历史比较证据，但不推荐作为 Phase 1 主源或备源。
+
+**Phase 0 剩余硬门**：
+
+- LoLEsports active-match final picks、game clock、gold、objectives、字段稳定性与 `sourceLatencySec`。
+- Polymarket Game Winner discovery、REST/orderbook 重复稳定性与 WebSocket clean retest。
+- 多场真实 `market -> match -> gameNumber -> team/outcome side` 映射稳定，
+  `mappingConfidence >= 0.90`；低置信度必须 skip。
+
+**边界**：现有 schema、collector、storage、resolver、replay、dashboard 仅作为 Phase 0
+验证资产冻结保留。不得新增策略、预测模型、交易信号、paper trading、钱包、私钥、
+broker、order 或真实下单能力。
