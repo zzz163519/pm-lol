@@ -1,0 +1,350 @@
+{
+  "lolesports": {
+    "matchId": "115570934355614593",
+    "metadata": {
+      "eventId": "115570934355614593",
+      "games": [
+        {
+          "id": "115570934355614594",
+          "number": 1,
+          "state": "completed",
+          "teams": [
+            {
+              "id": "98767991926151025",
+              "side": "blue"
+            },
+            {
+              "id": "99566405941863385",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614595",
+          "number": 2,
+          "state": "completed",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "98767991926151025",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614596",
+          "number": 3,
+          "state": "inProgress",
+          "teams": [
+            {
+              "id": "98767991926151025",
+              "side": "blue"
+            },
+            {
+              "id": "99566405941863385",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614597",
+          "number": 4,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "98767991926151025",
+              "side": "blue"
+            },
+            {
+              "id": "99566405941863385",
+              "side": "red"
+            }
+          ]
+        },
+        {
+          "id": "115570934355614598",
+          "number": 5,
+          "state": "unstarted",
+          "teams": [
+            {
+              "id": "99566405941863385",
+              "side": "blue"
+            },
+            {
+              "id": "98767991926151025",
+              "side": "red"
+            }
+          ]
+        }
+      ],
+      "league": "MSI",
+      "leagueSlug": "msi",
+      "matchId": "115570934355614593",
+      "startTime": "2026-07-10T08:00:00Z",
+      "state": "inProgress",
+      "teams": [
+        {
+          "code": "G2",
+          "id": "98767991926151025",
+          "name": "G2 Esports"
+        },
+        {
+          "code": "LYON",
+          "id": "99566405941863385",
+          "name": "LYON"
+        }
+      ]
+    },
+    "ok": true,
+    "scheduleLookup": {
+      "error": null,
+      "errorClass": null,
+      "ok": true
+    }
+  },
+  "lolesportsMatchId": "115570934355614593",
+  "mappingConfidence": 1.0,
+  "notes": [
+    "Pre-match static mapping smoke only.",
+    "LoLEsports live latency is not validated by this output.",
+    "Token-to-side samples are gated at mappingConfidence >= 0.90."
+  ],
+  "pendingLiveValidation": true,
+  "polymarketEventSlug": "lol-g2-ly-2026-07-10",
+  "polymarketGameWinnerMarkets": [
+    {
+      "active": true,
+      "clobTokenIds": [
+        "76139101447828300858775026719426172181701825631465488526712436980225218230538",
+        "11375244638573387322653973021095160832667152479398725838897146290628938005476"
+      ],
+      "closed": false,
+      "conditionId": "0xafa3f92ef06b1f42eeb4239054d133b92b52423bb199350c5f0bfe6eb5aaca94",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 1,
+      "marketSlug": "lol-g2-ly-2026-07-10-game1",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 1 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "1161663761026248928741317236361093152095776065309269380062540556077381245572",
+        "33609950325255448197129891500016919686890698412468372975023048260919067557916"
+      ],
+      "closed": false,
+      "conditionId": "0xc1dd38f36d3ec4a6a5d8ec03bf5af0ea75113ad188b85a895317c51e48b80dce",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 2,
+      "marketSlug": "lol-g2-ly-2026-07-10-game2",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 2 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "47405794293316148244590035888323531202770006061275899647071095856237793879763",
+        "9306033963311851564212548176894914508758998308587255967584753177135725757149"
+      ],
+      "closed": false,
+      "conditionId": "0xce8bc40907b928e7d02717975855be7272c3589f8fdd1f70b9f03ea14f280577",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 3,
+      "marketSlug": "lol-g2-ly-2026-07-10-game3",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 3 Winner"
+    },
+    {
+      "active": true,
+      "clobTokenIds": [
+        "93701377540053248919917010045639513003879676000036840938644210840680356230480",
+        "96305276129173095401172786313679504270045258691665073871855533156862298784482"
+      ],
+      "closed": false,
+      "conditionId": "0x77dfdc06f52dc6c35c37f02dc1eb0f989149e4194f32ab39831397e1dee38fe3",
+      "eventSlug": "lol-g2-ly-2026-07-10",
+      "gameNumber": 4,
+      "marketSlug": "lol-g2-ly-2026-07-10-game4",
+      "outcomes": [
+        "G2 Esports",
+        "LYON"
+      ],
+      "question": "LoL: G2 Esports vs LYON - Game 4 Winner"
+    }
+  ],
+  "polymarketStartTime": "2026-07-10T08:00:00Z",
+  "polymarketTeams": [
+    "G2 Esports",
+    "LYON"
+  ],
+  "polymarketTitle": "LoL: G2 Esports vs LYON (BO5) - Mid-Season Invitational Playoffs",
+  "sampleMappings": [
+    {
+      "conditionId": "0xafa3f92ef06b1f42eeb4239054d133b92b52423bb199350c5f0bfe6eb5aaca94",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614594",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game1",
+      "outcome": "G2 Esports",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "G2",
+      "teamId": "98767991926151025",
+      "teamName": "G2 Esports",
+      "teamSide": "blue",
+      "tokenId": "76139101447828300858775026719426172181701825631465488526712436980225218230538"
+    },
+    {
+      "conditionId": "0xafa3f92ef06b1f42eeb4239054d133b92b52423bb199350c5f0bfe6eb5aaca94",
+      "gameNumber": 1,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614594",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game1",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 1 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "red",
+      "tokenId": "11375244638573387322653973021095160832667152479398725838897146290628938005476"
+    },
+    {
+      "conditionId": "0xc1dd38f36d3ec4a6a5d8ec03bf5af0ea75113ad188b85a895317c51e48b80dce",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614595",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game2",
+      "outcome": "G2 Esports",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "G2",
+      "teamId": "98767991926151025",
+      "teamName": "G2 Esports",
+      "teamSide": "red",
+      "tokenId": "1161663761026248928741317236361093152095776065309269380062540556077381245572"
+    },
+    {
+      "conditionId": "0xc1dd38f36d3ec4a6a5d8ec03bf5af0ea75113ad188b85a895317c51e48b80dce",
+      "gameNumber": 2,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614595",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game2",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 2 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "blue",
+      "tokenId": "33609950325255448197129891500016919686890698412468372975023048260919067557916"
+    },
+    {
+      "conditionId": "0xce8bc40907b928e7d02717975855be7272c3589f8fdd1f70b9f03ea14f280577",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614596",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game3",
+      "outcome": "G2 Esports",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "G2",
+      "teamId": "98767991926151025",
+      "teamName": "G2 Esports",
+      "teamSide": "blue",
+      "tokenId": "47405794293316148244590035888323531202770006061275899647071095856237793879763"
+    },
+    {
+      "conditionId": "0xce8bc40907b928e7d02717975855be7272c3589f8fdd1f70b9f03ea14f280577",
+      "gameNumber": 3,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614596",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game3",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 3 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "red",
+      "tokenId": "9306033963311851564212548176894914508758998308587255967584753177135725757149"
+    },
+    {
+      "conditionId": "0x77dfdc06f52dc6c35c37f02dc1eb0f989149e4194f32ab39831397e1dee38fe3",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614597",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game4",
+      "outcome": "G2 Esports",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "G2",
+      "teamId": "98767991926151025",
+      "teamName": "G2 Esports",
+      "teamSide": "blue",
+      "tokenId": "93701377540053248919917010045639513003879676000036840938644210840680356230480"
+    },
+    {
+      "conditionId": "0x77dfdc06f52dc6c35c37f02dc1eb0f989149e4194f32ab39831397e1dee38fe3",
+      "gameNumber": 4,
+      "lolesportsEventId": "115570934355614593",
+      "lolesportsGameId": "115570934355614597",
+      "lolesportsMatchId": "115570934355614593",
+      "mappingConfidence": 1.0,
+      "marketSlug": "lol-g2-ly-2026-07-10-game4",
+      "outcome": "LYON",
+      "polymarketTitle": "LoL: G2 Esports vs LYON - Game 4 Winner",
+      "skipReason": null,
+      "status": "mapped",
+      "teamCode": "LYON",
+      "teamId": "99566405941863385",
+      "teamName": "LYON",
+      "teamSide": "red",
+      "tokenId": "96305276129173095401172786313679504270045258691665073871855533156862298784482"
+    }
+  ],
+  "startTimeAligned": true,
+  "teamAliasMapping": {
+    "G2 Esports": [
+      "G2 Esports",
+      "G2"
+    ],
+    "LYON": [
+      "LYON"
+    ]
+  },
+  "viable": true
+}

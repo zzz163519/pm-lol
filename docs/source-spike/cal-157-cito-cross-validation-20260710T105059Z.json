@@ -1,0 +1,140 @@
+{
+  "issue": "CAL-157",
+  "observedAt": "2026-07-10T10:50:59.151801Z",
+  "windowEndedAt": "2026-07-10T10:52:01.000Z",
+  "classification": "no-active-match/near-live",
+  "scope": "authenticated read-only CITO plus LoLEsports plus Polymarket cross-validation",
+  "authentication": {
+    "credentialSource": "process_environment",
+    "headerName": "x-api-key",
+    "keyMaterialPersisted": false
+  },
+  "cito": {
+    "live": {
+      "requestSemantic": "GET /api/v1/lol/live; authenticated live-only discovery",
+      "observedAt": "2026-07-10T10:50:59.151801Z",
+      "httpStatus": 200,
+      "businessStatus": "no_match",
+      "success": true,
+      "count": 0,
+      "liveOnly": true,
+      "lastCheckedAt": "2026-07-10T10:51:01.995Z",
+      "retryAfterSeconds": 60,
+      "freshnessAtObservationSec": 0.0,
+      "message": "No LoL match is live right now.",
+      "coverageLevel": "not_found"
+    },
+    "scheduleToday": {
+      "requestSemantic": "GET /api/v1/lol/schedule/today; authenticated current-day schedule fallback",
+      "observedAt": "2026-07-10T10:51:02.922Z",
+      "httpStatus": 200,
+      "businessStatus": "partial_data",
+      "success": true,
+      "count": 5,
+      "lastCheckedAt": "2026-07-10T10:51:03.337Z",
+      "dataFreshness": "fresh",
+      "dataCompleteness": "partial",
+      "source": "Cito schedule monitor + Riot LoL Esports API verification",
+      "target": {
+        "matchId": "115570934355614593",
+        "officialEventId": "115570934355614593",
+        "league": "MSI",
+        "strategy": "Bo5",
+        "startTime": "2026-07-10T08:00:00.000Z",
+        "state": "completed",
+        "team1": {"code": "G2", "name": "G2 Esports", "score": 0},
+        "team2": {"code": "LYON", "name": "LYON", "score": 3},
+        "winnerSlug": "lyon-gaming"
+      },
+      "warnings": [
+        "Response business status is partial_data.",
+        "The endpoint reported that current match data was repaired from Riot LoL Esports event details."
+      ]
+    },
+    "targetGameVisualState": {
+      "requestSemantic": "GET /api/v1/lol/live/115570934355614596/visual-state; authenticated finished-game live-state check",
+      "observedAt": "2026-07-10T10:51:46.685Z",
+      "httpStatus": 200,
+      "businessStatus": "no_live_match",
+      "success": true,
+      "gameId": "115570934355614596",
+      "source": "riot_live_feed",
+      "reliability": "riot_live_feed_current_state",
+      "liveNumericFieldsAvailable": false
+    }
+  },
+  "lolesports": {
+    "eventDetails": {
+      "requestSemantic": "GET getEventDetails for match 115570934355614593",
+      "observedAt": "2026-07-10T10:51:49.627Z",
+      "httpStatus": 200,
+      "matchState": "completed",
+      "matchId": "115570934355614593",
+      "teams": [
+        {"id": "98767991926151025", "code": "G2", "name": "G2 Esports", "gameWins": 0},
+        {"id": "99566405941863385", "code": "LYON", "name": "LYON", "gameWins": 3}
+      ],
+      "games": [
+        {"number": 1, "id": "115570934355614594", "state": "completed", "blue": "G2", "red": "LYON"},
+        {"number": 2, "id": "115570934355614595", "state": "completed", "blue": "LYON", "red": "G2"},
+        {"number": 3, "id": "115570934355614596", "state": "completed", "blue": "G2", "red": "LYON"},
+        {"number": 4, "id": "115570934355614597", "state": "unneeded", "blue": "G2", "red": "LYON"},
+        {"number": 5, "id": "115570934355614598", "state": "unneeded", "blue": "LYON", "red": "G2"}
+      ]
+    },
+    "game3Window": {
+      "requestSemantic": "GET livestats window for game 115570934355614596",
+      "observedAt": "2026-07-10T10:51:53.569Z",
+      "httpStatus": 200,
+      "finalPicksPresent": true,
+      "bluePicks": ["Jayce", "MonkeyKing", "Syndra", "Yunara", "Lulu"],
+      "redPicks": ["Olaf", "Trundle", "Ryze", "Caitlyn", "Bard"]
+    }
+  },
+  "polymarket": {
+    "observedAt": "2026-07-10T10:51:54.517157Z",
+    "eventSlug": "lol-g2-ly-2026-07-10",
+    "mappingConfidence": 1.0,
+    "gameWinnerMarketCount": 4,
+    "marketTokenSides": [
+      {"gameNumber": 1, "marketSlug": "lol-g2-ly-2026-07-10-game1", "conditionId": "0xafa3f92ef06b1f42eeb4239054d133b92b52423bb199350c5f0bfe6eb5aaca94", "G2": "76139101447828300858775026719426172181701825631465488526712436980225218230538", "LYON": "11375244638573387322653973021095160832667152479398725838897146290628938005476"},
+      {"gameNumber": 2, "marketSlug": "lol-g2-ly-2026-07-10-game2", "conditionId": "0xc1dd38f36d3ec4a6a5d8ec03bf5af0ea75113ad188b85a895317c51e48b80dce", "G2": "1161663761026248928741317236361093152095776065309269380062540556077381245572", "LYON": "33609950325255448197129891500016919686890698412468372975023048260919067557916"},
+      {"gameNumber": 3, "marketSlug": "lol-g2-ly-2026-07-10-game3", "conditionId": "0xce8bc40907b928e7d02717975855be7272c3589f8fdd1f70b9f03ea14f280577", "G2": "47405794293316148244590035888323531202770006061275899647071095856237793879763", "LYON": "9306033963311851564212548176894914508758998308587255967584753177135725757149"},
+      {"gameNumber": 4, "marketSlug": "lol-g2-ly-2026-07-10-game4", "conditionId": "0x77dfdc06f52dc6c35c37f02dc1eb0f989149e4194f32ab39831397e1dee38fe3", "G2": "93701377540053248919917010045639513003879676000036840938644210840680356230480", "LYON": "96305276129173095401172786313679504270045258691665073871855533156862298784482"}
+    ],
+    "orderbook": {
+      "httpStatus": 200,
+      "marketSlug": "lol-g2-ly-2026-07-10-game1",
+      "tokenOutcome": "G2 Esports",
+      "sourceTimestamp": "2026-07-10T10:51:16.983Z",
+      "freshnessAtDiscoveryObservationSec": 37.534,
+      "bidCount": 0,
+      "askCount": 76
+    },
+    "network": {"requestCount": 12, "retryCount": 0, "errorClasses": []}
+  },
+  "crossValidation": {
+    "match": "G2 Esports vs LYON",
+    "matchId": "115570934355614593",
+    "gameId": "115570934355614596",
+    "teamIds": {"G2": "98767991926151025", "LYON": "99566405941863385"},
+    "identity": {"status": "PASS", "reason": "CITO schedule, LoLEsports event details, and Polymarket event agree on match identity and teams."},
+    "game": {"status": "PENDING", "reason": "No active match existed; CITO returned no_live_match for the completed target game, so current live game-state fields could not be cross-validated."},
+    "teamSide": {"status": "PENDING", "reason": "LoLEsports currently reports Game 3 as G2 blue / LYON red, but the earlier live evidence flipped sides between samples and CITO had no live visual state for an authoritative current comparison."},
+    "marketTokenSide": {"status": "PASS", "reason": "Four Game Winner markets retained one token per named team with mappingConfidence 1.0; this is identity-to-token mapping, not a trading signal."}
+  },
+  "conclusion": {
+    "status": "PENDING",
+    "cal112": "NO-GO",
+    "phase2": "LOCKED",
+    "reason": "Authenticated CITO access is verified, but no active match was available and live CITO game/team-side field stability remains unproven."
+  },
+  "boundaryFindings": [
+    "read_only_get_only",
+    "no_external_write_api",
+    "no_secret_persisted",
+    "no_strategy_prediction_probability_edge_signal",
+    "no_paper_or_live_trading",
+    "no_wallet_broker_order"
+  ]
+}
