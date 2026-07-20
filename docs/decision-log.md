@@ -28,8 +28,6 @@ Secret hygiene decision:
 
 ## Data Source Selection
 
-Historical decision, superseded on 2026-07-21 by the role split recorded below.
-
 Decision: Use LoLEsports frontend API as the current primary spike source for
 local replay and conditional Phase 1 data foundation work.
 
@@ -56,7 +54,7 @@ Rationale:
 Rejected or limited sources:
 
 - Oracle's Elixir: useful for historical research, not live trading input.
-- Cito / unofficial sources: at the time, insufficient proof of live depth, coverage, and reliability. This assessment is superseded by the 2026-07-21 evidence review.
+- Cito / unofficial sources: insufficient proof of live depth, coverage, and reliability.
 
 ## Polymarket Market Data
 
@@ -99,18 +97,16 @@ Risk:
 Decision update on 2026-07-03: Polymarket LOL Game Winner source is viable for
 conditional data-foundation work via HTML slug discovery, Gamma slug detail, and
 CLOB REST polling, with retry/backoff and explicit error classification. It is
-not production-safe until network-path stability and collector error handling are
-validated. WebSocket is a deferred upgrade rather than a Phase 0 blocker.
+not production-safe until WebSocket and network-path stability are retested.
 
 ## Live Latency Risk
 
-Decision: Do not use LoLEsports active numeric frames as the primary live-state
-path; retain their freshness as `pending_risk`.
+Decision: Mark LoLEsports live latency as `pending_risk`.
 
 Reason:
 
-- Historical samples contain source timestamps, but active numeric frames observed during the spike were stale and event details do not expose a usable source timestamp.
-- Until validated, live data can be recorded for replay and source-quality
+- Historical samples contain source timestamps, but Phase 0 has not yet measured live `sourceLatencySec` during an active match.
+- Until measured, live data can be recorded for replay and source-quality
   analysis but must not drive strategy, signals, or execution decisions.
 
 ## Replay Pipeline Result
@@ -147,8 +143,7 @@ Boundary:
 
 | Risk | Status | Impact | Next Action |
 |---|---|---|---|
-| Cito freshness/latency evidence is narrow | `pending_risk` | One-game `sampleAgeSeconds` cannot establish end-to-end latency or production stability | Validate multi-match/cross-league freshness and preserve the proxy/latency distinction. |
-| LoLEsports active numeric frames stale | `known_gap` | Numeric game state may lag the active match | Use LoLEsports only for draft/final-picks, schedule/mapping, and terminal winner supplementation. |
+| LoLEsports live latency unknown | `pending_risk` | Could make live signals stale | Measure source latency during an active match. |
 | LoLEsports frontend API stability | `pending_risk` | Header/key/schema changes could break ingestion | Add monitoring and fallback source before production. |
 | Polymarket Market WebSocket unverified | `deferred_network_retest` | QuoteRecorder v1 uses REST polling baseline | Retest WS subscription on active Game Winner market before upgrading. |
 | Polymarket generic search unreliable | `known_gap` | Market discovery may miss or mis-rank LoL markets | Use page HTML slug discovery plus Gamma slug detail, not generic search alone. |
@@ -166,8 +161,8 @@ Conditions:
 - Continue with local replay, SQLite schema, source parsers, collectors, storage,
   and resolver hard gates.
 - Do not build strategy, signals, or execution logic yet.
-- Use Cito only as a conditional primary live-state component until multi-match/cross-league stability is proven.
-- Use Polymarket REST polling as the QuoteRecorder v1 baseline; WebSocket remains a deferred upgrade.
+- Do not treat LoLEsports as production primary until live latency is measured.
+- Do not rely on Polymarket WebSocket until it is retested; REST orderbook remains acceptable for local replay.
 - Do not treat the complete market-to-team-side mapping as passed until a real
   matching event reaches `mappingConfidence >= 0.90` and repeated live samples
   keep team sides stable.
@@ -182,7 +177,7 @@ No-go triggers:
 
 **决策人**：Calvin
 
-**决策**：项目策略为错配/价值交易模型，对秒级延迟不敏感。Cito 单场约 24s 的 `sampleAgeSeconds` 可作为当前 freshness proxy 参考，但不是 median，也不是端到端 source latency；延迟数字本身不作为 Phase 0 blocker，跨场稳定性仍是硬门。
+**决策**：项目策略为错配/价值交易模型，对延迟敏感度低。Cito median 24s 延迟可接受，不再作为 Phase 0 blockers。
 
 **主源组合**：
 - Cito API：team identity / gold / goldDiff / objectives / kills / gameClock / gameState（CAL-59 fc8f1a6 验证）
@@ -191,7 +186,7 @@ No-go triggers:
 **Phase 0 剩余 gates**：
 - Cito + LoLEsports 字段组合多场次稳定性复核
 - 映射准确性 ≥ 0.90 复核（更多赛事/联赛）
-- Polymarket REST polling baseline 决策（已完成；WS 后续降为 deferred upgrade）
+- Polymarket WS retest 或正式记录 REST polling 为 baseline
 
 **作废**：
 - CAL-56（找更低延迟源）→ 标 cancelled，原因：项目不追求秒级延迟
@@ -248,36 +243,3 @@ stability 尚未验证。CAL-112 保持 NO-GO，Phase 2 继续冻结。
 
 - `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.json`
 - `docs/source-spike/cal-157-cito-cross-validation-20260710T105059Z.md`
-
-## 2026-07-21 — Phase 0 数据源角色与剩余硬门收口
-
-**决策人**：Calvin
-
-**已接受证据**：已合并 PR #11 / CAL-157（merge commit
-`def2972ab72dd3816b94f55f298b5588515bf0f3`）及上述仓库内 artifacts。该证据证明
-G2 vs LYON 两次 genuine live capture 的 match/game/team identity、Polymarket
-market/token mapping 均为 PASS，`mappingConfidence=1.0`；team-side stability 仍为
-PENDING。后续存在 artifact classification 矛盾的未合并材料不计入本次验收。
-
-**当前角色**：
-
-- Cito：条件主 live-state 组件，负责 team identity、gold/goldDiff、objectives、
-  kills、game clock、game state。
-- LoLEsports Frontend API：负责 draft/final picks、schedule/mapping、terminal
-  winner 补充；已观察到的 active numeric frames 陈旧，不作为主 live-state。
-- Polymarket public REST：QuoteRecorder v1 baseline。Market WebSocket 降为
-  deferred upgrade，不是 Phase 0 blocker。
-- PandaScore：商业备选；GRID：未来官方升级路径。
-
-**SourceScore**：Cito `48/100 = 3/10/16/6/5/8`；LoLEsports
-`59/100 = 8/5/21/7/8/10`。两者职责不同，不生成 composite score。
-
-**剩余 Phase 0 gates**：
-
-- Cito + LoLEsports 在 active-match 的多场次、跨联赛字段与 freshness 稳定性。
-- authoritative team-side source。
-- `market -> match/game/team/token side` 在重复 live 样本中的稳定性，且
-  `mappingConfidence >= 0.90`。
-
-Phase 0 尚未关闭，Phase 2 继续冻结；不得开始 strategy、prediction model、signal、
-paper trading、wallet、private key、broker 或 order 工作。

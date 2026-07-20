@@ -11,17 +11,15 @@ before any strategy, signal, paper trading, wallet, or execution work is allowed
 The active work is source validation for:
 
 - Polymarket LoL `Game N Winner` market discovery and CLOB orderbook snapshots.
-- Cito LoL live state (`gameClock`, gold, objectives, kills, and game state) as
-  the conditional primary component, pending multi-match/cross-league stability.
-- LoLEsports frontend API draft/final-picks, schedule/mapping, and terminal
-  winner supplementation. Active numeric frames observed so far are stale and
-  are not accepted as the primary live-state path.
+- LoLEsports frontend API schedule, event details, and livestats samples.
+- Cito LoL schedule/live/visual-state smoke testing as a low-confidence
+  candidate source.
 - Market-to-match mapping evidence:
   `market -> match -> gameNumber -> team side`.
 
-Phase 0 is not fully closed. Multi-match/cross-league source stability, an
-authoritative team-side source, and repeated live mapping stability are still
-required before this can be treated as a production data foundation.
+Phase 0 is not fully closed. Live latency and repeated live/near-live mapping
+validation are still required before this can be treated as a production data
+foundation.
 
 ## Boundaries
 
@@ -61,8 +59,7 @@ python -m venv .venv
 ```
 
 The Cito smoke script reads `CITO_API_KEY` from the process environment or from
-the repository root `.env` file. LoLEsports live probes require
-`LOLESPORTS_API_KEY` at runtime; no credential value is stored in the repository.
+the repository root `.env` file.
 
 Example `.env` shape:
 
@@ -134,14 +131,11 @@ The script writes raw samples and a report under `docs/source-spike/`.
 
 ## Current Known Risks
 
-- Cito is the conditional primary live-state component, but its observed `24s`
-  value is a one-game `sampleAgeSeconds` freshness proxy, not measured
-  end-to-end source latency.
-- Cito + LoLEsports still need multi-match/cross-league stability evidence.
-- The authoritative team-side source is unresolved, and repeated live mapping
-  must remain stable at `mappingConfidence >= 0.90`.
-- Polymarket REST polling is the QuoteRecorder v1 baseline. Market WebSocket is
-  a deferred upgrade and is not a Phase 0 blocker.
+- LoLEsports live `sourceLatencySec` is still pending active-match validation.
+- Polymarket Market WebSocket still needs clean retest, or REST polling must be
+  explicitly accepted as the v1 baseline.
+- Cito is not recommended as a primary source until authenticated live samples
+  prove field depth, schema stability, league coverage, and latency.
 - Low-confidence market mappings must be skipped rather than forced.
 
 ## Status
