@@ -3,9 +3,26 @@
 ## Status
 
 - Scope: Phase 0 read-only source feasibility only.
-- Preparation status: ready except for runtime credential injection.
+- Preparation status: target selected from a live Polymarket Game Winner market.
 - Live validation status: not started.
-- Blocker: `LOLESPORTS_API_KEY` is not present in the current runtime. Do not reuse the previously exposed credential; inject a current rotated value at execution time.
+- Credential note: the current LoL Esports page server-renders schedule, match IDs,
+  and game IDs. Use that public response plus the unauthenticated livestats feed;
+  do not recover or reuse the previously exposed frontend credential.
+
+## Target-selection gate
+
+The workflow is Polymarket-first. A match is eligible only when all of these are
+true before LoLEsports probing begins:
+
+1. Polymarket exposes a Game Winner market for the match.
+2. The market is `active=true`, `closed=false`, and `acceptingOrders=true`.
+3. Both outcome token orderbooks return HTTP 200 and contain at least one bid or ask.
+4. The Polymarket teams and scheduled time can be mapped to the official schedule
+   without ambiguity.
+
+If any check fails, skip the match. The NLC observations below are retained only
+as negative source evidence; they are not an eligible primary test target because
+Polymarket had no corresponding markets.
 
 ## Schedule evidence
 
@@ -20,16 +37,20 @@ Those matches were too close to the check time to provide a useful pre-match pre
 
 ## Selected observation target
 
-- League: KeSPA Cup
-- Stage: Groups
-- Match: Hanwha Life Esports vs Gen.G Esports
-- Format: BO1
-- Scheduled start: `2026-07-21T06:00:00Z`
-- Asia/Shanghai: `2026-07-21 14:00` (`UTC+08:00`)
-- Primary schedule source: <https://lolesports.com/schedule>
-- Cross-check: <https://www.sofascore.com/esports/match/hanwha-life-esports-geng/IFVcsROVc>
+- League: LES Regular Season
+- Match: LUA Gaming vs UB Alma Mater
+- Format: BO3
+- Scheduled start: `2026-07-21T15:00:00Z`
+- Asia/Shanghai: `2026-07-21 23:00` (`UTC+08:00`)
+- Polymarket event: `lol-lua-ub-2026-07-21`
+- Game 1 Winner: `lol-lua-ub-2026-07-21-game1`
+- Game 2 Winner: `lol-lua-ub-2026-07-21-game2`
+- Gamma source: <https://gamma-api.polymarket.com/events/slug/lol-lua-ub-2026-07-21>
+- Official schedule source: <https://lolesports.com/schedule>
 
-The selected target is not the chronologically nearest match. It is the next practical window with enough lead time to resolve `matchId`/`gameId` and observe pre-game, draft-to-game transition, and live frames.
+At `2026-07-20T18:39:51Z`, both Game Winner markets were active, open,
+accepting orders, and had readable two-sided CLOB books. Game 1 had 36/19
+bid/ask levels for LUA and 19/36 for UB; Game 2 had 25/20 and 20/25.
 
 ## Pre-flight
 
@@ -37,15 +58,14 @@ Run from the clean worktree:
 
 ```bash
 cd /home/calvin/pm-lol-live-spike
-test -n "$LOLESPORTS_API_KEY"
-python scripts/lolesports_t1_g2_livestats_probe.py \
-  --target-team "Hanwha Life Esports" \
-  --target-team "Gen.G Esports" \
-  --expected-start "2026-07-21T06:00:00Z" \
-  --game-number 1
+python scripts/lolesports_live_source_smoke.py --game-id <server-rendered-game-id>
 ```
 
-The expected start is mandatory for this run because the same teams can meet repeatedly. If the returned league, teams, start time, or match identifier conflicts with the schedule evidence, stop and record a mapping failure; do not guess.
+Resolve the match and game IDs from the current server-rendered LoL Esports
+schedule and require the exact expected start `2026-07-21T15:00:00Z`. The legacy
+schedule probe still requires the old frontend credential path and must not be
+used for this run. If league, teams, start time, or identifiers conflict with
+Polymarket, stop and record a mapping failure; do not guess.
 
 ## Live checkpoints
 
@@ -74,9 +94,11 @@ Collect at minimum:
 
 Hard pass criteria for this observation window:
 
+- Polymarket Game Winner market remains open with a readable orderbook.
 - Exact league/team/start mapping with no ambiguity.
 - Stable readable live frames across multiple consecutive samples.
 - Measurable source timestamp and latency.
 - Final picks, gold, objectives, and game state present in live responses.
 
-If the credential is missing or rejected, record `credential_missing` or `credential_rejected` and do not claim the live spike ran.
+If public schedule IDs or live frames cannot be resolved without reusing the old
+credential, record the failure and stop.

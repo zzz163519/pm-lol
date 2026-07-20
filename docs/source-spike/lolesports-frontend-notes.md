@@ -227,10 +227,11 @@ It does not fully close Phase 0 until a live match test confirms:
 The previous `2026-06-15` target is historical. The current prepared observation target is:
 
 ```text
-2026-07-21T06:00:00Z
-KeSPA Cup Groups, BO1
-Hanwha Life Esports vs Gen.G Esports
-matchId: unresolved until a current runtime LOLESPORTS_API_KEY is injected
+2026-07-21T15:00:00Z
+LES Regular Season, BO3
+LUA Gaming vs UB Alma Mater
+Polymarket Game 1/2 Winner markets: active with readable CLOB books
+matchId: resolve from the current server-rendered LoL Esports schedule
 ```
 
 Execution plan and schedule evidence:
