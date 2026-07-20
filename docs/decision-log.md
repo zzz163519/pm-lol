@@ -271,3 +271,17 @@ Phase 1 代码骨架。
 **边界**：现有 schema、collector、storage、resolver、replay、dashboard 仅作为 Phase 0
 验证资产冻结保留。不得新增策略、预测模型、交易信号、paper trading、钱包、私钥、
 broker、order 或真实下单能力。
+
+## 2026-07-21 — Cito active-match 复测与共享限流预算
+
+Calvin 澄清：Cito 应能提供准确的实时比赛字段，当前账户限制预计为 10 requests/minute。
+该限制先作为待响应头确认的运行假设，不直接推翻既有 SourceScore 结论。
+
+下一次只选择已有 Polymarket Game Winner 活跃盘口的比赛做 authenticated read-only
+复测。所有 Cito 端点共享 6 requests/minute 的全局预算（请求间隔至少 10 秒）；完成
+schedule/live/coverage ID 发现后只轮询 visual-state。HTTP 429 时立即停止，记录
+`Retry-After` 与 rate-limit headers，不在同一窗口自动重试。
+
+只有在 LUA Gaming vs UB Alma Mater 或后续同类 Polymarket-backed active match 中，
+验证 non-default game clock、gold、objectives、kills、final picks、freshness 及赛后对账后，
+才重新评分并决定 Cito 是否可成为 Phase 1 主源或备源。

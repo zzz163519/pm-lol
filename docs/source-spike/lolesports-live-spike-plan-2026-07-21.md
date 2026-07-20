@@ -52,6 +52,26 @@ At `2026-07-20T18:39:51Z`, both Game Winner markets were active, open,
 accepting orders, and had readable two-sided CLOB books. Game 1 had 36/19
 bid/ask levels for LUA and 19/36 for UB; Game 2 had 25/20 and 20/25.
 
+## Cito companion validation
+
+Calvin clarified that the authenticated Cito live payload is expected to expose
+accurate match data, with a likely account limit of 10 requests per minute.
+Treat that limit as provisional until the authenticated response headers confirm
+it. During this Polymarket-backed live window, run Cito as a companion candidate:
+
+- all Cito endpoints share one global budget;
+- use 6 requests per minute (10 seconds minimum between calls), below the likely
+  10 requests/minute ceiling;
+- use schedule/live/coverage only to discover IDs, then poll only visual-state;
+- stop on HTTP 429, persist `Retry-After` and rate-limit headers, and do not retry
+  within the same probe window;
+- validate non-default game clock, gold, objectives, kills and final picks, plus
+  frame freshness and post-game reconciliation.
+
+This companion run may change Cito's SourceScore only after live evidence is
+captured. The expectation of accurate fields alone does not promote it to a
+Phase 1 primary or backup source.
+
 ## Pre-flight
 
 Run from the clean worktree:

@@ -23,6 +23,8 @@ import requests
 
 
 CITO_BASE_URL = "https://api.citoapi.com/api/v1"
+CITO_FREE_PLAN_MAX_REQUESTS_PER_MIN = 10
+CITO_DEFAULT_REQUEST_BUDGET_PER_MIN = 6
 DEFAULT_TARGET_TEAMS = ("T1", "G2")
 
 
@@ -118,6 +120,20 @@ def real_http_get(
         "statusCode": response.status_code,
         "errorClass": "rate_limited" if response.status_code == 429 else ("http_error" if response.status_code >= 400 else None),
         "error": None,
+        "retryAfter": response.headers.get("Retry-After"),
+        "rateLimit": {
+            key: response.headers[key]
+            for key in (
+                "RateLimit-Limit",
+                "RateLimit-Remaining",
+                "RateLimit-Reset",
+                "RateLimit-Policy",
+                "X-RateLimit-Limit",
+                "X-RateLimit-Remaining",
+                "X-RateLimit-Reset",
+            )
+            if key in response.headers
+        },
     }
     if not response.content:
         return None, record
@@ -350,7 +366,10 @@ def discover_visual_game_id(coverage_payload: Any) -> str | None:
     return None
 
 
-def summarize_request_frequency(records: list[dict[str, Any]]) -> dict[str, Any]:
+def summarize_request_frequency(
+    records: list[dict[str, Any]],
+    request_budget_per_min: int = CITO_DEFAULT_REQUEST_BUDGET_PER_MIN,
+) -> dict[str, Any]:
     cito_records = [record for record in records if "api.citoapi.com" in str(record.get("url") or "")]
     times = [parse_time(record.get("observedAt")) for record in cito_records]
     times = [value for value in times if value is not None]
@@ -370,7 +389,12 @@ def summarize_request_frequency(records: list[dict[str, Any]]) -> dict[str, Any]
         "maxRequestsPerMinuteObserved": max_requests_per_minute,
         "windowStartedAt": started,
         "windowEndedAt": ended,
-        "limitPolicy": "poll_interval_sec>=3 and observed_request_rate<=60_per_minute",
+        "requestBudgetPerMinute": request_budget_per_min,
+        "configuredMinIntervalSec": round(60 / request_budget_per_min, 3),
+        "limitPolicy": (
+            f"all_cito_endpoints_share_{request_budget_per_min}_requests_per_minute_budget;"
+            f"configured_budget_must_stay_below_{CITO_FREE_PLAN_MAX_REQUESTS_PER_MIN}_per_minute"
+        ),
     }
 
 
@@ -449,19 +473,38 @@ def run_probe(
     target_teams: tuple[str, str],
     duration_sec: int,
     poll_interval_sec: int,
+    request_budget_per_min: int = CITO_DEFAULT_REQUEST_BUDGET_PER_MIN,
     http_get: HttpGet,
     sleep: Callable[[float], None] = time.sleep,
     now: Callable[[], str] = utc_now,
+    monotonic: Callable[[], float] = time.monotonic,
 ) -> dict[str, Any]:
-    if poll_interval_sec < 3:
-        raise ValueError("poll_interval_sec must be >= 3 to leave margin under Cito 60/min limit")
+    if request_budget_per_min <= 0 or request_budget_per_min >= CITO_FREE_PLAN_MAX_REQUESTS_PER_MIN:
+        raise ValueError(
+            "request_budget_per_min must be positive and stay below the "
+            f"Cito free-plan limit ({CITO_FREE_PLAN_MAX_REQUESTS_PER_MIN}/min)"
+        )
+    if poll_interval_sec < 0:
+        raise ValueError("poll_interval_sec must be >= 0")
 
     started_at = now()
     stamp = utc_stamp(started_at)
     headers = {"x-api-key": cito_api_key}
     request_records: list[dict[str, Any]] = []
+    min_request_interval_sec = 60 / request_budget_per_min
+    next_request_at: float | None = None
 
-    schedule_payload, schedule_record = http_get(f"{CITO_BASE_URL}/lol/schedule/today", headers=headers)
+    def paced_get(url: str, *, headers: dict[str, str] | None = None) -> tuple[Any | None, dict[str, Any]]:
+        nonlocal next_request_at
+        request_at = monotonic()
+        if next_request_at is not None and request_at < next_request_at:
+            sleep(next_request_at - request_at)
+            request_at = next_request_at
+        payload, record = http_get(url, headers=headers)
+        next_request_at = max(request_at, monotonic()) + min_request_interval_sec
+        return payload, record
+
+    schedule_payload, schedule_record = paced_get(f"{CITO_BASE_URL}/lol/schedule/today", headers=headers)
     request_records.append(schedule_record)
     target_match = find_target_match(schedule_payload, target_teams)
     schedule_match_id = None
@@ -472,22 +515,25 @@ def run_probe(
 
     iterations = []
     visual_payload = None
-    game_id = str(schedule_game_id) if schedule_game_id else None
+    game_id = normalize_cito_id(schedule_game_id)
     match_id = normalize_cito_id(schedule_match_id)
-    deadline = time.monotonic() + duration_sec
+    deadline = monotonic() + duration_sec
     iteration = 0
     while not rate_limited(schedule_record):
         iteration += 1
-        live_payload, live_record = http_get(f"{CITO_BASE_URL}/lol/live", headers=headers)
-        request_records.append(live_record)
-        discovered_match_id = normalize_cito_id(discover_game_id(live_payload, target_teams))
-        if discovered_match_id:
-            match_id = discovered_match_id
+        live_payload = None
+        live_record = None
+        if not match_id or not game_id:
+            live_payload, live_record = paced_get(f"{CITO_BASE_URL}/lol/live", headers=headers)
+            request_records.append(live_record)
+            discovered_match_id = normalize_cito_id(discover_game_id(live_payload, target_teams))
+            if discovered_match_id:
+                match_id = discovered_match_id
 
         coverage_payload = None
         coverage_record = None
-        if match_id:
-            coverage_payload, coverage_record = http_get(f"{CITO_BASE_URL}/lol/matches/{match_id}/coverage", headers=headers)
+        if match_id and not game_id and not rate_limited(live_record):
+            coverage_payload, coverage_record = paced_get(f"{CITO_BASE_URL}/lol/matches/{match_id}/coverage", headers=headers)
             request_records.append(coverage_record)
             discovered_game_id = discover_visual_game_id(coverage_payload)
             if discovered_game_id:
@@ -495,8 +541,8 @@ def run_probe(
 
         visual_record = None
         current_visual_payload = None
-        if game_id:
-            current_visual_payload, visual_record = http_get(f"{CITO_BASE_URL}/lol/live/{game_id}/visual-state", headers=headers)
+        if game_id and not rate_limited(live_record) and not rate_limited(coverage_record):
+            current_visual_payload, visual_record = paced_get(f"{CITO_BASE_URL}/lol/live/{game_id}/visual-state", headers=headers)
             request_records.append(visual_record)
             visual_payload = current_visual_payload
 
@@ -514,7 +560,7 @@ def run_probe(
 
         if rate_limited(live_record) or rate_limited(coverage_record) or rate_limited(visual_record):
             break
-        if time.monotonic() >= deadline:
+        if monotonic() >= deadline:
             break
         sleep(poll_interval_sec)
 
@@ -536,12 +582,14 @@ def run_probe(
         "polling": {
             "durationSecRequested": duration_sec,
             "pollIntervalSec": poll_interval_sec,
+            "requestBudgetPerMinute": request_budget_per_min,
+            "minRequestIntervalSec": min_request_interval_sec,
             "iterations": len(iterations),
         },
         "scheduleToday": {"request": schedule_record, "targetMatch": target_match, "body": schedule_payload},
         "iterations": iterations,
         "fieldCoverage": field_coverage,
-        "requestFrequency": summarize_request_frequency(request_records),
+        "requestFrequency": summarize_request_frequency(request_records, request_budget_per_min),
         "boundaryFindings": [
             "read_only_get_requests_only",
             "no_wallet",
@@ -564,7 +612,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", default="docs/source-spike")
     parser.add_argument("--duration-sec", type=int, default=120)
-    parser.add_argument("--poll-interval-sec", type=int, default=5)
+    parser.add_argument("--poll-interval-sec", type=int, default=0)
+    parser.add_argument("--request-budget-per-min", type=int, default=CITO_DEFAULT_REQUEST_BUDGET_PER_MIN)
     parser.add_argument("--target-team", action="append", dest="target_teams")
     return parser.parse_args(argv)
 
@@ -601,6 +650,7 @@ def main(argv: list[str] | None = None) -> int:
         target_teams=(str(target_teams[0]), str(target_teams[1])),
         duration_sec=args.duration_sec,
         poll_interval_sec=args.poll_interval_sec,
+        request_budget_per_min=args.request_budget_per_min,
         http_get=http_get,
     )
     print(json.dumps({k: result[k] for k in ("target", "fieldCoverage", "requestFrequency", "conclusion", "rawSamplePath", "reportPath")}, ensure_ascii=False, indent=2, sort_keys=True))
