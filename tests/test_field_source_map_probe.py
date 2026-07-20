@@ -2,9 +2,16 @@ import importlib.util
 import json
 from pathlib import Path
 
+import pytest
+
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "field_source_map_probe.py"
 FIXTURES = Path(__file__).resolve().parents[1] / "docs" / "source-spike"
+
+
+@pytest.fixture(autouse=True)
+def lolesports_api_key(monkeypatch):
+    monkeypatch.setenv("LOLESPORTS_API_KEY", "test-only-lolesports-key")
 
 
 def load_probe_module():

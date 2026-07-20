@@ -23,8 +23,15 @@ LOLESPORTS_EVENT_URL = (
     "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id={match_id}"
 )
 LOLESPORTS_SCHEDULE_URL = "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US"
-LOLESPORTS_FRONTEND_KEY = "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z"
+LOLESPORTS_API_KEY_ENV = "LOLESPORTS_API_KEY"
 BLG_T1_MATCH_ID = "115570934355614527"
+
+
+def load_lolesports_api_key() -> str:
+    api_key = os.environ.get(LOLESPORTS_API_KEY_ENV, "").strip()
+    if not api_key:
+        raise RuntimeError(f"{LOLESPORTS_API_KEY_ENV} is required")
+    return api_key
 
 
 def utc_now() -> str:
@@ -314,14 +321,19 @@ def merge_schedule_metadata(metadata: dict[str, Any], schedule_event: dict[str, 
 
 
 def fetch_lolesports_event(
-    session: requests.Session, diagnostics: dict[str, Any], match_id: str = BLG_T1_MATCH_ID
+    session: requests.Session,
+    diagnostics: dict[str, Any],
+    match_id: str = BLG_T1_MATCH_ID,
+    *,
+    api_key: str | None = None,
 ) -> dict[str, Any]:
+    api_key = api_key or load_lolesports_api_key()
     url = LOLESPORTS_EVENT_URL.format(match_id=match_id)
     payload, record = fetch(
         session,
         url,
         diagnostics,
-        headers={"x-api-key": LOLESPORTS_FRONTEND_KEY},
+        headers={"x-api-key": api_key},
         timeout=20.0,
         retries=2,
         expect_json=True,
@@ -339,7 +351,7 @@ def fetch_lolesports_event(
         session,
         LOLESPORTS_SCHEDULE_URL,
         diagnostics,
-        headers={"x-api-key": LOLESPORTS_FRONTEND_KEY},
+        headers={"x-api-key": api_key},
         timeout=20.0,
         retries=3,
         expect_json=True,
@@ -538,7 +550,8 @@ def mapping_skip_reason(
     return None
 
 
-def build_result(args: argparse.Namespace) -> dict[str, Any]:
+def build_result(args: argparse.Namespace, *, lolesports_api_key: str | None = None) -> dict[str, Any]:
+    lolesports_api_key = lolesports_api_key or load_lolesports_api_key()
     observed_at = utc_now()
     diagnostics: dict[str, Any] = {
         "proxyEnv": proxy_env(),
@@ -628,7 +641,12 @@ def build_result(args: argparse.Namespace) -> dict[str, Any]:
         diagnostics["errorClasses"].append("empty_result")
         warnings.append("No Game Winner market was available for CLOB book sampling.")
 
-    lolesports = fetch_lolesports_event(session, diagnostics, args.lolesports_match_id)
+    lolesports = fetch_lolesports_event(
+        session,
+        diagnostics,
+        args.lolesports_match_id,
+        api_key=lolesports_api_key,
+    )
     if not lolesports.get("ok"):
         diagnostics["errorClasses"].append(lolesports.get("errorClass") or "empty_result")
         warnings.append("LoLEsports event metadata could not be read; mapping sample records the error.")
@@ -683,7 +701,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
-    result = build_result(args)
+    result = build_result(args, lolesports_api_key=load_lolesports_api_key())
     if args.output:
         write_json(args.output, result)
     if args.mapping_output:

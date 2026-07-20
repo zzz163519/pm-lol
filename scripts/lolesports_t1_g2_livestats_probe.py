@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -15,12 +16,19 @@ from typing import Any
 import requests
 
 
-LOLESPORTS_KEY = "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z"
+LOLESPORTS_API_KEY_ENV = "LOLESPORTS_API_KEY"
 EVENT_DETAILS_URL = "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id={match_id}"
 SCHEDULE_URL = "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US"
 LIVE_WINDOW_URL = "https://feed.lolesports.com/livestats/v1/window/{game_id}"
 LIVE_DETAILS_URL = "https://feed.lolesports.com/livestats/v1/details/{game_id}"
 DEFAULT_TARGET_TEAMS = ("T1", "G2")
+
+
+def load_lolesports_api_key() -> str:
+    api_key = os.environ.get(LOLESPORTS_API_KEY_ENV, "").strip()
+    if not api_key:
+        raise RuntimeError(f"{LOLESPORTS_API_KEY_ENV} is required")
+    return api_key
 
 
 def utc_now() -> str:
@@ -291,7 +299,7 @@ def build_conclusion(result: dict[str, Any]) -> str:
 def run_probe(*, output_dir: Path, target_teams: tuple[str, str], timeout_sec: float) -> dict[str, Any]:
     session = requests.Session()
     session.headers.update({"User-Agent": "pm-lol-lolesports-t1-g2-livestats-probe/0.1"})
-    headers = {"x-api-key": LOLESPORTS_KEY}
+    headers = {"x-api-key": load_lolesports_api_key()}
     started_at = utc_now()
     stamp = utc_stamp(started_at)
 
