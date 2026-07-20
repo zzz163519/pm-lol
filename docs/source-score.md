@@ -29,7 +29,9 @@ Phase 0 source scoring uses a 100-point scale:
 - `leagueCoverage` 8/10: LoLEsports should cover major Riot esports leagues, but Phase 0 still needs league-by-league live validation.
 - `costFit` 10/10: It is currently free to read and fits the early spike budget.
 
-Decision: Use as the Phase 1 spike primary only after live latency validation; keep production risk marked pending.
+Decision: Use as the current Phase 0 primary spike source. It is not
+production-safe until active-match latency, field stability, and league coverage
+are validated.
 
 ## Polymarket Public Market Data
 
@@ -40,7 +42,7 @@ Decision: Use as the Phase 1 spike primary only after live latency validation; k
 - `leagueCoverage` 6/10: Current MSI LoL events were discoverable, but coverage should be validated across LCK, LPL, LEC, MSI, and Worlds as markets appear.
 - `costFit` 10/10: Public read-only endpoints require no wallet, no API key, and no paid account for the current spike.
 
-Decision: Use as the conditional Phase 1 market/orderbook source with REST polling and a conservative discovery path:
+Decision: Use for Phase 0 market/orderbook evidence with REST polling and a conservative discovery path:
 
 ```text
 Polymarket LOL page HTML -> event slug -> Gamma /events/slug/{slug} -> Game [1-5] Winner filter -> CLOB /book
@@ -58,7 +60,7 @@ network path and collector retry/error-classification behavior is validated.
 - `leagueCoverage` 8/10: It is expected to cover common pro LoL leagues, but exact Phase 1 league coverage needs account-level confirmation.
 - `costFit` 4/10: Free tier is not sufficient for live trading-style validation; paid live access is required.
 
-Decision: Keep as the main commercial backup candidate if LoLEsports live latency or stability fails.
+Decision: Keep as the commercial backup candidate if LoLEsports fails Phase 0.
 
 ## GRID
 
@@ -69,7 +71,7 @@ Decision: Keep as the main commercial backup candidate if LoLEsports live latenc
 - `leagueCoverage` 9/10: It likely covers the primary Riot ecosystem, but exact LCK/LPL/LEC/MSI/Worlds access must be confirmed.
 - `costFit` 2/10: Cost and access requirements are likely too high for the current spike phase.
 
-Decision: Treat as best-quality future upgrade, not Phase 1 default unless budget and access change.
+Decision: Treat as the future official upgrade path, subject to budget and access.
 
 ## Oracle's Elixir
 
@@ -80,7 +82,7 @@ Decision: Treat as best-quality future upgrade, not Phase 1 default unless budge
 - `leagueCoverage` 8/10: It has broad historical LoL esports coverage, with caveats around timing and dataset update cadence.
 - `costFit` 10/10: It is free and fits model research or offline feature work.
 
-Decision: Use for historical modeling and EGR research only; do not use as a Phase 1 live input.
+Decision: Use for historical research only; do not use as a live input.
 
 ## Cito / Unofficial Sources
 
@@ -91,7 +93,8 @@ Decision: Use for historical modeling and EGR research only; do not use as a Pha
 - `leagueCoverage` 5/10: League coverage is unclear without account-level testing.
 - `costFit` 8/10: It may be inexpensive, but low confidence reduces practical fit.
 
-Decision: Do not recommend for Phase 1 primary or backup until it proves live field depth and reliability.
+Decision: Do not recommend for the Phase 1 primary or backup. Existing Cito
+captures remain historical comparison evidence and do not override this role.
 
 ## Selected Sources
 
@@ -100,4 +103,4 @@ Decision: Do not recommend for Phase 1 primary or backup until it proves live fi
 - Backup candidate: PandaScore, if paid live access is acceptable.
 - Future upgrade: GRID, if official access and cost fit the project.
 - Historical-only source: Oracle's Elixir.
-- Deprecated for now: Cito / unofficial sources.
+- Not recommended for Phase 1 primary or backup: Cito / unofficial sources.

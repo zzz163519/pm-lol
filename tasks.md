@@ -1,9 +1,9 @@
 # Polymarket LOL 价值交易系统 — 任务清单
 
 > 版本：v0.2
-> 日期：2026-06-15
-> 当前阶段：Conditional Phase 1 Data Foundation
-> 阶段目标：验证自动数据输入闭环是否成立；只允许数据底座验证，不写策略，不建模型，不接私钥。
+> 日期：2026-07-21
+> 当前阶段：Phase 0 — Source Feasibility Spike
+> 阶段目标：验证自动数据输入闭环；只允许只读 source spike、schema 草案和证据整理，不启动 Phase 1 骨架。
 
 ---
 
@@ -14,8 +14,8 @@
   一旦泄露必须立即轮换。
 - API 验证只做读取，不做下单，不接钱包，不接 private key。
 - 若某源不可用，记录失败原因，不在代码中绕过约束。
-- 当前是 Conditional Phase 1 Data Foundation，不是 full Phase 1。当前已存在的数据
-  底座骨架只作为 collector/parser/storage/resolver/replay 验证工具，不代表进入策略层。
+- 当前严格处于 Phase 0。现有 collector/parser/storage/resolver/replay/dashboard 只作为
+  历史验证资产；Phase 0 完成前不得继续扩建 Phase 1 代码骨架。
 - 禁止范围：strategy / edge / signal / paper trading / wallet / private key / order。
 - DoD：代码类卡不能只靠本地脏树；必须有 PR，无 PR 不验收。文档类卡也优先走 PR；
   若只做文档评论不改 repo，必须在结果中明确说明。
@@ -31,11 +31,11 @@
 3. `F0-01` PandaScore API 验证：商业备选源，免费层不满足局中数据；至少需 Basic Live。
 4. `F0-02` GRID 商务/技术确认：质量最高，但可能成本和门槛最高。
 5. `F0-03` Abios trial 验证：备选商业源。
-6. `F0-04` Cito free/starter 验证：当前主源组合的一部分，仍需多场次 freshness/stability 复核。
+6. `F0-04` Cito 证据归档：不推荐作为 Phase 1 主源或备源，仅保留历史比较证据。
 7. `F0-07` 数据 schema 草案：已完成。
 8. `F0-08` SourceScore 打分：已完成。
-9. `F0-09` 项目骨架初始化：已初始化，必须保持数据底座边界。
-10. `F0-10` Phase 1 主输入源组合决策：conditional go，仅限 Data Foundation。
+9. `F0-09` 历史验证资产冻结：不得继续扩建 Phase 1 骨架。
+10. `F0-10` Phase 0 Go/No-Go：仅在全部硬门关闭后讨论 Phase 1。
 
 ---
 
@@ -225,9 +225,9 @@ candidate_primary_for_production = risky_until_live_validation
 
 ### F0-04 — Cito / LoLEsportsAPI 验证
 
-**状态：** [~] 当前主源组合的一部分；字段链路已有验证，freshness/stability 仍需复核
+**状态：** [x] 历史证据已归档；当前不推荐作为 Phase 1 主源或备源
 
-**目标：** 确认 Cito 是否能作为 Conditional Phase 1 Data Foundation 的低成本主实时源组件。
+**目标：** 保存 Cito 已有只读验证证据、限制和失败结论，供源比较使用；不继续将其作为当前主源或备源推进。
 
 **验证 endpoint：**
 
@@ -238,10 +238,9 @@ candidate_primary_for_production = risky_until_live_validation
 
 **执行步骤：**
 
-- [ ] 注册 free / starter。
-- [ ] 调用 live endpoint，保存原始响应。
-- [ ] 验证是否稳定返回 BP、game clock、gold、objectives。
-- [ ] 记录请求限制、价格、覆盖联赛、字段缺失情况。
+- [x] 归档已有响应、字段和限制说明。
+- [x] 记录 no-active-match 不能当作 live 成功证据。
+- [x] 标记为当前不推荐，不用 fallback 伪造成功。
 
 **产出物：**
 
@@ -250,7 +249,7 @@ candidate_primary_for_production = risky_until_live_validation
 
 **完成证据：**
 
-- 明确结论：`usable_as_conditional_primary` / `usable_as_backup` / `not_usable`
+- 明确结论：`not_recommended_for_phase1_primary_or_backup`
 - 不得把 key/token 写入 issue 评论或 artifact；只记录无敏感值的调用方式、字段覆盖和稳定性结论。
 
 ---
@@ -309,16 +308,16 @@ candidate_primary_for_production = risky_until_live_validation
 - [x] 记录 `polymarketTitle -> marketSlug -> conditionId -> matchId -> gameNumber -> team side`。
 - [x] live 样本 `mappingConfidence >= 0.90`。
 - [ ] 确认 authoritative team-side source，并证明重复 live 样本不再翻转。
-- [ ] 在下一场 active match 同一采样窗口复核 CITO live numeric fields、LoLEsports
-  picks/side 与 Polymarket Game Winner token side。
+- [ ] 在下一场 active match 同一采样窗口复核 LoLEsports match/game/picks/side
+  与 Polymarket Game Winner token side；Cito 仅保留为历史比较证据。
 
 ---
 
 ### F0-06 — Polymarket Gamma/Data/CLOB public 实测
 
-**状态：** [~] HTML slug discovery + Gamma slug detail + CLOB REST 已验证；generic search / network path / Market WebSocket 仍需处理
+**状态：** [~] HTML slug discovery + Gamma slug detail + CLOB REST 已验证；generic search、network path 与 Market WebSocket 仍需处理
 
-**目标：** 验证 Polymarket public 行情是否足够支持 LOL Game Winner 市场发现和 orderbook REST polling 记录；WebSocket deferred 到 clean network retest。
+**目标：** 验证 Polymarket public 行情是否稳定支持 LOL Game Winner 市场发现、orderbook REST polling 和 WebSocket 读取。
 
 **必须验证：**
 
@@ -326,7 +325,7 @@ candidate_primary_for_production = risky_until_live_validation
 - 能拿到 `conditionId`。
 - 能拿到 YES/NO `tokenId`。
 - 能读取 orderbook、best bid、best ask、spread、depth。
-- WS 订阅作为升级项，clean network retest 通过后再接入。
+- WebSocket 必须在 clean network path 复测并保存成功消息或可复现失败证据。
 - 能记录 400、429、空市场、暂停市场等异常。
 
 **执行步骤：**
@@ -335,7 +334,7 @@ candidate_primary_for_production = risky_until_live_validation
 - [x] 识别 Game Winner 与 Series 市场的标题差异。
 - [x] 选 1 个 Game Winner 市场，保存 market metadata。
 - [x] 调用 CLOB public orderbook endpoint，保存 orderbook 样例。
-- [ ] 在 clean network retest 中测试 Market WebSocket 订阅，保存至少 1 条消息样例；失败则继续使用 REST polling baseline。
+- [ ] 在 clean network retest 中测试 Market WebSocket 订阅，保存至少 1 条消息样例；失败则保存完整失败证据。
 - [ ] 记录接口延迟、限流、错误码、字段不一致情况。
 
 **产出物：**
@@ -348,7 +347,7 @@ candidate_primary_for_production = risky_until_live_validation
 **完成证据：**
 
 - 输出 REST 链路样例：`marketSlug -> conditionId -> tokenId -> orderbook -> bestBid/bestAsk`
-- WebSocket 完成证据 deferred：`tokenId -> WS subscription -> orderbook/trade update`
+- WebSocket 完成证据：`tokenId -> WS subscription -> orderbook/trade update`，或保存可复现失败证据。
 - 明确 QuoteRecorder v1 基于 public REST polling，WS 只作为后续升级。
 
 **当前完成证据：**
@@ -364,7 +363,7 @@ candidate_primary_for_production = risky_until_live_validation
 - Gamma slug detail 已确认当前样例存在 `Game N Winner`：LYON vs FURIA、BLG vs T1、Team Secret Whales vs Top Esports、Hanwha Life Esports vs G2 均有 Game 1/2/3/4 Winner。
 - 未发现 `Game 5 Winner`；当前样例中 Game 5 只看到 dragon / inhibitor / kill 等 props，不纳入 Phase 1 `Game N Winner` 主范围。
 - CLOB `/book` 已验证 `lol-blg-t1-2026-07-04-game1`：conditionId `0x52671a734b1872bab38ddaf5113a4716fb81b5bfb9e794475fadbea0fbacf0cf`；Bilibili token `bids=30`、`asks=31`、`bestBid=0.47`、`bestAsk=0.48`。
-- Phase 1 可先基于 public REST polling 建 `QuoteRecorder v1`；Market WebSocket 不阻塞骨架，但需要在干净网络路径复测。
+- REST polling 已证明可采样，但不能据此跳过 WebSocket Phase 0 复测，也不得启动 Phase 1 QuoteRecorder 实现。
 
 ---
 
@@ -425,9 +424,9 @@ candidate_primary_for_production = risky_until_live_validation
 
 **执行步骤：**
 
-- [ ] 为 LoLEsports Frontend API 优先 spike 源，以及 PandaScore、GRID、Abios、Cito 商业备选源打分。
-- [ ] 每个维度写一句证据，不只填数字。
-- [ ] 输出主源、备源、弃用源列表。
+- [x] 为 LoLEsports 主 spike、PandaScore 商业备选、GRID 未来升级、Oracle's Elixir 历史用途及 Cito/非官方源限制打分。
+- [x] 每个维度写一句证据，不只填数字。
+- [x] 输出主 spike、商业备选、未来升级、历史用途和不推荐源列表。
 
 **产出物：**
 
@@ -440,16 +439,16 @@ candidate_primary_for_production = risky_until_live_validation
 
 ---
 
-### F0-09 — 项目骨架初始化
+### F0-09 — 历史验证资产冻结
 
-**状态：** [x] 已初始化；只允许作为 Data Foundation 验证骨架使用
+**状态：** [x] 已冻结；只允许作为 Phase 0 验证资产使用
 
-**目标：** 维护最小 Python 项目骨架，使 source parser、collector、resolver、storage
-和 replay smoke test 能验证 Phase 0/conditional Phase 1 数据底座假设。
+**目标：** 保留现有 parser、collector、resolver、storage、replay 和 dashboard 用于只读
+Phase 0 证据复核，不新增 Phase 1 模块或能力。
 
 **边界说明：**
 
-- 该骨架已在 Phase 0 gate 全部关闭前初始化，视为数据源验证工具。
+- 这些资产已在 Phase 0 gate 关闭前存在，现冻结为数据源验证工具。
 - 不得在该骨架中新增 strategy、edge、signal、fair probability、paper trading、
   broker、wallet、private key 或真实下单逻辑。
 
@@ -486,11 +485,11 @@ docs/
 
 ---
 
-### F0-10 — Phase 1 主输入源组合决策
+### F0-10 — Phase 0 Go/No-Go
 
-**状态：** [~] conditional go 已记录；不是 full Phase 0 pass
+**状态：** [ ] NO-GO；Phase 0 硬门尚未全部关闭
 
-**目标：** 基于实测结果确定 Phase 1 的主力数据源组合。
+**目标：** 基于实测结果判断自动输入闭环是否成立；通过前不讨论 Phase 1 实现。
 
 **输入：**
 
@@ -511,7 +510,7 @@ Live game backup source:
 Schedule/mapping source:
 Rejected sources:
 Main risks:
-Conditional Phase 1 scope decision:
+Phase 0 Go/No-Go decision:
 ```
 
 **产出物：**
@@ -520,8 +519,8 @@ Conditional Phase 1 scope decision:
 
 **完成证据：**
 
-- 明确 `conditional go`：只允许继续 Data Foundation 验证工具。
-- 明确 remaining gates：live latency、real cross-event mapping、Polymarket WS retest。
+- 明确当前 `NO-GO`：只允许 Phase 0 只读验证。
+- 明确 remaining gates：LoLEsports active-match 字段/延迟、真实重复映射、Polymarket REST/WS 稳定性。
 - 明确 no-go triggers：自动 live source 不可用、Polymarket 行情不可稳定获取、
   真实映射无法达到 `mappingConfidence >= 0.90`。
 
@@ -530,13 +529,13 @@ Conditional Phase 1 scope decision:
 ## 4. Phase 0 完成条件
 
 ```text
-[~] Polymarket public 行情实测可用：HTML slug discovery + Gamma slug detail + Game Winner tokenId + CLOB orderbook REST 已验证；generic search 不可靠、网络路径不稳定、WS pending_network_retest
+[~] Polymarket public 行情实测可用：HTML slug discovery + Gamma slug detail + Game Winner tokenId + CLOB orderbook REST 已验证；generic search、网络路径和 WS 仍待复测
 [ ] 至少一个 LOL 实时源实测可用：历史样本覆盖 final picks + derived clock + gold + objectives；live sourceLatencySec 未实测
 [~] 赛程/映射源实测可用：CAL-157 authenticated CITO 重跑为 no-active-match/near-live；identity 与 market-token PASS，game/team-side PENDING，稳定性 gate 未关闭
 [x] SourceScore 完成：候选源有证据打分，live latency 风险仍 pending
-[~] Phase 1 主输入源组合确定：conditional go，仅限 Data Foundation；生产主源未确认
+[ ] Phase 1 未启动：Phase 0 全部硬门关闭前保持冻结
 [x] Phase 1 schema 草案完成：核心 connector 输出可落库
-[x] go/no-go 决策写入 `docs/decision-log.md`：conditional go with gates
+[x] go/no-go 决策写入 `docs/decision-log.md`：`PHASE_0_NO_GO` with open gates
 ```
 
 当前 P0 blockers：
@@ -544,14 +543,15 @@ Conditional Phase 1 scope decision:
 - [ ] Live mapping stability：同一场 Polymarket Game N Winner 与 LoLEsports
   event/game/team identity 已达到 `mappingConfidence=1.0`；仍需确认 authoritative
   team-side source，并在重复 live 样本中保持稳定。
-- [ ] Polymarket Market WebSocket retest：成功则保存订阅消息；失败则正式记录
-  REST polling 为 QuoteRecorder v1 baseline。
+- [ ] LoLEsports active-match stability：跨多场记录 final picks、clock、gold、objectives、sourceTimestamp、observedAt 和 `sourceLatencySec`。
+- [ ] Polymarket REST/orderbook stability：重复采样并记录空盘口、关闭市场、429 和网络失败。
+- [ ] Polymarket Market WebSocket retest：成功保存订阅消息；失败保存可复现证据。
 
 ---
 
 ## 5. 后续阶段占位
 
-Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 2+ 全部冻结。
+Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 1+ 全部冻结。
 
 - [ ] **F1** Data Foundation：QuoteRecorder、MarketResolver、LiveGameStateConnector、DraftStateConnector、SQLite schema。
 - [ ] **F2** Strategy Skeleton：Elo、DraftFeature、FairProbability、EdgeCapacity、ExitPlan、SignalEngine。
