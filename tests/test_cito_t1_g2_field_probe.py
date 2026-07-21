@@ -102,6 +102,19 @@ def test_request_frequency_summary_counts_rate_limit_and_request_rate():
     assert summary["configuredMinIntervalSec"] == 10.0
 
 
+def test_build_conclusion_uses_configured_target_teams():
+    probe = load_probe_module()
+
+    conclusion = probe.build_conclusion(
+        {
+            "requestFrequency": {"status429Count": 0},
+            "target": {"teams": ["Gen.G", "Hanwha Life Esports"], "gameId": None},
+        }
+    )
+
+    assert conclusion.startswith("Incomplete: Gen.G vs Hanwha Life Esports")
+
+
 def test_run_probe_stops_after_schedule_rate_limit(tmp_path):
     probe = load_probe_module()
     calls = []

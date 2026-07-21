@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only Cito field completeness probe for CAL-59 T1 vs G2."""
+"""Read-only Cito field completeness probe for a configurable team matchup."""
 
 from __future__ import annotations
 
@@ -411,8 +411,9 @@ def write_json(path: Path, payload: Any) -> str:
 def write_markdown(path: Path, result: dict[str, Any]) -> str:
     fields = result["fieldCoverage"]
     frequency = result["requestFrequency"]
+    matchup = " vs ".join(result["target"]["teams"])
     lines = [
-        "# CAL-59 Cito T1 vs G2 Field Completeness Probe",
+        f"# Cito {matchup} Field Completeness Probe",
         "",
         f"Window: `{result['startedAt']}` to `{result['endedAt']}` UTC.",
         "",
@@ -458,7 +459,8 @@ def build_conclusion(result: dict[str, Any]) -> str:
     if result["requestFrequency"]["status429Count"]:
         return "Blocked for Phase 1 use: Cito returned 429 during this probe, so the polling plan is not rate-limit clean."
     if not result["target"]["gameId"]:
-        return "Incomplete: T1 vs G2 was not present in `/lol/live` during this run, so live/visual-state field completeness could not be proven yet."
+        matchup = " vs ".join(result["target"]["teams"])
+        return f"Incomplete: {matchup} was not present in `/lol/live` during this run, so live/visual-state field completeness could not be proven yet."
     statuses = {key: value["status"] for key, value in result["fieldCoverage"].items()}
     missing = [key for key, status in statuses.items() if status != "present"]
     if missing:
@@ -568,7 +570,7 @@ def run_probe(
     ended_at = now()
     result = {
         "script": "scripts/cito_t1_g2_field_probe.py",
-        "scope": "CAL-59 Cito T1 vs G2 field completeness probe",
+        "scope": f"Cito {' vs '.join(target_teams)} field completeness probe",
         "startedAt": started_at,
         "endedAt": ended_at,
         "target": {

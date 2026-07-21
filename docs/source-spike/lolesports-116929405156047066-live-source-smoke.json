@@ -1,0 +1,54 @@
+{
+  "endpoints": {
+    "details": {
+      "error": null,
+      "errorClass": "empty_body",
+      "hasRawSample": false,
+      "observedAt": "2026-07-21T06:19:37.063327Z",
+      "ok": false,
+      "rawSamplePath": null,
+      "sourceLatencySec": null,
+      "sourceTimestamp": null,
+      "sourceTimestampNote": "source did not provide a frame timestamp in this response",
+      "statusCode": 204
+    },
+    "window": {
+      "error": null,
+      "errorClass": "empty_body",
+      "hasRawSample": false,
+      "observedAt": "2026-07-21T06:19:36.257830Z",
+      "ok": false,
+      "rawSamplePath": null,
+      "sourceLatencySec": null,
+      "sourceTimestamp": null,
+      "sourceTimestampNote": "source did not provide a frame timestamp in this response",
+      "statusCode": 204
+    }
+  },
+  "failureReasons": [
+    "window failed: empty_body",
+    "details failed: empty_body",
+    "required field finalPicks missing",
+    "required field gold missing",
+    "required field objectives missing",
+    "required field gameState missing",
+    "gameClock cannot be derived because no source frame timestamp was present."
+  ],
+  "fieldCoverage": {
+    "finalPicks": "missing",
+    "gameClock": "missing",
+    "gameState": "missing",
+    "gold": "missing",
+    "objectives": "missing"
+  },
+  "gameId": "116929405156047066",
+  "limitations": [],
+  "observedAt": "2026-07-21T06:19:36.257830Z",
+  "overallOk": false,
+  "rawSamplePaths": {
+    "details": null,
+    "report": "docs/source-spike/lolesports-116929405156047066-live-source-smoke.json",
+    "window": null
+  },
+  "source": "lolesports_livestats"
+}

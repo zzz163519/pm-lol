@@ -4,7 +4,8 @@
 
 - Scope: Phase 0 read-only source feasibility only.
 - Preparation status: target selected from a live Polymarket Game Winner market.
-- Live validation status: not started.
+- Live validation status: first Polymarket-backed observation completed with a
+  negative live-source result; see `gen-hle-kespa-live-spike-2026-07-21.md`.
 - Credential note: the current LoL Esports page server-renders schedule, match IDs,
   and game IDs. Use that public response plus the unauthenticated livestats feed;
   do not recover or reuse the previously exposed frontend credential.
@@ -35,7 +36,21 @@ The nearest scheduled matches were simultaneous NLC Swiss-stage BO3s at `2026-07
 
 Those matches were too close to the check time to provide a useful pre-match preparation window.
 
-## Selected observation target
+## Completed observation target
+
+- League: KeSPA Cup Group Stage
+- Match: Gen.G vs Hanwha Life Esports
+- Format: BO1
+- Scheduled start: `2026-07-21T06:00:00Z`
+- Polymarket event: `lol-gen-hle1-2026-07-21`
+- LoL Esports match/game IDs: `116929405156047065` /
+  `116929405156047066`
+
+Polymarket remained open with nonempty books, but LoL Esports returned HTTP 204
+and Cito remained schedule-only with no live row or numeric state across two
+bounded probes. This observation did not close the live-input requirement.
+
+## Next observation target
 
 - League: LES Regular Season
 - Match: LUA Gaming vs UB Alma Mater
