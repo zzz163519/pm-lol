@@ -54,9 +54,12 @@ are validated.
 - `costFit` 10/10: Public read-only capture has no provider fee.
 
 Decision: Keep as the first empirically validated delayed visual fallback.
-Do not promote it to automatic normalized input until pick/ban template
-matching, numeric OCR, cross-frame agreement, confidence thresholds, and source
-latency are measured.
+The BRO-GEN run now proves deterministic 10/10 final-pick extraction, numeric
+OCR, objective cross-frame agreement, full-match capture, result evidence and
+same-window CLOB REST continuity. Do not promote it to automatic normalized
+input until exact 10/10 bans, Baron normalization, >=95% scheduled-sample
+coverage, restart recovery and the second consecutive match pass. Production
+compliance for the locally cached CommunityDragon artwork also remains open.
 
 ## Polymarket Public Market Data
 

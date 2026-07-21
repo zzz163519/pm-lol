@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "scope": "Phase 0 read-only Polymarket-backed broadcast validation",
+  "event": {
+    "polymarketEventSlug": "lol-bro2-gen-2026-07-21",
+    "outcomes": ["HANJIN BRION", "Gen.G"],
+    "broadcastTeams": ["GEN", "BRO"],
+    "result": "BRO 1-0 GEN"
+  },
+  "capture": {
+    "channel": "https://www.twitch.tv/kespa2026lck",
+    "startedAt": "2026-07-21T09:45:49.254361Z",
+    "endedAt": "2026-07-21T10:25:57.115608Z",
+    "intervalSec": 5,
+    "requestedFrameCount": 480,
+    "capturedFrameCount": 480,
+    "ffmpegReturnCode": 0,
+    "signedStreamUrlsPersisted": false
+  },
+  "draft": {
+    "templateVersion": "CommunityDragon 16.14",
+    "frameCount": 3,
+    "picks": {
+      "left": ["Ambessa", "JarvanIV", "Taliyah", "Syndra", "Camille"],
+      "right": ["Vayne", "Naafiri", "Ryze", "Ezreal", "Shen"]
+    },
+    "acceptedPickCount": 10,
+    "acceptedBanCount": 5,
+    "sourceStatus": "partial_low_confidence",
+    "unknownBanSlotsPreserved": true
+  },
+  "gameplay": {
+    "selectedFrameCount": 15,
+    "retainedAdvancingFrameCount": 13,
+    "latestAcceptedState": {
+      "clockSec": 1462,
+      "leftGold": 41500,
+      "rightGold": 57300,
+      "leftKills": 8,
+      "rightKills": 29,
+      "leftTowers": 0,
+      "rightTowers": 8,
+      "leftDragons": 3,
+      "rightDragons": 0
+    },
+    "acceptedGameplayPickSlots": 7,
+    "draftGateRequired": true,
+    "sourceStatus": "partial_low_confidence"
+  },
+  "clobRest": {
+    "startedAt": "2026-07-21T09:25:56.963697Z",
+    "endedAt": "2026-07-21T10:17:05.582462Z",
+    "requestedBookCount": 200,
+    "successfulBookCount": 199,
+    "errorCount": 1,
+    "error": "one 20-second read timeout; later polls recovered",
+    "requestLatencyMs": {"median": 326.822, "p95": 685.123, "max": 20020.93},
+    "sourceTimestampLagMs": {"median": 169.002, "p95": 1117.417, "max": 1767.003},
+    "prices": {
+      "HANJIN BRION": {
+        "firstBestBid": 0.85,
+        "firstBestAsk": 0.86,
+        "lastBestBid": 0.995,
+        "lastBestAsk": 0.996
+      },
+      "Gen.G": {
+        "firstBestBid": 0.14,
+        "firstBestAsk": 0.15,
+        "lastBestBid": 0.004,
+        "lastBestAsk": 0.005
+      }
+    }
+  },
+  "boundaryFindings": [
+    "read_only_public_stream_and_get_requests_only",
+    "no_wallet",
+    "no_private_key",
+    "no_trade_execution",
+    "no_strategy_or_signal",
+    "communitydragon_assets_cached_locally_not_committed",
+    "communitydragon_production_compliance_pending"
+  ],
+  "conclusion": "First-match continuity passed for capture, final picks, clock, gold, kills, towers, dragons, result and CLOB REST. Full bans, all gameplay portrait slots, baron/inhibitor normalization, second-match repetition and CommunityDragon production compliance remain open."
+}

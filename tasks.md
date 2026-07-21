@@ -571,8 +571,9 @@ Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 1
 - [x] Pin Riot Data Dragon `16.14.1` and download champion templates into a
   gitignored local cache. Riot image assets are not committed or used in the UI.
 - [~] Extract final picks and bans with template matching and geometric
-  verification. The BFX-DK replay finds consensus candidates for 5/10 picks and
-  2/10 bans but accepts none without draft confirmation, so exact BP remains open.
+  verification. BRO-GEN accepts 10/10 exact final picks across three draft
+  frames and 5/10 bans; obscured/low-feature ban slots remain unknown, so exact
+  BP remains open.
 - [x] OCR clock, gold, kills and tower counters from fixed ROIs.
 - [~] Extract dragon state. Baron timer/event and direct inhibitor event
   extraction remain open for an observable live occurrence.
@@ -593,6 +594,9 @@ Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 1
 - [ ] Reconcile each run against postgame ground truth and publish raw frames,
   normalized snapshots, confidence/freshness metrics, interruptions and a final
   pass/fail report.
+- [~] First full-match evidence run completed for BRO-GEN: capture, picks,
+  clock/gold/kills/towers/dragons, result and 199/200 CLOB books passed; exact
+  bans, Baron, >=95% scheduled coverage and restart recovery did not pass.
 - [ ] Only when both consecutive matches pass, record the visual source as
   qualified and perform the Phase 0 Go/No-Go update.
 

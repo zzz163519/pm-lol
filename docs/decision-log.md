@@ -363,3 +363,31 @@ Stable CLOB REST polling is sufficient for the initial delayed-strategy quote
 loop. Market WebSocket remains a later latency/reliability optimization and no
 longer blocks the start of Phase 1 once the two-match visual gate, mapping and
 REST evidence pass.
+
+## 2026-07-21 - BRO vs GEN automated visual validation remains a partial pass
+
+HANJIN BRION vs Gen.G (`lol-bro2-gen-2026-07-21`) is the first full-match run
+with the deterministic extractor active. The public KeSPA stream produced all
+480 requested five-second frames and covered final draft, advancing gameplay,
+postgame and the `BRO 1-0 GEN` result board. Exact CommunityDragon centered
+splash matching recovered 10/10 final picks across three frames. Small tile
+matching accepted only 5/10 bans because the left row was partly obscured and
+the remaining candidates did not meet the geometric threshold; unknown was
+preserved.
+
+A dense gameplay sample accepted advancing clock, gold, kills, towers and
+dragons. Tower ROIs were corrected after the tower glyph could be read as a
+leading digit; the corrected late cluster returned the visibly correct `0-8`
+tower state. Seven of ten gameplay sidebar portraits agreed with the exact
+draft; the draft screen remains the authoritative pick source.
+
+CLOB REST returned 199/200 requested books. The only error was one 20-second
+read timeout and later samples recovered. Median request latency was 326.822ms
+and median observed-minus-source timestamp lag was 169.002ms.
+
+Decision: count this as first-match continuity evidence but not a V1 pass.
+Exact ten bans, Baron normalization, >=95% normal-game scheduled sampling,
+restart recovery and a second consecutive match remain open. CommunityDragon
+artwork stays in the ignored cache and production compliance is unresolved.
+
+Evidence: `docs/source-spike/bro-gen-visual-clob-validation-2026-07-21.md`.

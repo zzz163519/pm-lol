@@ -16,6 +16,9 @@ class ChampionMatch:
     accepted: bool
     candidate_id: str | None = None
     geometrically_verified: bool = False
+    mirrored: bool | None = None
+    inlier_count: int | None = None
+    inlier_ratio: float | None = None
 
 
 @dataclass(frozen=True, slots=True)
