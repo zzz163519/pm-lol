@@ -1,0 +1,24 @@
+{
+  "channelUrl": "https://www.twitch.tv/kespa2026lck",
+  "quality": "best",
+  "startedAt": "2026-07-21T07:23:16.050442Z",
+  "endedAt": "2026-07-21T07:23:56.412960Z",
+  "requestedSampleCount": 2,
+  "intervalSec": 10,
+  "ffmpegReturnCode": 0,
+  "metadataPath": "docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-stream.json",
+  "frames": [
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-01.jpg",
+      "bytes": 125964,
+      "observedAt": "2026-07-21T07:23:38.941145Z"
+    },
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-02.jpg",
+      "bytes": 135883,
+      "observedAt": "2026-07-21T07:23:54.469326Z"
+    }
+  ],
+  "success": true,
+  "failureReason": null
+}

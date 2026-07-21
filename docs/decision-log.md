@@ -297,3 +297,41 @@ Source delay is accepted when the observed state remains valid and sufficient ne
 A weak or low-ranked team, a current gold deficit, or high odds is not an automatic buy. A future high-odds reversal path requires unrealized scaling, a survivable trajectory, non-terminal game state, executable net value and calibrated low-probability evidence.
 
 `docs/strategy-model-semantics.md` supersedes earlier fixed-delta or speed-dependent interpretations. This is a documentation clarification only; Phase 0 prohibitions on model, signal, paper-trading and execution implementation remain unchanged.
+
+## 2026-07-21 - KeSPA live visual source validation
+
+BNK FEARX vs Dplus KIA was validated while Polymarket event
+`lol-fox1-dk-2026-07-21` was active and accepting orders. The public
+`kespa2026lck` Twitch channel resolved to a 1080p60 HLS stream without account
+credentials. Five saved live frames showed an advancing game clock, changing
+gold, kills, tower and objective regions, both five-champion final-pick rows,
+and both five-icon ban rows. A Cloud Drake kill announcement was captured at
+game time `07:01`.
+
+A later pair at game times `20:54` and `21:03` showed tower counters advancing
+to `3-2`. A direct playlist check placed the latest completed two-second HLS
+segment about `0.495s` behind the observation timestamp. This is transport-edge
+freshness evidence only; upstream spectator/production delay remains unknown.
+By game time `24:00`, the resource strip visibly held a `0-3` dragon state;
+the same state and tower counts remained stable at `25:35`.
+At game time `32:27`, BFX's Baron timer was visibly active at `4:26`; it
+remained visible at `3:08` at game time `33:45`, while tower counts advanced to
+`3-6`. This closes visual validation for a nonzero Baron state.
+At game time `44:15`, the live overlay still advanced and showed towers `4-10`,
+kills `21-32`, and gold `87.3K-91.5K`. Ten towers imply an opened inhibitor
+lane, but no direct inhibitor-destruction event was captured, so that field
+remains pending rather than being promoted by inference.
+
+The official-event Twitch HLS path is accepted as the first empirically
+validated delayed visual fallback. It is not yet an automatic structured input:
+pick/ban template recognition, numeric OCR, cross-frame agreement, confidence
+thresholds, and source latency remain Phase 0 gates.
+
+In the same active-match window, BO3.gg returned HTTP 404 for its last snapshot
+and empty `no_stats` player arrays, OP.GG declared the KeSPA series
+`liveSupported=false`, and eight authenticated Cito `/lol/live` attempts at a
+ten-second interval all returned `no_match` without HTTP 429. None of those
+three sources passed the required live draft/gold/objective test.
+
+Evidence: `docs/source-spike/bfx-dk-kespa-live-source-validation-2026-07-21.md`
+and `docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-probe.json`.

@@ -14,6 +14,7 @@ Phase 0 source scoring uses a 100-point scale:
 | Source | officialness | latency | fieldCoverage | reliability | leagueCoverage | costFit | Total | Phase 0 Role |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 | LoLEsports frontend API | 8/20 | 12/20 | 21/25 | 8/15 | 8/10 | 10/10 | 67 | Current primary spike source |
+| Official-event Twitch HLS | 14/20 | 10/20 | 23/25 | 10/15 | 5/10 | 10/10 | 72 | Validated visual fallback; extraction pending |
 | Polymarket public market data | 10/20 | 10/20 | 18/25 | 8/15 | 6/10 | 10/10 | 62 | Market/orderbook source for conditional data foundation |
 | PandaScore | 12/20 | 14/20 | 20/25 | 12/15 | 8/10 | 4/10 | 70 | Commercial backup candidate |
 | GRID | 20/20 | 18/20 | 24/25 | 14/15 | 9/10 | 2/10 | 87 | Best-quality future upgrade |
@@ -32,6 +33,30 @@ Phase 0 source scoring uses a 100-point scale:
 Decision: Use as the current Phase 0 primary spike source. It is not
 production-safe until active-match latency, field stability, and league coverage
 are validated.
+
+## Official-event Twitch HLS
+
+- `officialness` 14/20: The validated channel carried the official KeSPA event
+  feed, while Twitch and the HLS extraction path are third-party transport
+  surfaces rather than a Riot structured API.
+- `latency` 10/20: Consecutive frames advanced normally and fit the project's
+  delay-tolerant semantics, but glass-to-glass source latency has not yet been
+  measured against an authoritative clock.
+- `fieldCoverage` 23/25: The stable 1080p overlay visibly covers final picks,
+  bans, game clock, gold, kills, towers, objective state/events, and player
+  rows. Automated inhibitor/Baron extraction still needs an occurrence sample.
+- `reliability` 10/15: Public Streamlink-to-HLS capture succeeded without an
+  account or API key. Channel naming, event layouts, ads, desk segments, and
+  stream availability remain operational risks.
+- `leagueCoverage` 5/10: The path works for this KeSPA event and can generalize
+  to other broadcast channels, but discovery and overlay geometry are
+  tournament-specific until validated.
+- `costFit` 10/10: Public read-only capture has no provider fee.
+
+Decision: Keep as the first empirically validated delayed visual fallback.
+Do not promote it to automatic normalized input until pick/ban template
+matching, numeric OCR, cross-frame agreement, confidence thresholds, and source
+latency are measured.
 
 ## Polymarket Public Market Data
 
@@ -99,6 +124,7 @@ captures remain historical comparison evidence and do not override this role.
 ## Selected Sources
 
 - Primary spike source: LoLEsports frontend API.
+- Validated delayed visual fallback: official-event Twitch HLS; automated extraction pending.
 - Market/orderbook source: Polymarket public market data via HTML slug discovery, Gamma slug detail, and CLOB REST polling.
 - Backup candidate: PandaScore, if paid live access is acceptable.
 - Future upgrade: GRID, if official access and cost fit the project.

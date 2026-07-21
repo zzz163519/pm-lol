@@ -7,6 +7,11 @@ dependencies = [
   "requests>=2.31",
 ]
 
+[project.optional-dependencies]
+source-spike = [
+  "streamlink>=8.4,<9",
+]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]

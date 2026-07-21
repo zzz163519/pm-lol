@@ -130,12 +130,29 @@ During a target live window, use the normal polling window:
 
 The script writes raw samples and a report under `docs/source-spike/`.
 
+Capture consecutive read-only frames from a public Twitch event broadcast:
+
+```bash
+.venv/bin/python -m pip install -e '.[source-spike]'
+.venv/bin/python scripts/twitch_hls_frame_probe.py \
+  --channel-url https://www.twitch.tv/kespa2026lck \
+  --label bfx-dk-live \
+  --sample-count 3 \
+  --interval-sec 12
+```
+
+This requires `ffmpeg` on `PATH`. The probe stores redacted stream metadata,
+timestamped JPEG frames, and a JSON capture report. Signed HLS URLs and their
+embedded network data are not persisted.
+
 ## Current Known Risks
 
 - LoLEsports live `sourceLatencySec` is still pending active-match validation.
 - Polymarket Market WebSocket still needs a clean retest with a saved message or
   reproducible failure evidence.
 - Cito / unofficial sources are not recommended as the Phase 1 primary or backup.
+- Twitch HLS is validated only as a visual fallback; OCR/template extraction,
+  confidence thresholds, and upstream broadcast delay remain open gates.
 - Existing schema, collectors, storage, replay, and dashboard code are frozen as
   validation assets; they are not authorization to expand a Phase 1 skeleton.
 - Low-confidence market mappings must be skipped rather than forced.
