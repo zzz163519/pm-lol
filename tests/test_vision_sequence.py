@@ -1,7 +1,7 @@
 from pm_lol.vision.extractor import VisualFrameResult
 from pm_lol.vision.matcher import ChampionMatch
 from pm_lol.vision.ocr import OcrReading
-from pm_lol.vision.sequence import VisualSequenceAggregator
+from pm_lol.vision.sequence import VisualSequenceAggregator, observation_metrics
 
 
 def _reading(value, confidence=0.99, accepted=True):
@@ -60,3 +60,19 @@ def test_sequence_accepts_champion_only_after_cross_frame_geometric_agreement():
 
     assert result.picks["left"][0].accepted is True
     assert result.picks["left"][0].value == "Annie"
+
+
+def test_observation_metrics_records_capture_gap_without_claiming_source_latency():
+    metrics = observation_metrics(
+        [
+            {"path": "01.jpg", "observedAt": "2026-07-21T07:00:00Z"},
+            {"path": "02.jpg", "observedAt": "2026-07-21T07:00:05Z"},
+            {"path": "03.jpg", "observedAt": "2026-07-21T07:00:25Z"},
+        ],
+        expected_interval_sec=5,
+    )
+
+    assert metrics["observedFrameCount"] == 3
+    assert metrics["maxObservationGapSec"] == 20
+    assert metrics["interruptions"] == [{"framePath": "03.jpg", "gapSec": 20}]
+    assert metrics["sourceLatencySec"] is None

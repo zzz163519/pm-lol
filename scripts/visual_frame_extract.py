@@ -13,6 +13,7 @@ from pm_lol.vision.layout import load_layout
 from pm_lol.vision.matcher import ChampionMatcher
 from pm_lol.vision.ocr import RapidOcrAdapter
 from pm_lol.vision.sequence import VisualSequenceAggregator
+from pm_lol.vision.sequence import observation_metrics
 
 
 DEFAULT_LAYOUT = Path("configs/vision/kespa_2026_1920x1080.json")
@@ -36,6 +37,12 @@ def build_parser() -> argparse.ArgumentParser:
     sequence.add_argument("frames", nargs="+", type=Path)
     sequence.add_argument("--output", type=Path)
     sequence.add_argument("--skip-live-check", action="store_true")
+    probe = subparsers.add_parser(
+        "extract-probe", help="Extract frames listed by a redacted Twitch probe report."
+    )
+    probe.add_argument("probe", type=Path)
+    probe.add_argument("--output", type=Path)
+    probe.add_argument("--skip-live-check", action="store_true")
     return parser
 
 
@@ -61,9 +68,17 @@ def main(argv: list[str] | None = None) -> int:
         output = result.as_dict()
         source_status = result.source_status
     else:
+        if args.command == "extract-probe":
+            probe_report = json.loads(args.probe.read_text(encoding="utf-8"))
+            frame_records = probe_report.get("frames") or []
+            frame_paths = [Path(record["path"]) for record in frame_records]
+        else:
+            probe_report = None
+            frame_records = []
+            frame_paths = args.frames
         frame_results = [
             extractor.extract(frame, require_live_indicator=not args.skip_live_check)
-            for frame in args.frames
+            for frame in frame_paths
         ]
         result = VisualSequenceAggregator(
             champion_min_score=layout.thresholds.get("championScore", 0.55)
@@ -72,6 +87,26 @@ def main(argv: list[str] | None = None) -> int:
             "aggregate": result.as_dict(),
             "frames": [frame.as_dict() for frame in frame_results],
         }
+        if probe_report is not None:
+            output["capture"] = {
+                key: probe_report.get(key)
+                for key in (
+                    "channelUrl",
+                    "quality",
+                    "startedAt",
+                    "endedAt",
+                    "requestedSampleCount",
+                    "intervalSec",
+                    "ffmpegReturnCode",
+                    "success",
+                    "failureReason",
+                )
+            }
+            output["observations"] = frame_records
+            output["observationMetrics"] = observation_metrics(
+                frame_records,
+                expected_interval_sec=float(probe_report.get("intervalSec") or 1),
+            )
         source_status = result.source_status
     payload = json.dumps(output, ensure_ascii=False, indent=2) + "\n"
     if args.output:

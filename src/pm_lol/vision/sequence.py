@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import Counter
 from dataclasses import asdict, dataclass
+from datetime import datetime
 from typing import Any, Iterable
 
 from .extractor import VisualFrameResult
@@ -220,3 +221,38 @@ class VisualSequenceAggregator:
             }
 
         return reject(picks), reject(bans)
+
+
+def observation_metrics(
+    observations: Iterable[dict[str, Any]], *, expected_interval_sec: float
+) -> dict[str, Any]:
+    """Summarize capture timing without inventing source-side latency."""
+    if expected_interval_sec <= 0:
+        raise ValueError("expected_interval_sec must be positive")
+    parsed: list[tuple[str, datetime]] = []
+    for observation in observations:
+        raw = observation.get("observedAt")
+        if not isinstance(raw, str):
+            continue
+        try:
+            parsed.append((str(observation.get("path") or ""), datetime.fromisoformat(raw.replace("Z", "+00:00"))))
+        except ValueError:
+            continue
+    gaps = [
+        (current_path, (current_time - prior_time).total_seconds())
+        for (_, prior_time), (current_path, current_time) in zip(parsed, parsed[1:])
+    ]
+    interruptions = [
+        {"framePath": path, "gapSec": gap}
+        for path, gap in gaps
+        if gap > expected_interval_sec * 2.5
+    ]
+    return {
+        "observedFrameCount": len(parsed),
+        "firstObservedAt": parsed[0][1].isoformat().replace("+00:00", "Z") if parsed else None,
+        "lastObservedAt": parsed[-1][1].isoformat().replace("+00:00", "Z") if parsed else None,
+        "maxObservationGapSec": max((gap for _, gap in gaps), default=None),
+        "interruptions": interruptions,
+        "sourceLatencySec": None,
+        "sourceLatencyStatus": "not_measured_without_authoritative_source_timestamp",
+    }
