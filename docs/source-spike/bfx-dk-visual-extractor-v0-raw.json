@@ -1,0 +1,3412 @@
+{
+  "aggregate": {
+    "frame_count": 12,
+    "retained_frame_count": 12,
+    "skipped_frames": [],
+    "fields": {
+      "clock": {
+        "value": 2655,
+        "confidence": 0.9773051738739014,
+        "support": 1,
+        "sample_count": 12,
+        "accepted": true,
+        "reason": null
+      },
+      "leftGold": {
+        "value": 87300,
+        "confidence": 0.9958530306816101,
+        "support": 1,
+        "sample_count": 12,
+        "accepted": true,
+        "reason": null
+      },
+      "rightGold": {
+        "value": 91500,
+        "confidence": 0.8777062475681305,
+        "support": 1,
+        "sample_count": 12,
+        "accepted": true,
+        "reason": null
+      },
+      "leftKills": {
+        "value": 21,
+        "confidence": 0.9997583627700806,
+        "support": 1,
+        "sample_count": 9,
+        "accepted": true,
+        "reason": null
+      },
+      "rightKills": {
+        "value": 32,
+        "confidence": 0.9845336973667145,
+        "support": 1,
+        "sample_count": 12,
+        "accepted": true,
+        "reason": null
+      },
+      "leftTowers": {
+        "value": 3,
+        "confidence": 0.7734749555587769,
+        "support": 5,
+        "sample_count": 10,
+        "accepted": true,
+        "reason": null
+      },
+      "rightTowers": {
+        "value": 2,
+        "confidence": 0.9884515702724457,
+        "support": 4,
+        "sample_count": 12,
+        "accepted": true,
+        "reason": null
+      },
+      "leftDragons": {
+        "value": 0,
+        "confidence": 0.4371823351830244,
+        "support": 8,
+        "sample_count": 8,
+        "accepted": true,
+        "reason": null
+      },
+      "rightDragons": {
+        "value": 3,
+        "confidence": 0.9870185785823398,
+        "support": 9,
+        "sample_count": 11,
+        "accepted": true,
+        "reason": null
+      }
+    },
+    "picks": {
+      "left": [
+        {
+          "value": "Ambessa",
+          "confidence": 0.8439326707251247,
+          "support": 10,
+          "sample_count": 11,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "value": "Vi",
+          "confidence": 0.7943109737621136,
+          "support": 10,
+          "sample_count": 12,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "value": null,
+          "confidence": 0.8120176077970097,
+          "support": 6,
+          "sample_count": 12,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": null,
+          "confidence": 0.7513111049599885,
+          "support": 4,
+          "sample_count": 11,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": "Camille",
+          "confidence": 0.8148678806713612,
+          "support": 9,
+          "sample_count": 10,
+          "accepted": true,
+          "reason": null
+        }
+      ],
+      "right": [
+        {
+          "value": null,
+          "confidence": 0.7508146250828729,
+          "support": 2,
+          "sample_count": 8,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": "LeeSin",
+          "confidence": 0.8018546067461757,
+          "support": 11,
+          "sample_count": 12,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "value": "Taliyah",
+          "confidence": 0.7697960619002397,
+          "support": 4,
+          "sample_count": 4,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "value": null,
+          "confidence": 0.708431692644902,
+          "support": 1,
+          "sample_count": 2,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": null,
+          "confidence": 0.7207226198341367,
+          "support": 2,
+          "sample_count": 5,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        }
+      ]
+    },
+    "bans": {
+      "left": [
+        {
+          "value": "Kindred",
+          "confidence": 0.717144581112318,
+          "support": 4,
+          "sample_count": 6,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "value": null,
+          "confidence": 0.7247702811388916,
+          "support": 1,
+          "sample_count": 4,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": "Quinn",
+          "confidence": 0.7394622595072093,
+          "support": 2,
+          "sample_count": 3,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "value": null,
+          "confidence": 0.7004707736458115,
+          "support": 1,
+          "sample_count": 7,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": null,
+          "confidence": 0.0,
+          "support": 0,
+          "sample_count": 0,
+          "accepted": false,
+          "reason": "no_geometrically_verified_samples"
+        }
+      ],
+      "right": [
+        {
+          "value": null,
+          "confidence": 0.7232820482389715,
+          "support": 1,
+          "sample_count": 4,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": null,
+          "confidence": 0.7492294816669847,
+          "support": 1,
+          "sample_count": 5,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": null,
+          "confidence": 0.7451564542817961,
+          "support": 1,
+          "sample_count": 6,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": null,
+          "confidence": 0.7322323969485995,
+          "support": 1,
+          "sample_count": 1,
+          "accepted": false,
+          "reason": "cross_frame_agreement_required"
+        },
+        {
+          "value": null,
+          "confidence": 0.0,
+          "support": 0,
+          "sample_count": 0,
+          "accepted": false,
+          "reason": "no_geometrically_verified_samples"
+        }
+      ]
+    },
+    "source_status": "partial_low_confidence"
+  },
+  "frames": [
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-live-20260721T071529Z-01.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay",
+      "live_indicator": {
+        "raw_text": "2 LIVE",
+        "value": "2LIVE",
+        "confidence": 0.915438731511434,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "06:49",
+          "value": 409,
+          "confidence": 0.9746574759483337,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "10.6K",
+          "value": 10600,
+          "confidence": 0.992418086528778,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "11.5K",
+          "value": 11500,
+          "confidence": 0.9272024869918823,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "。",
+          "value": null,
+          "confidence": 0.8105598092079163,
+          "accepted": false
+        },
+        "rightKills": {
+          "raw_text": "1",
+          "value": 1,
+          "confidence": 0.9927082657814026,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.636897623538971,
+          "accepted": false
+        },
+        "rightTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.6148407459259033,
+          "accepted": false
+        },
+        "leftDragons": {
+          "raw_text": "00",
+          "value": 0,
+          "confidence": 0.4778077304363251,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "00",
+          "value": 0,
+          "confidence": 0.8063264489173889,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.8715948035158474,
+            "runner_up_score": 0.3088624502889695,
+            "margin": 0.5627323532268779,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.8119349242891133,
+            "runner_up_score": 0.7197411611187613,
+            "margin": 0.092193763170352,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7306577673572899,
+            "runner_up_score": 0.7284158016836895,
+            "margin": 0.0022419656736004656,
+            "accepted": false,
+            "candidate_id": "Graves",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7290335730201157,
+            "runner_up_score": 0.7223339965355148,
+            "margin": 0.006699576484600955,
+            "accepted": false,
+            "candidate_id": "Caitlyn",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.28561918201253417,
+            "runner_up_score": 0.28459840684680965,
+            "margin": 0.001020775165724519,
+            "accepted": false,
+            "candidate_id": "Azir",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.7527359746347615,
+            "runner_up_score": 0.736041657000051,
+            "margin": 0.01669431763471052,
+            "accepted": false,
+            "candidate_id": "Renekton",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.8125634239678949,
+            "runner_up_score": 0.29824101825451255,
+            "margin": 0.5143224057133824,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.290836794937783,
+            "runner_up_score": 0.27255432160985466,
+            "margin": 0.018282473327928372,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2826983590214294,
+            "runner_up_score": 0.28239633408592624,
+            "margin": 0.00030202493550318676,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.30307111269402354,
+            "runner_up_score": 0.30016740895844524,
+            "margin": 0.0029037037355783,
+            "accepted": false,
+            "candidate_id": "JarvanIV",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.2596471977226066,
+            "runner_up_score": 0.258996454396073,
+            "margin": 0.0006507433265335871,
+            "accepted": false,
+            "candidate_id": "Fiora",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29295326881082767,
+            "runner_up_score": 0.28948488523453236,
+            "margin": 0.0034683835762953086,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.272770835469666,
+            "runner_up_score": 0.2672962263793716,
+            "margin": 0.005474609090294402,
+            "accepted": false,
+            "candidate_id": "Illaoi",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3005990552877689,
+            "runner_up_score": 0.28984041383798625,
+            "margin": 0.010758641449782669,
+            "accepted": false,
+            "candidate_id": "Yasuo",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.33902611457911636,
+            "runner_up_score": 0.33878555595962206,
+            "margin": 0.00024055861949429103,
+            "accepted": false,
+            "candidate_id": "Pantheon",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.30161617147986625,
+            "runner_up_score": 0.2935056254074354,
+            "margin": 0.008110546072430835,
+            "accepted": false,
+            "candidate_id": "Ryze",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2759977124249368,
+            "runner_up_score": 0.27517997446657094,
+            "margin": 0.0008177379583658717,
+            "accepted": false,
+            "candidate_id": "Urgot",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.26537026735721847,
+            "runner_up_score": 0.2601243772157502,
+            "margin": 0.005245890141468257,
+            "accepted": false,
+            "candidate_id": "Khazix",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28326368825965875,
+            "runner_up_score": 0.2803660012707998,
+            "margin": 0.0028976869888589496,
+            "accepted": false,
+            "candidate_id": "Yone",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3199855776569954,
+            "runner_up_score": 0.30843657917664086,
+            "margin": 0.011548998480354566,
+            "accepted": false,
+            "candidate_id": "Sona",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8986757394925802
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-live-20260721T071529Z-02.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": " 5:00",
+        "value": "5:00",
+        "confidence": 0.815841805934906,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "07:01",
+          "value": 421,
+          "confidence": 0.9891582131385803,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "11.0K",
+          "value": 11000,
+          "confidence": 0.9688288688659668,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "11.8K",
+          "value": 11800,
+          "confidence": 0.9205597400665283,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.6210934519767761,
+          "accepted": false
+        },
+        "rightKills": {
+          "raw_text": "1",
+          "value": 1,
+          "confidence": 0.9942776560783386,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "Y0",
+          "value": 0,
+          "confidence": 0.5934829860925674,
+          "accepted": false
+        },
+        "rightTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.8170103430747986,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.40850916504859924,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "00",
+          "value": 0,
+          "confidence": 0.5542663633823395,
+          "accepted": false
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.8725004815534316,
+            "runner_up_score": 0.31093439172251924,
+            "margin": 0.5615660898309124,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.830809675492146,
+            "runner_up_score": 0.7288933138087048,
+            "margin": 0.1019163616834412,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7203902491939008,
+            "runner_up_score": 0.7119847334927741,
+            "margin": 0.008405515701126687,
+            "accepted": false,
+            "candidate_id": "Xerath",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7637401491791237,
+            "runner_up_score": 0.7241411363356798,
+            "margin": 0.039599012843443915,
+            "accepted": false,
+            "candidate_id": "Ziggs",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.8285204177870545,
+            "runner_up_score": 0.29104939740026703,
+            "margin": 0.5374710203867875,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.32714077586286083,
+            "runner_up_score": 0.3208244642226399,
+            "margin": 0.006316311640220951,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.8221483429379149,
+            "runner_up_score": 0.3102398745833168,
+            "margin": 0.5119084683545981,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Taliyah",
+            "score": 0.7457841418153429,
+            "runner_up_score": 0.3150782493307684,
+            "margin": 0.4307058924845745,
+            "accepted": true,
+            "candidate_id": "Taliyah",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2971189601943947,
+            "runner_up_score": 0.2962051985241226,
+            "margin": 0.0009137616702721285,
+            "accepted": false,
+            "candidate_id": "Locke",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Briar",
+            "score": 0.7197224349678835,
+            "runner_up_score": 0.3056468607031173,
+            "margin": 0.41407557426476616,
+            "accepted": true,
+            "candidate_id": "Briar",
+            "geometrically_verified": true
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": "Caitlyn",
+            "score": 0.7125733619618824,
+            "runner_up_score": 0.2689992086851328,
+            "margin": 0.4435741532767496,
+            "accepted": true,
+            "candidate_id": "Caitlyn",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.29495744754645165,
+            "runner_up_score": 0.2882683004985414,
+            "margin": 0.006689147047910238,
+            "accepted": false,
+            "candidate_id": "Vayne",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2855838859378486,
+            "runner_up_score": 0.27248248859707014,
+            "margin": 0.013101397340778476,
+            "accepted": false,
+            "candidate_id": "Ziggs",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29421088384954697,
+            "runner_up_score": 0.280362956829962,
+            "margin": 0.013847927019584982,
+            "accepted": false,
+            "candidate_id": "Vayne",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.32721713816938613,
+            "runner_up_score": 0.3258261668658778,
+            "margin": 0.0013909713035083482,
+            "accepted": false,
+            "candidate_id": "Vayne",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": "Yone",
+            "score": 0.7232820482389715,
+            "runner_up_score": 0.2808161199436413,
+            "margin": 0.44246592829533016,
+            "accepted": true,
+            "candidate_id": "Yone",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2897501587092041,
+            "runner_up_score": 0.28761813656574214,
+            "margin": 0.0021320221434619757,
+            "accepted": false,
+            "candidate_id": "Mordekaiser",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28665908745310775,
+            "runner_up_score": 0.27816283789069923,
+            "margin": 0.00849624956240852,
+            "accepted": false,
+            "candidate_id": "Nilah",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7322323969485995,
+            "runner_up_score": 0.7167441666018892,
+            "margin": 0.015488230346710319,
+            "accepted": false,
+            "candidate_id": "Smolder",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.33426799293996434,
+            "runner_up_score": 0.3272855331995181,
+            "margin": 0.006982459740446256,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8419365943060646
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-live-20260721T071529Z-03.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": " 4:48",
+        "value": "4:48",
+        "confidence": 0.9155816316604615,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "07:13",
+          "value": 433,
+          "confidence": 0.9733585119247437,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "11.4k",
+          "value": 11400,
+          "confidence": 0.967811667919159,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "12.0K",
+          "value": 12000,
+          "confidence": 0.9816361665725708,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.6124711632728577,
+          "accepted": false
+        },
+        "rightKills": {
+          "raw_text": "1",
+          "value": 1,
+          "confidence": 0.9945120811462402,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "Yo",
+          "value": 0,
+          "confidence": 0.33141856640577316,
+          "accepted": false
+        },
+        "rightTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.7207315564155579,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.41350148618221283,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "",
+          "value": null,
+          "confidence": 0.0,
+          "accepted": false
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.8824372589936006,
+            "runner_up_score": 0.7149239621463446,
+            "margin": 0.16751329684725602,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.7693461718567873,
+            "runner_up_score": 0.30274926374632666,
+            "margin": 0.4665969081104607,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Ryze",
+            "score": 0.8839573838739159,
+            "runner_up_score": 0.3059999796681797,
+            "margin": 0.5779574042057362,
+            "accepted": true,
+            "candidate_id": "Ryze",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7368708743472204,
+            "runner_up_score": 0.7216507902967704,
+            "margin": 0.015220084050450056,
+            "accepted": false,
+            "candidate_id": "Garen",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.7817350371466174,
+            "runner_up_score": 0.29038922721880145,
+            "margin": 0.49134580992781596,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": "Renekton",
+            "score": 0.7488932755309844,
+            "runner_up_score": 0.32500503019724514,
+            "margin": 0.42388824533373926,
+            "accepted": true,
+            "candidate_id": "Renekton",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.8298593517475547,
+            "runner_up_score": 0.7105005330260089,
+            "margin": 0.11935881872154575,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Taliyah",
+            "score": 0.864589806007579,
+            "runner_up_score": 0.3044922645643826,
+            "margin": 0.5600975414431963,
+            "accepted": true,
+            "candidate_id": "Taliyah",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Riven",
+            "score": 0.708431692644902,
+            "runner_up_score": 0.2945255818295483,
+            "margin": 0.4139061108153537,
+            "accepted": true,
+            "candidate_id": "Riven",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.30799347676946504,
+            "runner_up_score": 0.30162570538599476,
+            "margin": 0.006367771383470278,
+            "accepted": false,
+            "candidate_id": "JarvanIV",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.3115765964393895,
+            "runner_up_score": 0.30788089981465394,
+            "margin": 0.003695696624735567,
+            "accepted": false,
+            "candidate_id": "Anivia",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Illaoi",
+            "score": 0.7247702811388916,
+            "runner_up_score": 0.29270116261454615,
+            "margin": 0.4320691185243455,
+            "accepted": true,
+            "candidate_id": "Illaoi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2954266742136135,
+            "runner_up_score": 0.2947368892855048,
+            "margin": 0.0006897849281087276,
+            "accepted": false,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2922190174888698,
+            "runner_up_score": 0.28214773101153423,
+            "margin": 0.010071286477335573,
+            "accepted": false,
+            "candidate_id": "Thresh",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3166781808346787,
+            "runner_up_score": 0.29920383021982144,
+            "margin": 0.017474350614857248,
+            "accepted": false,
+            "candidate_id": "Nilah",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.28183741263582684,
+            "runner_up_score": 0.27930329375809776,
+            "margin": 0.0025341188777290857,
+            "accepted": false,
+            "candidate_id": "Xerath",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2790786541239136,
+            "runner_up_score": 0.2711143477706761,
+            "margin": 0.007964306353237471,
+            "accepted": false,
+            "candidate_id": "Urgot",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28014364741920533,
+            "runner_up_score": 0.2721718126868259,
+            "margin": 0.007971834732379446,
+            "accepted": false,
+            "candidate_id": "Riven",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2731024174516651,
+            "runner_up_score": 0.2718431340127662,
+            "margin": 0.0012592834388988616,
+            "accepted": false,
+            "candidate_id": "Fizz",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3246497257574287,
+            "runner_up_score": 0.3121518155333604,
+            "margin": 0.012497910224068265,
+            "accepted": false,
+            "candidate_id": "Teemo",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8451478744942218
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-01.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": "6 3:00",
+        "value": "63:00",
+        "confidence": 0.9193656841913859,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "14:37",
+          "value": 877,
+          "confidence": 0.9608344197273254,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "24.4K",
+          "value": 24400,
+          "confidence": 0.9889079928398132,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "25.7K",
+          "value": 25700,
+          "confidence": 0.9845738887786866,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "1",
+          "value": 1,
+          "confidence": 0.9925554394721985,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "5",
+          "value": 5,
+          "confidence": 0.9972711205482483,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.4689193069934845,
+          "accepted": false
+        },
+        "rightTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.8823075890541077,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.3270603120326996,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9806565344333649,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.884549103199153,
+            "runner_up_score": 0.7316268714293997,
+            "margin": 0.15292223176975328,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7383109345682161,
+            "runner_up_score": 0.7361556570897152,
+            "margin": 0.002155277478500861,
+            "accepted": false,
+            "candidate_id": "Yorick",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7427572220016628,
+            "runner_up_score": 0.7387527000495987,
+            "margin": 0.004004521952064133,
+            "accepted": false,
+            "candidate_id": "Ryze",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Ashe",
+            "score": 0.707251628427475,
+            "runner_up_score": 0.6508504897928826,
+            "margin": 0.056401138634592396,
+            "accepted": true,
+            "candidate_id": "Ashe",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.8656930692004803,
+            "runner_up_score": 0.302416060706805,
+            "margin": 0.5632770084936753,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": "Nautilus",
+            "score": 0.7102481077949673,
+            "runner_up_score": 0.3162016367902999,
+            "margin": 0.3940464710046674,
+            "accepted": true,
+            "candidate_id": "Nautilus",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.8737834293878018,
+            "runner_up_score": 0.7380279238604747,
+            "margin": 0.13575550552732718,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Taliyah",
+            "score": 0.7369706587531947,
+            "runner_up_score": 0.6764803105256237,
+            "margin": 0.060490348227570934,
+            "accepted": true,
+            "candidate_id": "Taliyah",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2962937609890575,
+            "runner_up_score": 0.29389334783381915,
+            "margin": 0.002400413155238368,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.30776235830112547,
+            "runner_up_score": 0.3029289183996796,
+            "margin": 0.004833439901445857,
+            "accepted": false,
+            "candidate_id": "JarvanIV",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.2716528859198729,
+            "runner_up_score": 0.2650500355818685,
+            "margin": 0.006602850338004396,
+            "accepted": false,
+            "candidate_id": "Lissandra",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28852697193455246,
+            "runner_up_score": 0.2877614484088026,
+            "margin": 0.0007655235257498783,
+            "accepted": false,
+            "candidate_id": "Vex",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7337656196786492,
+            "runner_up_score": 0.7321373382082806,
+            "margin": 0.001628281470368531,
+            "accepted": false,
+            "candidate_id": "Quinn",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Viktor",
+            "score": 0.7004707736458115,
+            "runner_up_score": 0.29219286831278507,
+            "margin": 0.4082779053330264,
+            "accepted": true,
+            "candidate_id": "Viktor",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.3237493700293411,
+            "runner_up_score": 0.32198983074916354,
+            "margin": 0.00175953928017758,
+            "accepted": false,
+            "candidate_id": "Kayle",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": "Singed",
+            "score": 0.7353289217649059,
+            "runner_up_score": 0.28345178141758054,
+            "margin": 0.4518771403473254,
+            "accepted": true,
+            "candidate_id": "Singed",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Rumble",
+            "score": 0.7492294816669847,
+            "runner_up_score": 0.2733196865688401,
+            "margin": 0.4759097950981446,
+            "accepted": true,
+            "candidate_id": "Rumble",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Rumble",
+            "score": 0.7451564542817961,
+            "runner_up_score": 0.2733402066716473,
+            "margin": 0.4718162476101488,
+            "accepted": true,
+            "candidate_id": "Rumble",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2680901246566399,
+            "runner_up_score": 0.26626906554597785,
+            "margin": 0.0018210591106620488,
+            "accepted": false,
+            "candidate_id": "Zed",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2913000607309984,
+            "runner_up_score": 0.2818108669695428,
+            "margin": 0.009489193761455628,
+            "accepted": false,
+            "candidate_id": "Samira",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8526934478221362
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-02.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": "6 2:50",
+        "value": "62:50",
+        "confidence": 0.901960680882136,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "14:48",
+          "value": 888,
+          "confidence": 0.974108076095581,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "24.6K",
+          "value": 24600,
+          "confidence": 0.9952651023864746,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "25.8K",
+          "value": 25800,
+          "confidence": 0.9896767258644104,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "1",
+          "value": 1,
+          "confidence": 0.9952835440635681,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "5",
+          "value": 5,
+          "confidence": 0.9951150417327881,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.46826261281967163,
+          "accepted": false
+        },
+        "rightTowers": {
+          "raw_text": "0",
+          "value": 0,
+          "confidence": 0.7645856142044067,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.41584715247154236,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9868267774581909,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.8646114532596388,
+            "runner_up_score": 0.3038592177566979,
+            "margin": 0.560752235502941,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7454653502451561,
+            "runner_up_score": 0.73100614991449,
+            "margin": 0.014459200330666167,
+            "accepted": false,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7418264050483742,
+            "runner_up_score": 0.7414204483025517,
+            "margin": 0.00040595674582244445,
+            "accepted": false,
+            "candidate_id": "Kayle",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7149925604696927,
+            "runner_up_score": 0.6783599853025328,
+            "margin": 0.0366325751671599,
+            "accepted": false,
+            "candidate_id": "Cassiopeia",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.8287833747644298,
+            "runner_up_score": 0.29116025433494735,
+            "margin": 0.5376231204294823,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": "Hwei",
+            "score": 0.7350916466077575,
+            "runner_up_score": 0.3220651941276789,
+            "margin": 0.4130264524800786,
+            "accepted": true,
+            "candidate_id": "Hwei",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.810557832095965,
+            "runner_up_score": 0.7286194827579222,
+            "margin": 0.08193834933804278,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2971404788592149,
+            "runner_up_score": 0.2881128023639511,
+            "margin": 0.009027676495263814,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.282024739052186,
+            "runner_up_score": 0.2807589395920211,
+            "margin": 0.001265799460164918,
+            "accepted": false,
+            "candidate_id": "Locke",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Briar",
+            "score": 0.7217228047003899,
+            "runner_up_score": 0.3080081876856226,
+            "margin": 0.41371461701476725,
+            "accepted": true,
+            "candidate_id": "Briar",
+            "geometrically_verified": true
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.7162783007326892,
+            "runner_up_score": 0.6979141274334861,
+            "margin": 0.018364173299203035,
+            "accepted": false,
+            "candidate_id": "Kindred",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2862019089567298,
+            "runner_up_score": 0.2853503139755475,
+            "margin": 0.0008515949811823131,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2915469599020779,
+            "runner_up_score": 0.27949356372393785,
+            "margin": 0.012053396178140052,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7400976709943139,
+            "runner_up_score": 0.7385558105094034,
+            "margin": 0.0015418604849104511,
+            "accepted": false,
+            "candidate_id": "Galio",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.283042502022516,
+            "runner_up_score": 0.28011781441153216,
+            "margin": 0.002924687610983856,
+            "accepted": false,
+            "candidate_id": "Mordekaiser",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.7194204524609771,
+            "runner_up_score": 0.7129751167701204,
+            "margin": 0.006445335690856702,
+            "accepted": false,
+            "candidate_id": "Viktor",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Yuumi",
+            "score": 0.7213188059873206,
+            "runner_up_score": 0.27083826377309417,
+            "margin": 0.4504805422142264,
+            "accepted": true,
+            "candidate_id": "Yuumi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7181236693154534,
+            "runner_up_score": 0.7077601227697398,
+            "margin": 0.010363546545713587,
+            "accepted": false,
+            "candidate_id": "Udyr",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.280552271481404,
+            "runner_up_score": 0.26985010478808935,
+            "margin": 0.010702166693314641,
+            "accepted": false,
+            "candidate_id": "Zed",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3102434545063818,
+            "runner_up_score": 0.3079223893901217,
+            "margin": 0.0023210651162601237,
+            "accepted": false,
+            "candidate_id": "Zed",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8756112922477631
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-late-20260721T072930Z-01.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": "6 3:30 ",
+        "value": "63:30",
+        "confidence": 0.8996680634362357,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "20:54",
+          "value": 1254,
+          "confidence": 0.9482296586036683,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "39.2K",
+          "value": 39200,
+          "confidence": 0.9868230581283569,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "37.6K",
+          "value": 37600,
+          "confidence": 0.987117326259613,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "6",
+          "value": 6,
+          "confidence": 0.9854446053504944,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "8",
+          "value": 8,
+          "confidence": 0.9753129482269287,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "3",
+          "value": 3,
+          "confidence": 0.9805513620376587,
+          "accepted": true
+        },
+        "rightTowers": {
+          "raw_text": "2",
+          "value": 2,
+          "confidence": 0.9914306998252869,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "00",
+          "value": 0,
+          "confidence": 0.3734778165817261,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9893776178359985,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.833563856871453,
+            "runner_up_score": 0.7068260629989924,
+            "margin": 0.12673779387246054,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.7660755654917087,
+            "runner_up_score": 0.6576201458716566,
+            "margin": 0.10845541962005212,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Ryze",
+            "score": 0.8118921875861632,
+            "runner_up_score": 0.7433101470988145,
+            "margin": 0.06858204048734873,
+            "accepted": true,
+            "candidate_id": "Ryze",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.738735461418872,
+            "runner_up_score": 0.7271161471349852,
+            "margin": 0.01161931428388685,
+            "accepted": false,
+            "candidate_id": "Ziggs",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.7681389295335908,
+            "runner_up_score": 0.2925902506825465,
+            "margin": 0.47554867885104424,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": "Kayn",
+            "score": 0.7246519352749309,
+            "runner_up_score": 0.31869467221322256,
+            "margin": 0.4059572630617083,
+            "accepted": true,
+            "candidate_id": "Kayn",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7621097974265486,
+            "runner_up_score": 0.7377328809378407,
+            "margin": 0.024376916488707878,
+            "accepted": false,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7318396410248424,
+            "runner_up_score": 0.7252314667739308,
+            "margin": 0.006608174250911647,
+            "accepted": false,
+            "candidate_id": "Taliyah",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2796010109476461,
+            "runner_up_score": 0.276222537755694,
+            "margin": 0.003378473191952114,
+            "accepted": false,
+            "candidate_id": "Locke",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Leona",
+            "score": 0.7395840846792188,
+            "runner_up_score": 0.29540461084441805,
+            "margin": 0.4441794738348007,
+            "accepted": true,
+            "candidate_id": "Leona",
+            "geometrically_verified": true
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.286802434169229,
+            "runner_up_score": 0.28366586270902006,
+            "margin": 0.003136571460208959,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Chogath",
+            "score": 0.6609542733168056,
+            "runner_up_score": 0.2963781225109568,
+            "margin": 0.36457615080584876,
+            "accepted": true,
+            "candidate_id": "Chogath",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.29978815729101355,
+            "runner_up_score": 0.28536552362494294,
+            "margin": 0.014422633666070606,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Jayce",
+            "score": 0.7036865766962468,
+            "runner_up_score": 0.3039419336119566,
+            "margin": 0.3997446430842902,
+            "accepted": true,
+            "candidate_id": "Jayce",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.29694685312866176,
+            "runner_up_score": 0.2922571808674488,
+            "margin": 0.004689672261212974,
+            "accepted": false,
+            "candidate_id": "Nocturne",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.2798890340523791,
+            "runner_up_score": 0.2796490902434067,
+            "margin": 0.0002399438089724093,
+            "accepted": false,
+            "candidate_id": "Soraka",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7253902456111048,
+            "runner_up_score": 0.7211543749652243,
+            "margin": 0.004235870645880491,
+            "accepted": false,
+            "candidate_id": "MonkeyKing",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7214638335187485,
+            "runner_up_score": 0.7096422983271271,
+            "margin": 0.011821535191621435,
+            "accepted": false,
+            "candidate_id": "Chogath",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.265425881685882,
+            "runner_up_score": 0.25928164291359823,
+            "margin": 0.006144238772283761,
+            "accepted": false,
+            "candidate_id": "Azir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29237536609451553,
+            "runner_up_score": 0.2858582579597399,
+            "margin": 0.006517108134775629,
+            "accepted": false,
+            "candidate_id": "Aatrox",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8658021678573827
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-late-20260721T072930Z-02.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": "6 3:20 ",
+        "value": "63:20",
+        "confidence": 0.8959709320749555,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "21:03",
+          "value": 1263,
+          "confidence": 0.9481549501419068,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "39.6K",
+          "value": 39600,
+          "confidence": 0.9907274007797241,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "37.9K",
+          "value": 37900,
+          "confidence": 0.9849860310554505,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "6",
+          "value": 6,
+          "confidence": 0.9893819093704224,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "8",
+          "value": 8,
+          "confidence": 0.9838480353355408,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "Y3",
+          "value": 3,
+          "confidence": 0.6707083880901337,
+          "accepted": false
+        },
+        "rightTowers": {
+          "raw_text": "2",
+          "value": 2,
+          "confidence": 0.9840399622917175,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.385336235165596,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9845708906650543,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.8753313049701223,
+            "runner_up_score": 0.7148854973418987,
+            "margin": 0.1604458076282237,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.7548661537782307,
+            "runner_up_score": 0.3050558333830781,
+            "margin": 0.4498103203951526,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Ryze",
+            "score": 0.8000588960654315,
+            "runner_up_score": 0.7485559690442256,
+            "margin": 0.05150292702120585,
+            "accepted": true,
+            "candidate_id": "Ryze",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Samira",
+            "score": 0.7121404170770547,
+            "runner_up_score": 0.6081967458028203,
+            "margin": 0.10394367127423432,
+            "accepted": true,
+            "candidate_id": "Samira",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.8792308111435702,
+            "runner_up_score": 0.2850816944253368,
+            "margin": 0.5941491167182333,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.3064809947321676,
+            "runner_up_score": 0.299878475738715,
+            "margin": 0.0066025189934526,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7307683136234447,
+            "runner_up_score": 0.7281964176804328,
+            "margin": 0.0025718959430119925,
+            "accepted": false,
+            "candidate_id": "Nami",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2960765632665521,
+            "runner_up_score": 0.2940081988663504,
+            "margin": 0.0020683644002016943,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2969162977064102,
+            "runner_up_score": 0.2943943347032517,
+            "margin": 0.0025219630031584894,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.308439414457066,
+            "runner_up_score": 0.30103615789316074,
+            "margin": 0.0074032565639052805,
+            "accepted": false,
+            "candidate_id": "JarvanIV",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.728583086981137,
+            "runner_up_score": 0.7211430616220755,
+            "margin": 0.0074400253590615195,
+            "accepted": false,
+            "candidate_id": "Renekton",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Udyr",
+            "score": 0.7325622897390777,
+            "runner_up_score": 0.2843871406076196,
+            "margin": 0.44817514913145806,
+            "accepted": true,
+            "candidate_id": "Udyr",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.28091366725738987,
+            "runner_up_score": 0.2794036486716302,
+            "margin": 0.0015100185857596649,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Jinx",
+            "score": 0.7275092712752682,
+            "runner_up_score": 0.29116814278802927,
+            "margin": 0.43634112848723894,
+            "accepted": true,
+            "candidate_id": "Jinx",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2878137504952115,
+            "runner_up_score": 0.28495090829189684,
+            "margin": 0.002862842203314675,
+            "accepted": false,
+            "candidate_id": "Rammus",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.2883905975893333,
+            "runner_up_score": 0.28690592466045883,
+            "margin": 0.001484672928874442,
+            "accepted": false,
+            "candidate_id": "Yone",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28718480835226845,
+            "runner_up_score": 0.2848173268747705,
+            "margin": 0.0023674814774979347,
+            "accepted": false,
+            "candidate_id": "Warwick",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.27616376249464897,
+            "runner_up_score": 0.27138380831809494,
+            "margin": 0.004779954176554024,
+            "accepted": false,
+            "candidate_id": "Veigar",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.27632716720956935,
+            "runner_up_score": 0.2738434696797978,
+            "margin": 0.002483697529771567,
+            "accepted": false,
+            "candidate_id": "Rengar",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3043751210072535,
+            "runner_up_score": 0.3001504586833674,
+            "margin": 0.004224662323886075,
+            "accepted": false,
+            "candidate_id": "Ryze",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8819577374063264
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-objectives-20260721T073227Z-02.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": "6 0:24",
+        "value": "60:24",
+        "confidence": 0.9413501421610514,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "24:00",
+          "value": 1440,
+          "confidence": 0.9886277079582214,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "44.8K",
+          "value": 44800,
+          "confidence": 0.9862967967987061,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "43.5K",
+          "value": 43500,
+          "confidence": 0.9780462503433227,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "7",
+          "value": 7,
+          "confidence": 0.9967166781425476,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "9",
+          "value": 9,
+          "confidence": 0.9854826927185059,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "Y3",
+          "value": 3,
+          "confidence": 0.7285138815641403,
+          "accepted": true
+        },
+        "rightTowers": {
+          "raw_text": "2",
+          "value": 2,
+          "confidence": 0.9896451234817505,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.4701876938343048,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9868269860744476,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.7613084658261849,
+            "runner_up_score": 0.30076979538196247,
+            "margin": 0.4605386704442225,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7473258647519991,
+            "runner_up_score": 0.734265044383605,
+            "margin": 0.013060820368394177,
+            "accepted": false,
+            "candidate_id": "Akshan",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7140045636717429,
+            "runner_up_score": 0.7130458034402666,
+            "margin": 0.000958760231476341,
+            "accepted": false,
+            "candidate_id": "Nunu",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7218059003020871,
+            "runner_up_score": 0.7195445931779638,
+            "margin": 0.002261307124123313,
+            "accepted": false,
+            "candidate_id": "Yuumi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.8757614860941012,
+            "runner_up_score": 0.29622949528263653,
+            "margin": 0.5795319908114647,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.3202607448242135,
+            "runner_up_score": 0.3126600400494484,
+            "margin": 0.007600704774765099,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7583014664777943,
+            "runner_up_score": 0.7136533555337627,
+            "margin": 0.04464811094403154,
+            "accepted": false,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.3066423186098016,
+            "runner_up_score": 0.2917446084523412,
+            "margin": 0.014897710157460442,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7273681538783106,
+            "runner_up_score": 0.7094297787679373,
+            "margin": 0.017938375110373217,
+            "accepted": false,
+            "candidate_id": "Rammus",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Volibear",
+            "score": 0.726668224207721,
+            "runner_up_score": 0.30348748554780847,
+            "margin": 0.42318073865991257,
+            "accepted": true,
+            "candidate_id": "Volibear",
+            "geometrically_verified": true
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": "Kindred",
+            "score": 0.7135084493370561,
+            "runner_up_score": 0.2638755840424021,
+            "margin": 0.44963286529465407,
+            "accepted": true,
+            "candidate_id": "Kindred",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Rumble",
+            "score": 0.7332112833845701,
+            "runner_up_score": 0.28135616077648185,
+            "margin": 0.45185512260808824,
+            "accepted": true,
+            "candidate_id": "Rumble",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7437781973199004,
+            "runner_up_score": 0.7246395286535485,
+            "margin": 0.019138668666351832,
+            "accepted": false,
+            "candidate_id": "Galio",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.740852502544736,
+            "runner_up_score": 0.7284341501310448,
+            "margin": 0.012418352413691158,
+            "accepted": false,
+            "candidate_id": "Anivia",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.3139601104069284,
+            "runner_up_score": 0.30775493617562155,
+            "margin": 0.0062051742313068425,
+            "accepted": false,
+            "candidate_id": "Maokai",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.28196883963265235,
+            "runner_up_score": 0.2795607269904908,
+            "margin": 0.002408112642161564,
+            "accepted": false,
+            "candidate_id": "Talon",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2818767477449662,
+            "runner_up_score": 0.28095422941181586,
+            "margin": 0.0009225183331503239,
+            "accepted": false,
+            "candidate_id": "Rumble",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Viktor",
+            "score": 0.706079159471013,
+            "runner_up_score": 0.27573877784875056,
+            "margin": 0.4303403816222624,
+            "accepted": true,
+            "candidate_id": "Viktor",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.27429793882116965,
+            "runner_up_score": 0.27313107505761264,
+            "margin": 0.0011668637635570134,
+            "accepted": false,
+            "candidate_id": "Syndra",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.33872477826669134,
+            "runner_up_score": 0.33172901800290233,
+            "margin": 0.006995760263789008,
+            "accepted": false,
+            "candidate_id": "Samira",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8683352275287348
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-baron-20260721T073406Z-03.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": "6 4:38",
+        "value": "64:38",
+        "confidence": 0.9574650724728903,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "25:35",
+          "value": 1535,
+          "confidence": 0.9886629104614257,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "47.8K",
+          "value": 47800,
+          "confidence": 0.9918122887611389,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "46.0K",
+          "value": 46000,
+          "confidence": 0.9906794548034668,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "7",
+          "value": 7,
+          "confidence": 0.9974827170372009,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "9",
+          "value": 9,
+          "confidence": 0.9837467074394226,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "Y3",
+          "value": 3,
+          "confidence": 0.8321540653705597,
+          "accepted": true
+        },
+        "rightTowers": {
+          "raw_text": "2",
+          "value": 2,
+          "confidence": 0.9886904954910278,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.42683278024196625,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9886815249919891,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Ambessa",
+            "score": 0.8646666840180464,
+            "runner_up_score": 0.3039622797152888,
+            "margin": 0.5607044043027576,
+            "accepted": true,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.8014405345184854,
+            "runner_up_score": 0.7393834214460359,
+            "margin": 0.06205711307244954,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Ryze",
+            "score": 0.8213190487619826,
+            "runner_up_score": 0.7228528949448422,
+            "margin": 0.09846615381714041,
+            "accepted": true,
+            "candidate_id": "Ryze",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Zac",
+            "score": 0.7258685091798098,
+            "runner_up_score": 0.31709930497004624,
+            "margin": 0.4087692042097636,
+            "accepted": true,
+            "candidate_id": "Zac",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Camille",
+            "score": 0.7601317463064754,
+            "runner_up_score": 0.29754036354990154,
+            "margin": 0.46259138275657385,
+            "accepted": true,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.7168867490507123,
+            "runner_up_score": 0.7121541856094807,
+            "margin": 0.004732563441231519,
+            "accepted": false,
+            "candidate_id": "Rammus",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.8620960780681678,
+            "runner_up_score": 0.29763914162218114,
+            "margin": 0.5644569364459866,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.28080429113007815,
+            "runner_up_score": 0.279643506742556,
+            "margin": 0.0011607843875221513,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2852818293716738,
+            "runner_up_score": 0.2851946772457413,
+            "margin": 8.715212593246591e-05,
+            "accepted": false,
+            "candidate_id": "Yasuo",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.299084446264897,
+            "runner_up_score": 0.2965438073961067,
+            "margin": 0.0025406388687903014,
+            "accepted": false,
+            "candidate_id": "Aatrox",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.26649056219753414,
+            "runner_up_score": 0.2578541048216956,
+            "margin": 0.008636457375838569,
+            "accepted": false,
+            "candidate_id": "Lissandra",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2902646350920827,
+            "runner_up_score": 0.2876749442573524,
+            "margin": 0.0025896908347303182,
+            "accepted": false,
+            "candidate_id": "AurelionSol",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2934975316434338,
+            "runner_up_score": 0.2840262374825046,
+            "margin": 0.009471294160929178,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Sett",
+            "score": 0.7083198540281859,
+            "runner_up_score": 0.2886539691540018,
+            "margin": 0.41966588487418405,
+            "accepted": true,
+            "candidate_id": "Sett",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.29739709498439876,
+            "runner_up_score": 0.28767950336146686,
+            "margin": 0.009717591622931898,
+            "accepted": false,
+            "candidate_id": "Braum",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.2778468363041531,
+            "runner_up_score": 0.2769019034540345,
+            "margin": 0.0009449328501185961,
+            "accepted": false,
+            "candidate_id": "Xerath",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2823329370189585,
+            "runner_up_score": 0.2808304956714945,
+            "margin": 0.001502441347464023,
+            "accepted": false,
+            "candidate_id": "Rumble",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7395489020227617,
+            "runner_up_score": 0.7125324445945491,
+            "margin": 0.02701645742821257,
+            "accepted": false,
+            "candidate_id": "Lulu",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.27366307362320397,
+            "runner_up_score": 0.2682721775812242,
+            "margin": 0.005390896041979787,
+            "accepted": false,
+            "candidate_id": "Syndra",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3178392201117393,
+            "runner_up_score": 0.31299613491547373,
+            "margin": 0.004843085196265584,
+            "accepted": false,
+            "candidate_id": "Sona",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8870501746158257
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-baron-result-20260721T074109Z-01.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": " 4:26 ",
+        "value": "4:26",
+        "confidence": 0.9523359735806783,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "32:27",
+          "value": 1947,
+          "confidence": 0.9712243914604187,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "60.3K",
+          "value": 60300,
+          "confidence": 0.9924536943435669,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "61.8K",
+          "value": 61800,
+          "confidence": 0.9700232863426208,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "10",
+          "value": 10,
+          "confidence": 0.9984933733940125,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "15",
+          "value": 15,
+          "confidence": 0.9976244270801544,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "13",
+          "value": 1,
+          "confidence": 0.7226593792438507,
+          "accepted": true
+        },
+        "rightTowers": {
+          "raw_text": "4",
+          "value": 4,
+          "confidence": 0.8581883311271667,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0。",
+          "value": 0,
+          "confidence": 0.46356047689914703,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9880309998989105,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": "Varus",
+            "score": 0.7184133733463861,
+            "runner_up_score": 0.3104960948192157,
+            "margin": 0.4079172785271704,
+            "accepted": true,
+            "candidate_id": "Varus",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.8120935491604532,
+            "runner_up_score": 0.7171454482492037,
+            "margin": 0.0949481009112495,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7248327978501867,
+            "runner_up_score": 0.7201414265783486,
+            "margin": 0.004691371271838163,
+            "accepted": false,
+            "candidate_id": "Urgot",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7593465750945951,
+            "runner_up_score": 0.751724933840307,
+            "margin": 0.007621641254288103,
+            "accepted": false,
+            "candidate_id": "Ziggs",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Khazix",
+            "score": 0.7198769292172521,
+            "runner_up_score": 0.2936573425814305,
+            "margin": 0.4262195866358216,
+            "accepted": true,
+            "candidate_id": "Khazix",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.7245999390923639,
+            "runner_up_score": 0.705179972852462,
+            "margin": 0.01941996623990183,
+            "accepted": false,
+            "candidate_id": "Amumu",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.7841240351198111,
+            "runner_up_score": 0.306586927380485,
+            "margin": 0.4775371077393261,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.28758989184376915,
+            "runner_up_score": 0.2780643761092288,
+            "margin": 0.009525515734540357,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.27984399288388184,
+            "runner_up_score": 0.27908691517043815,
+            "margin": 0.0007570777134436879,
+            "accepted": false,
+            "candidate_id": "Fiora",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Leona",
+            "score": 0.7395065687212409,
+            "runner_up_score": 0.27919984435699996,
+            "margin": 0.4603067243642409,
+            "accepted": true,
+            "candidate_id": "Leona",
+            "geometrically_verified": true
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": "Kindred",
+            "score": 0.7202435875185798,
+            "runner_up_score": 0.27860307634803094,
+            "margin": 0.4416405111705488,
+            "accepted": true,
+            "candidate_id": "Kindred",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.29918831157019127,
+            "runner_up_score": 0.29617571883938204,
+            "margin": 0.003012592730809227,
+            "accepted": false,
+            "candidate_id": "AurelionSol",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28632136888552995,
+            "runner_up_score": 0.27594173576063896,
+            "margin": 0.010379633124890986,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29961274115463293,
+            "runner_up_score": 0.2942635609631499,
+            "margin": 0.0053491801914830606,
+            "accepted": false,
+            "candidate_id": "AurelionSol",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3007012132197955,
+            "runner_up_score": 0.2981445555969502,
+            "margin": 0.002556657622845293,
+            "accepted": false,
+            "candidate_id": "Hecarim",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.2812016607855306,
+            "runner_up_score": 0.27821908164948544,
+            "margin": 0.0029825791360451603,
+            "accepted": false,
+            "candidate_id": "Xerath",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7346919229915448,
+            "runner_up_score": 0.7301010293113566,
+            "margin": 0.004590893680188279,
+            "accepted": false,
+            "candidate_id": "Trundle",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7229173580105299,
+            "runner_up_score": 0.711708769999199,
+            "margin": 0.011208588011330956,
+            "accepted": false,
+            "candidate_id": "Singed",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.26611389433776556,
+            "runner_up_score": 0.26011533243742824,
+            "margin": 0.005998561900337318,
+            "accepted": false,
+            "candidate_id": "Azir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.26967549604392166,
+            "runner_up_score": 0.2608159435533132,
+            "margin": 0.008859552490608436,
+            "accepted": false,
+            "candidate_id": "Nunu",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.8566397089981732
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-inhibitor-20260721T074213Z-03.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay_scoreboard_verified",
+      "live_indicator": {
+        "raw_text": " 3:08",
+        "value": "3:08",
+        "confidence": 0.8838409423828125,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "33:45",
+          "value": 2025,
+          "confidence": 0.9758309602737427,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "63.5K",
+          "value": 63500,
+          "confidence": 0.9964113473892212,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "66.0K",
+          "value": 66000,
+          "confidence": 0.9860904216766357,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "11",
+          "value": 11,
+          "confidence": 0.9993610680103302,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "17",
+          "value": 17,
+          "confidence": 0.9988424777984619,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "Y3",
+          "value": 3,
+          "confidence": 0.6554470807313919,
+          "accepted": false
+        },
+        "rightTowers": {
+          "raw_text": "8",
+          "value": 8,
+          "confidence": 0.7209765911102295,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "00",
+          "value": 0,
+          "confidence": 0.42121219635009766,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9887959063053131,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.728763295043769,
+            "runner_up_score": 0.7044514653634296,
+            "margin": 0.024311829680339403,
+            "accepted": false,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.8871262296060025,
+            "runner_up_score": 0.30419066752683266,
+            "margin": 0.5829355620791699,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7421098765945082,
+            "runner_up_score": 0.7249276939241293,
+            "margin": 0.017182182670378965,
+            "accepted": false,
+            "candidate_id": "Nunu",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.30600692186916795,
+            "runner_up_score": 0.3008674795451986,
+            "margin": 0.005139442323969345,
+            "accepted": false,
+            "candidate_id": "Leona",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7458160540659308,
+            "runner_up_score": 0.7058405857760955,
+            "margin": 0.039975468289835225,
+            "accepted": false,
+            "candidate_id": "Camille",
+            "geometrically_verified": true
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.31064619320632164,
+            "runner_up_score": 0.3072583999413666,
+            "margin": 0.00338779326495503,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7481269138093197,
+            "runner_up_score": 0.7199495807653766,
+            "margin": 0.028177333043943098,
+            "accepted": false,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.30124300790334385,
+            "runner_up_score": 0.28895616609005154,
+            "margin": 0.012286841813292315,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29079206057864765,
+            "runner_up_score": 0.29021409324232855,
+            "margin": 0.0005779673363190962,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29889640579510307,
+            "runner_up_score": 0.29316340913408145,
+            "margin": 0.0057329966610216165,
+            "accepted": false,
+            "candidate_id": "JarvanIV",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": "Kindred",
+            "score": 0.718547986860947,
+            "runner_up_score": 0.26972908277421614,
+            "margin": 0.44881890408673086,
+            "accepted": true,
+            "candidate_id": "Kindred",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.2887241270458453,
+            "runner_up_score": 0.28665845146150337,
+            "margin": 0.0020656755843419528,
+            "accepted": false,
+            "candidate_id": "AurelionSol",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.7451588993357696,
+            "runner_up_score": 0.7312238011864884,
+            "margin": 0.013935098149281178,
+            "accepted": false,
+            "candidate_id": "Quinn",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7535153624359888,
+            "runner_up_score": 0.7211772064256778,
+            "margin": 0.03233815601031098,
+            "accepted": false,
+            "candidate_id": "Quinn",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.31638206771438426,
+            "runner_up_score": 0.3028928092191047,
+            "margin": 0.013489258495279544,
+            "accepted": false,
+            "candidate_id": "Illaoi",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.2841490011684514,
+            "runner_up_score": 0.2817653014122038,
+            "margin": 0.0023836997562475815,
+            "accepted": false,
+            "candidate_id": "Talon",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Karma",
+            "score": 0.7336973366367933,
+            "runner_up_score": 0.2835220609536663,
+            "margin": 0.450175275683127,
+            "accepted": true,
+            "candidate_id": "Karma",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.27108889381842194,
+            "runner_up_score": 0.2703377185964681,
+            "margin": 0.000751175221953837,
+            "accepted": false,
+            "candidate_id": "Nasus",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2806378386193657,
+            "runner_up_score": 0.28061244063098406,
+            "margin": 2.539798838163687e-05,
+            "accepted": false,
+            "candidate_id": "Rengar",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2927092932419353,
+            "runner_up_score": 0.2870075425987693,
+            "margin": 0.00570175064316597,
+            "accepted": false,
+            "candidate_id": "Ryze",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.9005680325667678
+    },
+    {
+      "layout_id": "kespa_2026_1920x1080",
+      "frame_path": "docs/source-spike/twitch-bfx-dk-ending-20260721T075238Z-05.jpg",
+      "frame_width": 1920,
+      "frame_height": 1080,
+      "screen_state": "live_gameplay",
+      "live_indicator": {
+        "raw_text": " LIVE",
+        "value": "LIVE",
+        "confidence": 0.9114484548568725,
+        "accepted": true
+      },
+      "fields": {
+        "clock": {
+          "raw_text": "44:15",
+          "value": 2655,
+          "confidence": 0.9773051738739014,
+          "accepted": true
+        },
+        "leftGold": {
+          "raw_text": "87.3K",
+          "value": 87300,
+          "confidence": 0.9958530306816101,
+          "accepted": true
+        },
+        "rightGold": {
+          "raw_text": "91.5K",
+          "value": 91500,
+          "confidence": 0.8777062475681305,
+          "accepted": true
+        },
+        "leftKills": {
+          "raw_text": "21",
+          "value": 21,
+          "confidence": 0.9997583627700806,
+          "accepted": true
+        },
+        "rightKills": {
+          "raw_text": "32",
+          "value": 32,
+          "confidence": 0.9845336973667145,
+          "accepted": true
+        },
+        "leftTowers": {
+          "raw_text": "Y4",
+          "value": 4,
+          "confidence": 0.8849411308765411,
+          "accepted": true
+        },
+        "rightTowers": {
+          "raw_text": "10",
+          "value": 10,
+          "confidence": 0.9941398501396179,
+          "accepted": true
+        },
+        "leftDragons": {
+          "raw_text": "0：",
+          "value": 0,
+          "confidence": 0.2789594978094101,
+          "accepted": false
+        },
+        "rightDragons": {
+          "raw_text": "30",
+          "value": 3,
+          "confidence": 0.9893999695777893,
+          "accepted": true
+        }
+      },
+      "picks": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.32103387868647837,
+            "runner_up_score": 0.2969782154056287,
+            "margin": 0.024055663280849682,
+            "accepted": false,
+            "candidate_id": "Ambessa",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": "Vi",
+            "score": 0.7639515831830521,
+            "runner_up_score": 0.7116096000585118,
+            "margin": 0.0523419831245403,
+            "accepted": true,
+            "candidate_id": "Vi",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "Ryze",
+            "score": 0.8121209084929025,
+            "runner_up_score": 0.7254343619112273,
+            "margin": 0.08668654658167518,
+            "accepted": true,
+            "candidate_id": "Ryze",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.7434222341473633,
+            "runner_up_score": 0.7101455573502007,
+            "margin": 0.03327667679716262,
+            "accepted": false,
+            "candidate_id": "Ziggs",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.31002341731684413,
+            "runner_up_score": 0.30284057485655247,
+            "margin": 0.007182842460291661,
+            "accepted": false,
+            "candidate_id": "Pantheon",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.7185873397349041,
+            "runner_up_score": 0.7030237482120444,
+            "margin": 0.015563591522859688,
+            "accepted": false,
+            "candidate_id": "Riven",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": "LeeSin",
+            "score": 0.7567300031691601,
+            "runner_up_score": 0.30923126070588025,
+            "margin": 0.4474987424632798,
+            "accepted": true,
+            "candidate_id": "LeeSin",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.3015377726406463,
+            "runner_up_score": 0.29004928746958214,
+            "margin": 0.011488485171064156,
+            "accepted": false,
+            "candidate_id": "Vladimir",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29535027819156434,
+            "runner_up_score": 0.29419696345872415,
+            "margin": 0.0011533147328401938,
+            "accepted": false,
+            "candidate_id": "Jax",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.2939628223908105,
+            "runner_up_score": 0.29144318621952736,
+            "margin": 0.002519636171283146,
+            "accepted": false,
+            "candidate_id": "Ornn",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "bans": {
+        "left": [
+          {
+            "champion_id": null,
+            "score": 0.2927444501870481,
+            "runner_up_score": 0.2876234087260234,
+            "margin": 0.005121041461024711,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29240375039137306,
+            "runner_up_score": 0.2877987169588636,
+            "margin": 0.004605033432509453,
+            "accepted": false,
+            "candidate_id": "AurelionSol",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.29724611976899956,
+            "runner_up_score": 0.2743951229666888,
+            "margin": 0.022850996802310786,
+            "accepted": false,
+            "candidate_id": "Ashe",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3084671921880273,
+            "runner_up_score": 0.3013958466977733,
+            "margin": 0.007071345490254011,
+            "accepted": false,
+            "candidate_id": "AurelionSol",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28492010223781283,
+            "runner_up_score": 0.281364420643481,
+            "margin": 0.0035556815943318387,
+            "accepted": false,
+            "candidate_id": "Ryze",
+            "geometrically_verified": false
+          }
+        ],
+        "right": [
+          {
+            "champion_id": null,
+            "score": 0.7380668790939324,
+            "runner_up_score": 0.7233509245346563,
+            "margin": 0.014715954559276101,
+            "accepted": false,
+            "candidate_id": "Talon",
+            "geometrically_verified": true
+          },
+          {
+            "champion_id": null,
+            "score": 0.27828786033019154,
+            "runner_up_score": 0.277681013108984,
+            "margin": 0.0006068472212075182,
+            "accepted": false,
+            "candidate_id": "Rumble",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.27245902034803604,
+            "runner_up_score": 0.27020124226930287,
+            "margin": 0.0022577780787331747,
+            "accepted": false,
+            "candidate_id": "Nocturne",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.28235600719011633,
+            "runner_up_score": 0.2785549449837521,
+            "margin": 0.003801062206364225,
+            "accepted": false,
+            "candidate_id": "Samira",
+            "geometrically_verified": false
+          },
+          {
+            "champion_id": null,
+            "score": 0.3149622271927962,
+            "runner_up_score": 0.3096726940566839,
+            "margin": 0.005289533136112301,
+            "accepted": false,
+            "candidate_id": "Volibear",
+            "geometrically_verified": false
+          }
+        ]
+      },
+      "source_status": "partial_low_confidence",
+      "overall_confidence": 0.9124036325181364
+    }
+  ]
+}

@@ -145,6 +145,26 @@ This requires `ffmpeg` on `PATH`. The probe stores redacted stream metadata,
 timestamped JPEG frames, and a JSON capture report. Signed HLS URLs and their
 embedded network data are not persisted.
 
+Run the deterministic visual extractor (no LLM is used at runtime):
+
+```bash
+.venv/bin/python -m pip install -e '.[vision-spike]'
+.venv/bin/python scripts/visual_frame_extract.py \
+  --layout configs/vision/kespa_2026_1920x1080.json \
+  sync-templates
+
+.venv/bin/python scripts/visual_frame_extract.py \
+  --layout configs/vision/kespa_2026_1920x1080.json \
+  extract-sequence frame-01.jpg frame-02.jpg frame-03.jpg \
+  --output visual-sequence.json
+```
+
+Champion assets remain in `.cache/pm-lol-vision/` and are not committed. The
+sequence command preserves every per-frame reading and adds conservative
+cross-frame state: clocks must advance, counters cannot roll back, small
+objective counters require repeated agreement, and ambiguous champions remain
+`unknown`.
+
 ## Current Known Risks
 
 - LoLEsports live `sourceLatencySec` is still pending active-match validation.

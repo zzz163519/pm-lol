@@ -565,17 +565,21 @@ Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 1
 
 ### V0 — Pure-code visual extractor spike (current)
 
-- [ ] Add versioned broadcast-layout configuration and gameplay/replay screen
-  classification.
-- [ ] Download and version the Riot Data Dragon champion template set.
-- [ ] Extract ten final picks and ten bans with template matching and confidence.
-- [ ] OCR clock, gold, kills and tower counters from fixed ROIs.
-- [ ] Extract dragon and Baron state; extract inhibitor state when the event is
-  observable.
-- [ ] Require cross-frame agreement and emit `unknown`/skip below confidence
+- [x] Add a versioned 1920x1080 KeSPA broadcast layout and distinguish verified
+  gameplay overlays from unknown screens; explicit replay-state classification
+  remains part of the next live run.
+- [x] Pin Riot Data Dragon `16.14.1` and download champion templates into a
+  gitignored local cache. Riot image assets are not committed or used in the UI.
+- [~] Extract final picks and bans with template matching and geometric
+  verification. The BFX-DK replay accepts 5/10 picks and 2/10 bans after
+  cross-frame checks, so exact BP remains open and will use draft-screen capture.
+- [x] OCR clock, gold, kills and tower counters from fixed ROIs.
+- [~] Extract dragon state. Baron timer/event and direct inhibitor event
+  extraction remain open for an observable live occurrence.
+- [x] Require cross-frame agreement and emit `unknown`/skip below confidence
   thresholds.
-- [ ] Emit normalized read-only snapshots plus raw evidence; no model, signal or
-  execution code.
+- [x] Emit normalized read-only sequence state plus per-frame raw evidence; no
+  model, signal or execution code.
 
 ### V1 — Two-consecutive-match acceptance gate
 
