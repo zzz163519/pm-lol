@@ -47,14 +47,17 @@ is constrained by the legal dragon-counter range and normalized to `3`.
 The in-game side portraits are only 44x40 pixels, team-tinted, compressed and
 partly covered by level/UI elements. RANSAC geometric verification removed the
 known false Zoe acceptance in the Ryze slot: ambiguous candidates are now
-`unknown`. Across the 12 frames, cross-frame consensus accepted 5/10 picks and
-2/10 bans; the remaining slots stayed unknown. Those accepted identities are
-still candidates pending postgame ground-truth reconciliation, not a V1 pass.
+`unknown`. Across the 12 frames, cross-frame consensus produced candidates for
+5/10 picks and 2/10 bans; the remaining slots stayed unknown. No gameplay-icon
+candidate is accepted without an exact draft-screen confirmation, so this is
+not a V1 pass.
 
 The next live run must capture the draft screen, where champion portraits and
 ban icons are larger and unobstructed. Draft-screen extraction becomes the
 authoritative exact-BP path; the in-game sidebar remains a continuous
-cross-check only. Thresholds will not be lowered merely to fill missing slots.
+cross-check only. A mismatch remains rejected even when the gameplay candidate
+has a high template score. Thresholds will not be lowered merely to fill missing
+slots.
 
 ## Safety and asset handling
 

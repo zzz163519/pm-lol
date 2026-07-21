@@ -16,6 +16,7 @@ class SequenceValue:
     sample_count: int
     accepted: bool
     reason: str | None = None
+    candidate_value: int | str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -56,12 +57,14 @@ class VisualSequenceAggregator:
         champion_min_agreement: float = 2 / 3,
         objective_confidence_floor: float = 0.40,
         objective_min_samples: int = 2,
+        confirmed_champions: dict[str, dict[str, tuple[str, ...]]] | None = None,
     ) -> None:
         self.champion_min_score = champion_min_score
         self.champion_min_samples = champion_min_samples
         self.champion_min_agreement = champion_min_agreement
         self.objective_confidence_floor = objective_confidence_floor
         self.objective_min_samples = objective_min_samples
+        self.confirmed_champions = confirmed_champions or {}
 
     def aggregate(self, results: Iterable[VisualFrameResult]) -> VisualSequenceResult:
         frames = list(results)
@@ -179,24 +182,40 @@ class VisualSequenceAggregator:
                         and match.score >= self.champion_min_score
                     ):
                         candidates.append((candidate, match.score))
-                slots.append(self._champion_consensus(candidates))
+                confirmed = (
+                    self.confirmed_champions.get(attribute, {}).get(side, ())
+                )
+                confirmed_value = confirmed[index] if index < len(confirmed) else None
+                slots.append(self._champion_consensus(candidates, confirmed_value))
             result[side] = tuple(slots)
         return result
 
-    def _champion_consensus(self, candidates: list[tuple[str, float]]) -> SequenceValue:
+    def _champion_consensus(
+        self, candidates: list[tuple[str, float]], confirmed_value: str | None
+    ) -> SequenceValue:
         if not candidates:
             return SequenceValue(None, 0.0, 0, 0, False, "no_geometrically_verified_samples")
         champion, support = Counter(candidate for candidate, _ in candidates).most_common(1)[0]
         agreement = support / len(candidates)
         confidence = sum(score for candidate, score in candidates if candidate == champion) / support
-        accepted = support >= self.champion_min_samples and agreement >= self.champion_min_agreement
+        consensus_reached = support >= self.champion_min_samples and agreement >= self.champion_min_agreement
+        accepted = consensus_reached and champion == confirmed_value
+        if not consensus_reached:
+            reason = "cross_frame_agreement_required"
+        elif confirmed_value is None:
+            reason = "draft_confirmation_required"
+        elif champion != confirmed_value:
+            reason = "draft_mismatch"
+        else:
+            reason = None
         return SequenceValue(
             champion if accepted else None,
             confidence,
             support,
             len(candidates),
             accepted,
-            None if accepted else "cross_frame_agreement_required",
+            reason,
+            champion if consensus_reached and not accepted else None,
         )
 
     @staticmethod

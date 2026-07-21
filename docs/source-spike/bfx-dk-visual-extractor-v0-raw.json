@@ -10,7 +10,8 @@
         "support": 1,
         "sample_count": 12,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "leftGold": {
         "value": 87300,
@@ -18,7 +19,8 @@
         "support": 1,
         "sample_count": 12,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "rightGold": {
         "value": 91500,
@@ -26,7 +28,8 @@
         "support": 1,
         "sample_count": 12,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "leftKills": {
         "value": 21,
@@ -34,7 +37,8 @@
         "support": 1,
         "sample_count": 9,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "rightKills": {
         "value": 32,
@@ -42,7 +46,8 @@
         "support": 1,
         "sample_count": 12,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "leftTowers": {
         "value": 3,
@@ -50,7 +55,8 @@
         "support": 5,
         "sample_count": 10,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "rightTowers": {
         "value": 2,
@@ -58,7 +64,8 @@
         "support": 4,
         "sample_count": 12,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "leftDragons": {
         "value": 0,
@@ -66,7 +73,8 @@
         "support": 8,
         "sample_count": 8,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       },
       "rightDragons": {
         "value": 3,
@@ -74,26 +82,29 @@
         "support": 9,
         "sample_count": 11,
         "accepted": true,
-        "reason": null
+        "reason": null,
+        "candidate_value": null
       }
     },
     "picks": {
       "left": [
         {
-          "value": "Ambessa",
+          "value": null,
           "confidence": 0.8439326707251247,
           "support": 10,
           "sample_count": 11,
-          "accepted": true,
-          "reason": null
+          "accepted": false,
+          "reason": "draft_confirmation_required",
+          "candidate_value": "Ambessa"
         },
         {
-          "value": "Vi",
+          "value": null,
           "confidence": 0.7943109737621136,
           "support": 10,
           "sample_count": 12,
-          "accepted": true,
-          "reason": null
+          "accepted": false,
+          "reason": "draft_confirmation_required",
+          "candidate_value": "Vi"
         },
         {
           "value": null,
@@ -101,7 +112,8 @@
           "support": 6,
           "sample_count": 12,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
           "value": null,
@@ -109,15 +121,17 @@
           "support": 4,
           "sample_count": 11,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
-          "value": "Camille",
+          "value": null,
           "confidence": 0.8148678806713612,
           "support": 9,
           "sample_count": 10,
-          "accepted": true,
-          "reason": null
+          "accepted": false,
+          "reason": "draft_confirmation_required",
+          "candidate_value": "Camille"
         }
       ],
       "right": [
@@ -127,23 +141,26 @@
           "support": 2,
           "sample_count": 8,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
-          "value": "LeeSin",
+          "value": null,
           "confidence": 0.8018546067461757,
           "support": 11,
           "sample_count": 12,
-          "accepted": true,
-          "reason": null
+          "accepted": false,
+          "reason": "draft_confirmation_required",
+          "candidate_value": "LeeSin"
         },
         {
-          "value": "Taliyah",
+          "value": null,
           "confidence": 0.7697960619002397,
           "support": 4,
           "sample_count": 4,
-          "accepted": true,
-          "reason": null
+          "accepted": false,
+          "reason": "draft_confirmation_required",
+          "candidate_value": "Taliyah"
         },
         {
           "value": null,
@@ -151,7 +168,8 @@
           "support": 1,
           "sample_count": 2,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
           "value": null,
@@ -159,19 +177,21 @@
           "support": 2,
           "sample_count": 5,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         }
       ]
     },
     "bans": {
       "left": [
         {
-          "value": "Kindred",
+          "value": null,
           "confidence": 0.717144581112318,
           "support": 4,
           "sample_count": 6,
-          "accepted": true,
-          "reason": null
+          "accepted": false,
+          "reason": "draft_confirmation_required",
+          "candidate_value": "Kindred"
         },
         {
           "value": null,
@@ -179,15 +199,17 @@
           "support": 1,
           "sample_count": 4,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
-          "value": "Quinn",
+          "value": null,
           "confidence": 0.7394622595072093,
           "support": 2,
           "sample_count": 3,
-          "accepted": true,
-          "reason": null
+          "accepted": false,
+          "reason": "draft_confirmation_required",
+          "candidate_value": "Quinn"
         },
         {
           "value": null,
@@ -195,7 +217,8 @@
           "support": 1,
           "sample_count": 7,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
           "value": null,
@@ -203,7 +226,8 @@
           "support": 0,
           "sample_count": 0,
           "accepted": false,
-          "reason": "no_geometrically_verified_samples"
+          "reason": "no_geometrically_verified_samples",
+          "candidate_value": null
         }
       ],
       "right": [
@@ -213,7 +237,8 @@
           "support": 1,
           "sample_count": 4,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
           "value": null,
@@ -221,7 +246,8 @@
           "support": 1,
           "sample_count": 5,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
           "value": null,
@@ -229,7 +255,8 @@
           "support": 1,
           "sample_count": 6,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
           "value": null,
@@ -237,7 +264,8 @@
           "support": 1,
           "sample_count": 1,
           "accepted": false,
-          "reason": "cross_frame_agreement_required"
+          "reason": "cross_frame_agreement_required",
+          "candidate_value": null
         },
         {
           "value": null,
@@ -245,7 +273,8 @@
           "support": 0,
           "sample_count": 0,
           "accepted": false,
-          "reason": "no_geometrically_verified_samples"
+          "reason": "no_geometrically_verified_samples",
+          "candidate_value": null
         }
       ]
     },

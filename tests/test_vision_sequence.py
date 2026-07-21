@@ -56,10 +56,24 @@ def test_sequence_accepts_champion_only_after_cross_frame_geometric_agreement():
     first = _frame(60, champion="Annie")
     second = _frame(72, champion="Annie")
 
-    result = VisualSequenceAggregator().aggregate([first, second])
+    result = VisualSequenceAggregator(
+        confirmed_champions={"picks": {"left": ("Annie",)}}
+    ).aggregate([first, second])
 
     assert result.picks["left"][0].accepted is True
     assert result.picks["left"][0].value == "Annie"
+
+
+def test_sequence_keeps_unconfirmed_gameplay_champion_as_candidate_only():
+    result = VisualSequenceAggregator().aggregate(
+        [_frame(60, champion="Annie"), _frame(72, champion="Annie")]
+    )
+
+    champion = result.picks["left"][0]
+    assert champion.accepted is False
+    assert champion.value is None
+    assert champion.candidate_value == "Annie"
+    assert champion.reason == "draft_confirmation_required"
 
 
 def test_observation_metrics_records_capture_gap_without_claiming_source_latency():

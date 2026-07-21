@@ -571,8 +571,8 @@ Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 1
 - [x] Pin Riot Data Dragon `16.14.1` and download champion templates into a
   gitignored local cache. Riot image assets are not committed or used in the UI.
 - [~] Extract final picks and bans with template matching and geometric
-  verification. The BFX-DK replay accepts 5/10 picks and 2/10 bans after
-  cross-frame checks, so exact BP remains open and will use draft-screen capture.
+  verification. The BFX-DK replay finds consensus candidates for 5/10 picks and
+  2/10 bans but accepts none without draft confirmation, so exact BP remains open.
 - [x] OCR clock, gold, kills and tower counters from fixed ROIs.
 - [~] Extract dragon state. Baron timer/event and direct inhibitor event
   extraction remain open for an observable live occurrence.

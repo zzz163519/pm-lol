@@ -37,12 +37,14 @@ def build_parser() -> argparse.ArgumentParser:
     sequence.add_argument("frames", nargs="+", type=Path)
     sequence.add_argument("--output", type=Path)
     sequence.add_argument("--skip-live-check", action="store_true")
+    sequence.add_argument("--confirmed-draft", type=Path)
     probe = subparsers.add_parser(
         "extract-probe", help="Extract frames listed by a redacted Twitch probe report."
     )
     probe.add_argument("probe", type=Path)
     probe.add_argument("--output", type=Path)
     probe.add_argument("--skip-live-check", action="store_true")
+    probe.add_argument("--confirmed-draft", type=Path)
     return parser
 
 
@@ -80,8 +82,20 @@ def main(argv: list[str] | None = None) -> int:
             extractor.extract(frame, require_live_indicator=not args.skip_live_check)
             for frame in frame_paths
         ]
+        confirmed_path = getattr(args, "confirmed_draft", None)
+        confirmed_champions = None
+        if confirmed_path is not None:
+            confirmed_payload = json.loads(confirmed_path.read_text(encoding="utf-8"))
+            confirmed_champions = {
+                group: {
+                    side: tuple(values)
+                    for side, values in (confirmed_payload.get(group) or {}).items()
+                }
+                for group in ("picks", "bans")
+            }
         result = VisualSequenceAggregator(
-            champion_min_score=layout.thresholds.get("championScore", 0.55)
+            champion_min_score=layout.thresholds.get("championScore", 0.55),
+            confirmed_champions=confirmed_champions,
         ).aggregate(frame_results)
         output = {
             "aggregate": result.as_dict(),
