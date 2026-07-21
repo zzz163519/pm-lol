@@ -285,3 +285,15 @@ schedule/live/coverage ID 发现后只轮询 visual-state。HTTP 429 时立即�
 只有在 LUA Gaming vs UB Alma Mater 或后续同类 Polymarket-backed active match 中，
 验证 non-default game clock、gold、objectives、kills、final picks、freshness 及赛后对账后，
 才重新评分并决定 Cito 是否可成为 Phase 1 主源或备源。
+
+## 2026-07-21 - Strategy semantics: conditional value, not speed
+
+Decision owner: Calvin.
+
+The PM-LOL thesis is confirmed as conditional probability value trading. Team strength supplies the prior; final picks supply an early/mid/late composition power curve; economy, objectives and map state update win probability conditionally against that curve. The strategy searches for executable Polymarket Game Winner prices below the calibrated conditional probability after costs.
+
+Source delay is accepted when the observed state remains valid and sufficient net value remains. The strategy does not require first-event detection or short-horizon repricing. Resolution EV and price-convergence exits must be evaluated separately.
+
+A weak or low-ranked team, a current gold deficit, or high odds is not an automatic buy. A future high-odds reversal path requires unrealized scaling, a survivable trajectory, non-terminal game state, executable net value and calibrated low-probability evidence.
+
+`docs/strategy-model-semantics.md` supersedes earlier fixed-delta or speed-dependent interpretations. This is a documentation clarification only; Phase 0 prohibitions on model, signal, paper-trading and execution implementation remain unchanged.

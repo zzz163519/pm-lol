@@ -223,3 +223,15 @@ Phase 5: [ ] Execution Layer — 冻结
 下一步：按 `tasks.md` 中的当前 P0 blocker 推进：
 LoLEsports active-match 多场次字段/延迟、live team-side authority 与重复映射复核、
 Polymarket REST/orderbook 稳定性和 Market WebSocket clean retest；保持 Phase 1+ 冻结。
+
+## Strategy Semantics Calibration (2026-07-21)
+
+Future Phase 2-4 work must follow `docs/strategy-model-semantics.md`:
+
+- Phase 2 models team strength as a prior and final picks as a time-varying composition power curve, not one fixed draft score.
+- Conditional live probability must model interactions between draft timing, economy, objectives, map state and team strength.
+- Phase 3 evaluates resolution EV separately from short-horizon price convergence and compares against both Elo and Polymarket baselines.
+- Phase 4 high-odds reversal is a gated S2/S3 case. Weak-team ranking, a current deficit or high odds alone cannot unlock it.
+- Delay remains a measurable freshness and executable-edge cost. The project does not require a speed lead, but stale or near-terminal snapshots remain blocked.
+
+This clarification changes future acceptance semantics only. It does not authorize strategy, signal, paper-trading or execution implementation during the current Phase 0 source spike.
