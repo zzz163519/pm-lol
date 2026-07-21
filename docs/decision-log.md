@@ -335,3 +335,31 @@ three sources passed the required live draft/gold/objective test.
 
 Evidence: `docs/source-spike/bfx-dk-kespa-live-source-validation-2026-07-21.md`
 and `docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-probe.json`.
+
+## 2026-07-21 - Approved delivery sequence after visual-source feasibility
+
+Decision owner: Calvin.
+
+The project will first implement only the minimum pure-code HLS visual
+extractor required for source validation. Runtime extraction will use frame
+sampling, fixed-layout ROIs, champion template matching, numeric OCR and
+cross-frame confidence checks; no LLM is required or permitted in the primary
+data path.
+
+The live visual source is qualified only after two consecutive
+Polymarket-backed matches pass automated end-to-end validation. Each pass must
+preserve market/match/game/team-token identity, recover from transient input
+failure, match the final ten picks and ten bans exactly, provide advancing live
+state with >=95% usable normal-game samples, accept no known-wrong snapshots,
+and leave replayable evidence plus postgame reconciliation. The current BFX-DK
+capture is feasibility evidence, not one of the two automated passes.
+
+After this gate, implementation order is: complete read-only data loop,
+strategy engineering, then read-only monitoring frontend. Strategy work remains
+locked until the data loop is accepted and starts with historical/paper outputs
+only. Wallet, private key and real order integration remain out of scope.
+
+Stable CLOB REST polling is sufficient for the initial delayed-strategy quote
+loop. Market WebSocket remains a later latency/reliability optimization and no
+longer blocks the start of Phase 1 once the two-match visual gate, mapping and
+REST evidence pass.

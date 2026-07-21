@@ -123,8 +123,8 @@ captures remain historical comparison evidence and do not override this role.
 
 ## Selected Sources
 
-- Primary spike source: LoLEsports frontend API.
-- Validated delayed visual fallback: official-event Twitch HLS; automated extraction pending.
+- Primary spike source: official-event Twitch HLS with pure-code template/OCR extraction; two-consecutive-match automated acceptance pending.
+- Structured comparison source: LoLEsports frontend API; active-match coverage remains tournament-dependent.
 - Market/orderbook source: Polymarket public market data via HTML slug discovery, Gamma slug detail, and CLOB REST polling.
 - Backup candidate: PandaScore, if paid live access is acceptable.
 - Future upgrade: GRID, if official access and cost fit the project.

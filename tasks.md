@@ -26,16 +26,16 @@
 
 建议执行顺序：
 
-1. `F0-00` LoLEsports Frontend API Spike：当前优先 spike 源，已验证历史样本可覆盖 picks + gold/objectives。
-2. `F0-06` Polymarket public API 实测：不依赖商业 key，是盘口闭环的先决条件。
-3. `F0-01` PandaScore API 验证：商业备选源，免费层不满足局中数据；至少需 Basic Live。
-4. `F0-02` GRID 商务/技术确认：质量最高，但可能成本和门槛最高。
-5. `F0-03` Abios trial 验证：备选商业源。
-6. `F0-04` Cito 证据归档：不推荐作为 Phase 1 主源或备源，仅保留历史比较证据。
-7. `F0-07` 数据 schema 草案：已完成。
-8. `F0-08` SourceScore 打分：已完成。
-9. `F0-09` 历史验证资产冻结：不得继续扩建 Phase 1 骨架。
-10. `F0-10` Phase 0 Go/No-Go：仅在全部硬门关闭后讨论 Phase 1。
+1. `V0` 纯代码视觉提取器 spike：HLS -> ROI -> 英雄模板匹配/OCR -> 跨帧置信度，不使用 LLM。
+2. `V1` 连续两场自动验收：只选 Polymarket 有 Game N Winner 盘口的比赛，两场都通过才确认视觉数据源。
+3. `F0-06` Polymarket public API 实测：在同两场中复核 market/token mapping 与 CLOB REST/orderbook 稳定性；WebSocket 为非阻塞优化。
+4. `F0-00` LoLEsports Frontend API：保留为结构化对照，不再作为当前主 spike 源。
+5. `F0-01` PandaScore API 验证：商业备选源，免费层不满足局中数据；至少需 Basic Live。
+6. `F0-02` GRID 商务/技术确认：质量最高，但可能成本和门槛最高。
+7. `F0-03` Abios trial 验证：备选商业源。
+8. `F0-04` Cito 证据归档：不推荐作为 Phase 1 主源或备源，仅保留历史比较证据。
+9. `F0-07` 数据 schema 草案与 `F0-08` SourceScore：已完成。
+10. `F0-10` Phase 0 Go/No-Go：仅在 V1 与其余硬门关闭后解锁完整 Phase 1 数据闭环。
 
 ---
 
@@ -530,7 +530,7 @@ Phase 0 Go/No-Go decision:
 
 ```text
 [~] Polymarket public 行情实测可用：HTML slug discovery + Gamma slug detail + Game Winner tokenId + CLOB orderbook REST 已验证；generic search、网络路径和 WS 仍待复测
-[ ] 至少一个 LOL 实时源实测可用：历史样本覆盖 final picks + derived clock + gold + objectives；live sourceLatencySec 未实测
+[~] 至少一个 LOL 实时源实测可用：官方赛事 Twitch HLS 已通过人工视觉可行性验证；纯代码模板/OCR 提取与连续两场自动化 V1 验收未完成
 [~] 赛程/映射源实测可用：CAL-157 authenticated CITO 重跑为 no-active-match/near-live；identity 与 market-token PASS，game/team-side PENDING，稳定性 gate 未关闭
 [x] SourceScore 完成：候选源有证据打分，live latency 风险仍 pending
 [ ] Phase 1 未启动：Phase 0 全部硬门关闭前保持冻结
@@ -543,9 +543,9 @@ Phase 0 Go/No-Go decision:
 - [ ] Live mapping stability：同一场 Polymarket Game N Winner 与 LoLEsports
   event/game/team identity 已达到 `mappingConfidence=1.0`；仍需确认 authoritative
   team-side source，并在重复 live 样本中保持稳定。
-- [ ] LoLEsports active-match stability：跨多场记录 final picks、clock、gold、objectives、sourceTimestamp、observedAt 和 `sourceLatencySec`。
+- [ ] Automated visual-source stability：完成 V0 纯代码提取器，并在连续两场 Polymarket-backed 比赛中验证 final picks、bans、clock、gold、objectives、confidence、observedAt 和端到端 freshness。
 - [ ] Polymarket REST/orderbook stability：重复采样并记录空盘口、关闭市场、429 和网络失败。
-- [ ] Polymarket Market WebSocket retest：成功保存订阅消息；失败保存可复现证据。
+- [ ] Polymarket Market WebSocket retest（非阻塞优化）：成功保存订阅消息；失败保存可复现证据。初始延迟型闭环可使用已验证稳定的 REST polling。
 
 ---
 
@@ -558,3 +558,65 @@ Phase 1 之后的任务只保留阶段入口。Phase 0 gates 关闭前，Phase 1
 - [ ] **F3** Paper Trading Loop：PaperBroker、MFE/MAE、PriceConvergence、SignalJournal、expectancy 报告。
 - [ ] **F4** Non-Mainline Unlock：15min、后期反转、资源错估逐个纸面验证。
 - [ ] **F5** Execution Layer：py-clob-client-v2、RealBroker、ExecutionGate、私钥管理。
+
+---
+
+## 6. Approved execution queue — 2026-07-21
+
+### V0 — Pure-code visual extractor spike (current)
+
+- [ ] Add versioned broadcast-layout configuration and gameplay/replay screen
+  classification.
+- [ ] Download and version the Riot Data Dragon champion template set.
+- [ ] Extract ten final picks and ten bans with template matching and confidence.
+- [ ] OCR clock, gold, kills and tower counters from fixed ROIs.
+- [ ] Extract dragon and Baron state; extract inhibitor state when the event is
+  observable.
+- [ ] Require cross-frame agreement and emit `unknown`/skip below confidence
+  thresholds.
+- [ ] Emit normalized read-only snapshots plus raw evidence; no model, signal or
+  execution code.
+
+### V1 — Two-consecutive-match acceptance gate
+
+- [ ] Select two consecutive matches that both have active Polymarket Game N
+  Winner markets and accessible official/event broadcasts.
+- [ ] Run the extractor continuously through both matches without manual field
+  entry.
+- [ ] Require `mappingConfidence >= 0.90`, stable game/team/token identity,
+  exact final BP, >=95% usable normal-game samples and zero incorrect accepted
+  snapshots.
+- [ ] Reconcile each run against postgame ground truth and publish raw frames,
+  normalized snapshots, confidence/freshness metrics, interruptions and a final
+  pass/fail report.
+- [ ] Only when both consecutive matches pass, record the visual source as
+  qualified and perform the Phase 0 Go/No-Go update.
+
+The BFX-DK evidence is the feasibility baseline and does not count as an
+automated V1 pass.
+
+### F1 — Complete read-only data loop (locked until V1 passes)
+
+- [ ] Polymarket LOL discovery -> Game Winner filtering -> token/orderbook REST
+  capture.
+- [ ] Market/match/game/team mapping -> broadcast resolver -> frame sampler ->
+  extractor -> normalized snapshot storage.
+- [ ] Health/freshness/confidence metrics, idempotent restart, replay and
+  postgame reconciliation.
+- [ ] Full-match unattended acceptance run with no strategy or signal output.
+
+### F2 — Strategy engineering (locked until F1 passes)
+
+- [ ] Team-strength prior and chronological training/evaluation data.
+- [ ] Time-varying draft power curve and conditional live-state interactions.
+- [ ] Executable price, spread/slippage and net-value calculations.
+- [ ] Historical evaluation, calibration and paper-only signal journal.
+- [ ] No wallet, private key or real order path.
+
+### UI — Read-only monitoring frontend (locked until F1 contracts and F2 outputs are stable)
+
+- [ ] Market/match/game identity and current BP/live-state panels.
+- [ ] Source health, freshness, field confidence and skip reasons.
+- [ ] Polymarket orderbook plus fair probability/net-value comparison.
+- [ ] Timeline, replay and audit views; no duplicate calculation logic and no
+  execution controls.

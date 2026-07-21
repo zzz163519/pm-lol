@@ -46,7 +46,7 @@
 | 编号 | 里程碑 | 完成证据 |
 |---|---|---|
 | P0.1 | Polymarket 行情可用 | 记录 LOL Game Winner 市场的 conditionId、tokenId、best bid/ask、orderbook REST polling 样例，并完成 WebSocket clean retest |
-| P0.2 | LOL 实时源可用 | 优先验证 LoLEsports Frontend API；至少 1 个候选源实测返回 final picks + derived game clock + gold + objectives，并记录延迟、覆盖联赛、限制 |
+| P0.2 | LOL 实时源可用 | 以官方赛事 Twitch HLS 纯代码视觉提取为当前主验证路径；连续两场自动返回 final picks、bans、derived game clock、gold、objectives，并记录置信度、延迟、覆盖联赛和限制 |
 | P0.3 | 赛程/映射源可用 | 能从 LoLEsports 或等效源拿到 schedule/event details，并形成 matchId/gameNumber/team alias 映射样例 |
 | P0.4 | SourceScore 完成 | 对 LoLEsports 主 spike、PandaScore 商业备选、GRID 未来升级、Oracle's Elixir 历史用途及 Cito/非官方源限制完成证据化打分 |
 | P0.5 | 数据 schema 草案完成 | `markets`、`resolved_markets`、`quotes`、`matches`、`games`、`game_state_snapshots`、`draft_snapshots` 字段草案定稿 |
@@ -56,9 +56,9 @@
 
 必须同时满足：
 
-- Polymarket public 行情可在无认证下读取 Game Winner market、token、orderbook；REST polling 与 WebSocket 都必须留下稳定性结论。
-- LoLEsports Frontend API 在 active match 中自动提供 final picks、可推算 game clock、gold、objectives，并记录 source timestamp、observedAt、延迟与限制。
-- 当前主 spike 源为 LoLEsports Frontend API；PandaScore 为商业备选，GRID 为未来升级。Cito / 非官方源不推荐作为 Phase 1 主源或备源。
+- Polymarket public 行情可在无认证下读取 Game Winner market、token、orderbook；REST polling 必须留下稳定性结论，WebSocket 保留复测结论但不阻塞初始延迟型闭环。
+- 官方赛事 Twitch HLS 纯代码视觉链路必须在连续两场 active match 中自动提供 final picks、bans、可推算 game clock、gold、objectives，并记录 observedAt、置信度、端到端 freshness 与限制。
+- 当前主 spike 源为官方赛事 Twitch HLS；LoLEsports Frontend API 保留为结构化对照，PandaScore 为商业备选，GRID 为未来升级。Cito / 非官方源不推荐作为 Phase 1 主源或备源。
 - 赛程/映射源能支持 `market -> match -> gameNumber -> team side` 的映射，低置信度市场可被跳过。
 - SourceScore 和 schema 草案已记录在案。
 
@@ -87,8 +87,8 @@ Phase 0 全部硬门通过前不得进入 Phase 1，也不得新增或扩建 Pha
   赛中两次达到 `1.0`，但 Game 3 team side 在 365.5 秒内翻转。随后 authenticated
   CITO 重跑时已无 active match，只能确认 identity 与 market-token mapping；live
   game/team-side 交叉验证仍 pending。
-- LoLEsports active-match final picks、clock、gold、objectives 与延迟需跨多场稳定。
-- Polymarket Market WebSocket clean network retest，保存消息样例或可复现失败证据。
+- 官方赛事 Twitch HLS 纯代码提取的 final picks、bans、clock、gold、objectives、置信度与 freshness 需连续两场稳定。
+- Polymarket Market WebSocket clean network retest 继续保存消息样例或可复现失败证据，但作为优化项，不阻塞基于稳定 REST polling 的初始 Phase 1。
 
 ### 里程碑
 
@@ -212,7 +212,7 @@ Phase 3 主线验证通过，或 Phase 4 中某个非主线策略验证通过；
 ## 7. 当前状态
 
 ```text
-Phase 0: [~] Source Feasibility Spike — 主 spike 源为 LoLEsports Frontend API；剩余 gates：active-match 字段/延迟稳定性、Polymarket REST/orderbook 与 WS 稳定性、重复 live mapping/team-side 稳定性
+Phase 0: [~] Source Feasibility Spike — 官方赛事 Twitch HLS 视觉可行性已通过；当前 gate 为纯代码模板/OCR 提取器及连续两场 Polymarket-backed 自动化验收，同时复核 REST/orderbook 与 mapping 稳定性
 Phase 1: [ ] Data Foundation — 冻结；现有代码仅作为 Phase 0 验证资产
 Phase 2: [ ] Strategy Skeleton — 冻结
 Phase 3: [ ] Paper Trading Loop — 未启动
@@ -220,9 +220,10 @@ Phase 4: [ ] Unlock Non-Mainline Strategies — 冻结
 Phase 5: [ ] Execution Layer — 冻结
 ```
 
-下一步：按 `tasks.md` 中的当前 P0 blocker 推进：
-LoLEsports active-match 多场次字段/延迟、live team-side authority 与重复映射复核、
-Polymarket REST/orderbook 稳定性和 Market WebSocket clean retest；保持 Phase 1+ 冻结。
+下一步：按 `tasks.md` 的 V0/V1 推进纯代码视觉提取器，并连续验证两场
+Polymarket-backed 比赛；同窗复核 market/game/team-token mapping 与 CLOB REST
+orderbook 稳定性。Market WebSocket 作为后续优化，不再阻塞初始 Phase 1；保持
+Phase 1+ 冻结直至 V1 与其余 Phase 0 硬门通过。
 
 ## Strategy Semantics Calibration (2026-07-21)
 
@@ -235,3 +236,75 @@ Future Phase 2-4 work must follow `docs/strategy-model-semantics.md`:
 - Delay remains a measurable freshness and executable-edge cost. The project does not require a speed lead, but stale or near-terminal snapshots remain blocked.
 
 This clarification changes future acceptance semantics only. It does not authorize strategy, signal, paper-trading or execution implementation during the current Phase 0 source spike.
+
+---
+
+## 8. Approved delivery sequence — visual source to monitoring (2026-07-21)
+
+The approved order is now:
+
+```text
+two consecutive Polymarket-backed automated visual validations
+  -> complete read-only data loop
+  -> strategy engineering
+  -> monitoring frontend
+```
+
+### Gate A — two consecutive automated source validations
+
+Phase 0 may build only the minimum pure-code visual extraction spike needed to
+validate the source. The path is HLS -> ffmpeg frame sampling -> fixed-layout
+ROI detection -> champion template matching -> numeric OCR -> cross-frame
+agreement. No LLM is part of the runtime path.
+
+Both consecutive matches must have an active Polymarket `Game N Winner` market
+and must pass all of the following:
+
+- stable `market -> match -> gameNumber -> team/outcome token` mapping with
+  `mappingConfidence >= 0.90` and no accepted side flip;
+- exact final ten picks and ten bans, verified against postgame ground truth;
+- monotonically advancing clock plus accepted gold, kills, towers, dragons and
+  Baron states; inhibitors are required only when the event occurs;
+- at least 95% usable scheduled samples during normal gameplay, with zero
+  knowingly incorrect accepted snapshots; low-confidence fields must be
+  `unknown` or skipped;
+- saved raw frames, normalized snapshots, confidence values, discontinuity /
+  replay handling, end-to-end freshness observations and a postgame report;
+- process restart or transient stream failure must recover without changing
+  match, game or team-token identity.
+
+The existing BFX-DK capture proves visual feasibility, but it is not one of the
+two automated passes because template/OCR extraction was not yet running.
+After two consecutive automated passes, the visual live source is considered
+qualified for the initial read-only data foundation. Because the strategy
+accepts delay, stable CLOB REST polling is sufficient for the initial quote
+loop; Polymarket WebSocket remains a measured optimization rather than a block
+on beginning Phase 1. This section supersedes earlier wording that made a
+successful Market WebSocket retest mandatory for Phase 1 entry.
+
+### Phase 1 — complete read-only data loop
+
+Build one replayable service path covering market discovery, Game Winner token
+mapping, quote capture, broadcast resolution, frame sampling, layout selection,
+pick/ban and scoreboard extraction, confidence gating, normalized snapshots,
+SQLite persistence, health metrics and restart recovery. The completion run
+must follow a full Polymarket-backed match from discovery through postgame
+reconciliation with no manual data entry. Strategy, signals and orders remain
+out of scope.
+
+### Phase 2 — strategy engineering
+
+Only after the data loop is accepted, implement the strategy semantics in
+`docs/strategy-model-semantics.md`: team-strength prior, time-varying draft
+power curve, conditional economy/objective/map state, executable Polymarket
+price and net-value calculation. Start with historical evaluation and paper
+outputs only; wallet, private key and real order placement remain prohibited.
+
+### Monitoring frontend
+
+Start after the Phase 1 contracts are stable and the Phase 2 outputs are
+defined. The frontend is read-only and must show mapping identity, current
+game/draft state, source freshness and confidence, quote/orderbook health,
+model probability versus executable market price, skip/invalidation reasons,
+and replay/audit history. It must never become an alternate calculation or
+execution path.
