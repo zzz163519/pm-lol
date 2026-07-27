@@ -8,30 +8,34 @@ pm-lol 是 Polymarket LOL 价值交易系统，目标是先验证自动数据输
 
 ## 当前阶段
 
-当前阶段：Conditional Phase 1 Data Foundation。
+当前阶段：Phase 0 — Automated Visual Source Qualification。
 
-这不是 full Phase 1，也不是策略、信号、纸面交易或执行层启动许可。当前只允许继续
-Data Foundation 范围内的 market/orderbook REST polling、LOL source parser、
-schema/storage、resolver hard gate、collector run 记录和 replay 验证。
+当前只允许建设完成连续两场数据源验收所需的最小纯代码视觉提取 spike：HLS 抓帧、
+固定 ROI、英雄模板匹配、数字 OCR、跨帧置信度、只读 market/match 映射和证据保存。
+这不是完整 Phase 1，也不是策略、信号、纸面交易或执行层启动许可。
 
 本阶段只验证：
 - Polymarket LOL Game Winner 市场发现、orderbook 和行情读取是否稳定。
-- Cito + LoLEsports 或等效实时源组合是否能稳定提供 final picks、game clock、gold、objectives。
+- 官方赛事 Twitch HLS 纯代码视觉链路是否能在连续两场 Polymarket-backed 比赛中稳定提供 final picks、bans、game clock、gold、objectives。
 - 赛程、队伍别名、局数和 Polymarket 市场是否能可靠映射。
 
-Conditional Phase 1 完成前，禁止新增 strategy / edge / signal / paper trading /
-wallet / private key / order 相关实现或配置。
+连续两场自动化验收与其余 Phase 0 硬门完成前，不启动完整 Data Foundation；完整
+数据闭环验收前，禁止新增 strategy / edge / signal / paper trading / wallet /
+private key / order 相关实现或配置。
 
 ## 工作范围和数据源策略
 
-- 当前主源组合：Cito API 覆盖 team identity / gold / objectives / kills /
-  gameClock / gameState；LoLEsports Frontend API 补充 draft/picks。仍需多场次
-  freshness/stability 复核，未通过前不得视为生产安全。
+- 当前主 spike 源：官方赛事 Twitch HLS；运行时使用纯代码模板匹配/OCR，不使用
+  LLM。BFX-DK 只证明人工视觉可行性，不计入连续两场自动化验收。
+- LoLEsports Frontend API 保留为结构化对照；Cito 保留历史失败/覆盖比较证据，二者
+  当前都不是主 live 输入。
 - 盘口源：Polymarket public REST/orderbook polling 是 QuoteRecorder v1 baseline；
-  WebSocket deferred，待 clean network retest。
+  WebSocket deferred，作为优化项待 clean network retest，不阻塞延迟型初始闭环。
 - 商业备选：PandaScore / GRID / Abios。
 - Oracle's Elixir 只用于历史研究，不作为 live 输入。
 - 每个 source spike 必须留下原始响应样例、字段清单、延迟记录、限制说明和结论。
+- 只有连续两场 Polymarket-backed 比赛都达到 `mappingConfidence >= 0.90`、最终 BP
+  精确、正常赛内样本可用率至少 95%、已接受快照零已知错误，才把视觉源记为通过。
 
 ## Agent 注意事项
 

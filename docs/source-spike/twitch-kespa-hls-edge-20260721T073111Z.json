@@ -1,0 +1,9 @@
+{
+  "observedAt": "2026-07-21T07:31:11.0550875Z",
+  "latestSegmentProgramDateTime": "2026-07-21T07:31:08.560Z",
+  "latestSegmentDurationSec": 2.0,
+  "inferredLatestSegmentEnd": "2026-07-21T07:31:10.560Z",
+  "inferredPlaylistEdgeLagSec": 0.495,
+  "signedHlsUrlSaved": false,
+  "caveat": "This measures Twitch HLS playlist freshness, not upstream spectator or production delay."
+}

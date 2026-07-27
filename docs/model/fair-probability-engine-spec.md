@@ -672,3 +672,28 @@ Risk labels:
 - GitHub references inspected through `gh repo view`:
   `MRittinghouse/ProjektZero-LoL-Model`, `vigovlugt/draftgap`, and
   `hubkrieb/lol-win-probabilities`.
+
+## 8. Strategy Semantics Calibration
+
+`docs/strategy-model-semantics.md` is the authoritative interpretation of the strategy for future implementation cards. In particular:
+
+- the system is value/mispricing, not speed arbitrage;
+- `DraftAdjustment` must evolve from a fixed scalar into a time-varying `draft_power_curve`;
+- `InGameAdjustment` must condition economy and objective state on that curve and on team strength;
+- high-odds reversal requires explicit non-terminal and tail-calibration gates;
+- future validation must beat both Elo-only and timestamp-aligned Polymarket probability baselines.
+
+The additive formula earlier in this document remains useful as an explainable output decomposition, but it must not be implemented as evidence-independent fixed deltas. Its calibrated form is conceptually:
+
+```text
+P(win at t) = f(
+  team_strength_prior,
+  draft_power_curve(t),
+  economy_and_objective_state(t),
+  map_state(t),
+  side_and_patch,
+  interactions
+)
+```
+
+Source latency is a freshness and remaining-edge constraint. It is not the strategy's alpha source, and sub-second observation is not a prerequisite when a valid executable value gap remains.

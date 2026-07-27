@@ -1,0 +1,48 @@
+{
+  "endpoints": {
+    "details": {
+      "error": null,
+      "errorClass": null,
+      "hasRawSample": true,
+      "observedAt": "2026-07-20T18:24:14.842379Z",
+      "ok": true,
+      "rawSamplePath": "docs/source-spike/lolesports-116878159559794400-details-raw.json",
+      "sourceLatencySec": 1045.061,
+      "sourceTimestamp": "2026-07-20T18:06:49.781Z",
+      "sourceTimestampNote": null,
+      "statusCode": 200
+    },
+    "window": {
+      "error": null,
+      "errorClass": null,
+      "hasRawSample": true,
+      "observedAt": "2026-07-20T18:24:14.221911Z",
+      "ok": true,
+      "rawSamplePath": "docs/source-spike/lolesports-116878159559794400-window-raw.json",
+      "sourceLatencySec": 1044.441,
+      "sourceTimestamp": "2026-07-20T18:06:49.781Z",
+      "sourceTimestampNote": null,
+      "statusCode": 200
+    }
+  },
+  "failureReasons": [],
+  "fieldCoverage": {
+    "finalPicks": "present",
+    "gameClock": "derived_from_frame_timestamp_only",
+    "gameState": "present",
+    "gold": "present",
+    "objectives": "present"
+  },
+  "gameId": "116878159559794400",
+  "limitations": [
+    "gameClock is not explicit; only derivable from frame timestamps."
+  ],
+  "observedAt": "2026-07-20T18:24:14.221911Z",
+  "overallOk": true,
+  "rawSamplePaths": {
+    "details": "docs/source-spike/lolesports-116878159559794400-details-raw.json",
+    "report": "docs/source-spike/lolesports-116878159559794400-live-source-smoke.json",
+    "window": "docs/source-spike/lolesports-116878159559794400-window-raw.json"
+  },
+  "source": "lolesports_livestats"
+}

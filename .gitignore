@@ -26,6 +26,7 @@ env/
 *.sqlite3
 *.log
 *.tmp
+.cache/pm-lol-vision/
 
 # OS / editor
 .DS_Store

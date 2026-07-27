@@ -1,0 +1,40 @@
+{
+  "channelUrl": "https://www.twitch.tv/kespa2026lck",
+  "quality": "best",
+  "startedAt": "2026-07-21T07:52:38.342010Z",
+  "endedAt": "2026-07-21T07:53:10.152402Z",
+  "requestedSampleCount": 5,
+  "intervalSec": 5,
+  "ffmpegReturnCode": 0,
+  "ffmpegTimedOut": false,
+  "metadataPath": "docs/source-spike/twitch-bfx-dk-ending-20260721T075238Z-stream.json",
+  "frames": [
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-ending-20260721T075238Z-01.jpg",
+      "bytes": 123762,
+      "observedAt": "2026-07-21T07:52:50.659561Z"
+    },
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-ending-20260721T075238Z-02.jpg",
+      "bytes": 150458,
+      "observedAt": "2026-07-21T07:52:52.192454Z"
+    },
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-ending-20260721T075238Z-03.jpg",
+      "bytes": 186663,
+      "observedAt": "2026-07-21T07:52:58.506768Z"
+    },
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-ending-20260721T075238Z-04.jpg",
+      "bytes": 179903,
+      "observedAt": "2026-07-21T07:53:02.310799Z"
+    },
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-ending-20260721T075238Z-05.jpg",
+      "bytes": 209423,
+      "observedAt": "2026-07-21T07:53:08.713359Z"
+    }
+  ],
+  "success": true,
+  "failureReason": null
+}

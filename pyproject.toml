@@ -7,6 +7,15 @@ dependencies = [
   "requests>=2.31",
 ]
 
+[project.optional-dependencies]
+source-spike = [
+  "streamlink>=8.4,<9",
+]
+vision-spike = [
+  "numpy>=2,<2.3",
+  "rapidocr-onnxruntime>=1.4,<2",
+]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]

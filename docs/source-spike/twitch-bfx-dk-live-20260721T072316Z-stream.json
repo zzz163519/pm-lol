@@ -1,0 +1,63 @@
+{
+    "plugin":  "twitch",
+    "metadata":  {
+                     "id":  "320480616026",
+                     "author":  "kespa2026lck",
+                     "category":  "League of Legends",
+                     "title":  "BNK FEARX DPLUS KIA on KeSPA 2026 KeSPA Cup 2026 KeSPA Cup"
+                 },
+    "streams":  {
+                    "audio_only":  {
+                                       "type":  "hls",
+                                       "url":  "[redacted_ephemeral_hls_url]",
+                                       "headers":  {
+                                                       "User-Agent":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0",
+                                                       "Accept-Encoding":  "gzip, deflate",
+                                                       "Accept":  "*/*",
+                                                       "Connection":  "keep-alive",
+                                                       "referer":  "https://player.twitch.tv",
+                                                       "origin":  "https://player.twitch.tv"
+                                                   },
+                                       "master":  "[redacted_ephemeral_hls_url]"
+                                   },
+                    "1080p60":  {
+                                    "type":  "hls",
+                                    "url":  "[redacted_ephemeral_hls_url]",
+                                    "headers":  {
+                                                    "User-Agent":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0",
+                                                    "Accept-Encoding":  "gzip, deflate",
+                                                    "Accept":  "*/*",
+                                                    "Connection":  "keep-alive",
+                                                    "referer":  "https://player.twitch.tv",
+                                                    "origin":  "https://player.twitch.tv"
+                                                },
+                                    "master":  "[redacted_ephemeral_hls_url]"
+                                },
+                    "worst":  {
+                                  "type":  "hls",
+                                  "url":  "[redacted_ephemeral_hls_url]",
+                                  "headers":  {
+                                                  "User-Agent":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0",
+                                                  "Accept-Encoding":  "gzip, deflate",
+                                                  "Accept":  "*/*",
+                                                  "Connection":  "keep-alive",
+                                                  "referer":  "https://player.twitch.tv",
+                                                  "origin":  "https://player.twitch.tv"
+                                              },
+                                  "master":  "[redacted_ephemeral_hls_url]"
+                              },
+                    "best":  {
+                                 "type":  "hls",
+                                 "url":  "[redacted_ephemeral_hls_url]",
+                                 "headers":  {
+                                                 "User-Agent":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0",
+                                                 "Accept-Encoding":  "gzip, deflate",
+                                                 "Accept":  "*/*",
+                                                 "Connection":  "keep-alive",
+                                                 "referer":  "https://player.twitch.tv",
+                                                 "origin":  "https://player.twitch.tv"
+                                             },
+                                 "master":  "[redacted_ephemeral_hls_url]"
+                             }
+                }
+}

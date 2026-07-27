@@ -1,0 +1,29 @@
+{
+  "channelUrl": "https://www.twitch.tv/kespa2026lck",
+  "quality": "best",
+  "startedAt": "2026-07-21T07:34:06.036527Z",
+  "endedAt": "2026-07-21T07:34:31.285503Z",
+  "requestedSampleCount": 3,
+  "intervalSec": 5,
+  "ffmpegReturnCode": 0,
+  "metadataPath": "docs/source-spike/twitch-bfx-dk-baron-20260721T073406Z-stream.json",
+  "frames": [
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-baron-20260721T073406Z-01.jpg",
+      "bytes": 133093,
+      "observedAt": "2026-07-21T07:34:20.563046Z"
+    },
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-baron-20260721T073406Z-02.jpg",
+      "bytes": 153164,
+      "observedAt": "2026-07-21T07:34:22.543500Z"
+    },
+    {
+      "path": "docs/source-spike/twitch-bfx-dk-baron-20260721T073406Z-03.jpg",
+      "bytes": 172310,
+      "observedAt": "2026-07-21T07:34:29.029660Z"
+    }
+  ],
+  "success": true,
+  "failureReason": null
+}

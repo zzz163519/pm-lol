@@ -130,12 +130,49 @@ During a target live window, use the normal polling window:
 
 The script writes raw samples and a report under `docs/source-spike/`.
 
+Capture consecutive read-only frames from a public Twitch event broadcast:
+
+```bash
+.venv/bin/python -m pip install -e '.[source-spike]'
+.venv/bin/python scripts/twitch_hls_frame_probe.py \
+  --channel-url https://www.twitch.tv/kespa2026lck \
+  --label bfx-dk-live \
+  --sample-count 3 \
+  --interval-sec 12
+```
+
+This requires `ffmpeg` on `PATH`. The probe stores redacted stream metadata,
+timestamped JPEG frames, and a JSON capture report. Signed HLS URLs and their
+embedded network data are not persisted.
+
+Run the deterministic visual extractor (no LLM is used at runtime):
+
+```bash
+.venv/bin/python -m pip install -e '.[vision-spike]'
+.venv/bin/python scripts/visual_frame_extract.py \
+  --layout configs/vision/kespa_2026_1920x1080.json \
+  sync-templates
+
+.venv/bin/python scripts/visual_frame_extract.py \
+  --layout configs/vision/kespa_2026_1920x1080.json \
+  extract-sequence frame-01.jpg frame-02.jpg frame-03.jpg \
+  --output visual-sequence.json
+```
+
+Champion assets remain in `.cache/pm-lol-vision/` and are not committed. The
+sequence command preserves every per-frame reading and adds conservative
+cross-frame state: clocks must advance, counters cannot roll back, small
+objective counters require repeated agreement, and ambiguous champions remain
+`unknown`.
+
 ## Current Known Risks
 
 - LoLEsports live `sourceLatencySec` is still pending active-match validation.
 - Polymarket Market WebSocket still needs a clean retest with a saved message or
   reproducible failure evidence.
 - Cito / unofficial sources are not recommended as the Phase 1 primary or backup.
+- Twitch HLS is validated only as a visual fallback; OCR/template extraction,
+  confidence thresholds, and upstream broadcast delay remain open gates.
 - Existing schema, collectors, storage, replay, and dashboard code are frozen as
   validation assets; they are not authorization to expand a Phase 1 skeleton.
 - Low-confidence market mappings must be skipped rather than forced.

@@ -271,3 +271,123 @@ Phase 1 代码骨架。
 **边界**：现有 schema、collector、storage、resolver、replay、dashboard 仅作为 Phase 0
 验证资产冻结保留。不得新增策略、预测模型、交易信号、paper trading、钱包、私钥、
 broker、order 或真实下单能力。
+
+## 2026-07-21 — Cito active-match 复测与共享限流预算
+
+Calvin 澄清：Cito 应能提供准确的实时比赛字段，当前账户限制预计为 10 requests/minute。
+该限制先作为待响应头确认的运行假设，不直接推翻既有 SourceScore 结论。
+
+下一次只选择已有 Polymarket Game Winner 活跃盘口的比赛做 authenticated read-only
+复测。所有 Cito 端点共享 6 requests/minute 的全局预算（请求间隔至少 10 秒）；完成
+schedule/live/coverage ID 发现后只轮询 visual-state。HTTP 429 时立即停止，记录
+`Retry-After` 与 rate-limit headers，不在同一窗口自动重试。
+
+只有在 LUA Gaming vs UB Alma Mater 或后续同类 Polymarket-backed active match 中，
+验证 non-default game clock、gold、objectives、kills、final picks、freshness 及赛后对账后，
+才重新评分并决定 Cito 是否可成为 Phase 1 主源或备源。
+
+## 2026-07-21 - Strategy semantics: conditional value, not speed
+
+Decision owner: Calvin.
+
+The PM-LOL thesis is confirmed as conditional probability value trading. Team strength supplies the prior; final picks supply an early/mid/late composition power curve; economy, objectives and map state update win probability conditionally against that curve. The strategy searches for executable Polymarket Game Winner prices below the calibrated conditional probability after costs.
+
+Source delay is accepted when the observed state remains valid and sufficient net value remains. The strategy does not require first-event detection or short-horizon repricing. Resolution EV and price-convergence exits must be evaluated separately.
+
+A weak or low-ranked team, a current gold deficit, or high odds is not an automatic buy. A future high-odds reversal path requires unrealized scaling, a survivable trajectory, non-terminal game state, executable net value and calibrated low-probability evidence.
+
+`docs/strategy-model-semantics.md` supersedes earlier fixed-delta or speed-dependent interpretations. This is a documentation clarification only; Phase 0 prohibitions on model, signal, paper-trading and execution implementation remain unchanged.
+
+## 2026-07-21 - KeSPA live visual source validation
+
+BNK FEARX vs Dplus KIA was validated while Polymarket event
+`lol-fox1-dk-2026-07-21` was active and accepting orders. The public
+`kespa2026lck` Twitch channel resolved to a 1080p60 HLS stream without account
+credentials. Five saved live frames showed an advancing game clock, changing
+gold, kills, tower and objective regions, both five-champion final-pick rows,
+and both five-icon ban rows. A Cloud Drake kill announcement was captured at
+game time `07:01`.
+
+A later pair at game times `20:54` and `21:03` showed tower counters advancing
+to `3-2`. A direct playlist check placed the latest completed two-second HLS
+segment about `0.495s` behind the observation timestamp. This is transport-edge
+freshness evidence only; upstream spectator/production delay remains unknown.
+By game time `24:00`, the resource strip visibly held a `0-3` dragon state;
+the same state and tower counts remained stable at `25:35`.
+At game time `32:27`, BFX's Baron timer was visibly active at `4:26`; it
+remained visible at `3:08` at game time `33:45`, while tower counts advanced to
+`3-6`. This closes visual validation for a nonzero Baron state.
+At game time `44:15`, the live overlay still advanced and showed towers `4-10`,
+kills `21-32`, and gold `87.3K-91.5K`. Ten towers imply an opened inhibitor
+lane, but no direct inhibitor-destruction event was captured, so that field
+remains pending rather than being promoted by inference.
+
+The official-event Twitch HLS path is accepted as the first empirically
+validated delayed visual fallback. It is not yet an automatic structured input:
+pick/ban template recognition, numeric OCR, cross-frame agreement, confidence
+thresholds, and source latency remain Phase 0 gates.
+
+In the same active-match window, BO3.gg returned HTTP 404 for its last snapshot
+and empty `no_stats` player arrays, OP.GG declared the KeSPA series
+`liveSupported=false`, and eight authenticated Cito `/lol/live` attempts at a
+ten-second interval all returned `no_match` without HTTP 429. None of those
+three sources passed the required live draft/gold/objective test.
+
+Evidence: `docs/source-spike/bfx-dk-kespa-live-source-validation-2026-07-21.md`
+and `docs/source-spike/twitch-bfx-dk-live-20260721T072316Z-probe.json`.
+
+## 2026-07-21 - Approved delivery sequence after visual-source feasibility
+
+Decision owner: Calvin.
+
+The project will first implement only the minimum pure-code HLS visual
+extractor required for source validation. Runtime extraction will use frame
+sampling, fixed-layout ROIs, champion template matching, numeric OCR and
+cross-frame confidence checks; no LLM is required or permitted in the primary
+data path.
+
+The live visual source is qualified only after two consecutive
+Polymarket-backed matches pass automated end-to-end validation. Each pass must
+preserve market/match/game/team-token identity, recover from transient input
+failure, match the final ten picks and ten bans exactly, provide advancing live
+state with >=95% usable normal-game samples, accept no known-wrong snapshots,
+and leave replayable evidence plus postgame reconciliation. The current BFX-DK
+capture is feasibility evidence, not one of the two automated passes.
+
+After this gate, implementation order is: complete read-only data loop,
+strategy engineering, then read-only monitoring frontend. Strategy work remains
+locked until the data loop is accepted and starts with historical/paper outputs
+only. Wallet, private key and real order integration remain out of scope.
+
+Stable CLOB REST polling is sufficient for the initial delayed-strategy quote
+loop. Market WebSocket remains a later latency/reliability optimization and no
+longer blocks the start of Phase 1 once the two-match visual gate, mapping and
+REST evidence pass.
+
+## 2026-07-21 - BRO vs GEN automated visual validation remains a partial pass
+
+HANJIN BRION vs Gen.G (`lol-bro2-gen-2026-07-21`) is the first full-match run
+with the deterministic extractor active. The public KeSPA stream produced all
+480 requested five-second frames and covered final draft, advancing gameplay,
+postgame and the `BRO 1-0 GEN` result board. Exact CommunityDragon centered
+splash matching recovered 10/10 final picks across three frames. Small tile
+matching accepted only 5/10 bans because the left row was partly obscured and
+the remaining candidates did not meet the geometric threshold; unknown was
+preserved.
+
+A dense gameplay sample accepted advancing clock, gold, kills, towers and
+dragons. Tower ROIs were corrected after the tower glyph could be read as a
+leading digit; the corrected late cluster returned the visibly correct `0-8`
+tower state. Seven of ten gameplay sidebar portraits agreed with the exact
+draft; the draft screen remains the authoritative pick source.
+
+CLOB REST returned 199/200 requested books. The only error was one 20-second
+read timeout and later samples recovered. Median request latency was 326.822ms
+and median observed-minus-source timestamp lag was 169.002ms.
+
+Decision: count this as first-match continuity evidence but not a V1 pass.
+Exact ten bans, Baron normalization, >=95% normal-game scheduled sampling,
+restart recovery and a second consecutive match remain open. CommunityDragon
+artwork stays in the ignored cache and production compliance is unresolved.
+
+Evidence: `docs/source-spike/bro-gen-visual-clob-validation-2026-07-21.md`.
